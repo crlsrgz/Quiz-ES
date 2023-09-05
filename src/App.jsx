@@ -1,5 +1,6 @@
 import React from "react";
 import names from "./data/names";
+import Name from "./components/name.component";
 
 export default function App() {
   return (
@@ -16,14 +17,7 @@ export default function App() {
           </div>
           <div className="mx-auto mt-8 flex flex-col gap-4">
             {names.map((name, index) => {
-              return (
-                <h3
-                  key={index}
-                  className="m-0 mt-4 h-12 cursor-pointer p-0 text-center text-slate-700 hover:text-slate-900 sm:mt-8"
-                >
-                  {name}
-                </h3>
-              );
+              return <Name name={name} key={index} />;
             })}
           </div>
         </div>
