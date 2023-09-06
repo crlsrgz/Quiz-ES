@@ -15,7 +15,7 @@ export default function App() {
               sunt beatae. Minus. &quot;
             </h2>
           </div>
-          <div className="mx-auto mt-8 flex flex-col gap-4">
+          <div className="mx-auto mt-6 flex flex-col gap-4">
             {names.map((name, index) => {
               return <Name name={name} key={index} />;
             })}
