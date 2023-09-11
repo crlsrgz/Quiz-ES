@@ -1,8 +1,8 @@
 import React from "react";
 
 import { useState } from "react";
-import names from "./data/names";
-import Name from "./components/name.component";
+
+import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navigation from "./components/navigation.component";
 import SectionText from "./components/section.text.component";
@@ -22,13 +22,17 @@ export default function App() {
   return (
     <>
       <Navigation />
+      <BrowserRouter>
+        <div className="main-container m-0 h-5/6 p-0">
+          <SectionText classes={displayQuizContainer} />
+          <Routes>
+            <Route path="/about/" element={<BioScore classes={""} />} />
+          </Routes>
 
-      <div className="main-container m-0 h-5/6 p-0">
-        <SectionText classes={displayQuizContainer} />
-        <BioScore classes={"hidden"} />
-        <Intro classes={"hidden"} />
-        <Info classes={"hidden"} />
-      </div>
+          <Intro classes={"hidden"} />
+          <Info classes={"hidden"} />
+        </div>
+      </BrowserRouter>
     </>
   );
 }

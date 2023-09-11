@@ -5,12 +5,12 @@ export default function Navigation() {
       <div className="logo text-blue-200 hover:text-blue-100">CrlsRgz</div>
       <ul className="flex items-center">
         <li className="mr-6">
-          <a href="/" className="text-2xl text-blue-200 hover:text-blue-100">
+          <a href="/" className="hover:text-blue-100k text-2xl text-blue-200">
             Home
           </a>
         </li>
         <li className="mr-6">
-          <a href="/" className="text-blue-200 hover:text-blue-100">
+          <a href="/about/" className="text-blue-200 hover:text-blue-100">
             About
           </a>
         </li>
