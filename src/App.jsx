@@ -21,14 +21,16 @@ export default function App() {
   }
   return (
     <>
-      <Navigation />
       <BrowserRouter>
+        <Navigation />
         <div className="main-container m-0 h-5/6 p-0">
-          <SectionText classes={displayQuizContainer} />
           <Routes>
-            <Route path="/about/" element={<BioScore classes={""} />} />
+            <Route
+              path="/"
+              element={<SectionText classes={displayQuizContainer} />}
+            />
+            <Route path="/about/" element={<BioScore />} />
           </Routes>
-
           <Intro classes={"hidden"} />
           <Info classes={"hidden"} />
         </div>

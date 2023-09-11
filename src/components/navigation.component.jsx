@@ -1,18 +1,22 @@
 import React from "react";
+import { BrowserRouter, Link } from "react-router-dom";
 export default function Navigation() {
   return (
     <nav className="container mx-auto flex items-center justify-between">
       <div className="logo text-blue-200 hover:text-blue-100">CrlsRgz</div>
       <ul className="flex items-center">
         <li className="mr-6">
-          <a href="/" className="hover:text-blue-100k text-2xl text-blue-200">
+          <Link to="/" className="text-blue-200 hover:text-blue-100">
             Home
-          </a>
+          </Link>
         </li>
         <li className="mr-6">
-          <a href="/about/" className="text-blue-200 hover:text-blue-100">
+          <Link to="/about/" className="text-blue-200 hover:text-blue-100">
             About
-          </a>
+          </Link>
+          {/* <a href="/about/" className="text-blue-200 hover:text-blue-100">
+            About
+          </a> */}
         </li>
       </ul>
     </nav>
