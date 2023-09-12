@@ -11,12 +11,24 @@ export default function Navigation() {
           </Link>
         </li>
         <li className="mr-6">
-          <Link to="/about/" className="text-blue-200 hover:text-blue-100">
+          <Link to="/text/" className="text-blue-200 hover:text-blue-100">
+            Text
+          </Link>
+        </li>
+        <li className="mr-6">
+          <Link to="/score/" className="text-blue-200 hover:text-blue-100">
+            Score
+          </Link>
+        </li>
+        <li className="mr-6">
+          <Link to="/info" className="text-blue-200 hover:text-blue-100">
+            Info
+          </Link>
+        </li>
+        <li className="mr-6">
+          <Link to="/about" className="text-blue-200 hover:text-blue-100">
             About
           </Link>
-          {/* <a href="/about/" className="text-blue-200 hover:text-blue-100">
-            About
-          </a> */}
         </li>
       </ul>
     </nav>
