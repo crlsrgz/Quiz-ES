@@ -9,7 +9,7 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-
+import Connection from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
 
@@ -22,10 +22,12 @@ export default function App() {
       setDisplayQuizContainer("flex");
     }
   }
+  console.log("hello");
   return (
     <>
       <BrowserRouter>
         <Navigation />
+        <Connection />
         <div className="main-container m-0 h-5/6 p-0">
           <Routes>
             <Route path="/" element={<Intro />} />
