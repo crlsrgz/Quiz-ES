@@ -4,11 +4,12 @@
   "description": "Complete Intro to React v8 project",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+  
   },
   "keywords": [],
   "author": "crlsrgz",
