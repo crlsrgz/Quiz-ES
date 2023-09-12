@@ -1,9 +1,8 @@
 import React from "react";
-
 import { useState } from "react";
-
 import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
 
+/* ═══ Components ═══ */
 import Navigation from "./components/navigation.component";
 import SectionText from "./components/section.text.component";
 import BioScore from "./components/section.bioScore.component";
