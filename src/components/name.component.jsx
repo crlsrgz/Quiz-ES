@@ -13,8 +13,10 @@ export default function Name(props) {
         ${props.answerClasess}
       `}
       onClick={props.checkAnswer}
+      id={props.id}
+      key={props.index}
     >
-      <h3 id={props.id} key={props.index} className="m-0  p-0 text-center">
+      <h3 id={props.id} className="m-0  p-0 text-center">
         {props.name}
       </h3>
     </div>

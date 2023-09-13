@@ -3,9 +3,11 @@ import names from "../data/names";
 import Name from "../components/name.component";
 
 export default function SectionText(props) {
-  let answer = "1";
+  const [answer, setAnswer] = useState("0");
   const [answerButton, setAnswerButton] = useState("");
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setAnswer("1");
+  }, []);
   function checkAnswer(e) {
     if (e.target.id === answer) {
       console.log(`That's the answer`);
@@ -33,7 +35,7 @@ export default function SectionText(props) {
               name={name}
               key={index}
               id={index}
-              answerClasess={answerButton}
+              answerClasess={index.toString() === answer ? answerButton : ""}
               checkAnswer={checkAnswer}
             />
           );
