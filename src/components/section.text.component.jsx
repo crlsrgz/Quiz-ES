@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import names from "../data/names";
 import Name from "../components/name.component";
+import Connection from "../connections/connection";
 
 export default function SectionText(props) {
+  let testData = Connection();
+  console.log(testData);
+  // const [retriveNames, setRetriveNames] = useState(Connection());
+  // let myTestData = JSON.parse(testData);
+  // console.log(retriveNames);
   const [answer, setAnswer] = useState("0");
   const [disabledButton, setDisabledButton] = useState(``);
   useEffect(() => {
@@ -21,7 +27,7 @@ export default function SectionText(props) {
     }
   }
 
-  function disableButtonsAfterRightAnswer(e) {
+  function disableButtonsAfterRightAnswer() {
     setDisabledButton("bg-blue-900 disabled cursor-default");
   }
   return (
