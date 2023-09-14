@@ -4,18 +4,25 @@ import Name from "../components/name.component";
 
 export default function SectionText(props) {
   const [answer, setAnswer] = useState("0");
-  const [answerButton, setAnswerButton] = useState("");
+  const [disabledButton, setDisabledButton] = useState(``);
   useEffect(() => {
     setAnswer("1");
   }, []);
+
   function checkAnswer(e) {
     if (e.target.id === answer) {
-      console.log(`That's the answer`);
-      setAnswerButton("bg-red-900");
+      e.target.classList.add("bg-red-900");
+
+      disableButtonsAfterRightAnswer();
     } else {
-      console.log(`Not the answer`);
-      setAnswerButton("bg-blue-900");
+      e.target.classList.add("bg-blue-900");
+      e.target.classList.add("disabled");
+      e.target.classList.add("cursor-default");
     }
+  }
+
+  function disableButtonsAfterRightAnswer(e) {
+    setDisabledButton("bg-blue-900 disabled cursor-default");
   }
   return (
     <div
@@ -35,7 +42,7 @@ export default function SectionText(props) {
               name={name}
               key={index}
               id={index}
-              answerClasess={index.toString() === answer ? answerButton : ""}
+              answerClasses={index.toString() !== answer ? disabledButton : ""}
               checkAnswer={checkAnswer}
             />
           );
