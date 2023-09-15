@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+// import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 /* ═══ Components ═══ */
@@ -14,14 +14,15 @@ import About from "./components/section.about.component";
 import "./data/names";
 
 export default function App() {
-  const [displayQuizContainer, setDisplayQuizContainer] = useState("flex");
-  function changeQuizContainerVisibility() {
-    if (displayQuizContainer === "flex") {
-      setDisplayQuizContainer("hidden");
-    } else {
-      setDisplayQuizContainer("flex");
-    }
-  }
+  // const [displayQuizContainer, setDisplayQuizContainer] = useState("flex");
+
+  // function changeQuizContainerVisibility() {
+  //   if (displayQuizContainer === "flex") {
+  //     setDisplayQuizContainer("hidden");
+  //   } else {
+  //     setDisplayQuizContainer("flex");
+  //   }
+  // }
 
   return (
     <>

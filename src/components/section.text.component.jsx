@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
-import names from "../data/names";
+// import names from "../data/names";
 import Name from "../components/name.component";
+import Connection from "../connections/connection";
 import Connection from "../connections/connection";
 
 export default function SectionText(props) {
   let testData = Connection();
-  console.log(testData);
+  const newNames = [
+    testData.author,
+    testData.nameA,
+    testData.nameB,
+    testData.nameC,
+  ];
   // const [retriveNames, setRetriveNames] = useState(Connection());
   // let myTestData = JSON.parse(testData);
   // console.log(retriveNames);
+
   const [answer, setAnswer] = useState("0");
   const [disabledButton, setDisabledButton] = useState(``);
   useEffect(() => {
-    setAnswer("1");
+    setAnswer("0");
   }, []);
 
   function checkAnswer(e) {
@@ -36,13 +43,14 @@ export default function SectionText(props) {
     >
       <div className="mx-auto">
         <h1 className="mt-8 text-left font-sans font-semibold text-blue-50">
-          &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          {testData.quote}
+          {/* &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           Blanditiis adipisci tenetur sit fugit, labore commodi hic? Modi, sunt
-          beatae. Minus.&quot;
+          beatae. Minus.&quot; */}
         </h1>
       </div>
       <div className="mx-auto mt-6 flex w-11/12 flex-col gap-4">
-        {names.map((name, index) => {
+        {newNames.map((name, index) => {
           return (
             <Name
               name={name}
