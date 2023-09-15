@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 // import names from "../data/names";
 import Name from "../components/name.component";
 import Connection from "../connections/connection";
-import Connection from "../connections/connection";
 
 export default function SectionText(props) {
   let testData = Connection();
