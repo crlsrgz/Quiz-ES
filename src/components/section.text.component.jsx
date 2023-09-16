@@ -4,23 +4,18 @@ import Name from "../components/name.component";
 import Connection from "../connections/connection";
 
 export default function SectionText(props) {
-  let testData = Connection();
-  // console.log(testData);
-  const newNames = testData.authors;
+  let quoteData = Connection();
+  const newNames = quoteData.authors;
 
-  // const [retriveNames, setRetriveNames] = useState(Connection());
-  // let myTestData = JSON.parse(testData);
-  // console.log(retriveNames);
+  console.log(quoteData.testString);
 
-  const [answer, setAnswer] = useState(testData.authors.toString());
+  const [answer, setAnswer] = useState(quoteData.authors.toString());
   const [disabledButton, setDisabledButton] = useState(``);
   useEffect(() => {
-    setAnswer(testData.answer.toString());
-  }, [testData]);
+    setAnswer(quoteData.answer.toString());
+  }, [quoteData]);
 
   function checkAnswer(e) {
-    // setAnswer(testData.answer.toString());
-
     if (e.target.id === answer) {
       e.target.classList.add("bg-red-900");
 
@@ -41,7 +36,7 @@ export default function SectionText(props) {
     >
       <div className="mx-auto">
         <h1 className="mt-8 text-left font-sans font-semibold text-blue-50">
-          {testData.quote}
+          {quoteData.quote}
           {/* &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           Blanditiis adipisci tenetur sit fugit, labore commodi hic? Modi, sunt
           beatae. Minus.&quot; */}
