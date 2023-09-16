@@ -5,23 +5,22 @@ import Connection from "../connections/connection";
 
 export default function SectionText(props) {
   let testData = Connection();
-  const newNames = [
-    testData.author,
-    testData.nameA,
-    testData.nameB,
-    testData.nameC,
-  ];
+  // console.log(testData);
+  const newNames = testData.authors;
+
   // const [retriveNames, setRetriveNames] = useState(Connection());
   // let myTestData = JSON.parse(testData);
   // console.log(retriveNames);
 
-  const [answer, setAnswer] = useState("0");
+  const [answer, setAnswer] = useState(testData.authors.toString());
   const [disabledButton, setDisabledButton] = useState(``);
   useEffect(() => {
-    setAnswer("0");
-  }, []);
+    setAnswer(testData.answer.toString());
+  }, [testData]);
 
   function checkAnswer(e) {
+    // setAnswer(testData.answer.toString());
+
     if (e.target.id === answer) {
       e.target.classList.add("bg-red-900");
 
