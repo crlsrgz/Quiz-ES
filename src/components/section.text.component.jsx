@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
 // import names from "../data/names";
 import Name from "../components/name.component";
-import Connection from "../connections/connection";
+// import Connection from "../connections/connection";
 
 export default function SectionText(props) {
-  let quoteData = Connection();
+  /* ::::::::: Connection ::::::::: */
+  // let quoteData = Connection();
+
+  /*:: Temporary data ::*/
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  let quoteData = {
+    quote: "Enséñame el rostro de tu madre y te diré quien eres.",
+    answer: 0,
+    authors: ["Henri Mondor", "Joseph Unger", "Simone Signoret", "Jack Gould"],
+  };
+  /*:: Temporary data ::*/
+
   const newNames = quoteData.authors;
-
-  console.log(quoteData.testString);
-
   const [answer, setAnswer] = useState(quoteData.authors.toString());
   const [disabledButton, setDisabledButton] = useState(``);
   useEffect(() => {
     setAnswer(quoteData.answer.toString());
   }, [quoteData]);
+  /* ::::::::: Connection END ::::::::: */
 
   function checkAnswer(e) {
     if (e.target.id === answer) {
