@@ -114,7 +114,7 @@ export default function SectionText(props) {
               key={index}
               id={index}
               disabled={true}
-              stateClasses={
+              classesLocalStorage={
                 arrayAlreadyClicked[index] === true &&
                 index.toString() !== answer
                   ? "bg-blue-900"

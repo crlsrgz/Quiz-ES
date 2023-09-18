@@ -8,7 +8,7 @@ export default function Name(props) {
     <button
       className={`m-0  flex h-12 w-full cursor-pointer flex-col justify-center  rounded-full 
         border-2 p-0  text-center text-blue-50 sm:mt-2
-        ${props.answerClasses} ${props.stateClasses}
+        ${props.answerClasses} ${props.classesLocalStorage}
       `}
       onClick={props.checkAnswer}
       id={props.id}
