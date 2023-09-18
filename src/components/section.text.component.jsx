@@ -20,6 +20,20 @@ export default function SectionText(props) {
   };
   /*:: Temporary data ::*/
 
+  /* ::::::::: Localstorage ::::::::: */
+  let arrayAlreadyClicked;
+
+  if (!localStorage["user"]) {
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ answered: [false, false, false, false] }),
+    );
+  }
+  arrayAlreadyClicked = JSON.parse(localStorage["user"])["answered"];
+  const arrayAlreadyClickedLength = arrayAlreadyClicked.length;
+
+  /* ::::::::: Localstorage ::::::::: */
+
   const newNames = quoteData.authors;
   const [answer, setAnswer] = useState(quoteData.authors.toString());
   const [disabledButton, setDisabledButton] = useState(``);
@@ -45,15 +59,36 @@ export default function SectionText(props) {
 
   function checkAnswer(e) {
     if (e.target.id === answer) {
-      // e.target.classList.add("bg-red-900");
-
-      setRightAnswerButton("bg-red-900 disabled cursor-default");
+      if (e.target.disabled === true) {
+        e.preventDefault();
+      }
+      setRightAnswerButton("bg-red-500 disabled cursor-default");
       disableButtonsAfterRightAnswer();
+      e.target.disabled = true;
+
+      for (let i = 0; i < arrayAlreadyClickedLength; i++) {
+        arrayAlreadyClicked[i] = true;
+      }
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ answered: arrayAlreadyClicked }),
+      );
+
+      console.log("right answe");
     } else {
       e.target.classList.add("bg-blue-900");
       e.target.classList.add("disabled");
       e.target.classList.add("cursor-default");
+      e.target.disabled = true;
+      console.log(e.target.disabled);
+      arrayAlreadyClicked[e.target.id] = true;
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ answered: arrayAlreadyClicked }),
+      );
     }
+    console.log(arrayAlreadyClicked);
   }
 
   function disableButtonsAfterRightAnswer() {
@@ -78,6 +113,16 @@ export default function SectionText(props) {
               name={name}
               key={index}
               id={index}
+              disabled={true}
+              stateClasses={
+                arrayAlreadyClicked[index] === true &&
+                index.toString() !== answer
+                  ? "bg-blue-900"
+                  : arrayAlreadyClicked[index] === true &&
+                    index.toString() === answer
+                  ? "bg-red-500"
+                  : ""
+              }
               answerClasses={
                 index.toString() !== answer
                   ? disabledButton
