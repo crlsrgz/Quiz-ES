@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+/* @layer base {
   h1 {
-    @apply font-serif text-2xl sm:text-4xl;
+    @apply font-serif text-3xl sm:text-6xl;
   }
   h2 {
     @apply text-xl sm:text-3xl;
@@ -15,4 +15,4 @@
   a {
     @apply text-blue-600 underline;
   }
-}
+} */
