@@ -101,12 +101,12 @@ export default function SectionText(props) {
     >
       <div className="mx-auto">
         <h1
-          className={`mt-16 text-left font-serif ${quoteTextSize} font-semibold text-blue-50`}
+          className={`mt-16 text-left font-serif ${quoteTextSize} text-center font-semibold text-blue-50`}
         >
           &quot;{quoteData.quote}&quot;
         </h1>
       </div>
-      <div className="mx-auto mt-8 flex w-11/12 flex-col gap-4">
+      <div className="mx-auto mt-8 flex w-11/12 flex-col items-center justify-center gap-4">
         {newNames.map((name, index) => {
           return (
             <Name
