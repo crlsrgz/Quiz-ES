@@ -7,7 +7,10 @@ export default function Navigation() {
         className="logo text-blue-200 hover:text-blue-100"
         onDoubleClick={
           /* ::::::::: NOT Production ::::::::: */
-          () => localStorage.clear()
+          () => {
+            localStorage.clear();
+            window.location.reload(false);
+          }
         }
       >
         CrlsRgz
