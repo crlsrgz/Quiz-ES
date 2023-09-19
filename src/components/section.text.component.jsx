@@ -63,7 +63,9 @@ export default function SectionText(props) {
       if (e.target.disabled === true) {
         e.preventDefault();
       }
-      setRightAnswerButton("bg-red-500 disabled cursor-default");
+      setRightAnswerButton(
+        `bg-red-500 disabled cursor-default before:content-['-']`,
+      );
       disableButtonsAfterRightAnswer();
       e.target.disabled = true;
 
@@ -76,11 +78,15 @@ export default function SectionText(props) {
         JSON.stringify({ answered: arrayAlreadyClicked }),
       );
     } else {
-      e.target.classList.add("bg-blue-900");
+      e.target.classList.remove("text-zinc-100");
+      e.target.classList.add("text-zinc-500");
+      e.target.classList.add("border-zinc-500");
       e.target.classList.add("disabled");
       e.target.classList.add("cursor-default");
       e.target.disabled = true;
+
       arrayAlreadyClicked[e.target.id] = true;
+
       localStorage.setItem(
         "user",
         JSON.stringify({ answered: arrayAlreadyClicked }),
@@ -90,7 +96,7 @@ export default function SectionText(props) {
   }
 
   function disableButtonsAfterRightAnswer() {
-    setDisabledButton("bg-blue-900 disabled cursor-default");
+    setDisabledButton("text-zinc-500 disabled cursor-default");
   }
 
   return (
@@ -99,7 +105,7 @@ export default function SectionText(props) {
     >
       <div className="mx-auto">
         <h1
-          className={`mt-16 text-left font-serif ${quoteTextSize} text-center font-semibold text-blue-50`}
+          className={`mt-16 text-left font-serif ${quoteTextSize} font-semibold text-blue-50`}
         >
           &quot;{quoteData.quote}&quot;
         </h1>
@@ -111,15 +117,14 @@ export default function SectionText(props) {
               name={name}
               key={index}
               id={index}
-              disabled={true}
               classesLocalStorage={
                 arrayAlreadyClicked[index] === true &&
                 index.toString() !== answer
-                  ? "bg-blue-900"
+                  ? "text-zinc-500 border-zinc-500"
                   : arrayAlreadyClicked[index] === true &&
                     index.toString() === answer
-                  ? "bg-red-500"
-                  : ""
+                  ? "bg-red-500 text-zinc-100 before:content-['-']"
+                  : "text-zinc-100"
               }
               answerClasses={
                 index.toString() !== answer
@@ -136,7 +141,7 @@ export default function SectionText(props) {
       <div>
         <button
           className={`m-auto mt-12 flex h-12 w-48 cursor-pointer flex-row items-center justify-center  gap-2
-      rounded-full border-2 p-0 text-center align-middle text-base text-xl text-blue-50 transition duration-200 md:mt-2 md:w-2/5
+      rounded-full border-2 p-0 text-center align-middle text-xl text-blue-50 transition duration-200 md:mt-2 md:w-2/5
       
         `}
         >
