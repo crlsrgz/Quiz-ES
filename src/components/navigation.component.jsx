@@ -5,7 +5,10 @@ export default function Navigation() {
     <nav className="container mx-auto flex items-center justify-between">
       <div
         className="logo text-blue-200 hover:text-blue-100"
-        onDoubleClick={() => localStorage.clear()}
+        onDoubleClick={
+          /* ::::::::: NOT Production ::::::::: */
+          () => localStorage.clear()
+        }
       >
         CrlsRgz
       </div>

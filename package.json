@@ -9,7 +9,6 @@
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
-  
   },
   "keywords": [],
   "author": "crlsrgz",
@@ -20,6 +19,7 @@
     "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
+    "@iconify/react": "^4.1.1",
     "@vitejs/plugin-react": "^4.0.4",
     "autoprefixer": "^10.4.15",
     "eslint": "^8.48.0",

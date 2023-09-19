@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Icon } from "@iconify/react";
 // import names from "../data/names";
 import Name from "../components/name.component";
 // import Connection from "../connections/connection";
@@ -74,21 +75,18 @@ export default function SectionText(props) {
         "user",
         JSON.stringify({ answered: arrayAlreadyClicked }),
       );
-
-      console.log("right answe");
     } else {
       e.target.classList.add("bg-blue-900");
       e.target.classList.add("disabled");
       e.target.classList.add("cursor-default");
       e.target.disabled = true;
-      console.log(e.target.disabled);
       arrayAlreadyClicked[e.target.id] = true;
       localStorage.setItem(
         "user",
         JSON.stringify({ answered: arrayAlreadyClicked }),
       );
     }
-    console.log(arrayAlreadyClicked);
+    e.preventDefault();
   }
 
   function disableButtonsAfterRightAnswer() {
@@ -134,6 +132,17 @@ export default function SectionText(props) {
             />
           );
         })}
+      </div>
+      <div>
+        <button
+          className={`m-auto mt-12 flex h-12 w-48 cursor-pointer flex-row items-center justify-center  gap-2
+      rounded-full border-2 p-0 text-center align-middle text-base text-xl text-blue-50 transition duration-200 md:mt-2 md:w-2/5
+      
+        `}
+        >
+          <p>Siguiente</p>
+          <Icon icon="majesticons:arrow-right" width={24} height={24} />
+        </button>
       </div>
     </div>
   );
