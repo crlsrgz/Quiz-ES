@@ -38,13 +38,34 @@ export default function SectionText(props) {
 
   const newNames = quoteData.authors;
   const [answer, setAnswer] = useState(quoteData.authors.toString());
-  const [disabledButton, setDisabledButton] = useState(``);
-  const [rightAnswerButton, setRightAnswerButton] = useState("");
 
   useEffect(() => {
     setAnswer(quoteData.answer.toString());
   }, [quoteData]);
   /* ::::::::: Connection END ::::::::: */
+  /* ::::::::: Buttons states ::::::::: */
+  const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-700 hover:bg-zinc-300 hover:text-zinc-700`;
+  const classesRightAnswer = `right cursor-not-allowed text-zinc-100 bg-red-500`;
+  const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-500`;
+
+  const buttonInitialArray = [];
+  for (let i = 0; i < arrayAlreadyClickedLength; i++) {
+    if (answer !== i.toString() && arrayAlreadyClicked[i] === true) {
+      buttonInitialArray[i] = classesWrongAnswer;
+      console.log("first");
+    }
+    if (answer === i.toString() && arrayAlreadyClicked[i] === true) {
+      buttonInitialArray[i] = classesRightAnswer;
+      console.log("second");
+    }
+    if (!arrayAlreadyClicked[i]) {
+      buttonInitialArray[i] = classesInitialState;
+      console.log("third");
+    }
+  }
+  // console.log(arrayAlreadyClicked);
+
+  const [buttonState, setButtonState] = useState(buttonInitialArray);
 
   const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
   const [quoteLength, setQuoteLength] = useState(quoteData["quote"].length);
@@ -61,14 +82,15 @@ export default function SectionText(props) {
 
   function checkAnswer(e) {
     if (e.target.id === answer) {
-      if (e.target.disabled === true) {
-        e.preventDefault();
+      const tempArray = [...buttonState];
+      for (let i = 0; i < arrayAlreadyClickedLength; i++) {
+        if (i !== answer) {
+          tempArray[i] = classesWrongAnswer;
+        }
       }
-      setRightAnswerButton(
-        `bg-red-500 disabled cursor-default before:content-['-']`,
-      );
-      disableButtonsAfterRightAnswer();
-      e.target.disabled = true;
+      tempArray[answer] = classesRightAnswer;
+
+      setButtonState(tempArray);
 
       for (let i = 0; i < arrayAlreadyClickedLength; i++) {
         arrayAlreadyClicked[i] = true;
@@ -79,25 +101,18 @@ export default function SectionText(props) {
         JSON.stringify({ answered: arrayAlreadyClicked }),
       );
     } else {
-      e.target.classList.remove("text-zinc-100");
-      e.target.classList.add("text-zinc-500");
-      e.target.classList.add("border-zinc-500");
-      e.target.classList.add("disabled");
-      e.target.classList.add("cursor-default");
-      e.target.disabled = true;
-
       arrayAlreadyClicked[e.target.id] = true;
+
+      const tempArray = [...buttonState];
+      tempArray[e.target.id] = classesWrongAnswer;
+      setButtonState(tempArray);
 
       localStorage.setItem(
         "user",
         JSON.stringify({ answered: arrayAlreadyClicked }),
       );
     }
-    e.preventDefault();
-  }
-
-  function disableButtonsAfterRightAnswer() {
-    setDisabledButton("text-zinc-500 disabled cursor-default");
+    console.log(arrayAlreadyClicked);
   }
 
   return (
@@ -118,22 +133,7 @@ export default function SectionText(props) {
               name={name}
               key={index}
               id={index}
-              classesLocalStorage={
-                arrayAlreadyClicked[index] === true &&
-                index.toString() !== answer
-                  ? "text-zinc-500 border-zinc-500"
-                  : arrayAlreadyClicked[index] === true &&
-                    index.toString() === answer
-                  ? "bg-red-500 text-zinc-100 before:content-['-']"
-                  : "text-zinc-100"
-              }
-              answerClasses={
-                index.toString() !== answer
-                  ? disabledButton
-                  : index.toString() === answer
-                  ? rightAnswerButton
-                  : ""
-              }
+              classesLocalStorage={buttonState[index]}
               checkAnswer={checkAnswer}
             />
           );
