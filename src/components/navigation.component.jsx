@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 export default function Navigation() {
   return (
-    <nav className="container mx-auto flex items-center justify-between">
+    <nav className="font-alata container mx-auto flex items-center justify-between text-zinc-200">
       <div
-        className="logo text-blue-200 hover:text-blue-100"
+        className="logo"
         onDoubleClick={
           /* ::::::::: NOT Production ::::::::: */
           () => {
@@ -16,28 +16,28 @@ export default function Navigation() {
         CrlsRgz
       </div>
       <ul className="flex items-center">
-        <li className="mr-6">
-          <Link to="/" className="text-blue-200 hover:text-blue-100">
+        <li className="mr-6 hover:underline">
+          <Link to="/" className="">
             Home
           </Link>
         </li>
-        <li className="mr-6">
-          <Link to="/text/" className="text-blue-200 hover:text-blue-100">
+        <li className="mr-6 hover:underline">
+          <Link to="/text/" className="">
             Text
           </Link>
         </li>
-        <li className="mr-6">
-          <Link to="/score/" className="text-blue-200 hover:text-blue-100">
+        <li className="mr-6 hover:underline">
+          <Link to="/score/" className="">
             Score
           </Link>
         </li>
-        <li className="mr-6">
-          <Link to="/info" className="text-blue-200 hover:text-blue-100">
+        <li className="mr-6 hover:underline">
+          <Link to="/info" className="">
             Info
           </Link>
         </li>
-        <li className="mr-6">
-          <Link to="/about" className="text-blue-200 hover:text-blue-100">
+        <li className="mr-6 hover:underline">
+          <Link to="/about" className="">
             About
           </Link>
         </li>

@@ -105,7 +105,7 @@ export default function SectionText(props) {
     >
       <div className="mx-auto">
         <h1
-          className={`mt-16 text-left font-serif ${quoteTextSize} font-semibold text-blue-50`}
+          className={`font-besley mt-16 text-left ${quoteTextSize} font-semibold text-blue-50`}
         >
           &quot;{quoteData.quote}&quot;
         </h1>
@@ -140,8 +140,8 @@ export default function SectionText(props) {
       </div>
       <div>
         <button
-          className={`m-auto mt-12 flex h-12 w-48 cursor-pointer flex-row items-center justify-center  gap-2
-      rounded-full border-2 p-0 text-center align-middle text-xl text-blue-50 transition duration-200 md:mt-2 md:w-2/5
+          className={`font-alata m-auto mt-12 flex h-12 w-48 cursor-pointer flex-row items-center  justify-center
+      gap-2 rounded-full border-2 p-0 text-center align-middle text-xl text-blue-50 transition duration-200  hover:border-zinc-700  hover:bg-zinc-300 hover:text-zinc-700 md:mt-2
       
         `}
         >

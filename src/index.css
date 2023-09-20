@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: Alata;
+  src: url("./fonts/alata/alata-regular.ttf");
+}
+@font-face {
+  font-family: Besley-Book;
+  src: url("./fonts/Besley-Book/Besley-Book.ttf");
+}
 /* @layer base {
   h1 {
     @apply font-serif text-3xl sm:text-6xl;

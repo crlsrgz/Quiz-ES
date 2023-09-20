@@ -1,11 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        alata: ["Alata", "sans-serif"],
+        besley: ["Besley-Book", "serif"],
+      },
+    },
   },
   plugins: [],
-}
+};
