@@ -8,7 +8,8 @@
 }
 @font-face {
   font-family: Besley-Book;
-  src: url("./fonts/Besley-Book/Besley-Book.ttf");
+  /* src: url("./fonts/Besley-Book/Besley-Book.ttf"); */
+  src: url("./fonts/Italiana/Italiana-Regular.ttf");
 }
 /* @layer base {
   h1 {

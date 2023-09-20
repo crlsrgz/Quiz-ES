@@ -106,7 +106,7 @@ export default function SectionText(props) {
     >
       <div className="mx-auto">
         <h1
-          className={`font-besley mt-16 text-left ${quoteTextSize} font-semibold text-blue-50`}
+          className={`mt-16 text-left font-besley ${quoteTextSize} font-semibold text-blue-50`}
         >
           &quot;{quoteData.quote}&quot;
         </h1>
