@@ -44,7 +44,7 @@ export default function SectionText(props) {
   }, [quoteData]);
   /* ::::::::: Connection END ::::::::: */
   /* ::::::::: Buttons states ::::::::: */
-  const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-700 hover:bg-zinc-300 hover:text-zinc-700`;
+  const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-300 hover:bg-zinc-300 hover:text-zinc-700 `;
   const classesRightAnswer = `right cursor-not-allowed text-zinc-100 bg-red-500`;
   const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-500`;
 
