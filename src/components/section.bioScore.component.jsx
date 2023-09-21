@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import MainScoreContext from "./context.MainScore";
 
 export default function BioScore(props) {
+  /*:: CONTEXT TESTING ::*/
+
+  const [mainScore, setMainScore] = useContext(MainScoreContext);
+  useEffect(() => {
+    setMainScore(mainScore + 1);
+  }, []);
+  console.log(mainScore);
+
+  /*:: CONTEXT TESTING ::*/
+
   if (!localStorage["user"]) {
     localStorage.setItem(
       "user",

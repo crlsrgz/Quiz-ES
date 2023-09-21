@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -13,6 +13,8 @@ import About from "./components/section.about.component";
 /* ═══ Required ═══ */
 import "./data/names";
 
+import MainScoreContext from "./components/context.MainScore";
+
 export default function App() {
   // const [displayQuizContainer, setDisplayQuizContainer] = useState("flex");
 
@@ -24,21 +26,26 @@ export default function App() {
   //   }
   // }
 
+  const mainScore = useState(0);
+
   return (
     <>
-      <BrowserRouter>
-        <Navigation />
-        {/* <Connection /> */}
-        <div className="main-container m-0 h-5/6 p-0">
-          <Routes>
-            <Route path="/" element={<Intro />} />
-            <Route path="/text" element={<SectionText />} />
-            <Route path="/score/" element={<BioScore />} />
-            <Route path="/info/" element={<Info />} />
-            <Route path="/about/" element={<About />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <MainScoreContext.Provider value={mainScore}>
+        <BrowserRouter>
+          <Navigation />
+          {/* <Connection /> */}
+
+          <div className="main-container m-0 h-5/6 p-0">
+            <Routes>
+              <Route path="/" element={<Intro />} />
+              <Route path="/text" element={<SectionText />} />
+              <Route path="/score/" element={<BioScore />} />
+              <Route path="/info/" element={<Info />} />
+              <Route path="/about/" element={<About />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </MainScoreContext.Provider>
     </>
   );
 }

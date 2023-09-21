@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 // import names from "../data/names";
 import Name from "../components/name.component";
 import ButtonNext from "./button.next.component";
 // import Connection from "../connections/connection";
+import MainScoreContext from "./context.MainScore";
 
 export default function SectionText(props) {
   /* ::::::::: Connection ::::::::: */
@@ -22,6 +23,16 @@ export default function SectionText(props) {
     authors: ["Henri Mondor", "Joseph Unger", "Simone Signoret", "Jack Gould"],
   };
   /*:: Temporary data ::*/
+
+  /*:: CONTEXT TESTING ::*/
+
+  const [mainScore, setMainScore] = useContext(MainScoreContext);
+  useEffect(() => {
+    setMainScore(mainScore + 1);
+  }, []);
+  console.log(mainScore);
+
+  /*:: CONTEXT TESTING ::*/
 
   /* ::::::::: Localstorage ::::::::: */
   let arrayAlreadyClicked;
