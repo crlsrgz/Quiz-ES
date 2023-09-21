@@ -2,11 +2,19 @@ import React from "react";
 import { Icon } from "@iconify/react";
 
 export default function BioScore(props) {
+  if (!localStorage["user"]) {
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ answered: [false, false, false, false], score: 0 }),
+    );
+  }
+  let score = JSON.parse(localStorage["user"])["score"];
+
   return (
     <div
       className={`section-container m-4 mx-auto flex ${props.classes} w-4/5 flex-col justify-center`}
     >
-      <div className="font-besley mx-auto mt-8 text-left text-xl text-zinc-100">
+      <div className="mx-auto mt-8 text-left font-besley text-xl text-zinc-100">
         <h1 className="text-3xl">Lorem ipsum dolor</h1>
         <h2 className="mt-8 text-center text-xl font-semibold text-blue-50">
           42069
@@ -18,11 +26,11 @@ export default function BioScore(props) {
           Lorem, ipsum, dolor.
         </h3>
       </div>
-      <div className="font-alata mx-auto mt-16 flex h-16 flex-row gap-16">
+      <div className="mx-auto mt-16 flex h-16 flex-row gap-16 font-alata">
         <div className="text-center  text-blue-50">
           <div className="flex flex-col text-4xl">
             <h2 className="">one</h2>
-            <h3 className="mt-6">0</h3>
+            <h3 className="mt-6">{score ?? "-"}</h3>
             <div className="m-auto">
               <Icon icon="ic:baseline-check" width={32} height={32} />
             </div>
