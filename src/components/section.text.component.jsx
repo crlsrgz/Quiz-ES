@@ -27,9 +27,6 @@ export default function SectionText(props) {
   /*:: CONTEXT TESTING ::*/
 
   const [mainScore, setMainScore] = useContext(MainScoreContext);
-  useEffect(() => {
-    setMainScore(mainScore + 1);
-  }, []);
   console.log(mainScore);
 
   /*:: CONTEXT TESTING ::*/
@@ -112,6 +109,8 @@ export default function SectionText(props) {
       for (let i = 0; i < arrayAlreadyClickedLength; i++) {
         arrayAlreadyClicked[i] = true;
       }
+
+      setMainScore(mainScore + 1);
 
       localStorage.setItem(
         "user",
