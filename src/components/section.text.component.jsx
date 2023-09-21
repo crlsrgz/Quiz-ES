@@ -50,11 +50,11 @@ export default function SectionText(props) {
 
   const buttonInitialArray = [];
   for (let i = 0; i < arrayAlreadyClickedLength; i++) {
-    if (answer !== i.toString() && arrayAlreadyClicked[i] === true) {
+    if (quoteData.answer !== i && arrayAlreadyClicked[i] === true) {
       buttonInitialArray[i] = classesWrongAnswer;
       console.log("first");
     }
-    if (answer === i.toString() && arrayAlreadyClicked[i] === true) {
+    if (quoteData.answer === i && arrayAlreadyClicked[i] === true) {
       buttonInitialArray[i] = classesRightAnswer;
       console.log("second");
     }
