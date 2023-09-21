@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 // import names from "../data/names";
 import Name from "../components/name.component";
@@ -48,22 +49,26 @@ export default function SectionText(props) {
   const classesRightAnswer = `right cursor-not-allowed text-zinc-100 bg-red-500`;
   const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-500`;
 
+  const [nextButtonDisplay, setNextButtonDisplay] = useState("hidden");
+
   const buttonInitialArray = [];
-  for (let i = 0; i < arrayAlreadyClickedLength; i++) {
-    if (quoteData.answer !== i && arrayAlreadyClicked[i] === true) {
-      buttonInitialArray[i] = classesWrongAnswer;
-      console.log("first");
+  useEffect(() => {
+    for (let i = 0; i < arrayAlreadyClickedLength; i++) {
+      if (quoteData.answer !== i && arrayAlreadyClicked[i] === true) {
+        buttonInitialArray[i] = classesWrongAnswer;
+        console.log("first");
+      } else if (quoteData.answer === i && arrayAlreadyClicked[i] === true) {
+        buttonInitialArray[i] = classesRightAnswer;
+        setNextButtonDisplay("");
+        console.log("second");
+      } else if (!arrayAlreadyClicked[i]) {
+        buttonInitialArray[i] = classesInitialState;
+        console.log("third");
+      } else {
+        setNextButtonDisplay("hidden");
+      }
     }
-    if (quoteData.answer === i && arrayAlreadyClicked[i] === true) {
-      buttonInitialArray[i] = classesRightAnswer;
-      console.log("second");
-    }
-    if (!arrayAlreadyClicked[i]) {
-      buttonInitialArray[i] = classesInitialState;
-      console.log("third");
-    }
-  }
-  // console.log(arrayAlreadyClicked);
+  }, []);
 
   const [buttonState, setButtonState] = useState(buttonInitialArray);
 
@@ -91,7 +96,7 @@ export default function SectionText(props) {
       tempArray[answer] = classesRightAnswer;
 
       setButtonState(tempArray);
-
+      setNextButtonDisplay("");
       for (let i = 0; i < arrayAlreadyClickedLength; i++) {
         arrayAlreadyClicked[i] = true;
       }
@@ -140,7 +145,9 @@ export default function SectionText(props) {
         })}
       </div>
       <div>
-        <ButtonNext />
+        <Link to="/score/">
+          <ButtonNext visible={nextButtonDisplay} />
+        </Link>
       </div>
     </div>
   );
