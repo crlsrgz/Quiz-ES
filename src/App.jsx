@@ -14,6 +14,7 @@ import About from "./components/section.about.component";
 import "./data/names";
 
 import MainScoreContext from "./components/context.MainScore";
+import TriesLeftContext from "./components/context.triesLeft";
 
 export default function App() {
   // const [displayQuizContainer, setDisplayQuizContainer] = useState("flex");
@@ -27,24 +28,26 @@ export default function App() {
   // }
 
   const mainScore = useState(0);
-
+  const triesLeft = useState(3);
   return (
     <>
       <MainScoreContext.Provider value={mainScore}>
-        <BrowserRouter>
-          <Navigation />
-          {/* <Connection /> */}
+        <TriesLeftContext.Provider value={triesLeft}>
+          <BrowserRouter>
+            <Navigation />
+            {/* <Connection /> */}
 
-          <div className="main-container m-0 h-5/6 p-0">
-            <Routes>
-              <Route path="/" element={<Intro />} />
-              <Route path="/text" element={<SectionText />} />
-              <Route path="/score/" element={<BioScore />} />
-              <Route path="/info/" element={<Info />} />
-              <Route path="/about/" element={<About />} />
-            </Routes>
-          </div>
-        </BrowserRouter>
+            <div className="main-container m-0 h-5/6 p-0">
+              <Routes>
+                <Route path="/" element={<Intro />} />
+                <Route path="/text" element={<SectionText />} />
+                <Route path="/score/" element={<BioScore />} />
+                <Route path="/info/" element={<Info />} />
+                <Route path="/about/" element={<About />} />
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </TriesLeftContext.Provider>
       </MainScoreContext.Provider>
     </>
   );

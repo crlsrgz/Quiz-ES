@@ -6,6 +6,7 @@ import Name from "../components/name.component";
 import ButtonNext from "./button.next.component";
 // import Connection from "../connections/connection";
 import MainScoreContext from "./context.MainScore";
+import TriesLeftContext from "./context.triesLeft";
 
 export default function SectionText(props) {
   /* ::::::::: Connection ::::::::: */
@@ -27,7 +28,9 @@ export default function SectionText(props) {
   /*:: CONTEXT TESTING ::*/
 
   const [mainScore, setMainScore] = useContext(MainScoreContext);
-  console.log(mainScore);
+  const [triesLeft, setTriesLeft] = useContext(TriesLeftContext);
+
+  console.log(` Main Score: ${mainScore}, Left tries: ${triesLeft}`);
 
   /*:: CONTEXT TESTING ::*/
 
@@ -53,10 +56,12 @@ export default function SectionText(props) {
     setAnswer(quoteData.answer.toString());
   }, [quoteData]);
   /* ::::::::: Connection END ::::::::: */
+
   /* ::::::::: Buttons states ::::::::: */
   const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-300 hover:bg-zinc-300 hover:text-zinc-700 `;
   const classesRightAnswer = `right cursor-not-allowed text-zinc-100 bg-red-500`;
   const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-500`;
+  const [disabledButtons, setDisabledButtons] = useState(false);
 
   const [nextButtonDisplay, setNextButtonDisplay] = useState("hidden");
 
@@ -116,6 +121,9 @@ export default function SectionText(props) {
         "user",
         JSON.stringify({ answered: arrayAlreadyClicked, score: score }),
       );
+
+      // e.target.disabled = true;
+      setDisabledButtons(true);
     } else {
       arrayAlreadyClicked[e.target.id] = true;
 
@@ -124,7 +132,7 @@ export default function SectionText(props) {
       setButtonState(tempArray);
 
       score--;
-
+      setTriesLeft(triesLeft - 1);
       localStorage.setItem(
         "user",
         JSON.stringify({ answered: arrayAlreadyClicked, score: score }),
@@ -153,6 +161,7 @@ export default function SectionText(props) {
               id={index}
               classesLocalStorage={buttonState[index]}
               checkAnswer={checkAnswer}
+              disabled={disabledButtons}
             />
           );
         })}

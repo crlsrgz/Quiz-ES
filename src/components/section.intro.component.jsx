@@ -1,12 +1,13 @@
 import React from "react";
 import PageTitle from "./element.pageTitle.component";
+
 export default function Intro(props) {
   return (
     <div
       className={`section-container m-12 mx-auto flex ${props.classes} w-4/5 flex-col justify-center`}
     >
       <PageTitle pageTitle="Welcome" />
-      <div className="font-alata mt-4 text-left text-lg  text-blue-50">
+      <div className="mt-4 text-left font-alata text-lg  text-blue-50">
         <div className="">
           Beatae ipsam repellat explicabo enim, officia laboriosam ex?
           Reprehenderit pariatur accusantium vitae provident, illo perferendis

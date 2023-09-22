@@ -6,10 +6,8 @@ export default function BioScore(props) {
   /*:: CONTEXT TESTING ::*/
 
   const [mainScore, setMainScore] = useContext(MainScoreContext);
-  useEffect(() => {
-    setMainScore(mainScore + 1);
-  }, []);
-  console.log(mainScore);
+
+  console.log(` Main Score: ${mainScore}`);
 
   /*:: CONTEXT TESTING ::*/
 
@@ -41,7 +39,7 @@ export default function BioScore(props) {
         <div className="text-center  text-blue-50">
           <div className="flex flex-col text-4xl">
             <h2 className="">one</h2>
-            <h3 className="mt-6">{score ?? "-"}</h3>
+            <h3 className="mt-6">{mainScore ?? "-"}</h3>
             <div className="m-auto">
               <Icon icon="ic:baseline-check" width={32} height={32} />
             </div>
