@@ -27,8 +27,20 @@ export default function App() {
   //   }
   // }
 
-  const mainScore = useState(0);
-  const triesLeft = useState(3);
+  if (!localStorage["user"]) {
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        answered: [false, false, false, false],
+        score: 0,
+        tries: 3,
+      }),
+    );
+  }
+
+  const mainScore = useState(JSON.parse(localStorage["user"])["score"]);
+  const triesLeft = useState(JSON.parse(localStorage["user"])["tries"]);
+
   return (
     <>
       <MainScoreContext.Provider value={mainScore}>

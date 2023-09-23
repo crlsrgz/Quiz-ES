@@ -37,15 +37,8 @@ export default function SectionText(props) {
   /* ::::::::: Localstorage ::::::::: */
   let arrayAlreadyClicked;
 
-  if (!localStorage["user"]) {
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ answered: [false, false, false, false], score: 3 }),
-    );
-  }
   arrayAlreadyClicked = JSON.parse(localStorage["user"])["answered"];
   const arrayAlreadyClickedLength = arrayAlreadyClicked.length;
-  let score = JSON.parse(localStorage["user"])["score"];
 
   /* ::::::::: Localstorage ::::::::: */
 
@@ -119,10 +112,13 @@ export default function SectionText(props) {
 
       localStorage.setItem(
         "user",
-        JSON.stringify({ answered: arrayAlreadyClicked, score: score }),
+        JSON.stringify({
+          answered: arrayAlreadyClicked,
+          score: mainScore,
+          tries: triesLeft,
+        }),
       );
 
-      // e.target.disabled = true;
       setDisabledButtons(true);
     } else {
       arrayAlreadyClicked[e.target.id] = true;
@@ -131,14 +127,30 @@ export default function SectionText(props) {
       tempArray[e.target.id] = classesWrongAnswer;
       setButtonState(tempArray);
 
-      score--;
-      setTriesLeft(triesLeft - 1);
+      let tempTries;
+      triesLeft !== 0 ? (tempTries = triesLeft - 1) : (tempTries = 0);
+
+      setTriesLeft(tempTries);
       localStorage.setItem(
         "user",
-        JSON.stringify({ answered: arrayAlreadyClicked, score: score }),
+        JSON.stringify({
+          answered: arrayAlreadyClicked,
+          score: mainScore,
+          tries: tempTries,
+        }),
       );
+      if (tempTries === 0) {
+        let tempArrayDisableButtons = [];
+
+        for (let i = 0; i < arrayAlreadyClickedLength; i++) {
+          tempArrayDisableButtons[i] = classesWrongAnswer;
+        }
+        setButtonState(tempArrayDisableButtons);
+        console.log("game over");
+      }
     }
-    console.log(arrayAlreadyClicked);
+
+    // Checke if Tries are 0
   }
 
   return (
