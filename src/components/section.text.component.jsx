@@ -53,7 +53,7 @@ export default function SectionText(props) {
   /* ::::::::: Buttons states ::::::::: */
   const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-300 hover:bg-zinc-300 hover:text-zinc-700 `;
   const classesRightAnswer = `right cursor-not-allowed text-zinc-100 bg-red-500`;
-  const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-500`;
+  const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-500 disabled`;
   const [disabledButtons, setDisabledButtons] = useState(false);
 
   const [nextButtonDisplay, setNextButtonDisplay] = useState("hidden");
@@ -139,18 +139,31 @@ export default function SectionText(props) {
           tries: tempTries,
         }),
       );
+      // Checke if Tries are 0 to end game
       if (tempTries === 0) {
         let tempArrayDisableButtons = [];
 
         for (let i = 0; i < arrayAlreadyClickedLength; i++) {
           tempArrayDisableButtons[i] = classesWrongAnswer;
         }
+
         setButtonState(tempArrayDisableButtons);
+        setDisabledButtons(true);
+        for (let i = 0; i < arrayAlreadyClickedLength; i++) {
+          arrayAlreadyClicked[i] = true;
+        }
+
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            answered: arrayAlreadyClicked,
+            score: mainScore,
+            tries: triesLeft,
+          }),
+        );
         console.log("game over");
       }
     }
-
-    // Checke if Tries are 0
   }
 
   return (
@@ -177,8 +190,60 @@ export default function SectionText(props) {
             />
           );
         })}
-      </div>
-      <div>
+        <div className="mt-8 flex flex-row-reverse">
+          <div className={`mx-4 h-6 w-6`}>
+            {triesLeft < 3 ? (
+              <Icon
+                className=" text-zinc-500"
+                icon="mdi:heart-outline"
+                width={24}
+                height={24}
+              />
+            ) : (
+              <Icon
+                className="text-zinc-100"
+                icon="mdi:cards-heart"
+                width={24}
+                height={24}
+              />
+            )}
+          </div>
+          <div className={`mx-4 h-6 w-6`}>
+            {triesLeft < 2 ? (
+              <Icon
+                className=" text-zinc-500"
+                icon="mdi:heart-outline"
+                width={24}
+                height={24}
+              />
+            ) : (
+              <Icon
+                className="text-zinc-100"
+                icon="mdi:cards-heart"
+                width={24}
+                height={24}
+              />
+            )}
+          </div>
+          <div className={`mx-4 h-6 w-6`}>
+            {triesLeft < 1 ? (
+              <Icon
+                className=" text-zinc-500"
+                icon="mdi:heart-outline"
+                width={24}
+                height={24}
+              />
+            ) : (
+              <Icon
+                className="text-zinc-100"
+                icon="mdi:cards-heart"
+                width={24}
+                height={24}
+              />
+            )}
+          </div>
+        </div>
+
         <Link to="/score/">
           <ButtonNext visible={nextButtonDisplay} />
         </Link>

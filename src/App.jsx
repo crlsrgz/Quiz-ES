@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, json } from "react-router-dom";
 
 /* ═══ Components ═══ */
 import Navigation from "./components/navigation.component";
