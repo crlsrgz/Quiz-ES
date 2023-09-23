@@ -54,7 +54,12 @@ export default function SectionText(props) {
   const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-300 hover:bg-zinc-300 hover:text-zinc-700 `;
   const classesRightAnswer = `right cursor-not-allowed text-zinc-100 bg-red-500`;
   const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-500 disabled`;
-  const [disabledButtons, setDisabledButtons] = useState(false);
+  const [disabledButtons, setDisabledButtons] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
 
   const [nextButtonDisplay, setNextButtonDisplay] = useState("hidden");
 
@@ -119,7 +124,7 @@ export default function SectionText(props) {
         }),
       );
 
-      setDisabledButtons(true);
+      setDisabledButtons([true, true, true, true]);
     } else {
       arrayAlreadyClicked[e.target.id] = true;
 
@@ -131,6 +136,7 @@ export default function SectionText(props) {
       triesLeft !== 0 ? (tempTries = triesLeft - 1) : (tempTries = 0);
 
       setTriesLeft(tempTries);
+
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -139,6 +145,7 @@ export default function SectionText(props) {
           tries: tempTries,
         }),
       );
+
       // Checke if Tries are 0 to end game
       if (tempTries === 0) {
         let tempArrayDisableButtons = [];
@@ -163,6 +170,10 @@ export default function SectionText(props) {
         );
         console.log("game over");
       }
+      // Disabled the clicked button
+      const tempArrayDisableButtonsArray = [...disabledButtons];
+      tempArrayDisableButtonsArray[e.target.id] = true;
+      setDisabledButtons(tempArrayDisableButtonsArray);
     }
   }
 
@@ -186,7 +197,7 @@ export default function SectionText(props) {
               id={index}
               classesLocalStorage={buttonState[index]}
               checkAnswer={checkAnswer}
-              disabled={disabledButtons}
+              disabled={disabledButtons[index]}
             />
           );
         })}
