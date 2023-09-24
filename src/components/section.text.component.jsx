@@ -66,7 +66,10 @@ export default function SectionText(props) {
   const buttonInitialArray = [];
   useEffect(() => {
     for (let i = 0; i < arrayAlreadyClickedLength; i++) {
-      if (quoteData.answer !== i && arrayAlreadyClicked[i] === true) {
+      if (
+        (quoteData.answer !== i && arrayAlreadyClicked[i] === true) ||
+        triesLeft === 0
+      ) {
         buttonInitialArray[i] = classesWrongAnswer;
         console.log("first");
       } else if (quoteData.answer === i && arrayAlreadyClicked[i] === true) {
@@ -98,7 +101,11 @@ export default function SectionText(props) {
   }, [quoteData, quoteLength]);
 
   function checkAnswer(e) {
+    //:: Is the Right answer clicked
     if (e.target.id === answer) {
+      /*:: Create a temporary array using the buttonState and corresponging classes to the wrong answers ::*/
+      /*:: Add the corresponding classses to the right answer ::*/
+      /*:: Set the state for the buttons ::*/
       const tempArray = [...buttonState];
       for (let i = 0; i < arrayAlreadyClickedLength; i++) {
         if (i !== answer) {
@@ -108,13 +115,18 @@ export default function SectionText(props) {
       tempArray[answer] = classesRightAnswer;
 
       setButtonState(tempArray);
+
+      /*:: The next button should appear to go to the next part ::*/
       setNextButtonDisplay("");
+      /*:: Update the score  ::*/
+      setMainScore(mainScore + 1);
+      /*:: LOCAL STORAGE ::*/
+      /*:: Update the already clicked array, all elements to true ::*/
+      /*:: Update localstorage ::*/
+
       for (let i = 0; i < arrayAlreadyClickedLength; i++) {
         arrayAlreadyClicked[i] = true;
       }
-
-      setMainScore(mainScore + 1);
-
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -124,6 +136,7 @@ export default function SectionText(props) {
         }),
       );
 
+      /*:: Disable all Buttons ::*/
       setDisabledButtons([true, true, true, true]);
     } else {
       arrayAlreadyClicked[e.target.id] = true;
