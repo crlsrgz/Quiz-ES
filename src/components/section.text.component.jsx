@@ -54,11 +54,12 @@ export default function SectionText(props) {
   const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-300 hover:bg-zinc-300 hover:text-zinc-700 `;
   const classesRightAnswer = `right cursor-not-allowed text-zinc-100 bg-red-500`;
   const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-500 disabled`;
+
   const [disabledButtons, setDisabledButtons] = useState([
-    false,
-    false,
-    false,
-    false,
+    triesLeft === 0 ? true : false,
+    triesLeft === 0 ? true : false,
+    triesLeft === 0 ? true : false,
+    triesLeft === 0 ? true : false,
   ]);
 
   const [nextButtonDisplay, setNextButtonDisplay] = useState("hidden");
