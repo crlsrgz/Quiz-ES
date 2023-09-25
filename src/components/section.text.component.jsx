@@ -7,30 +7,55 @@ import ButtonNext from "./button.next.component";
 // import Connection from "../connections/connection";
 import MainScoreContext from "./context.MainScore";
 import TriesLeftContext from "./context.triesLeft";
+import GamesPlayedContext from "./context.GamesPlayed";
 
 export default function SectionText(props) {
   /* ::::::::: Connection ::::::::: */
   // let quoteData = Connection();
 
   /*:: Temporary data ::*/
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  let quoteData = {
-    quote: "Enséñame el rostro de tu madre y te diré quien eres.",
-    // quote:
-    //   "Enséñame el rostro de tu madre y te diré quien eres. Enséñame el rostro de tu madre y te diré quien eres.",
-    // quote:
-    //   "Enséñame el rostro de tu madre y te diré quien eres. Enséñame el rostro de tu madre y te diré quien eres. Enséñame el rostro de tu madre y te diré quien eres.",
-    answer: 0,
-    authors: ["Henri Mondor", "Joseph Unger", "Simone Signoret", "Jack Gould"],
-  };
-  /*:: Temporary data ::*/
-
   /*:: CONTEXT TESTING ::*/
 
+  const [gamesPlayed, setGamesPlayed] = useContext(GamesPlayedContext);
   const [mainScore, setMainScore] = useContext(MainScoreContext);
   const [triesLeft, setTriesLeft] = useContext(TriesLeftContext);
 
-  console.log(` Main Score: ${mainScore}, Left tries: ${triesLeft}`);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  let quoteData = {
+    0: {
+      quote: "Enséñame el rostro de tu madre y te diré quien eres.",
+      answer: 0,
+      authors: [
+        "Henri Mondor",
+        "Joseph Unger",
+        "Simone Signoret",
+        "Jack Gould",
+      ],
+    },
+    1: {
+      quote:
+        "El hombre deja de ser joven cuando cancela las posibilidades futuras y se vuelve prematuramente adulto, es decir, se entrega a una actitud de beneficio propio.",
+      answer: 1,
+      authors: [
+        "Henri Mondor",
+        "Agustín Yánez",
+        "Simone Signoret",
+        "Jack Gould",
+      ],
+    },
+    2: {
+      quote:
+        "El hombre no se conoce; no conoce sus límites y sus posibilidades, no conoce ni siquiera hasta qué punto no se conoce.",
+      answer: 2,
+      authors: [
+        "Henri Mondor",
+        "Joseph Unger",
+        "Leslie Hore-Belisha",
+        "Jack Gould",
+      ],
+    },
+  };
+  /*:: Temporary data ::*/
 
   /*:: CONTEXT TESTING ::*/
 
@@ -42,12 +67,14 @@ export default function SectionText(props) {
 
   /* ::::::::: Localstorage ::::::::: */
 
-  const newNames = quoteData.authors;
-  const [answer, setAnswer] = useState(quoteData.authors.toString());
+  const newNames = quoteData[gamesPlayed].authors;
+  const [answer, setAnswer] = useState(
+    quoteData[gamesPlayed].authors.toString(),
+  );
 
   useEffect(() => {
-    setAnswer(quoteData.answer.toString());
-  }, [quoteData]);
+    setAnswer(quoteData[gamesPlayed].answer.toString());
+  }, [quoteData, gamesPlayed]);
   /* ::::::::: Connection END ::::::::: */
 
   /* ::::::::: Buttons states ::::::::: */
@@ -68,12 +95,16 @@ export default function SectionText(props) {
   useEffect(() => {
     for (let i = 0; i < arrayAlreadyClickedLength; i++) {
       if (
-        (quoteData.answer !== i && arrayAlreadyClicked[i] === true) ||
+        (quoteData[gamesPlayed].answer !== i &&
+          arrayAlreadyClicked[i] === true) ||
         triesLeft === 0
       ) {
         buttonInitialArray[i] = classesWrongAnswer;
         console.log("first");
-      } else if (quoteData.answer === i && arrayAlreadyClicked[i] === true) {
+      } else if (
+        quoteData[gamesPlayed].answer === i &&
+        arrayAlreadyClicked[i] === true
+      ) {
         buttonInitialArray[i] = classesRightAnswer;
         setNextButtonDisplay("");
         console.log("second");
@@ -88,18 +119,30 @@ export default function SectionText(props) {
 
   const [buttonState, setButtonState] = useState(buttonInitialArray);
 
+  // const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
   const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
-  const [quoteLength, setQuoteLength] = useState(quoteData["quote"].length);
+  const [quoteLength, setQuoteLength] = useState(
+    quoteData[gamesPlayed]["quote"].length,
+  );
+  console.log(
+    ` Main Score: ${mainScore}, Left tries: ${triesLeft}, Games played ${gamesPlayed}, quote length ${quoteLength}`,
+  );
 
   useEffect(() => {
-    if (quoteLength > 110) {
-      setQuoteTextSize("text-xl");
-    } else if (quoteLength > 60) {
-      setQuoteTextSize("text-2xl");
-    } else {
+    console.log(typeof quoteData[gamesPlayed]["quote"].length);
+    if (quoteData[gamesPlayed]["quote"].length < 55) {
       setQuoteTextSize("text-3xl");
+    } else if (
+      quoteData[gamesPlayed]["quote"].length > 50 &&
+      quoteLength < 120
+    ) {
+      setQuoteTextSize("text-2xl");
+    } else if (quoteData[gamesPlayed]["quote"].length > 100) {
+      setQuoteTextSize("text-xl");
+    } else {
+      setQuoteTextSize("text-xl");
     }
-  }, [quoteData, quoteLength]);
+  }, []);
 
   function checkAnswer(e) {
     //:: Is the Right answer clicked
@@ -119,8 +162,10 @@ export default function SectionText(props) {
 
       /*:: The next button should appear to go to the next part ::*/
       setNextButtonDisplay("");
-      /*:: Update the score  ::*/
+
+      /*:: Update the score and games played  ::*/
       setMainScore(mainScore + 1);
+
       /*:: LOCAL STORAGE ::*/
       /*:: Update the already clicked array, all elements to true ::*/
       /*:: Update localstorage ::*/
@@ -133,6 +178,7 @@ export default function SectionText(props) {
         JSON.stringify({
           answered: arrayAlreadyClicked,
           score: mainScore,
+          gamesPlayed: gamesPlayed,
           tries: triesLeft,
         }),
       );
@@ -150,12 +196,12 @@ export default function SectionText(props) {
       triesLeft !== 0 ? (tempTries = triesLeft - 1) : (tempTries = 0);
 
       setTriesLeft(tempTries);
-
       localStorage.setItem(
         "user",
         JSON.stringify({
           answered: arrayAlreadyClicked,
           score: mainScore,
+          gamesPlayed: gamesPlayed,
           tries: tempTries,
         }),
       );
@@ -179,16 +225,43 @@ export default function SectionText(props) {
           JSON.stringify({
             answered: arrayAlreadyClicked,
             score: mainScore,
+            gamesPlayed: gamesPlayed,
             tries: triesLeft,
           }),
         );
-        console.log("game over");
+        setNextButtonDisplay("");
+        console.log("game End");
       }
       // Disabled the clicked button
       const tempArrayDisableButtonsArray = [...disabledButtons];
       tempArrayDisableButtonsArray[e.target.id] = true;
       setDisabledButtons(tempArrayDisableButtonsArray);
     }
+  }
+
+  function loadNextQuote() {
+    let tempGamesPlayed = gamesPlayed < 2 ? gamesPlayed + 1 : gamesPlayed;
+    setGamesPlayed(tempGamesPlayed);
+
+    setQuoteLength(quoteData[gamesPlayed + 1]["quote"].length);
+    setButtonState(buttonInitialArray);
+
+    setGamesPlayed(gamesPlayed + 1);
+    setTriesLeft(3);
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        answered: [false, false, false, false],
+        score: mainScore,
+        gamesPlayed: gamesPlayed,
+        tries: triesLeft,
+      }),
+    );
+
+    console.log(
+      `quote size: ${quoteTextSize} length: ${quoteData[gamesPlayed]["quote"].length}, length: ${quoteLength}`,
+    );
   }
 
   return (
@@ -199,7 +272,7 @@ export default function SectionText(props) {
         <h1
           className={`mt-16 text-left font-besley ${quoteTextSize} font-semibold text-blue-50`}
         >
-          &quot;{quoteData.quote}&quot;
+          &quot;{quoteData[gamesPlayed].quote}&quot;
         </h1>
       </div>
       <div className="mx-auto mt-8 flex w-11/12 flex-col items-center justify-center gap-4">
@@ -269,8 +342,11 @@ export default function SectionText(props) {
           </div>
         </div>
 
-        <Link to="/score/">
-          <ButtonNext visible={nextButtonDisplay} />
+        <Link to="/text">
+          <ButtonNext
+            visible={nextButtonDisplay}
+            loadNextQuote={loadNextQuote}
+          />
         </Link>
       </div>
     </div>
