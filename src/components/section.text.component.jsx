@@ -147,9 +147,12 @@ export default function SectionText(props) {
   }, [quoteLength]);
 
   function checkAnswer(e) {
+    if (triesLeft < 1) {
+      return;
+    }
     //:: Is the Right answer clicked
     if (e.target.id === answer) {
-      if (triesLeft === 0) {
+      if (triesLeft < 1) {
         const tempArrayDisableButtonsArray = [...disabledButtons];
         tempArrayDisableButtonsArray[e.target.id] = true;
         setDisabledButtons(tempArrayDisableButtonsArray);
@@ -227,7 +230,6 @@ export default function SectionText(props) {
         }
 
         setButtonState(tempArrayDisableButtons);
-        setDisabledButtons(true);
         for (let i = 0; i < arrayAlreadyClickedLength; i++) {
           arrayAlreadyClicked[i] = true;
         }
@@ -249,7 +251,9 @@ export default function SectionText(props) {
         gamesPlayed >= 2
           ? setScorePageButtonDisplay("")
           : setScorePageButtonDisplay("hidden");
-        console.log("game End");
+
+        const tempArrayFinalDisableButtons = [true, true, true, true];
+        setDisabledButtons(tempArrayFinalDisableButtons);
       }
       // Disabled the clicked button
       const tempArrayDisableButtonsArray = [...disabledButtons];
@@ -257,6 +261,10 @@ export default function SectionText(props) {
       setDisabledButtons(tempArrayDisableButtonsArray);
     }
   }
+
+  // useEffect(() => {
+  //   console.log(disabledButtons);
+  // }, [disabledButtons]);
 
   function loadNextQuote() {
     let tempGamesPlayed = gamesPlayed <= 1 ? gamesPlayed + 1 : gamesPlayed;
