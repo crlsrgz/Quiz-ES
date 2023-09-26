@@ -9,7 +9,7 @@ export default function ButtonNext(props) {
       md:mt-2`}
       onClick={props.loadNextQuote}
     >
-      <p>Siguiente</p>
+      <p>{props.textContent}</p>
       <Icon icon="majesticons:arrow-right" width={24} height={24} />
     </button>
   );

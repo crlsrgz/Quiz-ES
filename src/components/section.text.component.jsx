@@ -37,10 +37,10 @@ export default function SectionText(props) {
         "El hombre deja de ser joven cuando cancela las posibilidades futuras y se vuelve prematuramente adulto, es decir, se entrega a una actitud de beneficio propio.",
       answer: 1,
       authors: [
-        "Henri Mondor",
+        "Jack Gould",
         "Agustín Yánez",
         "Simone Signoret",
-        "Jack Gould",
+        "Henri Mondor",
       ],
     },
     2: {
@@ -48,8 +48,8 @@ export default function SectionText(props) {
         "El hombre no se conoce; no conoce sus límites y sus posibilidades, no conoce ni siquiera hasta qué punto no se conoce.",
       answer: 2,
       authors: [
-        "Henri Mondor",
         "Joseph Unger",
+        "Henri Mondor",
         "Leslie Hore-Belisha",
         "Jack Gould",
       ],
@@ -90,6 +90,8 @@ export default function SectionText(props) {
   ]);
 
   const [nextButtonDisplay, setNextButtonDisplay] = useState("hidden");
+  const [scorePageButtonDisplay, setScorePageButtonDisplay] =
+    useState("hidden");
 
   const buttonInitialArray = [];
   useEffect(() => {
@@ -133,7 +135,7 @@ export default function SectionText(props) {
     if (quoteData[gamesPlayed]["quote"].length < 55) {
       setQuoteTextSize("text-3xl");
     } else if (
-      quoteData[gamesPlayed]["quote"].length > 50 &&
+      quoteData[gamesPlayed]["quote"].length > 55 &&
       quoteLength < 120
     ) {
       setQuoteTextSize("text-2xl");
@@ -142,7 +144,7 @@ export default function SectionText(props) {
     } else {
       setQuoteTextSize("text-xl");
     }
-  }, []);
+  }, [quoteLength]);
 
   function checkAnswer(e) {
     //:: Is the Right answer clicked
@@ -161,8 +163,13 @@ export default function SectionText(props) {
       setButtonState(tempArray);
 
       /*:: The next button should appear to go to the next part ::*/
-      setNextButtonDisplay("");
+      gamesPlayed < 2
+        ? setNextButtonDisplay("")
+        : setNextButtonDisplay("hidden");
 
+      gamesPlayed >= 2
+        ? setScorePageButtonDisplay("")
+        : setScorePageButtonDisplay("hidden");
       /*:: Update the score and games played  ::*/
       setMainScore(mainScore + 1);
 
@@ -229,7 +236,14 @@ export default function SectionText(props) {
             tries: triesLeft,
           }),
         );
-        setNextButtonDisplay("");
+        /*:: The next button should appear to go to the next part ::*/
+        gamesPlayed < 2
+          ? setNextButtonDisplay("")
+          : setNextButtonDisplay("hidden");
+
+        gamesPlayed >= 2
+          ? setScorePageButtonDisplay("")
+          : setScorePageButtonDisplay("hidden");
         console.log("game End");
       }
       // Disabled the clicked button
@@ -240,11 +254,20 @@ export default function SectionText(props) {
   }
 
   function loadNextQuote() {
-    let tempGamesPlayed = gamesPlayed < 2 ? gamesPlayed + 1 : gamesPlayed;
+    let tempGamesPlayed = gamesPlayed <= 1 ? gamesPlayed + 1 : gamesPlayed;
     setGamesPlayed(tempGamesPlayed);
+    console.log("games played", gamesPlayed);
 
-    setQuoteLength(quoteData[gamesPlayed + 1]["quote"].length);
+    // setQuoteLength(quoteData[gamesPlayed + 1]["quote"].length);
+    let tempQuoteLenght = quoteData[gamesPlayed + 1]["quote"].length;
+    setQuoteLength(tempQuoteLenght);
+
+    for (let i = 0; i < 4; i++) {
+      buttonInitialArray[i] = classesInitialState;
+    }
     setButtonState(buttonInitialArray);
+
+    setDisabledButtons([false, false, false, false]);
 
     setGamesPlayed(gamesPlayed + 1);
     setTriesLeft(3);
@@ -258,7 +281,10 @@ export default function SectionText(props) {
         tries: triesLeft,
       }),
     );
-
+    if (gamesPlayed === 1) {
+      console.log(nextButtonDisplay);
+      setNextButtonDisplay("hidden");
+    }
     console.log(
       `quote size: ${quoteTextSize} length: ${quoteData[gamesPlayed]["quote"].length}, length: ${quoteLength}`,
     );
@@ -342,10 +368,16 @@ export default function SectionText(props) {
           </div>
         </div>
 
-        <Link to="/text">
+        <ButtonNext
+          textContent={""}
+          visible={nextButtonDisplay}
+          loadNextQuote={loadNextQuote}
+        />
+
+        <Link to="/score">
           <ButtonNext
-            visible={nextButtonDisplay}
-            loadNextQuote={loadNextQuote}
+            textContent={"Siguiente"}
+            visible={scorePageButtonDisplay}
           />
         </Link>
       </div>
