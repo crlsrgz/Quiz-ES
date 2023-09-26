@@ -149,6 +149,11 @@ export default function SectionText(props) {
   function checkAnswer(e) {
     //:: Is the Right answer clicked
     if (e.target.id === answer) {
+      if (triesLeft === 0) {
+        const tempArrayDisableButtonsArray = [...disabledButtons];
+        tempArrayDisableButtonsArray[e.target.id] = true;
+        setDisabledButtons(tempArrayDisableButtonsArray);
+      }
       /*:: Create a temporary array using the buttonState and corresponging classes to the wrong answers ::*/
       /*:: Add the corresponding classses to the right answer ::*/
       /*:: Set the state for the buttons ::*/
