@@ -341,11 +341,13 @@ export default function SectionText(props) {
 
         <HeartCounter triesLeft={triesLeft} />
 
-        <ButtonNext
-          textContent={""}
-          visible={nextButtonDisplay}
-          loadNextQuote={loadNextQuote}
-        />
+        <Link to="/score">
+          <ButtonNext
+            textContent={""}
+            visible={nextButtonDisplay}
+            loadNextQuote={loadNextQuote}
+          />
+        </Link>
 
         <Link to="/score">
           <ButtonNext
