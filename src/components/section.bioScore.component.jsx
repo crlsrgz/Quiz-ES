@@ -1,13 +1,26 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import MainScoreContext from "./context.MainScore";
+import GamesPlayedContext from "./context.GamesPlayed";
+import AuthorsInfoContext from "./context.AuthorsInfo";
 
 export default function BioScore(props) {
   /*:: CONTEXT TESTING ::*/
 
   const [mainScore, setMainScore] = useContext(MainScoreContext);
+  const [gamesPlayed, setGamesPlayed] = useContext(GamesPlayedContext);
+  const [authorsInfo, setAuthorsInfo] = useContext(AuthorsInfoContext);
 
-  console.log(` Main Score: ${mainScore}`);
+  const [authorsInfoIndex, setAuthorInfoIndex] = useState("empty");
+
+  useEffect(() => {
+    let tempIndex = gamesPlayed === 0 ? "empty" : gamesPlayed - 1;
+    setAuthorInfoIndex(tempIndex);
+  }, [gamesPlayed]);
+
+  console.log(
+    ` Main Score: ${mainScore} / Author ${authorsInfo[authorsInfoIndex]["name"]}`,
+  );
 
   /*:: CONTEXT TESTING ::*/
 
@@ -36,23 +49,7 @@ export default function BioScore(props) {
         </h3>
       </div> */}
       <div className="mx-auto mt-8 flex flex-col justify-start text-left font-besley text-xl text-zinc-100">
-        <h1 className="text-2xl">Henri Mondor</h1>
-        <h2 className="-mt-1 text-lg font-semibold text-blue-50">42069</h2>
-        <h2 className="text-lg font-semibold text-blue-50">Lorem ipsum</h2>
-        <h3 className="text-lg font-semibold text-blue-50">
-          Lorem, ipsum, dolor.
-        </h3>
-      </div>
-      <div className="mx-auto mt-4 flex flex-col justify-start text-left font-besley text-xl text-zinc-100">
-        <h1 className="text-2xl">Agustín Yánez</h1>
-        <h2 className="-mt-1 text-lg font-semibold text-blue-50">42069</h2>
-        <h2 className="text-lg font-semibold text-blue-50">Lorem ipsum</h2>
-        <h3 className="text-lg font-semibold text-blue-50">
-          Lorem, ipsum, dolor.
-        </h3>
-      </div>
-      <div className="mx-auto mt-4 flex flex-col justify-start text-left font-besley text-xl text-zinc-100">
-        <h1 className="text-2xl">Leslie Hore-Belisha</h1>
+        <h1 className="text-2xl">{authorsInfo[authorsInfoIndex]["name"]}</h1>
         <h2 className="-mt-1 text-lg font-semibold text-blue-50">42069</h2>
         <h2 className="text-lg font-semibold text-blue-50">Lorem ipsum</h2>
         <h3 className="text-lg font-semibold text-blue-50">

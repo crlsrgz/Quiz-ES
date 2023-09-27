@@ -16,6 +16,7 @@ import "./data/names";
 import MainScoreContext from "./components/context.MainScore";
 import TriesLeftContext from "./components/context.triesLeft";
 import GamesPlayedContext from "./components/context.GamesPlayed";
+import AuthorsInfoContext from "./components/context.AuthorsInfo";
 
 export default function App() {
   // const [displayQuizContainer, setDisplayQuizContainer] = useState("flex");
@@ -43,26 +44,34 @@ export default function App() {
   const mainScore = useState(JSON.parse(localStorage["user"])["score"]);
   const triesLeft = useState(JSON.parse(localStorage["user"])["tries"]);
   const gamesPlayed = useState(JSON.parse(localStorage["user"])["gamesPlayed"]);
+  const autorsInfo = useState({
+    empty: { name: "---" },
+    0: { name: "Henri Mondor" },
+    1: { name: "Agustín Yañez" },
+    2: { name: "Leslie Hore-Belisha" },
+  });
 
   return (
     <>
       <MainScoreContext.Provider value={mainScore}>
         <GamesPlayedContext.Provider value={gamesPlayed}>
           <TriesLeftContext.Provider value={triesLeft}>
-            <BrowserRouter>
-              <Navigation />
-              {/* <Connection /> */}
+            <AuthorsInfoContext.Provider value={autorsInfo}>
+              <BrowserRouter>
+                <Navigation />
+                {/* <Connection /> */}
 
-              <div className="main-container m-0 h-5/6 p-0">
-                <Routes>
-                  <Route path="/" element={<Intro />} />
-                  <Route path="/text" element={<SectionText />} />
-                  <Route path="/score/" element={<BioScore />} />
-                  <Route path="/info/" element={<Info />} />
-                  <Route path="/about/" element={<About />} />
-                </Routes>
-              </div>
-            </BrowserRouter>
+                <div className="main-container m-0 h-5/6 p-0">
+                  <Routes>
+                    <Route path="/" element={<Intro />} />
+                    <Route path="/text" element={<SectionText />} />
+                    <Route path="/score/" element={<BioScore />} />
+                    <Route path="/info/" element={<Info />} />
+                    <Route path="/about/" element={<About />} />
+                  </Routes>
+                </div>
+              </BrowserRouter>
+            </AuthorsInfoContext.Provider>
           </TriesLeftContext.Provider>
         </GamesPlayedContext.Provider>
       </MainScoreContext.Provider>

@@ -9,6 +9,7 @@ import MainScoreContext from "./context.MainScore";
 import TriesLeftContext from "./context.triesLeft";
 import GamesPlayedContext from "./context.GamesPlayed";
 import HeartCounter from "./element.heartCounter.component";
+import AuthorsInfoContext from "./context.AuthorsInfo";
 
 export default function SectionText(props) {
   /* ::::::::: Connection ::::::::: */
@@ -20,6 +21,7 @@ export default function SectionText(props) {
   const [gamesPlayed, setGamesPlayed] = useContext(GamesPlayedContext);
   const [mainScore, setMainScore] = useContext(MainScoreContext);
   const [triesLeft, setTriesLeft] = useContext(TriesLeftContext);
+  const [authorsInfo, setAuthorsInfo] = useContext(AuthorsInfoContext);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   let quoteData = {
