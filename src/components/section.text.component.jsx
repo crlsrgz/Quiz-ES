@@ -8,6 +8,7 @@ import ButtonNext from "./button.next.component";
 import MainScoreContext from "./context.MainScore";
 import TriesLeftContext from "./context.triesLeft";
 import GamesPlayedContext from "./context.GamesPlayed";
+import HeartCounter from "./element.heartCounter.component";
 
 export default function SectionText(props) {
   /* ::::::::: Connection ::::::::: */
@@ -327,59 +328,7 @@ export default function SectionText(props) {
             />
           );
         })}
-        <div className="mt-8 flex flex-row-reverse">
-          <div className={`mx-4 h-6 w-6`}>
-            {triesLeft < 3 ? (
-              <Icon
-                className=" text-zinc-500"
-                icon="mdi:heart-outline"
-                width={24}
-                height={24}
-              />
-            ) : (
-              <Icon
-                className="text-zinc-100"
-                icon="mdi:cards-heart"
-                width={24}
-                height={24}
-              />
-            )}
-          </div>
-          <div className={`mx-4 h-6 w-6`}>
-            {triesLeft < 2 ? (
-              <Icon
-                className=" text-zinc-500"
-                icon="mdi:heart-outline"
-                width={24}
-                height={24}
-              />
-            ) : (
-              <Icon
-                className="text-zinc-100"
-                icon="mdi:cards-heart"
-                width={24}
-                height={24}
-              />
-            )}
-          </div>
-          <div className={`mx-4 h-6 w-6`}>
-            {triesLeft < 1 ? (
-              <Icon
-                className=" text-zinc-500"
-                icon="mdi:heart-outline"
-                width={24}
-                height={24}
-              />
-            ) : (
-              <Icon
-                className="text-zinc-100"
-                icon="mdi:cards-heart"
-                width={24}
-                height={24}
-              />
-            )}
-          </div>
-        </div>
+        <HeartCounter triesLeft={triesLeft} />
 
         <ButtonNext
           textContent={""}
