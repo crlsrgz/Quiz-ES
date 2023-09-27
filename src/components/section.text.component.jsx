@@ -91,6 +91,14 @@ export default function SectionText(props) {
   ]);
 
   const [nextButtonDisplay, setNextButtonDisplay] = useState("hidden");
+
+  //: Control if next question button is displayed if page is changed
+  useEffect(() => {
+    triesLeft === 0 && gamesPlayed < 2
+      ? setNextButtonDisplay("")
+      : setNextButtonDisplay("hidden");
+  }, [triesLeft]);
+
   const [scorePageButtonDisplay, setScorePageButtonDisplay] =
     useState("hidden");
 
@@ -295,8 +303,7 @@ export default function SectionText(props) {
         tries: triesLeft,
       }),
     );
-    if (gamesPlayed === 1) {
-      console.log(nextButtonDisplay);
+    if (gamesPlayed < 1) {
       setNextButtonDisplay("hidden");
     }
     console.log(
@@ -315,6 +322,7 @@ export default function SectionText(props) {
           &quot;{quoteData[gamesPlayed].quote}&quot;
         </h1>
       </div>
+
       <div className="mx-auto mt-8 flex w-11/12 flex-col items-center justify-center gap-4">
         {newNames.map((name, index) => {
           return (
@@ -328,6 +336,7 @@ export default function SectionText(props) {
             />
           );
         })}
+
         <HeartCounter triesLeft={triesLeft} />
 
         <ButtonNext
