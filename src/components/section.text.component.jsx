@@ -96,7 +96,7 @@ export default function SectionText(props) {
 
   //: Control if next question button is displayed if page is changed
   useEffect(() => {
-    triesLeft === 0 && gamesPlayed < 2
+    triesLeft === 0 && gamesPlayed < 3
       ? setNextButtonDisplay("")
       : setNextButtonDisplay("hidden");
   }, [triesLeft]);
@@ -182,9 +182,10 @@ export default function SectionText(props) {
       setButtonState(tempArray);
 
       /*:: The next button should appear to go to the next part ::*/
-      gamesPlayed < 2
-        ? setNextButtonDisplay("")
-        : setNextButtonDisplay("hidden");
+      // gamesPlayed < 2
+      //   ? setNextButtonDisplay("")
+      //   : setNextButtonDisplay("hidden");
+      setNextButtonDisplay("");
 
       gamesPlayed >= 2
         ? setScorePageButtonDisplay("")
@@ -208,6 +209,8 @@ export default function SectionText(props) {
           tries: triesLeft,
         }),
       );
+      //: Remove remainng tries
+      setTriesLeft(0);
 
       /*:: Disable all Buttons ::*/
       setDisabledButtons([true, true, true, true]);
@@ -255,9 +258,10 @@ export default function SectionText(props) {
           }),
         );
         /*:: The next button should appear to go to the next part ::*/
-        gamesPlayed < 2
-          ? setNextButtonDisplay("")
-          : setNextButtonDisplay("hidden");
+        // gamesPlayed < 2
+        //   ? setNextButtonDisplay("")
+        //   : setNextButtonDisplay("hidden");
+        setNextButtonDisplay("");
 
         gamesPlayed >= 2
           ? setScorePageButtonDisplay("")
@@ -305,9 +309,9 @@ export default function SectionText(props) {
         tries: triesLeft,
       }),
     );
-    if (gamesPlayed < 1) {
-      setNextButtonDisplay("hidden");
-    }
+    // if (gamesPlayed < 1) {
+    //   setNextButtonDisplay("hidden");
+    // }
     console.log(
       `quote size: ${quoteTextSize} length: ${quoteData[gamesPlayed]["quote"].length}, length: ${quoteLength}`,
     );
@@ -349,12 +353,12 @@ export default function SectionText(props) {
           />
         </Link>
 
-        <Link to="/score">
+        {/* <Link to="/score">
           <ButtonNext
             textContent={"Siguiente"}
             visible={scorePageButtonDisplay}
           />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

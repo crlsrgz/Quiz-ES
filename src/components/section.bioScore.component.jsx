@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import MainScoreContext from "./context.MainScore";
 import GamesPlayedContext from "./context.GamesPlayed";
 import AuthorsInfoContext from "./context.AuthorsInfo";
+import TriesLeftContext from "./context.triesLeft";
 
 export default function BioScore(props) {
   /*:: CONTEXT TESTING ::*/
@@ -10,13 +11,16 @@ export default function BioScore(props) {
   const [mainScore, setMainScore] = useContext(MainScoreContext);
   const [gamesPlayed, setGamesPlayed] = useContext(GamesPlayedContext);
   const [authorsInfo, setAuthorsInfo] = useContext(AuthorsInfoContext);
+  const [triesLeft, setTriesLeft] = useContext(TriesLeftContext);
 
-  const [authorsInfoIndex, setAuthorInfoIndex] = useState("empty");
+  const [authorsInfoIndex, setAuthorInfoIndex] = useState(0);
 
   useEffect(() => {
-    let tempIndex = gamesPlayed === 0 ? "empty" : gamesPlayed - 1;
+    let tempIndex =
+      gamesPlayed === 2 && triesLeft < 1 ? gamesPlayed + 1 : gamesPlayed;
+
     setAuthorInfoIndex(tempIndex);
-  }, [gamesPlayed]);
+  }, [gamesPlayed, triesLeft]);
 
   console.log(
     ` Main Score: ${mainScore} / Author ${authorsInfo[authorsInfoIndex]["name"]}`,
@@ -36,18 +40,6 @@ export default function BioScore(props) {
     <div
       className={`section-container m-4 mx-auto flex ${props.classes} w-4/5 flex-col justify-center `}
     >
-      {/* <div className="mx-auto mt-8 text-left font-besley text-xl text-zinc-100">
-        <h1 className="text-3xl">Lorem ipsum dolor</h1>
-        <h2 className="mt-8 text-center text-xl font-semibold text-blue-50">
-          42069
-        </h2>
-        <h2 className="mt-2 text-center text-xl font-semibold text-blue-50">
-          Lorem ipsum
-        </h2>
-        <h3 className="mt-2 text-center text-xl font-semibold text-blue-50">
-          Lorem, ipsum, dolor.
-        </h3>
-      </div> */}
       <div className="mx-auto mt-8 flex flex-col justify-start text-left font-besley text-xl text-zinc-100">
         <h1 className="text-2xl">{authorsInfo[authorsInfoIndex]["name"]}</h1>
         <h2 className="-mt-1 text-lg font-semibold text-blue-50">42069</h2>

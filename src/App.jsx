@@ -45,10 +45,10 @@ export default function App() {
   const triesLeft = useState(JSON.parse(localStorage["user"])["tries"]);
   const gamesPlayed = useState(JSON.parse(localStorage["user"])["gamesPlayed"]);
   const autorsInfo = useState({
-    empty: { name: "---" },
-    0: { name: "Henri Mondor" },
-    1: { name: "Agustín Yañez" },
-    2: { name: "Leslie Hore-Belisha" },
+    0: { name: "---" },
+    1: { name: "Henri Mondor" },
+    2: { name: "Agustín Yañez" },
+    3: { name: "Leslie Hore-Belisha" },
   });
 
   return (
