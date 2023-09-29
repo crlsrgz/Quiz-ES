@@ -352,13 +352,6 @@ export default function SectionText(props) {
             loadNextQuote={loadNextQuote}
           />
         </Link>
-
-        {/* <Link to="/score">
-          <ButtonNext
-            textContent={"Siguiente"}
-            visible={scorePageButtonDisplay}
-          />
-        </Link> */}
       </div>
     </div>
   );
