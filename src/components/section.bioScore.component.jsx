@@ -1,5 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
+
+import ButtonNext from "./button.next.component";
+
 import MainScoreContext from "./context.MainScore";
 import GamesPlayedContext from "./context.GamesPlayed";
 import AuthorsInfoContext from "./context.AuthorsInfo";
@@ -49,7 +53,7 @@ export default function BioScore(props) {
         </h3>
       </div>
 
-      <div className="mx-auto mt-8 flex h-16 flex-row gap-16 font-alata">
+      <div className="mx-auto mt-8 flex flex-row gap-16 font-alata">
         <div className="text-center  text-blue-50">
           <div className="flex flex-col text-4xl">
             <h2 className="">one</h2>
@@ -68,6 +72,15 @@ export default function BioScore(props) {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="mx-auto mt-8 flex h-16 flex-row gap-16 font-alata">
+        <Link to="/text">
+          <ButtonNext
+            textContent={"Siguiente"}
+            visible={gamesPlayed === 2 && triesLeft < 1 ? "hidden" : ""}
+          />
+        </Link>
       </div>
     </div>
   );
