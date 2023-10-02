@@ -8,6 +8,7 @@ import MainScoreContext from "./context.MainScore";
 import GamesPlayedContext from "./context.GamesPlayed";
 import AuthorsInfoContext from "./context.AuthorsInfo";
 import TriesLeftContext from "./context.triesLeft";
+import QuoteDataContext from "./context.quoteData";
 
 export default function BioScore(props) {
   /*:: CONTEXT TESTING ::*/
@@ -16,6 +17,7 @@ export default function BioScore(props) {
   const [gamesPlayed, setGamesPlayed] = useContext(GamesPlayedContext);
   const [authorsInfo, setAuthorsInfo] = useContext(AuthorsInfoContext);
   const [triesLeft, setTriesLeft] = useContext(TriesLeftContext);
+  const [quoteData, setQuoteData] = useContext(QuoteDataContext);
 
   const [authorsInfoIndex, setAuthorInfoIndex] = useState(0);
 

@@ -10,6 +10,7 @@ import TriesLeftContext from "./context.triesLeft";
 import GamesPlayedContext from "./context.GamesPlayed";
 import HeartCounter from "./element.heartCounter.component";
 import AuthorsInfoContext from "./context.AuthorsInfo";
+import QuoteDataContext from "./context.quoteData";
 
 export default function SectionText(props) {
   /* ::::::::: Connection ::::::::: */
@@ -22,42 +23,8 @@ export default function SectionText(props) {
   const [mainScore, setMainScore] = useContext(MainScoreContext);
   const [triesLeft, setTriesLeft] = useContext(TriesLeftContext);
   const [authorsInfo, setAuthorsInfo] = useContext(AuthorsInfoContext);
+  const [quoteData, setQuoteData] = useContext(QuoteDataContext);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  let quoteData = {
-    0: {
-      quote: "Enséñame el rostro de tu madre y te diré quien eres.",
-      answer: 0,
-      authors: [
-        "Henri Mondor",
-        "Joseph Unger",
-        "Simone Signoret",
-        "Jack Gould",
-      ],
-    },
-    1: {
-      quote:
-        "El hombre deja de ser joven cuando cancela las posibilidades futuras y se vuelve prematuramente adulto, es decir, se entrega a una actitud de beneficio propio.",
-      answer: 1,
-      authors: [
-        "Jack Gould",
-        "Agustín Yánez",
-        "Simone Signoret",
-        "Henri Mondor",
-      ],
-    },
-    2: {
-      quote:
-        "El hombre no se conoce; no conoce sus límites y sus posibilidades, no conoce ni siquiera hasta qué punto no se conoce.",
-      answer: 2,
-      authors: [
-        "Joseph Unger",
-        "Henri Mondor",
-        "Leslie Hore-Belisha",
-        "Jack Gould",
-      ],
-    },
-  };
   /*:: Temporary data ::*/
 
   /*:: CONTEXT TESTING ::*/
