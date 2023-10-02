@@ -108,11 +108,11 @@ export default function SectionText(props) {
   useEffect(() => {
     const tempIndex = gamesPlayed < 3 ? gamesPlayed : 0;
     if (quoteData[tempIndex]["quote"].length < 55) {
-      setQuoteTextSize("text-3xl");
+      setQuoteTextSize("text-3xl md:text-4xl lg:text-5xl");
     } else if (quoteData[tempIndex]["quote"].length > 55 && quoteLength < 120) {
-      setQuoteTextSize("text-2xl");
+      setQuoteTextSize("text-2xl md:text-3xl lg:text-4xl");
     } else if (quoteData[tempIndex]["quote"].length > 100) {
-      setQuoteTextSize("text-xl");
+      setQuoteTextSize("text-xl md:text-2xl lg:text-3xl");
     } else {
       setQuoteTextSize("text-xl");
     }
@@ -274,7 +274,7 @@ export default function SectionText(props) {
   if (gameOverStatus === false) {
     return (
       <div
-        className={`section-container m-12 mx-auto ${props.classes} w-4/5 flex-col justify-center gap-8`}
+        className={`section-container m-12 mx-auto ${props.classes} w-4/5 flex-col justify-center gap-8 md:w-1/2`}
       >
         <div className="mx-auto">
           <h1

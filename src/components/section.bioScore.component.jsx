@@ -40,7 +40,8 @@ export default function BioScore(props) {
       JSON.stringify({ answered: [false, false, false, false], score: 0 }),
     );
   }
-  let score = JSON.parse(localStorage["user"])["score"];
+
+  console.log(authorsInfoIndex);
 
   return (
     <div
