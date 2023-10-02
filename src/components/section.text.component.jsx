@@ -38,13 +38,14 @@ export default function SectionText(props) {
 
   /* ::::::::: Localstorage ::::::::: */
 
-  const newNames = quoteData[gamesPlayed].authors ?? null;
-  const [answer, setAnswer] = useState(
-    quoteData[gamesPlayed].authors.toString(),
-  );
+  const newNames = gamesPlayed < 3 ? quoteData[gamesPlayed].authors : "";
+  // const newNames = quoteData[gamesPlayed].authors;
+  const [answer, setAnswer] = useState(newNames);
 
   useEffect(() => {
-    setAnswer(quoteData[gamesPlayed].answer.toString());
+    const tempAnswer =
+      gamesPlayed < 3 ? quoteData[gamesPlayed].answer.toString() : "";
+    setAnswer(tempAnswer);
   }, [quoteData, gamesPlayed]);
   /* ::::::::: Connection END ::::::::: */
 
@@ -74,16 +75,17 @@ export default function SectionText(props) {
 
   const buttonInitialArray = [];
   useEffect(() => {
+    const tempIndex = gamesPlayed < 3 ? gamesPlayed : 0;
     for (let i = 0; i < arrayAlreadyClickedLength; i++) {
       if (
-        (quoteData[gamesPlayed].answer !== i &&
+        (quoteData[tempIndex].answer !== i &&
           arrayAlreadyClicked[i] === true) ||
         triesLeft === 0
       ) {
         buttonInitialArray[i] = classesWrongAnswer;
         console.log("first");
       } else if (
-        quoteData[gamesPlayed].answer === i &&
+        quoteData[tempIndex].answer === i &&
         arrayAlreadyClicked[i] === true
       ) {
         buttonInitialArray[i] = classesRightAnswer;
@@ -102,23 +104,20 @@ export default function SectionText(props) {
 
   // const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
   const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
-  const [quoteLength, setQuoteLength] = useState(
-    quoteData[gamesPlayed]["quote"].length,
-  );
+  const tempQuoteLenght =
+    gamesPlayed < 3 ? quoteData[gamesPlayed]["quote"].length : 1;
+  const [quoteLength, setQuoteLength] = useState(tempQuoteLenght);
   console.log(
     ` Main Score: ${mainScore}, Left tries: ${triesLeft}, Games played ${gamesPlayed}, quote length ${quoteLength}`,
   );
 
   useEffect(() => {
-    console.log(typeof quoteData[gamesPlayed]["quote"].length);
-    if (quoteData[gamesPlayed]["quote"].length < 55) {
+    const tempIndex = gamesPlayed < 3 ? gamesPlayed : 0;
+    if (quoteData[tempIndex]["quote"].length < 55) {
       setQuoteTextSize("text-3xl");
-    } else if (
-      quoteData[gamesPlayed]["quote"].length > 55 &&
-      quoteLength < 120
-    ) {
+    } else if (quoteData[tempIndex]["quote"].length > 55 && quoteLength < 120) {
       setQuoteTextSize("text-2xl");
-    } else if (quoteData[gamesPlayed]["quote"].length > 100) {
+    } else if (quoteData[tempIndex]["quote"].length > 100) {
       setQuoteTextSize("text-xl");
     } else {
       setQuoteTextSize("text-xl");
