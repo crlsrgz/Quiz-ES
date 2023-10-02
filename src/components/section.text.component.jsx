@@ -284,10 +284,10 @@ export default function SectionText(props) {
   function loadNextQuote() {
     let tempGamesPlayed = gamesPlayed <= 1 ? gamesPlayed + 1 : gamesPlayed;
     setGamesPlayed(tempGamesPlayed);
-    console.log("games played", gamesPlayed);
 
-    // setQuoteLength(quoteData[gamesPlayed + 1]["quote"].length);
-    let tempQuoteLenght = quoteData[gamesPlayed + 1]["quote"].length;
+    // tempIndex ws created to prrof an error, it can be written inside the tempQuoteLenght
+    let tempIndex = gamesPlayed < 2 ? gamesPlayed + 1 : gamesPlayed;
+    let tempQuoteLenght = quoteData[tempIndex]["quote"].length;
     setQuoteLength(tempQuoteLenght);
 
     for (let i = 0; i < 4; i++) {
