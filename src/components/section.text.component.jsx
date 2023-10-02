@@ -83,17 +83,14 @@ export default function SectionText(props) {
         triesLeft === 0
       ) {
         buttonInitialArray[i] = classesWrongAnswer;
-        console.log("first");
       } else if (
         quoteData[tempIndex].answer === i &&
         arrayAlreadyClicked[i] === true
       ) {
         buttonInitialArray[i] = classesRightAnswer;
         setNextButtonDisplay("");
-        console.log("second");
       } else if (!arrayAlreadyClicked[i]) {
         buttonInitialArray[i] = classesInitialState;
-        console.log("third");
       } else {
         setNextButtonDisplay("hidden");
       }
@@ -107,9 +104,6 @@ export default function SectionText(props) {
   const tempQuoteLenght =
     gamesPlayed < 3 ? quoteData[gamesPlayed]["quote"].length : 1;
   const [quoteLength, setQuoteLength] = useState(tempQuoteLenght);
-  console.log(
-    ` Main Score: ${mainScore}, Left tries: ${triesLeft}, Games played ${gamesPlayed}, quote length ${quoteLength}`,
-  );
 
   useEffect(() => {
     const tempIndex = gamesPlayed < 3 ? gamesPlayed : 0;
@@ -244,10 +238,6 @@ export default function SectionText(props) {
     }
   }
 
-  // useEffect(() => {
-  //   console.log(disabledButtons);
-  // }, [disabledButtons]);
-
   function loadNextQuote() {
     let tempGamesPlayed = gamesPlayed <= 1 ? gamesPlayed + 1 : gamesPlayed;
     setGamesPlayed(tempGamesPlayed);
@@ -281,16 +271,7 @@ export default function SectionText(props) {
     // }
   }
 
-  console.log(
-    `Main Score: ${mainScore} / 
-    Games Played ${gamesPlayed} /
-    left tries ${triesLeft}
-    gameOverStatus ${gameOverStatus}
-    `,
-  );
-
   if (gameOverStatus === false) {
-    console.log(`Games played ${typeof gamesPlayed}`);
     return (
       <div
         className={`section-container m-12 mx-auto ${props.classes} w-4/5 flex-col justify-center gap-8`}

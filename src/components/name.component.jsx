@@ -1,8 +1,5 @@
 import React from "react";
 export default function Name(props) {
-  // function checkAnswer(e) {
-  //   console.log(e.target);
-  // }
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
 

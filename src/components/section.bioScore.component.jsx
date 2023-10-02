@@ -32,16 +32,6 @@ export default function BioScore(props) {
     }
   }, [gamesPlayed, triesLeft, authorsInfoIndex]);
 
-  console.log(
-    `Main Score: ${mainScore} / 
-    Games Played ${gamesPlayed} /
-    Author ${authorsInfo[authorsInfoIndex]["name"]} /
-    left tries ${triesLeft}
-    AuthorIndex ${authorsInfoIndex} / 
-    gameOverStatus ${gameOverStatus} / 
-    `,
-  );
-
   /*:: CONTEXT TESTING ::*/
 
   if (!localStorage["user"]) {
