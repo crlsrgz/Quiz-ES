@@ -38,7 +38,7 @@ export default function SectionText(props) {
 
   /* ::::::::: Localstorage ::::::::: */
 
-  const newNames = quoteData[gamesPlayed].authors;
+  const newNames = quoteData[gamesPlayed].authors ?? null;
   const [answer, setAnswer] = useState(
     quoteData[gamesPlayed].authors.toString(),
   );
