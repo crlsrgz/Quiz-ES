@@ -9,10 +9,11 @@ import GamesPlayedContext from "./context.GamesPlayed";
 import AuthorsInfoContext from "./context.AuthorsInfo";
 import TriesLeftContext from "./context.triesLeft";
 import QuoteDataContext from "./context.quoteData";
+import GameOverContext from "./context.GameOver";
 
 export default function BioScore(props) {
   /*:: CONTEXT TESTING ::*/
-
+  const [gameOverStatus, setGameOverStatus] = useContext(GameOverContext);
   const [mainScore, setMainScore] = useContext(MainScoreContext);
   const [gamesPlayed, setGamesPlayed] = useContext(GamesPlayedContext);
   const [authorsInfo, setAuthorsInfo] = useContext(AuthorsInfoContext);
@@ -26,10 +27,19 @@ export default function BioScore(props) {
       gamesPlayed === 2 && triesLeft < 1 ? gamesPlayed + 1 : gamesPlayed;
 
     setAuthorInfoIndex(tempIndex);
+    if (authorsInfoIndex > 2) {
+      setGameOverStatus(true);
+    }
   }, [gamesPlayed, triesLeft, authorsInfoIndex]);
 
   console.log(
-    ` Main Score: ${mainScore} / Author ${authorsInfo[authorsInfoIndex]["name"]} AuthorIndex ${authorsInfoIndex}`,
+    `Main Score: ${mainScore} / 
+    Games Played ${gamesPlayed} /
+    Author ${authorsInfo[authorsInfoIndex]["name"]} /
+    left tries ${triesLeft}
+    AuthorIndex ${authorsInfoIndex} / 
+    gameOverStatus ${gameOverStatus} / 
+    `,
   );
 
   /*:: CONTEXT TESTING ::*/

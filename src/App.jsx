@@ -18,6 +18,7 @@ import TriesLeftContext from "./components/context.triesLeft";
 import GamesPlayedContext from "./components/context.GamesPlayed";
 import AuthorsInfoContext from "./components/context.AuthorsInfo";
 import QuoteDataContext from "./components/context.quoteData";
+import GameOverContext from "./components/context.GameOver";
 
 export default function App() {
   // const [displayQuizContainer, setDisplayQuizContainer] = useState("flex");
@@ -41,7 +42,7 @@ export default function App() {
       }),
     );
   }
-
+  const gameOverStatus = useState(false);
   const mainScore = useState(JSON.parse(localStorage["user"])["score"]);
   const triesLeft = useState(JSON.parse(localStorage["user"])["tries"]);
   const gamesPlayed = useState(JSON.parse(localStorage["user"])["gamesPlayed"]);
@@ -88,30 +89,32 @@ export default function App() {
 
   return (
     <>
-      <MainScoreContext.Provider value={mainScore}>
-        <GamesPlayedContext.Provider value={gamesPlayed}>
-          <TriesLeftContext.Provider value={triesLeft}>
-            <QuoteDataContext.Provider value={quoteData}>
-              <AuthorsInfoContext.Provider value={autorsInfo}>
-                <BrowserRouter>
-                  <Navigation />
-                  {/* <Connection /> */}
+      <GameOverContext.Provider value={gameOverStatus}>
+        <MainScoreContext.Provider value={mainScore}>
+          <GamesPlayedContext.Provider value={gamesPlayed}>
+            <TriesLeftContext.Provider value={triesLeft}>
+              <QuoteDataContext.Provider value={quoteData}>
+                <AuthorsInfoContext.Provider value={autorsInfo}>
+                  <BrowserRouter>
+                    <Navigation />
+                    {/* <Connection /> */}
 
-                  <div className="main-container m-0 h-5/6 p-0">
-                    <Routes>
-                      <Route path="/" element={<Intro />} />
-                      <Route path="/text" element={<SectionText />} />
-                      <Route path="/score/" element={<BioScore />} />
-                      <Route path="/info/" element={<Info />} />
-                      <Route path="/about/" element={<About />} />
-                    </Routes>
-                  </div>
-                </BrowserRouter>
-              </AuthorsInfoContext.Provider>
-            </QuoteDataContext.Provider>
-          </TriesLeftContext.Provider>
-        </GamesPlayedContext.Provider>
-      </MainScoreContext.Provider>
+                    <div className="main-container m-0 h-5/6 p-0">
+                      <Routes>
+                        <Route path="/" element={<Intro />} />
+                        <Route path="/text" element={<SectionText />} />
+                        <Route path="/score/" element={<BioScore />} />
+                        <Route path="/info/" element={<Info />} />
+                        <Route path="/about/" element={<About />} />
+                      </Routes>
+                    </div>
+                  </BrowserRouter>
+                </AuthorsInfoContext.Provider>
+              </QuoteDataContext.Provider>
+            </TriesLeftContext.Provider>
+          </GamesPlayedContext.Provider>
+        </MainScoreContext.Provider>
+      </GameOverContext.Provider>
     </>
   );
 }

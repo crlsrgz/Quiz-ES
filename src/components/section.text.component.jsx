@@ -11,6 +11,7 @@ import GamesPlayedContext from "./context.GamesPlayed";
 import HeartCounter from "./element.heartCounter.component";
 import AuthorsInfoContext from "./context.AuthorsInfo";
 import QuoteDataContext from "./context.quoteData";
+import GameOverContext from "./context.GameOver";
 
 export default function SectionText(props) {
   /* ::::::::: Connection ::::::::: */
@@ -18,7 +19,7 @@ export default function SectionText(props) {
 
   /*:: Temporary data ::*/
   /*:: CONTEXT TESTING ::*/
-
+  const [gameOverStatus, setGameOverStatus] = useContext(GameOverContext);
   const [gamesPlayed, setGamesPlayed] = useContext(GamesPlayedContext);
   const [mainScore, setMainScore] = useContext(MainScoreContext);
   const [triesLeft, setTriesLeft] = useContext(TriesLeftContext);
@@ -279,47 +280,69 @@ export default function SectionText(props) {
     // if (gamesPlayed < 1) {
     //   setNextButtonDisplay("hidden");
     // }
-    console.log(
-      `quote size: ${quoteTextSize} length: ${quoteData[gamesPlayed]["quote"].length}, length: ${quoteLength}`,
-    );
   }
 
-  return (
-    <div
-      className={`section-container m-12 mx-auto ${props.classes} w-4/5 flex-col justify-center gap-8`}
-    >
-      <div className="mx-auto">
-        <h1
-          className={`mt-16 text-left font-besley ${quoteTextSize} font-semibold text-blue-50`}
-        >
-          &quot;{quoteData[gamesPlayed].quote}&quot;
-        </h1>
-      </div>
-
-      <div className="mx-auto mt-8 flex w-11/12 flex-col items-center justify-center gap-4">
-        {newNames.map((name, index) => {
-          return (
-            <Name
-              name={name}
-              key={index}
-              id={index}
-              classesLocalStorage={buttonState[index]}
-              checkAnswer={checkAnswer}
-              disabled={disabledButtons[index]}
-            />
-          );
-        })}
-
-        <HeartCounter triesLeft={triesLeft} />
-
-        <Link to="/score">
-          <ButtonNext
-            textContent={""}
-            visible={nextButtonDisplay}
-            loadNextQuote={loadNextQuote}
-          />
-        </Link>
-      </div>
-    </div>
+  console.log(
+    `Main Score: ${mainScore} / 
+    Games Played ${gamesPlayed} /
+    left tries ${triesLeft}
+    gameOverStatus ${gameOverStatus}
+    `,
   );
+
+  if (gameOverStatus === false) {
+    console.log(`Games played ${typeof gamesPlayed}`);
+    return (
+      <div
+        className={`section-container m-12 mx-auto ${props.classes} w-4/5 flex-col justify-center gap-8`}
+      >
+        <div className="mx-auto">
+          <h1
+            className={`mt-16 text-left font-besley ${quoteTextSize} font-semibold text-blue-50`}
+          >
+            &quot;{quoteData[gamesPlayed].quote}&quot;
+          </h1>
+        </div>
+
+        <div className="mx-auto mt-8 flex w-11/12 flex-col items-center justify-center gap-4">
+          {newNames.map((name, index) => {
+            return (
+              <Name
+                name={name}
+                key={index}
+                id={index}
+                classesLocalStorage={buttonState[index]}
+                checkAnswer={checkAnswer}
+                disabled={disabledButtons[index]}
+              />
+            );
+          })}
+
+          <HeartCounter triesLeft={triesLeft} />
+
+          <Link to="/score">
+            <ButtonNext
+              textContent={""}
+              visible={nextButtonDisplay}
+              loadNextQuote={loadNextQuote}
+            />
+          </Link>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className={`section-container m-12 mx-auto ${props.classes} w-4/5 flex-col justify-center gap-8`}
+      >
+        <div className="mx-auto">
+          <h1
+            className={`mt-16 text-left font-besley text-xl font-semibold text-blue-50`}
+          >
+            End
+          </h1>
+        </div>
+      </div>
+    );
+  }
 }
