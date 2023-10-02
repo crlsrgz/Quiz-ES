@@ -26,10 +26,10 @@ export default function BioScore(props) {
       gamesPlayed === 2 && triesLeft < 1 ? gamesPlayed + 1 : gamesPlayed;
 
     setAuthorInfoIndex(tempIndex);
-  }, [gamesPlayed, triesLeft]);
+  }, [gamesPlayed, triesLeft, authorsInfoIndex]);
 
   console.log(
-    ` Main Score: ${mainScore} / Author ${authorsInfo[authorsInfoIndex]["name"]}`,
+    ` Main Score: ${mainScore} / Author ${authorsInfo[authorsInfoIndex]["name"]} AuthorIndex ${authorsInfoIndex}`,
   );
 
   /*:: CONTEXT TESTING ::*/
@@ -80,7 +80,7 @@ export default function BioScore(props) {
         <Link to="/text">
           <ButtonNext
             textContent={"Siguiente"}
-            visible={gamesPlayed === 2 && triesLeft < 1 ? "hidden" : ""}
+            visible={authorsInfoIndex >= 3 ? "hidden" : ""}
           />
         </Link>
       </div>
