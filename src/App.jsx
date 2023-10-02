@@ -99,7 +99,7 @@ export default function App() {
                     <Navigation />
                     {/* <Connection /> */}
 
-                    <div className="main-container m-0 h-5/6 p-0">
+                    <div className="main-container m-0 h-5/6 p-0 md:mt-20">
                       <Routes>
                         <Route path="/" element={<Intro />} />
                         <Route path="/text" element={<SectionText />} />

@@ -41,7 +41,7 @@ export default function BioScore(props) {
     );
   }
 
-  console.log(authorsInfoIndex);
+  console.log(/*[quoteData[gamesPlayed].authors][0][quoteData[gamesPlayed].answer]*/);
 
   return (
     <div

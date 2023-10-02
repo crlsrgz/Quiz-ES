@@ -3,7 +3,7 @@ import React from "react";
 
 export default function PageTitle(props) {
   return (
-    <div className="font-alata mb-4 mt-8 text-left text-2xl text-blue-50">
+    <div className="mb-4 mt-8 text-left font-alata text-4xl text-blue-50">
       <h1>{props.pageTitle}</h1>
     </div>
   );
