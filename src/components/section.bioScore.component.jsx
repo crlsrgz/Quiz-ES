@@ -47,32 +47,33 @@ export default function BioScore(props) {
     <div
       className={`section-container m-4 mx-auto flex ${props.classes} w-4/5 flex-col justify-center `}
     >
-      <div className="mx-auto mt-8 flex flex-col justify-start text-left font-besley text-xl text-zinc-100">
-        <h1 className="text-2xl">{authorsInfo[authorsInfoIndex]["name"]}</h1>
-        <h2 className="-mt-1 text-lg font-semibold text-blue-50">42069</h2>
-        <h2 className="text-lg font-semibold text-blue-50">Lorem ipsum</h2>
-        <h3 className="text-lg font-semibold text-blue-50">
+      <div className="mx-auto mt-12 flex flex-col justify-start text-left font-besley text-xl text-zinc-100 md:gap-2">
+        <h1 className="text-2xl md:text-4xl">
+          {authorsInfo[authorsInfoIndex]["name"]}
+        </h1>
+        <h2 className="-mt-1 text-lg font-semibold text-blue-50 md:text-2xl">
+          42069
+        </h2>
+        <h2 className="text-lg font-semibold text-blue-50 md:text-2xl">
+          Lorem ipsum
+        </h2>
+        <h3 className="text-lg font-semibold text-blue-50 md:text-2xl">
           Lorem, ipsum, dolor.
         </h3>
       </div>
 
-      <div className="mx-auto mt-8 flex flex-row gap-16 font-alata">
+      <div className="mx-auto mt-16 flex flex-row gap-16 font-alata">
         <div className="text-center  text-blue-50">
           <div className="flex flex-col text-4xl">
-            <h2 className="">one</h2>
-            <h3 className="mt-6">{mainScore ?? "-"}</h3>
-            <div className="m-auto">
-              <Icon icon="ic:baseline-check" width={32} height={32} />
+            <div className="flex flex-row">
+              <h2 className="text-xl">
+                Respuestas
+                <br />
+                Correctas
+              </h2>
             </div>
-          </div>
-        </div>
-        <div className="text-center  text-blue-50">
-          <div className="flex flex-col text-4xl">
-            <h2 className="">two</h2>
-            <h3 className="mt-6">0</h3>
-            <div className="m-auto">
-              <Icon icon="ic:baseline-close" width={32} height={32} />
-            </div>
+            <h3 className="mt-0 font-serif text-6xl">{mainScore ?? "-"}</h3>
+            <div className="m-auto"></div>
           </div>
         </div>
       </div>
