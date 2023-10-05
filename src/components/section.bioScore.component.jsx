@@ -47,32 +47,34 @@ export default function BioScore(props) {
     <div
       className={`section-container m-4 mx-auto flex ${props.classes} w-4/5 flex-col justify-center `}
     >
-      <div className="mx-auto mt-12 flex flex-col justify-start text-left font-besley text-xl text-zinc-100 md:gap-2">
-        <h1 className="text-2xl md:text-4xl">
+      <div className="mx-auto mt-12 flex flex-col justify-start text-left font-besley text-xl text-zinc-100 md:mt-2 md:gap-2">
+        <h1 className="text-3xl md:text-4xl lg:text-6xl">
           {authorsInfo[authorsInfoIndex]["name"]}
         </h1>
-        <h2 className="-mt-1 text-lg font-semibold text-blue-50 md:text-2xl">
+        <h2 className="mt-1 text-2xl font-semibold text-blue-50 md:text-3xl lg:text-5xl">
           42069
         </h2>
-        <h2 className="text-lg font-semibold text-blue-50 md:text-2xl">
+        <h2 className="text-lg font-semibold text-blue-50 md:text-3xl lg:text-4xl">
           Lorem ipsum
         </h2>
-        <h3 className="text-lg font-semibold text-blue-50 md:text-2xl">
+        <h3 className="text-lg font-semibold text-blue-50 md:text-3xl lg:text-4xl">
           Lorem, ipsum, dolor.
         </h3>
       </div>
 
-      <div className="mx-auto mt-16 flex flex-row gap-16 font-alata">
+      <div className="mx-auto mt-12 flex flex-row gap-16 font-alata">
         <div className="text-center  text-blue-50">
-          <div className="flex flex-col text-4xl">
+          <div className="flex flex-col">
             <div className="flex flex-row">
-              <h2 className="text-xl">
+              <h2 className="text-2xl md:text-3xl">
                 Respuestas
                 <br />
                 Correctas
               </h2>
             </div>
-            <h3 className="mt-0 font-serif text-6xl">{mainScore ?? "-"}</h3>
+            <h3 className="md:text-10xl mt-0 font-serif text-8xl">
+              {mainScore ?? "-"}
+            </h3>
             <div className="m-auto"></div>
           </div>
         </div>
