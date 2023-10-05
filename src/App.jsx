@@ -38,6 +38,7 @@ export default function App() {
         answered: [false, false, false, false],
         score: 0,
         gamesPlayed: 0,
+        playedHistory: { won: 0, played: 0 },
         tries: 3,
       }),
     );

@@ -167,6 +167,7 @@ export default function SectionText(props) {
           answered: arrayAlreadyClicked,
           score: mainScore,
           gamesPlayed: gamesPlayed,
+          playedHistory: { won: 0, played: 0 },
           tries: triesLeft,
         }),
       );
@@ -192,6 +193,7 @@ export default function SectionText(props) {
           answered: arrayAlreadyClicked,
           score: mainScore,
           gamesPlayed: gamesPlayed,
+          playedHistory: { won: 0, played: 0 },
           tries: tempTries,
         }),
       );
@@ -215,6 +217,7 @@ export default function SectionText(props) {
             answered: arrayAlreadyClicked,
             score: mainScore,
             gamesPlayed: gamesPlayed,
+            playedHistory: { won: 0, played: 0 },
             tries: triesLeft,
           }),
         );
@@ -263,6 +266,7 @@ export default function SectionText(props) {
         answered: [false, false, false, false],
         score: mainScore,
         gamesPlayed: gamesPlayed,
+        playedHistory: { won: 0, played: 0 },
         tries: triesLeft,
       }),
     );

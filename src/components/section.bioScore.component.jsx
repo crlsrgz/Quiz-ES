@@ -37,7 +37,13 @@ export default function BioScore(props) {
   if (!localStorage["user"]) {
     localStorage.setItem(
       "user",
-      JSON.stringify({ answered: [false, false, false, false], score: 0 }),
+      JSON.stringify({
+        answered: [false, false, false, false],
+        score: 0,
+        gamesPlayed: 0,
+        playedHistory: { won: 0, played: 0 },
+        tries: 3,
+      }),
     );
   }
 
@@ -72,10 +78,12 @@ export default function BioScore(props) {
                 Correctas
               </h2>
             </div>
-            <h3 className="md:text-10xl mt-0 font-serif text-8xl">
-              {mainScore ?? "-"}
-            </h3>
-            <div className="m-auto"></div>
+            <div className="flex items-baseline justify-center">
+              <h3 className="md:text-10xl mt-0 font-serif text-8xl">
+                {mainScore ?? "-"}
+              </h3>
+              <h3 className="mt-0 font-serif text-4xl md:text-5xl">/12</h3>
+            </div>
           </div>
         </div>
       </div>
