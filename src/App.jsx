@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 // import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, json } from "react-router-dom";
 
@@ -12,36 +12,25 @@ import About from "./components/section.about.component";
 import Connection from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
-
-import MainScoreContext from "./components/context.MainScore";
-import TriesLeftContext from "./components/context.triesLeft";
-import GamesPlayedContext from "./components/context.GamesPlayed";
-import AuthorsInfoContext from "./components/context.AuthorsInfo";
-import QuoteDataContext from "./components/context.quoteData";
-import GameOverContext from "./components/context.GameOver";
+import GameStatusContext from "./components/context.GameStatus";
 import setLocalStorage from "./components/localstorage.function";
 
 export default function App() {
   const connectionTest = Connection();
-  console.log(connectionTest);
+  // console.log(connectionTest);
 
+  /*:: Prepare Local Storage ::*/
+
+  // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
   if (!localStorage["user"]) {
     localStorage.setItem(
       "user",
       setLocalStorage("#", [false, false, false, false], 0, 0, 3, 0, 0, "date"),
     );
   }
-  const gameOverStatus = useState(false);
-  const mainScore = useState(JSON.parse(localStorage["user"])["score"]);
-  const triesLeft = useState(JSON.parse(localStorage["user"])["tries"]);
-  const gamesPlayed = useState(JSON.parse(localStorage["user"])["gamesPlayed"]);
-  const autorsInfo = useState({
-    0: { name: "---" },
-    1: { name: "Henri Mondor" },
-    2: { name: "Agustín Yañez" },
-    3: { name: "Leslie Hore-Belisha" },
-  });
-  const quoteData = useState({
+  /*:: Temporary quote data ::*/
+
+  const quoteData = {
     0: {
       quote: "Enséñame el rostro de tu madre y te diré quien eres.",
       answer: 0,
@@ -74,36 +63,41 @@ export default function App() {
         "Jack Gould",
       ],
     },
+  };
+
+  const authorsInfo = {
+    0: { name: "---" },
+    1: { name: "Henri Mondor" },
+    2: { name: "Agustín Yañez" },
+    3: { name: "Leslie Hore-Belisha" },
+  };
+  const gameStatus = useState({
+    gameOverStatus: false,
+    mainScore: JSON.parse(localStorage["user"])["score"],
+    triesLeft: JSON.parse(localStorage["user"])["tries"],
+    gamesPlayed: JSON.parse(localStorage["user"])["gamesPlayed"],
+    quoteData: quoteData,
+    authorsInfo: authorsInfo,
   });
 
   return (
     <>
-      <GameOverContext.Provider value={gameOverStatus}>
-        <MainScoreContext.Provider value={mainScore}>
-          <GamesPlayedContext.Provider value={gamesPlayed}>
-            <TriesLeftContext.Provider value={triesLeft}>
-              <QuoteDataContext.Provider value={quoteData}>
-                <AuthorsInfoContext.Provider value={autorsInfo}>
-                  <BrowserRouter>
-                    <Navigation />
-                    {/* <Connection /> */}
+      <GameStatusContext.Provider value={gameStatus}>
+        <BrowserRouter>
+          <Navigation />
+          {/* <Connection /> */}
 
-                    <div className="main-container m-0 h-5/6 p-0 md:mt-20">
-                      <Routes>
-                        <Route path="/" element={<Intro />} />
-                        <Route path="/text" element={<SectionText />} />
-                        <Route path="/score/" element={<BioScore />} />
-                        <Route path="/info/" element={<Info />} />
-                        <Route path="/about/" element={<About />} />
-                      </Routes>
-                    </div>
-                  </BrowserRouter>
-                </AuthorsInfoContext.Provider>
-              </QuoteDataContext.Provider>
-            </TriesLeftContext.Provider>
-          </GamesPlayedContext.Provider>
-        </MainScoreContext.Provider>
-      </GameOverContext.Provider>
+          <div className="main-container m-0 h-5/6 p-0 md:mt-20">
+            <Routes>
+              <Route path="/" element={<Intro />} />
+              <Route path="/text" element={<SectionText />} />
+              <Route path="/score/" element={<BioScore />} />
+              <Route path="/info/" element={<Info />} />
+              <Route path="/about/" element={<About />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </GameStatusContext.Provider>
     </>
   );
 }

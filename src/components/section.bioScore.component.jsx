@@ -4,22 +4,8 @@ import { Icon } from "@iconify/react";
 
 import ButtonNext from "./button.next.component";
 
-import MainScoreContext from "./context.MainScore";
-import GamesPlayedContext from "./context.GamesPlayed";
-import AuthorsInfoContext from "./context.AuthorsInfo";
-import TriesLeftContext from "./context.triesLeft";
-import QuoteDataContext from "./context.quoteData";
-import GameOverContext from "./context.GameOver";
-import setLocalStorage from "./localstorage.function";
-
 export default function BioScore(props) {
   /*:: CONTEXT TESTING ::*/
-  const [gameOverStatus, setGameOverStatus] = useContext(GameOverContext);
-  const [mainScore, setMainScore] = useContext(MainScoreContext);
-  const [gamesPlayed, setGamesPlayed] = useContext(GamesPlayedContext);
-  const [authorsInfo, setAuthorsInfo] = useContext(AuthorsInfoContext);
-  const [triesLeft, setTriesLeft] = useContext(TriesLeftContext);
-  const [quoteData, setQuoteData] = useContext(QuoteDataContext);
 
   const [authorsInfoIndex, setAuthorInfoIndex] = useState(0);
 
