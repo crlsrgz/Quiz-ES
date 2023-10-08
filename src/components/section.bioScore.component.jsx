@@ -10,6 +10,7 @@ import AuthorsInfoContext from "./context.AuthorsInfo";
 import TriesLeftContext from "./context.triesLeft";
 import QuoteDataContext from "./context.quoteData";
 import GameOverContext from "./context.GameOver";
+import setLocalStorage from "./localstorage.function";
 
 export default function BioScore(props) {
   /*:: CONTEXT TESTING ::*/
@@ -37,13 +38,7 @@ export default function BioScore(props) {
   if (!localStorage["user"]) {
     localStorage.setItem(
       "user",
-      JSON.stringify({
-        answered: [false, false, false, false],
-        score: 0,
-        gamesPlayed: 0,
-        playedHistory: { won: 0, played: 0 },
-        tries: 3,
-      }),
+      setLocalStorage("#", [false, false, false, false], 0, 0, 3, 0, 0, "date"),
     );
   }
 

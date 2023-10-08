@@ -9,7 +9,7 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-// import Connection from "./connections/connection";
+import Connection from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
 
@@ -19,28 +19,16 @@ import GamesPlayedContext from "./components/context.GamesPlayed";
 import AuthorsInfoContext from "./components/context.AuthorsInfo";
 import QuoteDataContext from "./components/context.quoteData";
 import GameOverContext from "./components/context.GameOver";
+import setLocalStorage from "./components/localstorage.function";
 
 export default function App() {
-  // const [displayQuizContainer, setDisplayQuizContainer] = useState("flex");
-
-  // function changeQuizContainerVisibility() {
-  //   if (displayQuizContainer === "flex") {
-  //     setDisplayQuizContainer("hidden");
-  //   } else {
-  //     setDisplayQuizContainer("flex");
-  //   }
-  // }
+  const connectionTest = Connection();
+  console.log(connectionTest);
 
   if (!localStorage["user"]) {
     localStorage.setItem(
       "user",
-      JSON.stringify({
-        answered: [false, false, false, false],
-        score: 0,
-        gamesPlayed: 0,
-        playedHistory: { won: 0, played: 0 },
-        tries: 3,
-      }),
+      setLocalStorage("#", [false, false, false, false], 0, 0, 3, 0, 0, "date"),
     );
   }
   const gameOverStatus = useState(false);

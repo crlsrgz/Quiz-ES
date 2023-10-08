@@ -12,6 +12,7 @@ import HeartCounter from "./element.heartCounter.component";
 import AuthorsInfoContext from "./context.AuthorsInfo";
 import QuoteDataContext from "./context.quoteData";
 import GameOverContext from "./context.GameOver";
+import setLocalStorage from "./localstorage.function";
 
 export default function SectionText(props) {
   /* ::::::::: Connection ::::::::: */
@@ -163,14 +164,18 @@ export default function SectionText(props) {
       }
       localStorage.setItem(
         "user",
-        JSON.stringify({
-          answered: arrayAlreadyClicked,
-          score: mainScore,
-          gamesPlayed: gamesPlayed,
-          playedHistory: { won: 0, played: 0 },
-          tries: triesLeft,
-        }),
+        setLocalStorage(
+          "#",
+          arrayAlreadyClicked,
+          mainScore,
+          gamesPlayed,
+          triesLeft,
+          0,
+          0,
+          "date",
+        ),
       );
+
       //: Remove remainng tries
       setTriesLeft(0);
 
@@ -189,13 +194,16 @@ export default function SectionText(props) {
       setTriesLeft(tempTries);
       localStorage.setItem(
         "user",
-        JSON.stringify({
-          answered: arrayAlreadyClicked,
-          score: mainScore,
-          gamesPlayed: gamesPlayed,
-          playedHistory: { won: 0, played: 0 },
-          tries: tempTries,
-        }),
+        setLocalStorage(
+          "#",
+          arrayAlreadyClicked,
+          mainScore,
+          gamesPlayed,
+          triesLeft,
+          0,
+          0,
+          "date",
+        ),
       );
 
       // Checke if Tries are 0 to end game
@@ -213,13 +221,16 @@ export default function SectionText(props) {
 
         localStorage.setItem(
           "user",
-          JSON.stringify({
-            answered: arrayAlreadyClicked,
-            score: mainScore,
-            gamesPlayed: gamesPlayed,
-            playedHistory: { won: 0, played: 0 },
-            tries: triesLeft,
-          }),
+          setLocalStorage(
+            "#",
+            arrayAlreadyClicked,
+            mainScore,
+            gamesPlayed,
+            triesLeft,
+            0,
+            0,
+            "date",
+          ),
         );
         /*:: The next button should appear to go to the next part ::*/
         // gamesPlayed < 2
@@ -262,13 +273,17 @@ export default function SectionText(props) {
 
     localStorage.setItem(
       "user",
-      JSON.stringify({
-        answered: [false, false, false, false],
-        score: mainScore,
-        gamesPlayed: gamesPlayed,
-        playedHistory: { won: 0, played: 0 },
-        tries: triesLeft,
-      }),
+
+      setLocalStorage(
+        "#",
+        [false, false, false, false],
+        mainScore,
+        gamesPlayed,
+        triesLeft,
+        0,
+        0,
+        "date",
+      ),
     );
     // if (gamesPlayed < 1) {
     //   setNextButtonDisplay("hidden");
