@@ -19,16 +19,16 @@ export default function SectionText(props) {
       setLocalStorage("#", [false, false, false, false], 0, 0, 3, 0, 0, "date"),
     );
   }
-  const gamesPlayed = 0;
-  const [gameStatus, setGameStatus] = useContext(GameStatusContext);
-  // console.log(gameStatus.quoteData);
-  const [newNames, setNewNames] = useState(
-    gameStatus.quoteData[gamesPlayed].authors,
-  );
-  const [quoteData, setQuoteData] = useState(
-    gameStatus.quoteData[gamesPlayed].quote,
-  );
-  console.log(newNames);
+  // const gamesPlayed = 0;
+  const hello = useContext(GameStatusContext);
+  console.log(hello);
+  // // console.log(gameStatus.quoteData);
+  // const [newNames, setNewNames] = useState(
+  //   gameStatus.quoteData[gamesPlayed].authors,
+  // );
+  // const [quoteData, setQuoteData] = useState(
+  //   gameStatus.quoteData[gamesPlayed].quote,
+  // );
 
   return (
     <div

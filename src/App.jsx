@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, json } from "react-router-dom";
 
@@ -9,16 +9,13 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-import Connection from "./connections/connection";
+import connectionUrl from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
 import GameStatusContext from "./components/context.GameStatus";
 import setLocalStorage from "./components/localstorage.function";
 
 export default function App() {
-  const connectionTest = Connection();
-  // console.log(connectionTest);
-
   /*:: Prepare Local Storage ::*/
 
   // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
@@ -29,41 +26,7 @@ export default function App() {
     );
   }
   /*:: Temporary quote data ::*/
-
-  const quoteData = {
-    0: {
-      quote: "Enséñame el rostro de tu madre y te diré quien eres.",
-      answer: 0,
-      authors: [
-        "Henri Mondor",
-        "Joseph Unger",
-        "Simone Signoret",
-        "Jack Gould",
-      ],
-    },
-    1: {
-      quote:
-        "El hombre deja de ser joven cuando cancela las posibilidades futuras y se vuelve prematuramente adulto, es decir, se entrega a una actitud de beneficio propio.",
-      answer: 1,
-      authors: [
-        "Jack Gould",
-        "Agustín Yánez",
-        "Simone Signoret",
-        "Henri Mondor",
-      ],
-    },
-    2: {
-      quote:
-        "El hombre no se conoce; no conoce sus límites y sus posibilidades, no conoce ni siquiera hasta qué punto no se conoce.",
-      answer: 2,
-      authors: [
-        "Joseph Unger",
-        "Henri Mondor",
-        "Leslie Hore-Belisha",
-        "Jack Gould",
-      ],
-    },
-  };
+  console.log(connectionUrl);
 
   const authorsInfo = {
     0: { name: "---" },
@@ -71,14 +34,53 @@ export default function App() {
     2: { name: "Agustín Yañez" },
     3: { name: "Leslie Hore-Belisha" },
   };
-  const gameStatus = useState({
-    gameOverStatus: false,
-    mainScore: JSON.parse(localStorage["user"])["score"],
-    triesLeft: JSON.parse(localStorage["user"])["tries"],
-    gamesPlayed: JSON.parse(localStorage["user"])["gamesPlayed"],
-    quoteData: quoteData,
-    authorsInfo: authorsInfo,
-  });
+
+  const userId = self.crypto.randomUUID();
+  const date = new Date();
+  const user = {
+    name: `${userId}`,
+    date: `${date.toISOString()}`,
+    dateShort: `${date.toISOString().slice(0, 10)}`,
+    quoteId: [],
+    score: [0, 0],
+  };
+
+  const [gameStatus, setGameStatus] = useState(null);
+
+  useEffect(() => {
+    async function makeRequest() {
+      await fetch(connectionUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(user),
+      })
+        .then(function (response) {
+          // return response.text();
+          return response.json();
+        })
+        .catch((error) => {
+          console.log(`data error ${error}`);
+        })
+        .then(function (data) {
+          setGameStatus({
+            gameOverStatus: false,
+            mainScore: JSON.parse(localStorage["user"])["score"],
+            triesLeft: JSON.parse(localStorage["user"])["tries"],
+            gamesPlayed: JSON.parse(localStorage["user"])["gamesPlayed"],
+            quoteData: data,
+            authorsInfo: authorsInfo,
+          });
+        })
+        .catch((error) => {
+          console.log(`set state error ${error}`);
+        });
+    }
+    makeRequest();
+  }, []);
+
+  console.log(gameStatus);
 
   return (
     <>
