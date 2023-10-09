@@ -40,7 +40,54 @@ export default function App() {
   };
 
   const gameStatus = useState(JSON.parse(localStorage["user"]));
-  const [quoteData, setQuoteData] = useState({});
+  const [quoteData, setQuoteData] = useState({
+    authorsInfo: {
+      0: {
+        name: "---",
+      },
+      1: {
+        name: "Henri Mondor",
+      },
+      2: {
+        name: "Agustín Yañez",
+      },
+      3: {
+        name: "Leslie Hore-Belisha",
+      },
+    },
+    gameQuotes: {
+      0: {
+        quote: "El secreto de...",
+        answer: 2,
+        authors: [
+          "Antonio de Solís y Rivadeneyra",
+          "Conde de Rosse",
+          "Henry Ford",
+          "Sándor Márai",
+        ],
+      },
+      1: {
+        quote: "No creo ya ....",
+        answer: 0,
+        authors: [
+          "Justo Sierra Méndez",
+          "Plutarco Elías Calles",
+          "Madame de Genlis",
+          "Multatuli",
+        ],
+      },
+      2: {
+        quote: "Ninguna ciencia hay en...",
+        answer: 1,
+        authors: [
+          "Howard Phillips Lovecraft",
+          "H. L. Mencken",
+          "José de San Martín",
+          "Karlheinz Stockhausen",
+        ],
+      },
+    },
+  });
 
   // useEffect(() => {
   //   async function makeRequest() {
@@ -76,57 +123,56 @@ export default function App() {
   //   makeRequest();
   // }, []);
 
-  useEffect(() => {
-    setQuoteData({
-      authorsInfo: {
-        0: {
-          name: "---",
-        },
-        1: {
-          name: "Henri Mondor",
-        },
-        2: {
-          name: "Agustín Yañez",
-        },
-        3: {
-          name: "Leslie Hore-Belisha",
-        },
-      },
-      gameQuotes: {
-        0: {
-          quote: "El secreto de...",
-          answer: 2,
-          authors: [
-            "Antonio de Solís y Rivadeneyra",
-            "Conde de Rosse",
-            "Henry Ford",
-            "Sándor Márai",
-          ],
-        },
-        1: {
-          quote: "No creo ya ....",
-          answer: 0,
-          authors: [
-            "Justo Sierra Méndez",
-            "Plutarco Elías Calles",
-            "Madame de Genlis",
-            "Multatuli",
-          ],
-        },
-        2: {
-          quote: "Ninguna ciencia hay en...",
-          answer: 1,
-          authors: [
-            "Howard Phillips Lovecraft",
-            "H. L. Mencken",
-            "José de San Martín",
-            "Karlheinz Stockhausen",
-          ],
-        },
-      },
-    });
-  }, []);
-
+  // useEffect(() => {
+  //   setQuoteData({
+  //     authorsInfo: {
+  //       0: {
+  //         name: "---",
+  //       },
+  //       1: {
+  //         name: "Henri Mondor",
+  //       },
+  //       2: {
+  //         name: "Agustín Yañez",
+  //       },
+  //       3: {
+  //         name: "Leslie Hore-Belisha",
+  //       },
+  //     },
+  //     gameQuotes: {
+  //       0: {
+  //         quote: "El secreto de...",
+  //         answer: 2,
+  //         authors: [
+  //           "Antonio de Solís y Rivadeneyra",
+  //           "Conde de Rosse",
+  //           "Henry Ford",
+  //           "Sándor Márai",
+  //         ],
+  //       },
+  //       1: {
+  //         quote: "No creo ya ....",
+  //         answer: 0,
+  //         authors: [
+  //           "Justo Sierra Méndez",
+  //           "Plutarco Elías Calles",
+  //           "Madame de Genlis",
+  //           "Multatuli",
+  //         ],
+  //       },
+  //       2: {
+  //         quote: "Ninguna ciencia hay en...",
+  //         answer: 1,
+  //         authors: [
+  //           "Howard Phillips Lovecraft",
+  //           "H. L. Mencken",
+  //           "José de San Martín",
+  //           "Karlheinz Stockhausen",
+  //         ],
+  //       },
+  //     },
+  //   });
+  // }, []);
   return (
     <>
       <GameStatusContext.Provider value={gameStatus}>
@@ -138,7 +184,7 @@ export default function App() {
             <div className="main-container m-0 h-5/6 p-0 md:mt-20">
               <Routes>
                 <Route path="/" element={<Intro />} />
-                <Route path="/text" element={<SectionText />} />
+                <Route path="/text/" element={<SectionText />} />
                 <Route path="/score/" element={<BioScore />} />
                 <Route path="/info/" element={<Info />} />
                 <Route path="/about/" element={<About />} />
