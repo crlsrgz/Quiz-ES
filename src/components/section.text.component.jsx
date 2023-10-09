@@ -11,6 +11,11 @@ import setLocalStorage from "./localstorage.function";
 import GameStatusContext from "./context.GameStatus";
 import QuoteDataContext from "./context.QuoteData";
 
+/* ::::::::: Buttons states ::::::::: */
+const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-300 hover:bg-zinc-300 hover:text-zinc-700 `;
+const classesRightAnswer = `right cursor-not-allowed text-zinc-100 bg-red-500`;
+const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-500 disabled`;
+
 export default function SectionText(props) {
   /*:: Prepare Local Storage ::*/
   // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
@@ -20,9 +25,10 @@ export default function SectionText(props) {
       setLocalStorage("#", [false, false, false, false], 0, 0, 3, 0, 0, "date"),
     );
   }
-  const gamesPlayed = 0;
   const [gameStatus, setGameStatus] = useContext(GameStatusContext);
   const [quoteData, setQuoteData] = useContext(QuoteDataContext);
+
+  const [gamesPlayed, setGamesPlayed] = useState(gameStatus["gamesPlayed"]);
 
   const [gameQuotes, setGameQuotes] = useState(
     quoteData.gameQuotes[gamesPlayed]["quote"],
@@ -51,7 +57,7 @@ export default function SectionText(props) {
               name={name}
               key={index}
               id={index}
-              classesLocalStorage={""}
+              classesLocalStorage={classesInitialState}
               // checkAnswer={}
               disabled={false}
             />
