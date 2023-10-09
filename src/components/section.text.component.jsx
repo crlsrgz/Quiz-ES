@@ -25,8 +25,11 @@ export default function SectionText(props) {
       setLocalStorage("#", [false, false, false, false], 0, 0, 3, 0, 0, "date"),
     );
   }
+
   const [gameStatus, setGameStatus] = useContext(GameStatusContext);
   const [quoteData, setQuoteData] = useContext(QuoteDataContext);
+
+  console.log(quoteData);
 
   const [gamesPlayed, setGamesPlayed] = useState(gameStatus["gamesPlayed"]);
 

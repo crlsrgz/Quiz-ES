@@ -9,7 +9,7 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-// import connectionUrl from "./connections/connection";
+import connectionUrl from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
 import GameStatusContext from "./components/context.GameStatus";
@@ -40,56 +40,97 @@ export default function App() {
   };
 
   const gameStatus = useState(JSON.parse(localStorage["user"]));
+  const [quoteData, setQuoteData] = useState({});
 
-  const quoteData = useState({
-    authorsInfo: {
-      0: { name: "---" },
-      1: { name: "Henri Mondor" },
-      2: { name: "Agustín Yañez" },
-      3: { name: "Leslie Hore-Belisha" },
-    },
-    gameQuotes: {
-      0: {
-        quote: "Enséñame el rostro de tu madre y te diré quien eres.",
-        answer: 0,
-        authors: [
-          "Henri Mondor",
-          "Joseph Unger",
-          "Simone Signoret",
-          "Jack Gould",
-        ],
-      },
-      1: {
-        quote:
-          "El hombre deja de ser joven cuando cancela las posibilidades futuras y se vuelve prematuramente adulto, es decir, se entrega a una actitud de beneficio propio.",
-        answer: 1,
-        authors: [
-          "Jack Gould",
-          "Agustín Yánez",
-          "Simone Signoret",
-          "Henri Mondor",
-        ],
-      },
-      2: {
-        quote:
-          "El hombre no se conoce; no conoce sus límites y sus posibilidades, no conoce ni siquiera hasta qué punto no se conoce.",
-        answer: 2,
-        authors: [
-          "Joseph Unger",
-          "Henri Mondor",
-          "Leslie Hore-Belisha",
-          "Jack Gould",
-        ],
-      },
-    },
-  });
+  // useEffect(() => {
+  //   async function makeRequest() {
+  //     await fetch(connectionUrl, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json; charset=utf-8",
+  //       },
+  //       body: JSON.stringify(user),
+  //     })
+  //       .then(function (response) {
+  //         // return response.text();
+  //         return response.json();
+  //       })
+  //       .catch((error) => {
+  //         console.log(`data error ${error}`);
+  //       })
+  //       .then(function (data) {
+  //         setQuoteData({
+  //           authorsInfo: {
+  //             0: { name: "---" },
+  //             1: { name: "Henri Mondor" },
+  //             2: { name: "Agustín Yañez" },
+  //             3: { name: "Leslie Hore-Belisha" },
+  //           },
+  //           gameQuotes: data,
+  //         });
+  //       })
+  //       .catch((error) => {
+  //         console.log(`set state error ${error}`);
+  //       });
+  //   }
+  //   makeRequest();
+  // }, []);
 
-  // console.log(gameStatus);
+  useEffect(() => {
+    setQuoteData({
+      authorsInfo: {
+        0: {
+          name: "---",
+        },
+        1: {
+          name: "Henri Mondor",
+        },
+        2: {
+          name: "Agustín Yañez",
+        },
+        3: {
+          name: "Leslie Hore-Belisha",
+        },
+      },
+      gameQuotes: {
+        0: {
+          quote: "El secreto de...",
+          answer: 2,
+          authors: [
+            "Antonio de Solís y Rivadeneyra",
+            "Conde de Rosse",
+            "Henry Ford",
+            "Sándor Márai",
+          ],
+        },
+        1: {
+          quote: "No creo ya ....",
+          answer: 0,
+          authors: [
+            "Justo Sierra Méndez",
+            "Plutarco Elías Calles",
+            "Madame de Genlis",
+            "Multatuli",
+          ],
+        },
+        2: {
+          quote: "Ninguna ciencia hay en...",
+          answer: 1,
+          authors: [
+            "Howard Phillips Lovecraft",
+            "H. L. Mencken",
+            "José de San Martín",
+            "Karlheinz Stockhausen",
+          ],
+        },
+      },
+    });
+  }, []);
 
   return (
     <>
       <GameStatusContext.Provider value={gameStatus}>
-        <QuoteDataContext.Provider value={quoteData}>
+        <QuoteDataContext.Provider value={[quoteData, setQuoteData]}>
           <BrowserRouter>
             <Navigation />
             {/* <Connection /> */}
