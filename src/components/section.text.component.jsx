@@ -9,6 +9,7 @@ import HeartCounter from "./element.heartCounter.component";
 import setLocalStorage from "./localstorage.function";
 
 import GameStatusContext from "./context.GameStatus";
+import QuoteDataContext from "./context.QuoteData";
 
 export default function SectionText(props) {
   /*:: Prepare Local Storage ::*/
@@ -19,16 +20,17 @@ export default function SectionText(props) {
       setLocalStorage("#", [false, false, false, false], 0, 0, 3, 0, 0, "date"),
     );
   }
-  // const gamesPlayed = 0;
-  const hello = useContext(GameStatusContext);
-  console.log(hello);
-  // // console.log(gameStatus.quoteData);
-  // const [newNames, setNewNames] = useState(
-  //   gameStatus.quoteData[gamesPlayed].authors,
-  // );
-  // const [quoteData, setQuoteData] = useState(
-  //   gameStatus.quoteData[gamesPlayed].quote,
-  // );
+  const gamesPlayed = 0;
+  const [gameStatus, setGameStatus] = useContext(GameStatusContext);
+  const [quoteData, setQuoteData] = useContext(QuoteDataContext);
+
+  const [gameQuotes, setGameQuotes] = useState(
+    quoteData.gameQuotes[gamesPlayed]["quote"],
+  );
+
+  const [newNames, setNewNames] = useState(
+    quoteData.gameQuotes[gamesPlayed]["authors"],
+  );
 
   return (
     <div
@@ -38,7 +40,7 @@ export default function SectionText(props) {
         <h1
           className={`mt-16 text-left font-besley ${"150"} font-semibold text-blue-50`}
         >
-          &quot;{quoteData}&quot;
+          &quot;{gameQuotes}&quot;
         </h1>
       </div>
 

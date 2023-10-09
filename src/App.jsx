@@ -9,10 +9,11 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-import connectionUrl from "./connections/connection";
+// import connectionUrl from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
 import GameStatusContext from "./components/context.GameStatus";
+import QuoteDataContext from "./components/context.QuoteData";
 import setLocalStorage from "./components/localstorage.function";
 
 export default function App() {
@@ -26,14 +27,7 @@ export default function App() {
     );
   }
   /*:: Temporary quote data ::*/
-  console.log(connectionUrl);
-
-  const authorsInfo = {
-    0: { name: "---" },
-    1: { name: "Henri Mondor" },
-    2: { name: "Agustín Yañez" },
-    3: { name: "Leslie Hore-Belisha" },
-  };
+  // console.log(connectionUrl);
 
   const userId = self.crypto.randomUUID();
   const date = new Date();
@@ -45,60 +39,72 @@ export default function App() {
     score: [0, 0],
   };
 
-  const [gameStatus, setGameStatus] = useState(null);
+  const gameStatus = useState(JSON.parse(localStorage["user"]));
 
-  useEffect(() => {
-    async function makeRequest() {
-      await fetch(connectionUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-        },
-        body: JSON.stringify(user),
-      })
-        .then(function (response) {
-          // return response.text();
-          return response.json();
-        })
-        .catch((error) => {
-          console.log(`data error ${error}`);
-        })
-        .then(function (data) {
-          setGameStatus({
-            gameOverStatus: false,
-            mainScore: JSON.parse(localStorage["user"])["score"],
-            triesLeft: JSON.parse(localStorage["user"])["tries"],
-            gamesPlayed: JSON.parse(localStorage["user"])["gamesPlayed"],
-            quoteData: data,
-            authorsInfo: authorsInfo,
-          });
-        })
-        .catch((error) => {
-          console.log(`set state error ${error}`);
-        });
-    }
-    makeRequest();
-  }, []);
+  const quoteData = useState({
+    authorsInfo: {
+      0: { name: "---" },
+      1: { name: "Henri Mondor" },
+      2: { name: "Agustín Yañez" },
+      3: { name: "Leslie Hore-Belisha" },
+    },
+    gameQuotes: {
+      0: {
+        quote: "Enséñame el rostro de tu madre y te diré quien eres.",
+        answer: 0,
+        authors: [
+          "Henri Mondor",
+          "Joseph Unger",
+          "Simone Signoret",
+          "Jack Gould",
+        ],
+      },
+      1: {
+        quote:
+          "El hombre deja de ser joven cuando cancela las posibilidades futuras y se vuelve prematuramente adulto, es decir, se entrega a una actitud de beneficio propio.",
+        answer: 1,
+        authors: [
+          "Jack Gould",
+          "Agustín Yánez",
+          "Simone Signoret",
+          "Henri Mondor",
+        ],
+      },
+      2: {
+        quote:
+          "El hombre no se conoce; no conoce sus límites y sus posibilidades, no conoce ni siquiera hasta qué punto no se conoce.",
+        answer: 2,
+        authors: [
+          "Joseph Unger",
+          "Henri Mondor",
+          "Leslie Hore-Belisha",
+          "Jack Gould",
+        ],
+      },
+    },
+  });
 
-  console.log(gameStatus);
+  // console.log(gameStatus);
 
   return (
     <>
       <GameStatusContext.Provider value={gameStatus}>
-        <BrowserRouter>
-          <Navigation />
-          {/* <Connection /> */}
+        <QuoteDataContext.Provider value={quoteData}>
+          <BrowserRouter>
+            <Navigation />
+            {/* <Connection /> */}
 
-          <div className="main-container m-0 h-5/6 p-0 md:mt-20">
-            <Routes>
-              <Route path="/" element={<Intro />} />
-              <Route path="/text" element={<SectionText />} />
-              <Route path="/score/" element={<BioScore />} />
-              <Route path="/info/" element={<Info />} />
-              <Route path="/about/" element={<About />} />
-            </Routes>
-          </div>
-        </BrowserRouter>
+            <div className="main-container m-0 h-5/6 p-0 md:mt-20">
+              <Routes>
+                <Route path="/" element={<Intro />} />
+                <Route path="/text" element={<SectionText />} />
+                <Route path="/score/" element={<BioScore />} />
+                <Route path="/info/" element={<Info />} />
+                <Route path="/about/" element={<About />} />
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </QuoteDataContext.Provider>
       </GameStatusContext.Provider>
     </>
   );
