@@ -29,17 +29,67 @@ export default function SectionText(props) {
   const [gameStatus, setGameStatus] = useContext(GameStatusContext);
   const [quoteData, setQuoteData] = useContext(QuoteDataContext);
 
-  console.log(quoteData);
-
-  const [gamesPlayed, setGamesPlayed] = useState(gameStatus["gamesPlayed"]);
+  //: get Gamestatus info
+  const [statusAnswered, setStatusAnswered] = useState(gameStatus["answered"]);
+  const [statusScore, setStatusScore] = useState(gameStatus["score"]);
+  const [statusGamesPlayed, setStatusGamesPlayed] = useState(
+    gameStatus["gamesPlayed"],
+  );
+  const [statusTries, setStatusTries] = useState(gameStatus["tries"]);
+  const [statusPlayedHistory, setPlayedHistory] = useState(
+    gameStatus["playedHistory"],
+  );
 
   const [gameQuotes, setGameQuotes] = useState(
-    quoteData.gameQuotes[gamesPlayed]["quote"],
+    quoteData.gameQuotes[statusGamesPlayed]["quote"],
+  );
+  const [quoteAnswer, setQuoteAnswer] = useState(
+    quoteData.gameQuotes[statusGamesPlayed]["answer"],
   );
 
   const [newNames, setNewNames] = useState(
-    quoteData.gameQuotes[gamesPlayed]["authors"],
+    quoteData.gameQuotes[statusGamesPlayed]["authors"],
   );
+  console.log(`quoteAnswer ${typeof quoteAnswer}`);
+
+  //: Set initial state
+  const classesInitialStateArray = [];
+
+  statusAnswered.forEach((item, index) => {
+    console.log(`quoteAnswer ${quoteAnswer}, item ${item}`);
+
+    if (item === true && index === quoteAnswer) {
+      classesInitialStateArray.push(classesRightAnswer);
+    }
+    if (item === true && index !== quoteAnswer) {
+      classesInitialStateArray.push(classesWrongAnswer);
+    }
+    if (item !== true) {
+      classesInitialStateArray.push(classesInitialState);
+    }
+  });
+
+  // console.log(classesInitialStateArray);
+  function checkAnswer(e) {
+    console.log(quoteData);
+    console.log(classesInitialState);
+    console.log(e.target.id);
+
+    //: Set clicked/answerd to true
+    const clickedButton = parseInt(e.target.id);
+    const tempStatusAnswered = statusAnswered.map((item, index) => {
+      if (clickedButton === index) {
+        return !item;
+      } else {
+        return item;
+      }
+    });
+    setStatusAnswered(tempStatusAnswered);
+    localStorage.setItem(
+      "user",
+      setLocalStorage("#", tempStatusAnswered, 0, 0, 3, 0, 0, "date"),
+    );
+  }
 
   return (
     <div
@@ -60,8 +110,8 @@ export default function SectionText(props) {
               name={name}
               key={index}
               id={index}
-              classesLocalStorage={classesInitialState}
-              // checkAnswer={}
+              classesLocalStorage={classesInitialStateArray[index]}
+              checkAnswer={checkAnswer}
               disabled={false}
             />
           );

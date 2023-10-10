@@ -9,7 +9,7 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-import connectionUrl from "./connections/connection";
+// import connectionUrl from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
 import GameStatusContext from "./components/context.GameStatus";
