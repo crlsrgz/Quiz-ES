@@ -30,10 +30,13 @@ export default function SectionText(props) {
   const [quoteData, setQuoteData] = useContext(QuoteDataContext);
 
   //: get Gamestatus info
-  const [statusAnswered, setStatusAnswered] = useState(gameStatus["answered"]);
+  const [statusAnswered, setStatusAnswered] = useState(
+    JSON.parse(localStorage.getItem(["user"]))["answered"],
+  );
+
   const [statusScore, setStatusScore] = useState(gameStatus["score"]);
   const [statusGamesPlayed, setStatusGamesPlayed] = useState(
-    gameStatus["gamesPlayed"],
+    JSON.parse(localStorage.getItem(["user"]))["gamesPlayed"],
   );
   const [statusTries, setStatusTries] = useState(gameStatus["tries"]);
   const [statusPlayedHistory, setPlayedHistory] = useState(
@@ -50,44 +53,66 @@ export default function SectionText(props) {
   const [newNames, setNewNames] = useState(
     quoteData.gameQuotes[statusGamesPlayed]["authors"],
   );
-  console.log(`quoteAnswer ${typeof quoteAnswer}`);
 
   //: Set initial state
-  const classesInitialStateArray = [];
-
-  statusAnswered.forEach((item, index) => {
-    console.log(`quoteAnswer ${quoteAnswer}, item ${item}`);
-
-    if (item === true && index === quoteAnswer) {
-      classesInitialStateArray.push(classesRightAnswer);
+  let classesInitialStateArray = ["", "", "", ""];
+  for (let i = 0; i < statusAnswered.length; i++) {
+    if (statusAnswered[i] === true && i === quoteAnswer) {
+      classesInitialStateArray[i] = classesRightAnswer;
     }
-    if (item === true && index !== quoteAnswer) {
-      classesInitialStateArray.push(classesWrongAnswer);
+    if (statusAnswered[i] === true && i !== quoteAnswer) {
+      classesInitialStateArray[i] = classesWrongAnswer;
     }
-    if (item !== true) {
-      classesInitialStateArray.push(classesInitialState);
+    if (statusAnswered[i] !== true) {
+      classesInitialStateArray[i] = classesInitialState;
     }
-  });
+  }
 
-  // console.log(classesInitialStateArray);
   function checkAnswer(e) {
-    console.log(quoteData);
-    console.log(classesInitialState);
-    console.log(e.target.id);
-
     //: Set clicked/answerd to true
     const clickedButton = parseInt(e.target.id);
-    const tempStatusAnswered = statusAnswered.map((item, index) => {
-      if (clickedButton === index) {
-        return !item;
-      } else {
-        return item;
-      }
-    });
+    let tempStatusAnswered = [...statusAnswered];
+
+    if (clickedButton === quoteAnswer) {
+      tempStatusAnswered = statusAnswered.map((item, index) => {
+        return true;
+      });
+    } else {
+      tempStatusAnswered[clickedButton] = true;
+    }
+
     setStatusAnswered(tempStatusAnswered);
     localStorage.setItem(
       "user",
-      setLocalStorage("#", tempStatusAnswered, 0, 0, 3, 0, 0, "date"),
+      setLocalStorage(
+        "#",
+        tempStatusAnswered,
+        0,
+        statusGamesPlayed,
+        3,
+        0,
+        0,
+        "date",
+      ),
+    );
+  }
+
+  function loadNextQuote() {
+    let tempStatusGamesPlayed = statusGamesPlayed;
+    tempStatusGamesPlayed = statusGamesPlayed + 1;
+
+    localStorage.setItem(
+      "user",
+      setLocalStorage(
+        "#",
+        statusAnswered,
+        0,
+        tempStatusGamesPlayed,
+        3,
+        0,
+        0,
+        "date",
+      ),
     );
   }
 
@@ -112,18 +137,18 @@ export default function SectionText(props) {
               id={index}
               classesLocalStorage={classesInitialStateArray[index]}
               checkAnswer={checkAnswer}
-              disabled={false}
+              disabled={statusAnswered[index]}
             />
           );
         })}
 
         <HeartCounter triesLeft={2} />
 
-        <Link to="/score">
+        <Link to="/text">
           <ButtonNext
             textContent={""}
             visible={true}
-            // loadNextQuote={loadNextQuote}
+            loadNextQuote={loadNextQuote}
           />
         </Link>
       </div>
