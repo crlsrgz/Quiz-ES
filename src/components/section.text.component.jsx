@@ -144,7 +144,7 @@ export default function SectionText(props) {
 
         <HeartCounter triesLeft={2} />
 
-        <Link to="/text">
+        <Link to="/score">
           <ButtonNext
             textContent={""}
             visible={true}
