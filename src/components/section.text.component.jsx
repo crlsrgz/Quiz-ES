@@ -17,7 +17,11 @@ const classesRightAnswer = `right cursor-not-allowed text-zinc-100 bg-red-500`;
 const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-500 disabled`;
 
 export default function SectionText(props) {
+  const [gameStatus, setGameStatus] = useContext(GameStatusContext);
+  const [quoteData, setQuoteData] = useContext(QuoteDataContext);
+
   /*:: Prepare Local Storage ::*/
+
   // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
   if (!localStorage["user"]) {
     localStorage.setItem(
@@ -25,9 +29,6 @@ export default function SectionText(props) {
       setLocalStorage("#", [false, false, false, false], 0, 0, 3, 0, 0, "date"),
     );
   }
-
-  const [gameStatus, setGameStatus] = useContext(GameStatusContext);
-  const [quoteData, setQuoteData] = useContext(QuoteDataContext);
 
   //: get Gamestatus info
   const [statusAnswered, setStatusAnswered] = useState(
@@ -49,11 +50,14 @@ export default function SectionText(props) {
   const [quoteAnswer, setQuoteAnswer] = useState(
     quoteData.gameQuotes[statusGamesPlayed]["answer"],
   );
-
   const [newNames, setNewNames] = useState(
     quoteData.gameQuotes[statusGamesPlayed]["authors"],
   );
-
+  useEffect(() => {
+    setGameQuotes(quoteData.gameQuotes[statusGamesPlayed]["quote"]);
+    setQuoteAnswer(quoteData.gameQuotes[statusGamesPlayed]["answer"]);
+    setNewNames(quoteData.gameQuotes[statusGamesPlayed]["authors"]);
+  }, [quoteData]);
   //: Set initial state
   let classesInitialStateArray = ["", "", "", ""];
   for (let i = 0; i < statusAnswered.length; i++) {
