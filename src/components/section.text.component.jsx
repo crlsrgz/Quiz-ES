@@ -43,7 +43,7 @@ export default function SectionText(props) {
   const [statusPlayedHistory, setPlayedHistory] = useState(
     gameStatus["playedHistory"],
   );
-
+  //: get QUotes info
   const [gameQuotes, setGameQuotes] = useState(
     quoteData.gameQuotes[statusGamesPlayed]["quote"],
   );

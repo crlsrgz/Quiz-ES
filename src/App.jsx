@@ -46,13 +46,13 @@ export default function App() {
         name: "---",
       },
       1: {
-        name: "Henri Mondor",
+        name: "Henry Ford",
       },
       2: {
-        name: "Agustín Yañez",
+        name: "Justo Sierra Méndez",
       },
       3: {
-        name: "Leslie Hore-Belisha",
+        name: "H. L. Mencken",
       },
     },
     gameQuotes: {
