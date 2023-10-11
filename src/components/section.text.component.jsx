@@ -26,11 +26,25 @@ export default function SectionText(props) {
   if (!localStorage["user"]) {
     localStorage.setItem(
       "user",
-      setLocalStorage("#", [false, false, false, false], 0, 0, 3, 0, 0, "date"),
+      setLocalStorage(
+        "#",
+        [false, false, false, false],
+        0,
+        0,
+        3,
+        false,
+        0,
+        0,
+        "date",
+      ),
     );
   }
 
   //: get Gamestatus info
+  const [statusGameOver, setStatusGameOver] = useState(
+    JSON.parse(localStorage.getItem(["user"]))["gameOver"],
+  );
+
   const [statusAnswered, setStatusAnswered] = useState(
     JSON.parse(localStorage.getItem(["user"]))["answered"],
   );
@@ -39,6 +53,7 @@ export default function SectionText(props) {
   const [statusGamesPlayed, setStatusGamesPlayed] = useState(
     JSON.parse(localStorage.getItem(["user"]))["gamesPlayed"],
   );
+
   const [statusTries, setStatusTries] = useState(gameStatus["tries"]);
   const [statusPlayedHistory, setPlayedHistory] = useState(
     gameStatus["playedHistory"],
@@ -54,7 +69,7 @@ export default function SectionText(props) {
     quoteData.gameQuotes[statusGamesPlayed]["authors"],
   );
 
-  const [quoteLength, setQuoteLength] = useState("");
+  // const [quoteLength, setQuoteLength] = useState("");
   const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
 
   useEffect(() => {
@@ -63,7 +78,7 @@ export default function SectionText(props) {
     setNewNames(quoteData.gameQuotes[statusGamesPlayed]["authors"]);
 
     //: Set quote text size
-    setQuoteLength(gameQuotes.length);
+    const quoteLength = gameQuotes.length;
 
     if (quoteLength < 55) {
       setQuoteTextSize("text-3xl md:text-4xl lg:text-5xl");
@@ -113,6 +128,7 @@ export default function SectionText(props) {
         0,
         statusGamesPlayed,
         3,
+        false,
         0,
         0,
         "date",
@@ -121,9 +137,16 @@ export default function SectionText(props) {
   }
 
   function loadNextQuote() {
-    let tempStatusGamesPlayed = statusGamesPlayed;
-    tempStatusGamesPlayed = statusGamesPlayed + 1;
-
+    // let tempStatusGamesPlayed =
+    //   statusGamesPlayed < 2 ? statusGamesPlayed + 1 : 2;
+    let tempStatusGamesPlayed = statusGamesPlayed + 1;
+    let tempStatusGameOver = false;
+    if (tempStatusGamesPlayed >= 3) {
+      tempStatusGamesPlayed = 2;
+      tempStatusGameOver = true;
+    }
+    setStatusGameOver(tempStatusGameOver);
+    setStatusGamesPlayed(tempStatusGamesPlayed);
     localStorage.setItem(
       "user",
       setLocalStorage(
@@ -132,6 +155,7 @@ export default function SectionText(props) {
         0,
         tempStatusGamesPlayed,
         3,
+        tempStatusGameOver,
         0,
         0,
         "date",

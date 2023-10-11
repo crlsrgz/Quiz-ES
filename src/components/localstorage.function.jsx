@@ -4,6 +4,7 @@ export default function setLocalStorage(
   score,
   gamesPlayed,
   tries,
+  gameOver,
   won,
   played,
   lastPlayed,
@@ -14,6 +15,7 @@ export default function setLocalStorage(
     score: score,
     gamesPlayed: gamesPlayed,
     tries: tries,
+    gameOver: gameOver,
     playedHistory: { won: won, played: played, lastPlayed: lastPlayed },
   });
 }

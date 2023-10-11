@@ -16,10 +16,23 @@ export default function BioScore(props) {
   if (!localStorage["user"]) {
     localStorage.setItem(
       "user",
-      setLocalStorage("#", [false, false, false, false], 0, 0, 3, 0, 0, "date"),
+      setLocalStorage(
+        "#",
+        [false, false, false, false],
+        0,
+        0,
+        3,
+        false,
+        0,
+        0,
+        "date",
+      ),
     );
   }
 
+  const [statusGameOver, setStatusGameOver] = useState(
+    JSON.parse(localStorage.getItem(["user"]))["gameOver"],
+  );
   const [statusGamesPlayed, setStatusGamesPlayed] = useState(
     JSON.parse(localStorage.getItem(["user"]))["gamesPlayed"],
   );
@@ -45,7 +58,7 @@ export default function BioScore(props) {
 
   function loadNextQuote() {
     setStatusAnswered([false, false, false, false]);
-    setStatusGamesPlayed(statusGamesPlayed + 1);
+
     localStorage.setItem(
       "user",
       setLocalStorage(
@@ -54,6 +67,7 @@ export default function BioScore(props) {
         0,
         statusGamesPlayed,
         statusTries,
+        false,
         0,
         0,
         "date",
@@ -61,7 +75,8 @@ export default function BioScore(props) {
     );
   }
 
-  console.log(authorsInfoIndex);
+  console.log(`statusGamesPlayed - ${statusGamesPlayed}`);
+  console.log(`authorsInfoIndex ${authorsInfoIndex}`);
   return (
     <div
       className={`section-container m-4 mx-auto flex ${props.classes} w-4/5 flex-col justify-center `}
@@ -103,7 +118,7 @@ export default function BioScore(props) {
         <Link to="/text">
           <ButtonNext
             textContent={"Siguiente"}
-            visible={statusGamesPlayed >= 3 ? "hidden" : ""}
+            visible={statusGameOver ? "hidden" : ""}
             loadNextQuote={loadNextQuote}
           />
         </Link>
