@@ -9,7 +9,7 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-import connectionUrl from "./connections/connection";
+// import connectionUrl from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
 import GameStatusContext from "./components/context.GameStatus";
@@ -27,7 +27,6 @@ export default function App() {
     );
   }
   /*:: Temporary quote data ::*/
-  // console.log(connectionUrl);
 
   const userId = self.crypto.randomUUID();
   const date = new Date();
@@ -58,7 +57,8 @@ export default function App() {
     },
     gameQuotes: {
       0: {
-        quote: "El secreto de...",
+        quote:
+          "El secreto de...... .......... .......... .......... .......... ",
         answer: 2,
         authors: [
           "Antonio de Solís y Rivadeneyra",
@@ -78,7 +78,8 @@ export default function App() {
         ],
       },
       2: {
-        quote: "Ninguna ciencia hay en...",
+        quote:
+          "Ninguna ciencia hay en... .......... .......... .......... .......... .......... .......... .......... .......... .......... .......... .......... .......... ",
         answer: 1,
         authors: [
           "Howard Phillips Lovecraft",
@@ -89,47 +90,49 @@ export default function App() {
       },
     },
   });
+  //: Disabled for development START
 
-  useEffect(() => {
-    async function makeRequest() {
-      await fetch(connectionUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-        },
-        body: JSON.stringify(user),
-      })
-        .then(function (response) {
-          // return response.text();
-          return response.json();
-        })
-        .catch((error) => {
-          console.log(`data error ${error}`);
-        })
-        .then(function (data) {
-          console.log(data[0]["authors"][data[0]["answer"]]);
-          const populateAuthors = [];
-          const authorslength = data[0]["authors"].length;
+  // useEffect(() => {
+  //     async function makeRequest() {
+  //       await fetch(connectionUrl, {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json; charset=utf-8",
+  //         },
+  //         body: JSON.stringify(user),
+  //       })
+  //       .then(function (response) {
+  //         // return response.text();
+  //         return response.json();
+  //       })
+  //       .catch((error) => {
+  //         console.log(`data error ${error}`);
+  //       })
+  //       .then(function (data) {
+  //         console.log(data[0]["authors"][data[0]["answer"]]);
+  //         const populateAuthors = [];
+  //         const authorslength = data[0]["authors"].length;
 
-          for (let i = 0; i < 3; i++) {
-            populateAuthors.push(data[i]["authors"][data[i]["answer"]]);
-          }
-          setQuoteData({
-            authorsInfo: {
-              0: { name: "---" },
-              1: { name: populateAuthors[0] },
-              2: { name: populateAuthors[1] },
-              3: { name: populateAuthors[2] },
-            },
-            gameQuotes: data,
-          });
-        })
-        .catch((error) => {
-          console.log(`set state error ${error}`);
-        });
-    }
-    makeRequest();
-  }, []);
+  //         for (let i = 0; i < 3; i++) {
+  //           populateAuthors.push(data[i]["authors"][data[i]["answer"]]);
+  //         }
+  //         setQuoteData({
+  //           authorsInfo: {
+  //               0: { name: "---" },
+  //               1: { name: populateAuthors[0] },
+  //               2: { name: populateAuthors[1] },
+  //               3: { name: populateAuthors[2] },
+  //             },
+  //             gameQuotes: data,
+  //           });
+  //         })
+  //         .catch((error) => {
+  //           console.log(`set state error ${error}`);
+  //         });
+  //       }
+  //       makeRequest();
+  //     }, []);
+  //: Disabled for development END
 
   console.log(
     quoteData["gameQuotes"]["0"]["authors"][
@@ -137,56 +140,6 @@ export default function App() {
     ],
   );
 
-  // useEffect(() => {
-  //   setQuoteData({
-  //     authorsInfo: {
-  //       0: {
-  //         name: "---",
-  //       },
-  //       1: {
-  //         name: "Henri Mondor",
-  //       },
-  //       2: {
-  //         name: "Agustín Yañez",
-  //       },
-  //       3: {
-  //         name: "Leslie Hore-Belisha",
-  //       },
-  //     },
-  //     gameQuotes: {
-  //       0: {
-  //         quote: "El secreto de...",
-  //         answer: 2,
-  //         authors: [
-  //           "Antonio de Solís y Rivadeneyra",
-  //           "Conde de Rosse",
-  //           "Henry Ford",
-  //           "Sándor Márai",
-  //         ],
-  //       },
-  //       1: {
-  //         quote: "No creo ya ....",
-  //         answer: 0,
-  //         authors: [
-  //           "Justo Sierra Méndez",
-  //           "Plutarco Elías Calles",
-  //           "Madame de Genlis",
-  //           "Multatuli",
-  //         ],
-  //       },
-  //       2: {
-  //         quote: "Ninguna ciencia hay en...",
-  //         answer: 1,
-  //         authors: [
-  //           "Howard Phillips Lovecraft",
-  //           "H. L. Mencken",
-  //           "José de San Martín",
-  //           "Karlheinz Stockhausen",
-  //         ],
-  //       },
-  //     },
-  //   });
-  // }, []);
   return (
     <>
       <GameStatusContext.Provider value={gameStatus}>

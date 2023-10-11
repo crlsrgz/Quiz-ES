@@ -53,11 +53,30 @@ export default function SectionText(props) {
   const [newNames, setNewNames] = useState(
     quoteData.gameQuotes[statusGamesPlayed]["authors"],
   );
+
+  const [quoteLength, setQuoteLength] = useState("");
+  const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
+
   useEffect(() => {
     setGameQuotes(quoteData.gameQuotes[statusGamesPlayed]["quote"]);
     setQuoteAnswer(quoteData.gameQuotes[statusGamesPlayed]["answer"]);
     setNewNames(quoteData.gameQuotes[statusGamesPlayed]["authors"]);
+
+    //: Set quote text size
+    setQuoteLength(gameQuotes.length);
+
+    if (quoteLength < 55) {
+      setQuoteTextSize("text-3xl md:text-4xl lg:text-5xl");
+    } else if (quoteLength > 55 && quoteLength < 120) {
+      setQuoteTextSize("text-2xl md:text-3xl lg:text-4xl");
+    } else if (quoteLength > 100) {
+      setQuoteTextSize("text-xl md:text-2xl lg:text-3xl");
+    } else {
+      setQuoteTextSize("text-xl");
+    }
+    console.log(`quoteLength useEffect ${quoteLength}`);
   }, [quoteData]);
+
   //: Set initial state
   let classesInitialStateArray = ["", "", "", ""];
   for (let i = 0; i < statusAnswered.length; i++) {
@@ -126,7 +145,7 @@ export default function SectionText(props) {
     >
       <div className="mx-auto">
         <h1
-          className={`mt-16 text-left font-besley ${"150"} font-semibold text-blue-50`}
+          className={`mt-16 text-left font-besley ${quoteTextSize} font-semibold text-blue-50`}
         >
           &quot;{gameQuotes}&quot;
         </h1>
