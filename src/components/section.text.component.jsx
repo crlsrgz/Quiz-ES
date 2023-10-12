@@ -47,7 +47,7 @@ export default function SectionText(props) {
     // Testing fetching data...
     // JSON.parse(localStorage.getItem(["user"]))["gameOver"],
   );
-  const [statusPlayedHistory, setPlayedHistory] = useState(
+  const [statusPlayedHistory, setStatusPlayedHistory] = useState(
     gameStatus["playedHistory"],
   );
 
@@ -64,7 +64,8 @@ export default function SectionText(props) {
     // JSON.parse(localStorage.getItem(["user"]))["gamesPlayed"],
   );
   console.log("/////Load/////");
-  console.table(gameStatus);
+  console.table(`statusPlayedHistory ${statusPlayedHistory["won"]}`);
+  // console.table(gameStatus);
 
   //: get QUotes info
   const [gameQuotes, setGameQuotes] = useState(
@@ -81,7 +82,7 @@ export default function SectionText(props) {
   const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
 
   useEffect(() => {
-    setPlayedHistory(gameStatus["playedHistory"]);
+    setStatusPlayedHistory(gameStatus["playedHistory"]);
     setStatusTries(gameStatus["tries"]);
 
     setGameQuotes(quoteData.gameQuotes[statusGamesPlayed]["quote"]);
@@ -116,12 +117,17 @@ export default function SectionText(props) {
       classesInitialStateArray[i] = classesInitialState;
     }
   }
+  /*::::::::::::::::::::::::::
+      CHECK ANSWER 
+    ::::::::::::::::::::::::::*/
 
   function checkAnswer(e) {
     //: Set clicked/answerd to true
     const clickedButton = parseInt(e.target.id);
     let tempStatusAnswered = [...statusAnswered];
     let tempStatusTries;
+    let tempStatusScore;
+    let tempStatusPlayedHistoryWon;
 
     if (clickedButton === quoteAnswer) {
       // Disable all buttons
@@ -129,9 +135,13 @@ export default function SectionText(props) {
         return true;
       });
       tempStatusTries = 0;
+      tempStatusScore = statusScore + 1;
+      tempStatusPlayedHistoryWon = statusPlayedHistory["won"] + 1;
+      console.log(`tempStatusPlayedHistoryWon ${tempStatusPlayedHistoryWon}`);
     } else {
       tempStatusAnswered[clickedButton] = true;
       tempStatusTries = statusTries - 1;
+      tempStatusPlayedHistoryWon = statusPlayedHistory["won"];
     }
 
     if (tempStatusTries <= 0) {
@@ -140,6 +150,12 @@ export default function SectionText(props) {
 
     setStatusAnswered(tempStatusAnswered);
     setStatusTries(tempStatusTries);
+    setStatusScore(tempStatusScore);
+    setStatusPlayedHistory({
+      won: tempStatusPlayedHistoryWon,
+      played: 0,
+      lastPlayed: "date",
+    });
     console.log(`tempstatus tries ${tempStatusTries}`);
 
     localStorage.setItem(
@@ -147,11 +163,11 @@ export default function SectionText(props) {
       setLocalStorage(
         "#",
         tempStatusAnswered,
-        0,
+        tempStatusScore,
         statusGamesPlayed,
         tempStatusTries,
         false,
-        0,
+        tempStatusPlayedHistoryWon,
         0,
         "date",
       ),
@@ -160,16 +176,24 @@ export default function SectionText(props) {
     setGameStatus({
       userId: "#",
       answered: tempStatusAnswered,
-      score: 0,
+      score: tempStatusScore,
       gamesPlayed: statusGamesPlayed,
       tries: 3,
       gameOver: statusGameOver,
-      playedHistory: { won: 0, played: 0, lastPlayed: "date" },
+      playedHistory: {
+        won: tempStatusPlayedHistoryWon,
+        played: 0,
+        lastPlayed: "date",
+      },
     });
   }
 
   console.log("/////END/////");
   console.table(gameStatus);
+
+  /*::::::::::::::::::::::::::
+    LOAD BIO PAGE 
+  ::::::::::::::::::::::::::*/
 
   function loadBioPage() {
     // let tempStatusGamesPlayed =
@@ -192,7 +216,7 @@ export default function SectionText(props) {
         tempStatusGamesPlayed,
         3,
         tempStatusGameOver,
-        0,
+        statusPlayedHistory["won"],
         0,
         "date",
       ),
@@ -205,7 +229,11 @@ export default function SectionText(props) {
       gamesPlayed: statusGamesPlayed,
       tries: 3,
       gameOver: tempStatusGameOver,
-      playedHistory: { won: 0, played: 0, lastPlayed: "date" },
+      playedHistory: {
+        won: statusPlayedHistory["won"],
+        played: 0,
+        lastPlayed: "date",
+      },
     });
   }
 

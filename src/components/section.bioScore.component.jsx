@@ -36,6 +36,9 @@ export default function BioScore(props) {
   const [statusGamesPlayed, setStatusGamesPlayed] = useState(
     JSON.parse(localStorage.getItem(["user"]))["gamesPlayed"],
   );
+  const [statusPlayedHistory, setStatusPlayedHistory] = useState(
+    gameStatus["playedHistory"],
+  );
   const [statusPlayedHistoryWon, setPlayedHistoryWon] = useState(
     JSON.parse(localStorage.getItem(["user"]))["playedHistory"]["won"],
   );
@@ -69,7 +72,7 @@ export default function BioScore(props) {
         statusGamesPlayed,
         statusTries,
         false,
-        0,
+        statusPlayedHistoryWon,
         0,
         "date",
       ),
@@ -82,7 +85,7 @@ export default function BioScore(props) {
       gamesPlayed: statusGamesPlayed,
       tries: 3,
       gameOver: statusGameOver,
-      playedHistory: { won: 0, played: 0, lastPlayed: "date" },
+      playedHistory: statusPlayedHistory,
     });
   }
 
