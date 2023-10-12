@@ -82,6 +82,7 @@ export default function SectionText(props) {
 
   useEffect(() => {
     setPlayedHistory(gameStatus["playedHistory"]);
+    setStatusTries(gameStatus["tries"]);
 
     setGameQuotes(quoteData.gameQuotes[statusGamesPlayed]["quote"]);
     setQuoteAnswer(quoteData.gameQuotes[statusGamesPlayed]["answer"]);
@@ -123,14 +124,18 @@ export default function SectionText(props) {
     let tempStatusTries;
 
     if (clickedButton === quoteAnswer) {
+      // Disable all buttons
       tempStatusAnswered = statusAnswered.map((item, index) => {
         return true;
       });
-
       tempStatusTries = 0;
     } else {
       tempStatusAnswered[clickedButton] = true;
       tempStatusTries = statusTries - 1;
+    }
+
+    if (tempStatusTries <= 0) {
+      tempStatusAnswered = [true, true, true, true];
     }
 
     setStatusAnswered(tempStatusAnswered);
@@ -152,21 +157,21 @@ export default function SectionText(props) {
       ),
     );
 
-    // setGameStatus({
-    //   userId: "#",
-    //   answered: tempStatusAnswered,
-    //   score: 0,
-    //   gamesPlayed: statusGamesPlayed,
-    //   tries: tempStatusTries,
-    //   gameOver: false,
-    //   playedHistory: { won: 0, played: 0, lastPlayed: "date" },
-    // });
+    setGameStatus({
+      userId: "#",
+      answered: tempStatusAnswered,
+      score: 0,
+      gamesPlayed: statusGamesPlayed,
+      tries: 3,
+      gameOver: statusGameOver,
+      playedHistory: { won: 0, played: 0, lastPlayed: "date" },
+    });
   }
 
   console.log("/////END/////");
   console.table(gameStatus);
 
-  function loadNextQuote() {
+  function loadBioPage() {
     // let tempStatusGamesPlayed =
     //   statusGamesPlayed < 2 ? statusGamesPlayed + 1 : 2;
     let tempStatusGamesPlayed = statusGamesPlayed + 1;
@@ -192,6 +197,16 @@ export default function SectionText(props) {
         "date",
       ),
     );
+
+    setGameStatus({
+      userId: "#",
+      answered: statusAnswered,
+      score: 0,
+      gamesPlayed: statusGamesPlayed,
+      tries: 3,
+      gameOver: tempStatusGameOver,
+      playedHistory: { won: 0, played: 0, lastPlayed: "date" },
+    });
   }
 
   return (
@@ -220,13 +235,13 @@ export default function SectionText(props) {
           );
         })}
 
-        <HeartCounter triesLeft={2} />
+        <HeartCounter triesLeft={statusTries} />
 
         <Link to="/score">
           <ButtonNext
             textContent={""}
             visible={true}
-            loadNextQuote={loadNextQuote}
+            loadNextQuote={loadBioPage}
           />
         </Link>
       </div>

@@ -58,6 +58,7 @@ export default function BioScore(props) {
 
   function loadNextQuote() {
     setStatusAnswered([false, false, false, false]);
+    setStatusGamesPlayed(statusGamesPlayed + 1);
 
     localStorage.setItem(
       "user",
@@ -73,6 +74,16 @@ export default function BioScore(props) {
         "date",
       ),
     );
+
+    setGameStatus({
+      userId: "#",
+      answered: [false, false, false, false],
+      score: 0,
+      gamesPlayed: statusGamesPlayed,
+      tries: 3,
+      gameOver: statusGameOver,
+      playedHistory: { won: 0, played: 0, lastPlayed: "date" },
+    });
   }
 
   console.log(`statusGamesPlayed - ${statusGamesPlayed}`);
