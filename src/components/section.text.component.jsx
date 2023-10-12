@@ -63,9 +63,6 @@ export default function SectionText(props) {
     gameStatus["gamesPlayed"],
     // JSON.parse(localStorage.getItem(["user"]))["gamesPlayed"],
   );
-  console.log("/////Load/////");
-  console.table(`statusPlayedHistory ${statusPlayedHistory["won"]}`);
-  // console.table(gameStatus);
 
   //: get QUotes info
   const [gameQuotes, setGameQuotes] = useState(
@@ -78,8 +75,22 @@ export default function SectionText(props) {
     quoteData.gameQuotes[statusGamesPlayed]["authors"],
   );
 
+  const iconAnswerArray = [];
+  for (let i = 0; i < statusAnswered.length; i++) {
+    if (i === quoteAnswer) {
+      iconAnswerArray.push(<Icon key={i} icon="iconamoon:check-bold" />);
+    } else {
+      iconAnswerArray.push(<Icon key={i} icon="iconamoon:close-bold" />);
+    }
+  }
+
   // const [quoteLength, setQuoteLength] = useState("");
   const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
+
+  console.log("/////Load/////");
+  // console.table(`statusPlayedHistory ${statusPlayedHistory["won"]}`);
+  // console.table(gameStatus);
+  console.table(quoteAnswer);
 
   useEffect(() => {
     setStatusPlayedHistory(gameStatus["playedHistory"]);
@@ -249,7 +260,7 @@ export default function SectionText(props) {
         </h1>
       </div>
 
-      <div className="mx-auto mt-8 flex w-11/12 flex-col items-center justify-center gap-4">
+      <div className="w-12/12 mx-auto mt-8 flex flex-col items-center justify-center gap-4">
         {newNames.map((name, index) => {
           return (
             <Name
@@ -259,6 +270,7 @@ export default function SectionText(props) {
               classesLocalStorage={classesInitialStateArray[index]}
               checkAnswer={checkAnswer}
               disabled={statusAnswered[index]}
+              iconAnswer={statusTries === 0 ? iconAnswerArray[index] : ""}
             />
           );
         })}
