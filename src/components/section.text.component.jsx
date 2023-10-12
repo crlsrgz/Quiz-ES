@@ -41,23 +41,31 @@ export default function SectionText(props) {
   }
 
   //: get Gamestatus info
+
   const [statusGameOver, setStatusGameOver] = useState(
-    JSON.parse(localStorage.getItem(["user"]))["gameOver"],
+    gameStatus["gameOver"],
+    // Testing fetching data...
+    // JSON.parse(localStorage.getItem(["user"]))["gameOver"],
+  );
+  const [statusPlayedHistory, setPlayedHistory] = useState(
+    gameStatus["playedHistory"],
   );
 
+  const [statusTries, setStatusTries] = useState(gameStatus["tries"]);
+
   const [statusAnswered, setStatusAnswered] = useState(
-    JSON.parse(localStorage.getItem(["user"]))["answered"],
+    statusTries <= 0 ? [true, true, true, true] : gameStatus["answered"],
+    // JSON.parse(localStorage.getItem(["user"]))["answered"],
   );
 
   const [statusScore, setStatusScore] = useState(gameStatus["score"]);
   const [statusGamesPlayed, setStatusGamesPlayed] = useState(
-    JSON.parse(localStorage.getItem(["user"]))["gamesPlayed"],
+    gameStatus["gamesPlayed"],
+    // JSON.parse(localStorage.getItem(["user"]))["gamesPlayed"],
   );
+  console.log("/////Load/////");
+  console.table(gameStatus);
 
-  const [statusTries, setStatusTries] = useState(gameStatus["tries"]);
-  const [statusPlayedHistory, setPlayedHistory] = useState(
-    gameStatus["playedHistory"],
-  );
   //: get QUotes info
   const [gameQuotes, setGameQuotes] = useState(
     quoteData.gameQuotes[statusGamesPlayed]["quote"],
@@ -73,6 +81,8 @@ export default function SectionText(props) {
   const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
 
   useEffect(() => {
+    setPlayedHistory(gameStatus["playedHistory"]);
+
     setGameQuotes(quoteData.gameQuotes[statusGamesPlayed]["quote"]);
     setQuoteAnswer(quoteData.gameQuotes[statusGamesPlayed]["answer"]);
     setNewNames(quoteData.gameQuotes[statusGamesPlayed]["authors"]);
@@ -110,16 +120,23 @@ export default function SectionText(props) {
     //: Set clicked/answerd to true
     const clickedButton = parseInt(e.target.id);
     let tempStatusAnswered = [...statusAnswered];
+    let tempStatusTries;
 
     if (clickedButton === quoteAnswer) {
       tempStatusAnswered = statusAnswered.map((item, index) => {
         return true;
       });
+
+      tempStatusTries = 0;
     } else {
       tempStatusAnswered[clickedButton] = true;
+      tempStatusTries = statusTries - 1;
     }
 
     setStatusAnswered(tempStatusAnswered);
+    setStatusTries(tempStatusTries);
+    console.log(`tempstatus tries ${tempStatusTries}`);
+
     localStorage.setItem(
       "user",
       setLocalStorage(
@@ -127,14 +144,27 @@ export default function SectionText(props) {
         tempStatusAnswered,
         0,
         statusGamesPlayed,
-        3,
+        tempStatusTries,
         false,
         0,
         0,
         "date",
       ),
     );
+
+    // setGameStatus({
+    //   userId: "#",
+    //   answered: tempStatusAnswered,
+    //   score: 0,
+    //   gamesPlayed: statusGamesPlayed,
+    //   tries: tempStatusTries,
+    //   gameOver: false,
+    //   playedHistory: { won: 0, played: 0, lastPlayed: "date" },
+    // });
   }
+
+  console.log("/////END/////");
+  console.table(gameStatus);
 
   function loadNextQuote() {
     // let tempStatusGamesPlayed =
@@ -147,6 +177,7 @@ export default function SectionText(props) {
     }
     setStatusGameOver(tempStatusGameOver);
     setStatusGamesPlayed(tempStatusGamesPlayed);
+
     localStorage.setItem(
       "user",
       setLocalStorage(
