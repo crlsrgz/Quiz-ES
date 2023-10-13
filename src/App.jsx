@@ -14,6 +14,7 @@ import connectionUrl from "./connections/connection";
 import "./data/names";
 import GameStatusContext from "./components/context.GameStatus";
 import QuoteDataContext from "./components/context.QuoteData";
+import WrongAnswersContext from "./components/context.wrongAnswer";
 import setLocalStorage from "./components/localstorage.function";
 
 export default function App() {
@@ -47,6 +48,8 @@ export default function App() {
     quoteId: [],
     score: [0, 0],
   };
+
+  const wrongAnswers = useState(0);
 
   const gameStatus = useState(JSON.parse(localStorage["user"]));
   // Data placeholder
@@ -153,20 +156,22 @@ export default function App() {
     <>
       <GameStatusContext.Provider value={gameStatus}>
         <QuoteDataContext.Provider value={[quoteData, setQuoteData]}>
-          <BrowserRouter>
-            <Navigation />
-            {/* <Connection /> */}
+          <WrongAnswersContext.Provider value={wrongAnswers}>
+            <BrowserRouter>
+              <Navigation />
+              {/* <Connection /> */}
 
-            <div className="main-container m-0 h-5/6 p-0 md:mt-20">
-              <Routes>
-                <Route path="/" element={<Intro />} />
-                <Route path="/text/" element={<SectionText />} />
-                <Route path="/score/" element={<BioScore />} />
-                <Route path="/info/" element={<Info />} />
-                <Route path="/about/" element={<About />} />
-              </Routes>
-            </div>
-          </BrowserRouter>
+              <div className="main-container m-0 h-5/6 p-0 md:mt-20">
+                <Routes>
+                  <Route path="/" element={<Intro />} />
+                  <Route path="/text/" element={<SectionText />} />
+                  <Route path="/score/" element={<BioScore />} />
+                  <Route path="/info/" element={<Info />} />
+                  <Route path="/about/" element={<About />} />
+                </Routes>
+              </div>
+            </BrowserRouter>
+          </WrongAnswersContext.Provider>
         </QuoteDataContext.Provider>
       </GameStatusContext.Provider>
     </>

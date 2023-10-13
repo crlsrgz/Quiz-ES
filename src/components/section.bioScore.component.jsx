@@ -6,12 +6,14 @@ import setLocalStorage from "./localstorage.function";
 
 import GameStatusContext from "./context.GameStatus";
 import QuoteDataContext from "./context.QuoteData";
+import WrongAnswersContext from "./context.wrongAnswer";
 
 import ButtonNext from "./button.next.component";
 
 export default function BioScore(props) {
   const [gameStatus, setGameStatus] = useContext(GameStatusContext);
   const [quoteData, setQuoteData] = useContext(QuoteDataContext);
+  const [wrongAnswers, setWrongAnswers] = useContext(WrongAnswersContext);
 
   if (!localStorage["user"]) {
     localStorage.setItem(
@@ -62,6 +64,8 @@ export default function BioScore(props) {
   function loadNextQuote() {
     setStatusAnswered([false, false, false, false]);
     setStatusGamesPlayed(statusGamesPlayed + 1);
+
+    setWrongAnswers(0);
 
     localStorage.setItem(
       "user",

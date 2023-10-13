@@ -10,6 +10,7 @@ import setLocalStorage from "./localstorage.function";
 
 import GameStatusContext from "./context.GameStatus";
 import QuoteDataContext from "./context.QuoteData";
+import WrongAnswersContext from "./context.wrongAnswer";
 
 /* ::::::::: Buttons states ::::::::: */
 const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-300 hover:bg-zinc-300 hover:text-zinc-700 `;
@@ -19,6 +20,7 @@ const classesWrongAnswer = `wrong cursor-not-allowed text-zinc-500 border-zinc-5
 export default function SectionText(props) {
   const [gameStatus, setGameStatus] = useContext(GameStatusContext);
   const [quoteData, setQuoteData] = useContext(QuoteDataContext);
+  const [wrongAnswers, setWrongAnswers] = useContext(WrongAnswersContext);
 
   /*:: Prepare Local Storage ::*/
 
@@ -90,22 +92,24 @@ export default function SectionText(props) {
   console.log("/////Load/////");
   // console.table(`statusPlayedHistory ${statusPlayedHistory["won"]}`);
   // console.table(gameStatus);
-  console.table(quoteAnswer);
+  console.table(`quoteAnswer - ${quoteAnswer} -`);
+  console.log(`COmpleted exercise ${wrongAnswers}`);
 
   //: Set initial state for the buttons
   let classesInitialStateArray = ["", "", "", ""];
   for (let i = 0; i < statusAnswered.length; i++) {
-    if (statusAnswered[i] === true && i === quoteAnswer && statusTries > 0) {
+    if (statusAnswered[i] === true && i === quoteAnswer) {
       classesInitialStateArray[i] = classesRightAnswer;
-    }
-    if (statusAnswered[i] === true && i === quoteAnswer && statusTries <= 0) {
-      classesInitialStateArray[i] = classesWrongAnswer;
     }
     if (statusAnswered[i] === true && i !== quoteAnswer) {
       classesInitialStateArray[i] = classesWrongAnswer;
     }
     if (statusAnswered[i] !== true) {
       classesInitialStateArray[i] = classesInitialState;
+    }
+
+    if (wrongAnswers === 3) {
+      classesInitialStateArray[i] = classesWrongAnswer;
     }
   }
 
@@ -157,6 +161,7 @@ export default function SectionText(props) {
       tempStatusAnswered[clickedButton] = true;
       tempStatusTries = statusTries - 1;
       tempStatusPlayedHistoryWon = statusPlayedHistory["won"];
+      setWrongAnswers(wrongAnswers + 1);
     }
 
     if (tempStatusTries <= 0) {
