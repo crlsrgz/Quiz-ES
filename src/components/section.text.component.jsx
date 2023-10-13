@@ -92,6 +92,23 @@ export default function SectionText(props) {
   // console.table(gameStatus);
   console.table(quoteAnswer);
 
+  //: Set initial state for the buttons
+  let classesInitialStateArray = ["", "", "", ""];
+  for (let i = 0; i < statusAnswered.length; i++) {
+    if (statusAnswered[i] === true && i === quoteAnswer && statusTries > 0) {
+      classesInitialStateArray[i] = classesRightAnswer;
+    }
+    if (statusAnswered[i] === true && i === quoteAnswer && statusTries <= 0) {
+      classesInitialStateArray[i] = classesWrongAnswer;
+    }
+    if (statusAnswered[i] === true && i !== quoteAnswer) {
+      classesInitialStateArray[i] = classesWrongAnswer;
+    }
+    if (statusAnswered[i] !== true) {
+      classesInitialStateArray[i] = classesInitialState;
+    }
+  }
+
   useEffect(() => {
     setStatusPlayedHistory(gameStatus["playedHistory"]);
     setStatusTries(gameStatus["tries"]);
@@ -115,19 +132,6 @@ export default function SectionText(props) {
     console.log(`quoteLength useEffect ${quoteLength}`);
   }, [quoteData]);
 
-  //: Set initial state
-  let classesInitialStateArray = ["", "", "", ""];
-  for (let i = 0; i < statusAnswered.length; i++) {
-    if (statusAnswered[i] === true && i === quoteAnswer) {
-      classesInitialStateArray[i] = classesRightAnswer;
-    }
-    if (statusAnswered[i] === true && i !== quoteAnswer) {
-      classesInitialStateArray[i] = classesWrongAnswer;
-    }
-    if (statusAnswered[i] !== true) {
-      classesInitialStateArray[i] = classesInitialState;
-    }
-  }
   /*::::::::::::::::::::::::::
       CHECK ANSWER 
     ::::::::::::::::::::::::::*/
@@ -162,12 +166,14 @@ export default function SectionText(props) {
     setStatusAnswered(tempStatusAnswered);
     setStatusTries(tempStatusTries);
     setStatusScore(tempStatusScore);
+
     setStatusPlayedHistory({
       won: tempStatusPlayedHistoryWon,
       played: 0,
       lastPlayed: "date",
     });
-    console.log(`tempstatus tries ${tempStatusTries}`);
+
+    // console.log(`tempstatus tries ${tempStatusTries}`);
 
     localStorage.setItem(
       "user",
@@ -189,7 +195,7 @@ export default function SectionText(props) {
       answered: tempStatusAnswered,
       score: tempStatusScore,
       gamesPlayed: statusGamesPlayed,
-      tries: 3,
+      tries: tempStatusTries,
       gameOver: statusGameOver,
       playedHistory: {
         won: tempStatusPlayedHistoryWon,
@@ -225,7 +231,7 @@ export default function SectionText(props) {
         statusAnswered,
         0,
         tempStatusGamesPlayed,
-        3,
+        statusTries,
         tempStatusGameOver,
         statusPlayedHistory["won"],
         0,
@@ -238,7 +244,7 @@ export default function SectionText(props) {
       answered: statusAnswered,
       score: 0,
       gamesPlayed: statusGamesPlayed,
-      tries: 3,
+      tries: statusTries,
       gameOver: tempStatusGameOver,
       playedHistory: {
         won: statusPlayedHistory["won"],
