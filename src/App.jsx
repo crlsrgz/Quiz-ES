@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, json } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 /* ═══ Components ═══ */
 import Navigation from "./components/navigation.component";
@@ -18,8 +18,6 @@ import WrongAnswersContext from "./components/context.wrongAnswer";
 import setLocalStorage from "./components/localstorage.function";
 
 export default function App() {
-  /*:: Prepare Local Storage ::*/
-
   const userId = self.crypto.randomUUID();
   const date = new Date();
   const formatDate = date.toISOString().slice(0, 10);
@@ -32,28 +30,7 @@ export default function App() {
     score: [0, 0],
   };
 
-  // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
-  if (!localStorage["user"]) {
-    localStorage.setItem(
-      "user",
-      setLocalStorage(
-        userId,
-        [false, false, false, false],
-        0,
-        0,
-        3,
-        false,
-        0,
-        0,
-        formatDate,
-      ),
-    );
-  }
   /*:: Temporary quote data ::*/
-
-  const wrongAnswers = useState(0);
-
-  const gameStatus = useState(JSON.parse(localStorage["user"]));
   // Data placeholder
   const [quoteData, setQuoteData] = useState({
     authorsInfo: {
@@ -124,20 +101,27 @@ export default function App() {
           console.log(`data error ${error}`);
         })
         .then(function (data) {
-          console.log(data[0]["authors"][data[0]["answer"]]);
+          console.log(data);
+          // console.log(typeof data);
+          console.log(data["quotes"]);
+
           const populateAuthors = [];
 
           for (let i = 0; i < 3; i++) {
-            populateAuthors.push(data[i]["authors"][data[i]["answer"]]);
+            populateAuthors.push(
+              data["quotes"][i]["authors"][data["quotes"][i]["answer"]],
+            );
           }
+
           setQuoteData({
+            date: data["date"],
             authorsInfo: {
               0: { name: "---" },
               1: { name: populateAuthors[0] },
               2: { name: populateAuthors[1] },
               3: { name: populateAuthors[2] },
             },
-            gameQuotes: data,
+            gameQuotes: data["quotes"],
           });
         })
         .catch((error) => {
@@ -145,7 +129,35 @@ export default function App() {
         });
     }
     makeRequest();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  /*:: Prepare Local Storage ::*/
+  formatDate === quoteData["date"]
+    ? console.log("same date")
+    : console.log("not the same date");
+
+  // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
+  if (!localStorage["user"]) {
+    localStorage.setItem(
+      "user",
+      setLocalStorage(
+        userId,
+        [false, false, false, false],
+        0,
+        0,
+        3,
+        false,
+        0,
+        0,
+        formatDate,
+      ),
+    );
+  }
+
+  const wrongAnswers = useState(0);
+  const gameStatus = useState(JSON.parse(localStorage["user"]));
+
   //: Disabled for development END
 
   console.log(
