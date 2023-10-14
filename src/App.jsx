@@ -20,12 +20,24 @@ import setLocalStorage from "./components/localstorage.function";
 export default function App() {
   /*:: Prepare Local Storage ::*/
 
+  const userId = self.crypto.randomUUID();
+  const date = new Date();
+  const formatDate = date.toISOString().slice(0, 10);
+
+  const user = {
+    name: `${userId}`,
+    date: date,
+    dateShort: formatDate,
+    quoteId: [],
+    score: [0, 0],
+  };
+
   // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
   if (!localStorage["user"]) {
     localStorage.setItem(
       "user",
       setLocalStorage(
-        "#",
+        userId,
         [false, false, false, false],
         0,
         0,
@@ -33,21 +45,11 @@ export default function App() {
         false,
         0,
         0,
-        "date",
+        formatDate,
       ),
     );
   }
   /*:: Temporary quote data ::*/
-
-  const userId = self.crypto.randomUUID();
-  const date = new Date();
-  const user = {
-    name: `${userId}`,
-    date: `${date.toISOString()}`,
-    dateShort: `${date.toISOString().slice(0, 10)}`,
-    quoteId: [],
-    score: [0, 0],
-  };
 
   const wrongAnswers = useState(0);
 

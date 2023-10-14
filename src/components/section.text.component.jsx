@@ -178,7 +178,7 @@ export default function SectionText(props) {
     setStatusPlayedHistory({
       won: tempStatusPlayedHistoryWon,
       played: tempStatusPlayedHistoryPlayed,
-      lastPlayed: "date",
+      lastPlayed: statusPlayedHistory["lastPlayed"],
     });
 
     // console.log(
@@ -197,7 +197,7 @@ export default function SectionText(props) {
         false,
         tempStatusPlayedHistoryWon,
         tempStatusPlayedHistoryPlayed,
-        "date",
+        statusPlayedHistory["lastPlayed"],
       ),
     );
 
@@ -211,7 +211,7 @@ export default function SectionText(props) {
       playedHistory: {
         won: tempStatusPlayedHistoryWon,
         played: tempStatusPlayedHistoryPlayed,
-        lastPlayed: "date",
+        lastPlayed: statusPlayedHistory["lastPlayed"],
       },
     });
   }
@@ -246,7 +246,7 @@ export default function SectionText(props) {
         tempStatusGameOver,
         statusPlayedHistory["won"],
         statusPlayedHistory["played"],
-        "date",
+        statusPlayedHistory["lastPlayed"],
       ),
     );
 
@@ -260,7 +260,7 @@ export default function SectionText(props) {
       playedHistory: {
         won: statusPlayedHistory["won"],
         played: statusPlayedHistory["played"],
-        lastPlayed: "date",
+        lastPlayed: statusPlayedHistory["lastPlayed"],
       },
     });
   }
