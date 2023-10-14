@@ -147,6 +147,7 @@ export default function SectionText(props) {
     let tempStatusTries;
     let tempStatusScore;
     let tempStatusPlayedHistoryWon;
+    let tempStatusPlayedHistoryPlayed = statusPlayedHistory["played"];
 
     if (clickedButton === quoteAnswer) {
       // Disable all buttons
@@ -156,6 +157,7 @@ export default function SectionText(props) {
       tempStatusTries = 0;
       tempStatusScore = statusScore + 1;
       tempStatusPlayedHistoryWon = statusPlayedHistory["won"] + 1;
+
       console.log(`tempStatusPlayedHistoryWon ${tempStatusPlayedHistoryWon}`);
     } else {
       tempStatusAnswered[clickedButton] = true;
@@ -166,6 +168,7 @@ export default function SectionText(props) {
 
     if (tempStatusTries <= 0) {
       tempStatusAnswered = [true, true, true, true];
+      tempStatusPlayedHistoryPlayed = statusPlayedHistory["played"] + 1;
     }
 
     setStatusAnswered(tempStatusAnswered);
@@ -174,10 +177,13 @@ export default function SectionText(props) {
 
     setStatusPlayedHistory({
       won: tempStatusPlayedHistoryWon,
-      played: 0,
+      played: tempStatusPlayedHistoryPlayed,
       lastPlayed: "date",
     });
 
+    // console.log(
+    //   `tempStatusPlayedHistoryPlayed ${tempStatusPlayedHistoryPlayed}`,
+    // );
     // console.log(`tempstatus tries ${tempStatusTries}`);
 
     localStorage.setItem(
@@ -190,7 +196,7 @@ export default function SectionText(props) {
         tempStatusTries,
         false,
         tempStatusPlayedHistoryWon,
-        0,
+        tempStatusPlayedHistoryPlayed,
         "date",
       ),
     );
@@ -204,7 +210,7 @@ export default function SectionText(props) {
       gameOver: statusGameOver,
       playedHistory: {
         won: tempStatusPlayedHistoryWon,
-        played: 0,
+        played: tempStatusPlayedHistoryPlayed,
         lastPlayed: "date",
       },
     });
@@ -239,7 +245,7 @@ export default function SectionText(props) {
         statusTries,
         tempStatusGameOver,
         statusPlayedHistory["won"],
-        0,
+        statusPlayedHistory["played"],
         "date",
       ),
     );
@@ -253,7 +259,7 @@ export default function SectionText(props) {
       gameOver: tempStatusGameOver,
       playedHistory: {
         won: statusPlayedHistory["won"],
-        played: 0,
+        played: statusPlayedHistory["played"],
         lastPlayed: "date",
       },
     });

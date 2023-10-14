@@ -44,6 +44,9 @@ export default function BioScore(props) {
   const [statusPlayedHistoryWon, setPlayedHistoryWon] = useState(
     JSON.parse(localStorage.getItem(["user"]))["playedHistory"]["won"],
   );
+  const [statusPlayedHistoryPlayed, setPlayedHistoryPlayed] = useState(
+    JSON.parse(localStorage.getItem(["user"]))["playedHistory"]["played"],
+  );
 
   const [statusAnswered, setStatusAnswered] = useState(
     JSON.parse(localStorage.getItem(["user"]))["answered"],
@@ -126,7 +129,9 @@ export default function BioScore(props) {
               <h3 className="md:text-10xl mt-0 font-serif text-8xl">
                 {statusPlayedHistoryWon ?? "-"}
               </h3>
-              <h3 className="mt-0 font-serif text-4xl md:text-5xl">/12</h3>
+              <h3 className="mt-0 font-serif text-4xl md:text-5xl">
+                /{statusPlayedHistoryPlayed ?? "-"}
+              </h3>
             </div>
           </div>
         </div>
