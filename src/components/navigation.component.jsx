@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const linksArray = ["", "Text", "Score", "Info", "About"];
+const linksArray = ["Frase", "Marcador", "Info", "Más"];
 
 export default function Navigation() {
   return (
@@ -16,23 +16,21 @@ export default function Navigation() {
           }
         }
       >
-        CrlsRgz
+        {" "}
+        <NavLink to="/">CrlsRgz</NavLink>
       </div>
       <ul className="flex items-center text-base">
         {linksArray.map((element, index) => {
           return (
-            <li
-              key={index}
-              className=" mr-6 flex w-12 justify-center text-center"
-            >
+            <li key={index} className=" mr-4 flex justify-center text-center">
               <NavLink
                 to={`/${element}`}
                 className={({ isActive, isPending }) =>
                   isPending
-                    ? "m-auto w-12 border-b-4 border-slate-900 hover:bg-zinc-200 hover:text-slate-900"
+                    ? "m-auto border-b-4 border-zinc-900 px-1 hover:bg-zinc-200 hover:text-zinc-900 md:px-2"
                     : isActive
-                    ? "m-auto w-12 border-b-4"
-                    : "m-auto w-12 border-b-4 border-slate-900  hover:bg-zinc-200 hover:text-slate-900"
+                    ? "m-auto border-b-4 px-1 md:px-2"
+                    : "m-auto border-b-4 border-zinc-900 px-1 hover:bg-zinc-200  hover:text-zinc-900 md:px-2"
                 }
               >
                 <span>{element === "" ? "Home" : element}</span>

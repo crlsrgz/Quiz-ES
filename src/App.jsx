@@ -179,10 +179,10 @@ export default function App() {
               <div className="main-container m-0 h-5/6 p-0 md:mt-20">
                 <Routes>
                   <Route path="/" element={<Intro />} />
-                  <Route path="/text/" element={<SectionText />} />
-                  <Route path="/score/" element={<BioScore />} />
+                  <Route path="/frase/" element={<SectionText />} />
+                  <Route path="/marcador/" element={<BioScore />} />
                   <Route path="/info/" element={<Info />} />
-                  <Route path="/about/" element={<About />} />
+                  <Route path="/más/" element={<About />} />
                 </Routes>
               </div>
             </BrowserRouter>
