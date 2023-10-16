@@ -9,7 +9,7 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-import connectionUrl from "./connections/connection";
+// import connectionUrl from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
 import GameStatusContext from "./components/context.GameStatus";
@@ -84,53 +84,54 @@ export default function App() {
   });
   //: Disabled for development START
 
-  useEffect(() => {
-    async function makeRequest() {
-      await fetch(connectionUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-        },
-        body: JSON.stringify(user),
-      })
-        .then(function (response) {
-          // return response.text();
-          return response.json();
-        })
-        .catch((error) => {
-          console.log(`data error ${error}`);
-        })
-        .then(function (data) {
-          console.log(data);
-          // console.log(typeof data);
-          console.log(data["quotes"]);
+  // useEffect(() => {
+  //   async function makeRequest() {
+  //     await fetch(connectionUrl, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json; charset=utf-8",
+  //       },
+  //       body: JSON.stringify(user),
+  //     })
+  //       .then(function (response) {
+  //         // return response.text();
+  //         return response.json();
+  //       })
+  //       .catch((error) => {
+  //         console.log(`data error ${error}`);
+  //       })
+  //       .then(function (data) {
+  //         console.log(data);
+  //         // console.log(typeof data);
+  //         console.log(data["quotes"]);
 
-          const populateAuthors = [];
+  //         const populateAuthors = [];
 
-          for (let i = 0; i < 3; i++) {
-            populateAuthors.push(
-              data["quotes"][i]["authors"][data["quotes"][i]["answer"]],
-            );
-          }
+  //         for (let i = 0; i < 3; i++) {
+  //           populateAuthors.push(
+  //             data["quotes"][i]["authors"][data["quotes"][i]["answer"]],
+  //           );
+  //         }
 
-          setQuoteData({
-            date: data["date"],
-            authorsInfo: {
-              0: { name: "---" },
-              1: { name: populateAuthors[0] },
-              2: { name: populateAuthors[1] },
-              3: { name: populateAuthors[2] },
-            },
-            gameQuotes: data["quotes"],
-          });
-        })
-        .catch((error) => {
-          console.log(`set state error ${error}`);
-        });
-    }
-    makeRequest();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //         setQuoteData({
+  //           date: data["date"],
+  //           authorsInfo: {
+  //             0: { name: "---" },
+  //             1: { name: populateAuthors[0] },
+  //             2: { name: populateAuthors[1] },
+  //             3: { name: populateAuthors[2] },
+  //           },
+  //           gameQuotes: data["quotes"],
+  //         });
+  //       })
+  //       .catch((error) => {
+  //         console.log(`set state error ${error}`);
+  //       });
+  //   }
+  //   makeRequest();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+  //: Disabled for development END
 
   /*:: Prepare Local Storage ::*/
   formatDate === quoteData["date"]
@@ -158,7 +159,7 @@ export default function App() {
   const wrongAnswers = useState(0);
   const gameStatus = useState(JSON.parse(localStorage["user"]));
 
-  //: Disabled for development END
+  //: Navigation links????
 
   console.log(
     quoteData["gameQuotes"]["0"]["authors"][
