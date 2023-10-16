@@ -218,7 +218,8 @@ export default function SectionText(props) {
 
   console.log("/////END/////");
   console.table(gameStatus);
-
+  console.table(gameStatus["gameOver"]);
+  console.table(statusGameOver ? "hidden" : " ");
   /*::::::::::::::::::::::::::
     LOAD BIO PAGE 
   ::::::::::::::::::::::::::*/
@@ -294,10 +295,10 @@ export default function SectionText(props) {
 
         <HeartCounter triesLeft={statusTries} />
 
-        <Link to="/score">
+        <Link to="/marcador">
           <ButtonNext
             textContent={""}
-            visible={true}
+            visible={statusTries <= 0 ? " " : "hidden"}
             loadNextQuote={loadBioPage}
           />
         </Link>

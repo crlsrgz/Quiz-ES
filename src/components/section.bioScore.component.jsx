@@ -138,7 +138,7 @@ export default function BioScore(props) {
       </div>
 
       <div className="mx-auto mt-8 flex h-16 flex-row gap-16 font-alata">
-        <Link to="/text">
+        <Link to="/frase">
           <ButtonNext
             textContent={"Siguiente"}
             visible={statusGameOver ? "hidden" : ""}
