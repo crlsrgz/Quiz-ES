@@ -240,7 +240,7 @@ export default function SectionText(props) {
       "user",
       setLocalStorage(
         "#",
-        statusAnswered,
+        [false, false, false, false],
         0,
         tempStatusGamesPlayed,
         statusTries,
@@ -253,7 +253,7 @@ export default function SectionText(props) {
 
     setGameStatus({
       userId: "#",
-      answered: statusAnswered,
+      answered: [false, false, false, false],
       score: 0,
       gamesPlayed: statusGamesPlayed,
       tries: statusTries,

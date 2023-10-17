@@ -95,6 +95,14 @@ export default function BioScore(props) {
       playedHistory: statusPlayedHistory,
     });
   }
+  const arrayCompare = [true, true, true, true];
+
+  const compareArrays =
+    arrayCompare.length == statusAnswered.length &&
+    arrayCompare.every(function (element, index) {
+      return element === statusAnswered[index];
+    });
+  console.log(` Compare arrays ${compareArrays}`);
 
   console.log(`statusGamesPlayed - ${statusGamesPlayed}`);
   console.log(`authorsInfoIndex ${authorsInfoIndex}`);
@@ -141,7 +149,7 @@ export default function BioScore(props) {
         <Link to="/frase">
           <ButtonNext
             textContent={"Siguiente"}
-            visible={statusGameOver ? "hidden" : ""}
+            visible={compareArrays ? "hidden" : ""}
             loadNextQuote={loadNextQuote}
           />
         </Link>
