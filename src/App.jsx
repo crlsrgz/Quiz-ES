@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 // import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -18,7 +19,9 @@ import WrongAnswersContext from "./components/context.wrongAnswer";
 import setLocalStorage from "./components/localstorage.function";
 
 export default function App() {
-  const userId = self.crypto.randomUUID();
+  // const userId = self.crypto.randomUUID();
+  const userId = uuidv4();
+
   const date = new Date();
   const formatDate = date.toISOString().slice(0, 10);
 
