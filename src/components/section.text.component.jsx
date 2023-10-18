@@ -81,6 +81,9 @@ export default function SectionText(props) {
   for (let i = 0; i < statusAnswered.length; i++) {
     if (i === quoteAnswer) {
       iconAnswerArray.push(<Icon key={i} icon="iconamoon:check-bold" />);
+      iconAnswerArray.push(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7L10 17l-5-5"/></svg>',
+      );
     } else {
       iconAnswerArray.push(<Icon key={i} icon="iconamoon:close-bold" />);
     }
@@ -280,6 +283,7 @@ export default function SectionText(props) {
 
       <div className="w-12/12 mx-auto mt-8 flex flex-col items-center justify-center gap-4">
         {newNames.map((name, index) => {
+          console.log(iconAnswerArray[index]);
           return (
             <Name
               name={name}

@@ -14,11 +14,11 @@ export default function Name(props) {
       key={props.index}
       disabled={props.disabled}
     >
-      <span className=" mr-auto w-1/12 p-2">{props.iconAnswer}</span>
+      {/* <span className=" mr-auto w-1/12 p-2">{props.iconAnswer}</span> */}
       {props.name}
-      <span className="float-right ml-auto mr-1 w-1/12 self-end p-2">
-        {"\u00A0"}
-      </span>
+      {/* <span className="float-right ml-auto mr-1 w-1/12 self-end p-2"> */}
+      {"\u00A0"}
+      {/* </span> */}
     </button>
   );
 }
