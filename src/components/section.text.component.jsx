@@ -294,14 +294,17 @@ export default function SectionText(props) {
         })}
 
         <HeartCounter triesLeft={statusTries} />
-
-        <Link to="/marcador">
-          <ButtonNext
-            textContent={""}
-            visible={statusTries <= 0 ? " " : "hidden"}
-            loadNextQuote={loadBioPage}
-          />
-        </Link>
+        {statusTries <= 0 ? (
+          <Link to="/marcador">
+            <ButtonNext
+              textContent={""}
+              visible={statusTries <= 0 ? " " : "hidden"}
+              loadNextQuote={loadBioPage}
+            />
+          </Link>
+        ) : (
+          " "
+        )}
       </div>
     </div>
   );
