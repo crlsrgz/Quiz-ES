@@ -102,6 +102,7 @@ export default function BioScore(props) {
     arrayCompare.every(function (element, index) {
       return element === statusAnswered[index];
     });
+
   console.log(` Compare arrays ${compareArrays}`);
 
   console.log(`statusGamesPlayed - ${statusGamesPlayed}`);
@@ -149,7 +150,7 @@ export default function BioScore(props) {
         <Link to="/frase">
           <ButtonNext
             textContent={"Siguiente"}
-            visible={compareArrays ? "hidden" : ""}
+            visible={compareArrays && !statusGameOver ? "" : "hidden"}
             loadNextQuote={loadNextQuote}
           />
         </Link>
