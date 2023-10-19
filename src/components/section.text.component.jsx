@@ -271,11 +271,11 @@ export default function SectionText(props) {
 
   return (
     <div
-      className={`section-container m-12 mx-auto ${props.classes} w-4/5 flex-col justify-center gap-8 md:w-1/2`}
+      className={`section-container mx-auto mt-6 ${props.classes} w-4/5 flex-col justify-center gap-8 md:w-1/2`}
     >
-      <div className="mx-auto">
+      <div className="mx-auto h-12">
         <h1
-          className={`mt-16 text-left font-besley ${quoteTextSize} font-semibold text-blue-50`}
+          className={`mt-2 text-left font-besley ${quoteTextSize} font-semibold text-blue-50`}
         >
           &quot;{gameQuotes}&quot;
         </h1>
@@ -304,6 +304,9 @@ export default function SectionText(props) {
               textContent={""}
               visible={statusTries <= 0 ? " " : "hidden"}
               loadNextQuote={loadBioPage}
+              positionClass={
+                "absolute  -translate-x-1/2 bottom-16 md:m-auto md:mt-12 md:relative md:translate-x-0"
+              }
             />
           </Link>
         ) : (

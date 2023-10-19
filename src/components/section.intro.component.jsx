@@ -1,5 +1,7 @@
 import React from "react";
 import PageTitle from "./element.pageTitle.component";
+import ButtonNext from "./button.next.component";
+import { Link } from "react-router-dom";
 
 export default function Intro(props) {
   return (
@@ -11,13 +13,23 @@ export default function Intro(props) {
         <div className="">
           Beatae ipsam repellat explicabo enim, officia laboriosam ex?
           Reprehenderit pariatur accusantium vitae provident, illo perferendis
-          ratione distinctio ea at soluta placeat molestias tempore similique.
-          Illum tenetur aspernatur eligendi accusamus recusandae.
         </div>
         <div className="mt-4">
           Tempore ratione aspernatur, recusandae quis porro incidunt illum
           laboriosam repellendus excepturi sed modi esse non dolore cumque!
         </div>
+      </div>
+      <div className="m-auto mt-10">
+        <Link to="/frase">
+          <ButtonNext
+            textContent={"Quiz"}
+            visible={" "}
+            loadNextQuote={""}
+            positionClass={
+              "absolute -translate-x-1/2 bottom-16 md:m-auto md:mt-16 md:relative md:translate-x-0"
+            }
+          />
+        </Link>
       </div>
     </div>
   );

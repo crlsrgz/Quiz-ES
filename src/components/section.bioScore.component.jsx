@@ -146,13 +146,16 @@ export default function BioScore(props) {
         </div>
       </div>
 
-      <div className="mx-auto mt-8 flex h-16 flex-row gap-16 font-alata">
+      <div className="mx-auto mt-8 flex h-16 flex-row gap-16 font-alata ">
         <Link to="/frase">
           {compareArrays && !statusGameOver ? (
             <ButtonNext
               textContent={"Siguiente"}
               visible={" "}
               loadNextQuote={loadNextQuote}
+              positionClass={
+                "absolute  -translate-x-1/2 bottom-16 md:m-auto md:mt-12 md:relative md:translate-x-0"
+              }
             />
           ) : (
             " "

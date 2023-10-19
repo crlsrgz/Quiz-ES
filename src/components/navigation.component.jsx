@@ -57,7 +57,7 @@ export default function Navigation() {
           menú
         </button>
         <ul
-          className={`absolute top-12 m-auto w-11/12 flex-col items-center justify-end gap-4 border-t-4 border-zinc-200 bg-zinc-900 pt-4 text-base transition-transform md:hidden ${
+          className={`absolute top-12 h-[calc(100vh-48px)] w-11/12 flex-col items-center justify-start gap-4 border-t-4 border-zinc-200 bg-zinc-900 pt-4 text-base transition-transform md:hidden ${
             toggled ? "hidden" : " flex"
           }`}
           id="mobile-menu"
@@ -67,7 +67,7 @@ export default function Navigation() {
               <>
                 <li
                   key={index}
-                  className=" mr-4 flex flex-col items-center justify-center text-center"
+                  className=" mr-4 flex flex-col items-center justify-center text-center text-xl"
                 >
                   <NavLink
                     to={`/${element}`}
@@ -78,6 +78,7 @@ export default function Navigation() {
                         ? "m-auto border-b-4  px-1  md:px-2"
                         : "m-auto border-b-4  border-zinc-900 px-1   hover:bg-zinc-200 hover:text-zinc-900 md:px-2"
                     }
+                    onClick={toogleMenu}
                   >
                     <span>{element === "" ? "Home" : element}</span>
                   </NavLink>
