@@ -105,7 +105,7 @@ export default function App() {
         })
         .then(function (data) {
           console.log(data);
-          console.log(data["quotes"]);
+          // console.log(data["quotes"]);
 
           const populateAuthors = [];
 
@@ -136,9 +136,9 @@ export default function App() {
   //: Disabled for development END
 
   /*:: Prepare Local Storage ::*/
-  formatDate === quoteData["date"]
-    ? console.log("same date")
-    : console.log("not the same date");
+  // formatDate === quoteData["date"]
+  //   ? console.log("same date")
+  //   : console.log("not the same date");
 
   // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
   if (!localStorage["user"]) {
@@ -163,11 +163,11 @@ export default function App() {
 
   //: Navigation links????
 
-  console.log(
-    quoteData["gameQuotes"]["0"]["authors"][
-      quoteData["gameQuotes"]["0"]["answer"]
-    ],
-  );
+  // console.log(
+  //   quoteData["gameQuotes"]["0"]["authors"][
+  //     quoteData["gameQuotes"]["0"]["answer"]
+  //   ],
+  // );
 
   return (
     <>

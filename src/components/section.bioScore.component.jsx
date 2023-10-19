@@ -19,7 +19,7 @@ export default function BioScore(props) {
     localStorage.setItem(
       "user",
       setLocalStorage(
-        "#",
+        gameStatus["userId"],
         [false, false, false, false],
         0,
         0,
@@ -74,7 +74,7 @@ export default function BioScore(props) {
     localStorage.setItem(
       "user",
       setLocalStorage(
-        "#",
+        gameStatus["userId"],
         [false, false, false, false],
         0,
         statusGamesPlayed,
@@ -87,7 +87,7 @@ export default function BioScore(props) {
     );
 
     setGameStatus({
-      userId: "#",
+      userId: gameStatus["userId"],
       answered: [false, false, false, false],
       score: 0,
       gamesPlayed: statusGamesPlayed,

@@ -6,6 +6,8 @@ import Name from "../components/name.component";
 import ButtonNext from "./button.next.component";
 import HeartCounter from "./element.heartCounter.component";
 
+import connectionUser from "../connections/connectionUser";
+
 import setLocalStorage from "./localstorage.function";
 
 import GameStatusContext from "./context.GameStatus";
@@ -13,6 +15,7 @@ import QuoteDataContext from "./context.QuoteData";
 import WrongAnswersContext from "./context.wrongAnswer";
 
 import confetti from "canvas-confetti";
+import { func } from "prop-types";
 
 /* ::::::::: Buttons states ::::::::: */
 const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-300 hover:bg-zinc-300 hover:text-zinc-700 `;
@@ -59,7 +62,7 @@ export default function SectionText(props) {
     localStorage.setItem(
       "user",
       setLocalStorage(
-        "#",
+        gameStatus["userId"],
         [false, false, false, false],
         0,
         0,
@@ -223,7 +226,7 @@ export default function SectionText(props) {
     localStorage.setItem(
       "user",
       setLocalStorage(
-        "#",
+        gameStatus["userId"],
         tempStatusAnswered,
         tempStatusScore,
         statusGamesPlayed,
@@ -236,7 +239,7 @@ export default function SectionText(props) {
     );
 
     setGameStatus({
-      userId: "#",
+      userId: gameStatus["userId"],
       answered: tempStatusAnswered,
       score: tempStatusScore,
       gamesPlayed: statusGamesPlayed,
@@ -273,7 +276,7 @@ export default function SectionText(props) {
     localStorage.setItem(
       "user",
       setLocalStorage(
-        "#",
+        gameStatus["userId"],
         statusAnswered,
         0,
         tempStatusGamesPlayed,
@@ -286,7 +289,7 @@ export default function SectionText(props) {
     );
 
     setGameStatus({
-      userId: "#",
+      userId: gameStatus["userId"],
       answered: statusAnswered,
       score: 0,
       gamesPlayed: statusGamesPlayed,
@@ -298,6 +301,33 @@ export default function SectionText(props) {
         lastPlayed: statusPlayedHistory["lastPlayed"],
       },
     });
+
+    const submitUser = {
+      userId: gameStatus["userId"],
+      won: statusPlayedHistory["won"],
+      played: statusPlayedHistory["played"],
+      lastPlayed: statusPlayedHistory["lastPlayed"],
+    };
+
+    //Submit data
+    async function updateUser() {
+      await fetch(connectionUser, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(submitUser),
+      })
+        .then(function (response) {
+          return response.text();
+          // return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+        });
+    }
+
+    updateUser();
   }
 
   return (
