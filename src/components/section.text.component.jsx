@@ -12,6 +12,8 @@ import GameStatusContext from "./context.GameStatus";
 import QuoteDataContext from "./context.QuoteData";
 import WrongAnswersContext from "./context.wrongAnswer";
 
+import confetti from "canvas-confetti";
+
 /* ::::::::: Buttons states ::::::::: */
 const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-300 hover:bg-zinc-300 hover:text-zinc-700 `;
 const classesRightAnswer = `right cursor-not-allowed text-zinc-100 bg-red-500`;
@@ -22,6 +24,34 @@ export default function SectionText(props) {
   const [quoteData, setQuoteData] = useContext(QuoteDataContext);
   const [wrongAnswers, setWrongAnswers] = useContext(WrongAnswersContext);
 
+  // Confetti  functionality
+
+  const defaultConfetti = {
+    spread: 360,
+    ticks: 50,
+    gravity: 0,
+    decay: 0.94,
+    startVelocity: 30,
+    colors: ["FFFFFF", "dddddd", "FFFFFF", "FFFFFF", "FFFFFF"],
+  };
+
+  function shoot() {
+    confetti({
+      ...defaultConfetti,
+      particleCount: 40,
+      scalar: 1.2,
+      shapes: ["star"],
+    });
+
+    confetti({
+      ...defaultConfetti,
+      particleCount: 10,
+      scalar: 0.75,
+      shapes: ["circle"],
+    });
+  }
+
+  // Confetti  functionality END
   /*:: Prepare Local Storage ::*/
 
   // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
@@ -159,6 +189,10 @@ export default function SectionText(props) {
       tempStatusPlayedHistoryWon = statusPlayedHistory["won"] + 1;
 
       console.log(`tempStatusPlayedHistoryWon ${tempStatusPlayedHistoryWon}`);
+
+      // Cofetti fron example
+      setTimeout(shoot, 100);
+      setTimeout(shoot, 200);
     } else {
       tempStatusAnswered[clickedButton] = true;
       tempStatusTries = statusTries - 1;
