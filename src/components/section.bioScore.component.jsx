@@ -157,7 +157,7 @@ export default function BioScore(props) {
               visible={" "}
               loadNextQuote={loadNextQuote}
               positionClass={
-                "absolute  -translate-x-1/2 bottom-16 md:m-auto md:mt-24 md:relative md:translate-x-0"
+                "absolute  -translate-x-1/2 bottom-10 md:m-auto md:mt-24 md:relative md:translate-x-0"
               }
             />
           ) : (

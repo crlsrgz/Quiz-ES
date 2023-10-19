@@ -304,7 +304,7 @@ export default function SectionText(props) {
     <div
       className={`section-container mx-auto mt-6 ${props.classes} w-4/5 flex-col justify-center gap-8 md:w-1/2`}
     >
-      <div className="mx-auto h-12">
+      <div className=" mx-auto h-44">
         <h1
           className={`mt-2 text-left font-besley ${quoteTextSize} font-semibold text-blue-50`}
         >
@@ -337,7 +337,7 @@ export default function SectionText(props) {
               visible={statusTries <= 0 ? " " : "hidden"}
               loadNextQuote={loadBioPage}
               positionClass={
-                "absolute  -translate-x-1/2 bottom-16 md:m-auto md:mt-24 md:relative md:translate-x-0"
+                "absolute  -translate-x-1/2 bottom-10 md:m-auto md:mt-24 md:relative md:translate-x-0"
               }
             />
           </Link>
