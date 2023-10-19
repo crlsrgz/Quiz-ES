@@ -24,7 +24,6 @@ export default function Intro(props) {
           <ButtonNext
             textContent={"Quiz"}
             visible={" "}
-            loadNextQuote={""}
             positionClass={
               "absolute -translate-x-1/2 bottom-16 md:m-auto md:mt-16 md:relative md:translate-x-0"
             }

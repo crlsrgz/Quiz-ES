@@ -64,11 +64,11 @@ export default function Navigation() {
         >
           {linksArray.map((element, index) => {
             return (
-              <>
-                <li
-                  key={index}
-                  className=" mr-4 flex flex-col items-center justify-center text-center text-xl"
-                >
+              <div
+                key={index}
+                className="h-16 w-4/5 border-b-2 border-zinc-700"
+              >
+                <li className=" mr-4 flex flex-col items-center justify-center text-center text-2xl">
                   <NavLink
                     to={`/${element}`}
                     className={({ isActive, isPending }) =>
@@ -83,8 +83,7 @@ export default function Navigation() {
                     <span>{element === "" ? "Home" : element}</span>
                   </NavLink>
                 </li>
-                <span className="w-4/5 border-b-2 border-zinc-700"></span>
-              </>
+              </div>
             );
           })}
         </ul>

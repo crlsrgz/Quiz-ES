@@ -56,12 +56,13 @@ export default function BioScore(props) {
 
   //: get quote info
 
-  const [dataAuthorsInfo, setDataAuthorsInfo] = useState(
-    quoteData.authorsInfo[statusGamesPlayed]["name"],
-  );
-
   const [authorsInfoIndex, setAuthorsInfoIndex] = useState(
     statusGamesPlayed + 1,
+  );
+  const [dataAuthorsInfo, setDataAuthorsInfo] = useState(
+    quoteData.authorsInfo[
+      authorsInfoIndex === 3 ? authorsInfoIndex : statusGamesPlayed
+    ]["name"],
   );
 
   function loadNextQuote() {
@@ -103,10 +104,12 @@ export default function BioScore(props) {
       return element === statusAnswered[index];
     });
 
-  console.log(` Compare arrays ${compareArrays}`);
+  // console.log(` Compare arrays ${compareArrays}`);
 
   console.log(`statusGamesPlayed - ${statusGamesPlayed}`);
   console.log(`authorsInfoIndex ${authorsInfoIndex}`);
+  console.log(dataAuthorsInfo);
+  console.log(quoteData.authorsInfo);
   return (
     <div
       className={`section-container m-4 mx-auto flex ${props.classes} w-4/5 flex-col justify-center `}
