@@ -290,6 +290,7 @@ export default function SectionText(props) {
               checkAnswer={checkAnswer}
               disabled={statusAnswered[index]}
               iconAnswer={statusTries === 0 ? iconAnswerArray[index] : ""}
+              hiddenIcon={statusTries === 0 ? "" : "hidden"}
             />
           );
         })}
