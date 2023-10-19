@@ -337,7 +337,7 @@ export default function SectionText(props) {
               visible={statusTries <= 0 ? " " : "hidden"}
               loadNextQuote={loadBioPage}
               positionClass={
-                "absolute  -translate-x-1/2 bottom-16 md:m-auto md:mt-12 md:relative md:translate-x-0"
+                "absolute  -translate-x-1/2 bottom-16 md:m-auto md:mt-24 md:relative md:translate-x-0"
               }
             />
           </Link>
