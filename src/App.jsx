@@ -26,11 +26,8 @@ export default function App() {
   const formatDate = date.toISOString().slice(0, 10);
 
   const user = {
-    name: `${userId}`,
-    date: date,
+    userId: `${userId}`,
     dateShort: formatDate,
-    quoteId: [],
-    score: [0, 0],
   };
 
   /*:: Temporary quote data ::*/
