@@ -255,8 +255,8 @@ export default function SectionText(props) {
 
   console.log("/////END/////");
   console.table(gameStatus);
-  console.table(gameStatus["gameOver"]);
-  console.table(statusGameOver ? "hidden" : " ");
+  // console.table(gameStatus["gameOver"]);
+  // console.table(statusGameOver ? "hidden" : " ");
   /*::::::::::::::::::::::::::
     LOAD BIO PAGE 
   ::::::::::::::::::::::::::*/

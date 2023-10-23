@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 // import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,8 +19,9 @@ import WrongAnswersContext from "./components/context.wrongAnswer";
 import setLocalStorage from "./components/localstorage.function";
 
 export default function App() {
-  // const userId = self.crypto.randomUUID();
-  const userId = uuidv4();
+  const userId = localStorage["user"]
+    ? JSON.parse(localStorage["user"])["userId"]
+    : uuidv4();
 
   const date = new Date();
   const formatDate = date.toISOString().slice(0, 10);
@@ -82,6 +83,14 @@ export default function App() {
       },
     },
   });
+  const [userScoreData, setUserScoreData] = useState({
+    userLastPlayed: "-",
+    userPlayedGames: "-",
+    userWonGames: "-",
+  });
+
+  const [gameStatus, setGameStatus] = useState({});
+
   //: Disabled for development START
 
   useEffect(() => {
@@ -113,7 +122,7 @@ export default function App() {
           }
 
           setQuoteData({
-            date: data["date"],
+            // date: data["date"],
             authorsInfo: {
               0: { name: "---" },
               1: { name: populateAuthors[0] },
@@ -122,23 +131,48 @@ export default function App() {
             },
             gameQuotes: data["quotes"],
           });
+          setUserScoreData({
+            userLastPlayed: data["user"]["scores"]["user_last_played"]
+              ? data["user"]["scores"]["user_last_played"]
+              : formatDate,
+            userPlayedGames: data["user"]["scores"]["user_played_games"]
+              ? data["user"]["scores"]["user_last_played"]
+              : 0,
+            userWonGames: data["user"]["scores"]["user_won_games"]
+              ? data["user"]["scores"]["user_played_games"]
+              : 0,
+          });
         })
         .catch((error) => {
-          console.log(`set state error ${error}`);
+          console.log(`Error at Fetch end  ${error}`);
         });
     }
+
     makeRequest();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //: Disabled for development END
 
-  /*:: Prepare Local Storage ::*/
-  // formatDate === quoteData["date"]
-  //   ? console.log("same date")
-  //   : console.log("not the same date");
-
   // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
-  if (!localStorage["user"]) {
+
+  // if (!localStorage["user"]) {
+  //   localStorage.setItem(
+  //     "user",
+  //     setLocalStorage(
+  //       userId,
+  //       [false, false, false, false],
+  //       0,
+  //       0,
+  //       3,
+  //       false,
+  //       0,
+  //       0,
+  //       userScoreData["userLastPlayed"],
+  //     ),
+  //   );
+  // }
+
+  useEffect(() => {
     localStorage.setItem(
       "user",
       setLocalStorage(
@@ -148,15 +182,21 @@ export default function App() {
         0,
         3,
         false,
-        0,
-        0,
-        formatDate,
+        userScoreData["userWonGames"],
+        userScoreData["userPlayedGames"],
+        userScoreData["userLastPlayed"],
       ),
     );
-  }
+    setGameStatus(JSON.parse(localStorage["user"]));
+    // console.table(localStorage["user"]);
+    console.table(userScoreData);
+    console.table(gameStatus);
+  }, [userId, userScoreData]);
+
+  // console.log(` hello ${userScoreData["userLastPlayed"]}`);
 
   const wrongAnswers = useState(0);
-  const gameStatus = useState(JSON.parse(localStorage["user"]));
+  // const gameStatus = useState(JSON.parse(localStorage["user"]));
 
   //: Navigation links????
 
@@ -166,9 +206,12 @@ export default function App() {
   //   ],
   // );
 
+  console.log("/////END/////");
+  // console.table(localStorage.getItem["user"]);
+
   return (
     <>
-      <GameStatusContext.Provider value={gameStatus}>
+      <GameStatusContext.Provider value={[gameStatus, setGameStatus]}>
         <QuoteDataContext.Provider value={[quoteData, setQuoteData]}>
           <WrongAnswersContext.Provider value={wrongAnswers}>
             <BrowserRouter>
