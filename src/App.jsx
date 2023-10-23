@@ -135,11 +135,11 @@ export default function App() {
             userLastPlayed: data["user"]["scores"]["user_last_played"]
               ? data["user"]["scores"]["user_last_played"]
               : formatDate,
-            userPlayedGames: data["user"]["scores"]["user_played_games"]
-              ? data["user"]["scores"]["user_last_played"]
+            userPlayedGames: Number(data["user"]["scores"]["user_played_games"])
+              ? Number(data["user"]["scores"]["user_played_games"])
               : 0,
-            userWonGames: data["user"]["scores"]["user_won_games"]
-              ? data["user"]["scores"]["user_played_games"]
+            userWonGames: Number(data["user"]["scores"]["user_won_games"])
+              ? Number(data["user"]["scores"]["user_won_games"])
               : 0,
           });
         })
@@ -152,7 +152,7 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //: Disabled for development END
-
+  const x = "5";
   // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
 
   // if (!localStorage["user"]) {
