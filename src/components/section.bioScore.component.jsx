@@ -15,23 +15,6 @@ export default function BioScore(props) {
   const [quoteData, setQuoteData] = useContext(QuoteDataContext);
   const [wrongAnswers, setWrongAnswers] = useContext(WrongAnswersContext);
 
-  if (!localStorage["user"]) {
-    localStorage.setItem(
-      "user",
-      setLocalStorage(
-        gameStatus["userId"],
-        [false, false, false, false],
-        0,
-        0,
-        3,
-        false,
-        0,
-        0,
-        "date",
-      ),
-    );
-  }
-
   const [statusGameOver, setStatusGameOver] = useState(
     JSON.parse(localStorage.getItem(["user"]))["gameOver"],
   );

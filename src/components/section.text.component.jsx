@@ -55,25 +55,6 @@ export default function SectionText(props) {
   }
 
   // Confetti  functionality END
-  /*:: Prepare Local Storage ::*/
-
-  // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
-  if (!localStorage["user"]) {
-    localStorage.setItem(
-      "user",
-      setLocalStorage(
-        gameStatus["userId"],
-        [false, false, false, false],
-        0,
-        0,
-        3,
-        false,
-        0,
-        0,
-        "date",
-      ),
-    );
-  }
 
   //: get Gamestatus info
 
