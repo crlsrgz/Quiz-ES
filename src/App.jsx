@@ -240,6 +240,7 @@ export default function App() {
           <Route key="2" path="/marcador/" element={<BioScore key="c0" />} />
           <Route key="3" path="/info/" element={<Info key="d0" />} />
           <Route key="1" path="/más/" element={<About key="e0" />} />
+          <Route key="1" path="/frase/" element={<SectionText />} />
         </Routes>
       </div>
     );
@@ -258,9 +259,6 @@ export default function App() {
                   <RoutesAnimated />
                 </div>
               </AnimatePresence>
-              <Routes>
-                <Route key="1" path="/frase/" element={<SectionText />} />
-              </Routes>
             </BrowserRouter>
           </WrongAnswersContext.Provider>
         </QuoteDataContext.Provider>
