@@ -10,7 +10,8 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-import connectionUrl from "./connections/connection";
+// import connectionUrl from "./connections/connection";
+
 /* ═══ Required ═══ */
 import "./data/names";
 import GameStatusContext from "./components/context.GameStatus";
@@ -93,69 +94,66 @@ export default function App() {
 
   //: Disabled for development START
 
-  useEffect(() => {
-    async function makeRequest() {
-      await fetch(connectionUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-        },
-        body: JSON.stringify(user),
-      })
-        .then(function (response) {
-          // return response.text();
-          return response.json();
-        })
-        .catch((error) => {
-          console.log(`data error ${error}`);
-        })
-        .then(function (data) {
-          console.log(data);
-          // console.log(data["quotes"]);
+  // useEffect(() => {
+  //   async function makeRequest() {
+  //     await fetch(connectionUrl, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json; charset=utf-8",
+  //       },
+  //       body: JSON.stringify(user),
+  //     })
+  //       .then(function (response) {
+  //         // return response.text();
+  //         return response.json();
+  //       })
+  //       .catch((error) => {
+  //         console.log(`data error ${error}`);
+  //       })
+  //       .then(function (data) {
+  //         console.log(data);
+  //         // console.log(data["quotes"]);
 
-          const populateAuthors = [];
+  //         const populateAuthors = [];
 
-          for (let i = 0; i < 3; i++) {
-            populateAuthors.push(
-              data["quotes"][i]["authors"][data["quotes"][i]["answer"]],
-            );
-          }
+  //         for (let i = 0; i < 3; i++) {
+  //           populateAuthors.push(
+  //             data["quotes"][i]["authors"][data["quotes"][i]["answer"]],
+  //           );
+  //         }
 
-          setQuoteData({
-            // date: data["date"],
-            authorsInfo: {
-              0: { name: "---" },
-              1: { name: populateAuthors[0] },
-              2: { name: populateAuthors[1] },
-              3: { name: populateAuthors[2] },
-            },
-            gameQuotes: data["quotes"],
-          });
-          setUserScoreData({
-            userLastPlayed: data["user"]["scores"]["user_last_played"]
-              ? data["user"]["scores"]["user_last_played"]
-              : formatDate,
-            userPlayedGames: Number(data["user"]["scores"]["user_played_games"])
-              ? Number(data["user"]["scores"]["user_played_games"])
-              : 0,
-            userWonGames: Number(data["user"]["scores"]["user_won_games"])
-              ? Number(data["user"]["scores"]["user_won_games"])
-              : 0,
-          });
-        })
-        .catch((error) => {
-          console.log(`Error at Fetch end  ${error}`);
-        });
-    }
+  //         setQuoteData({
+  //           // date: data["date"],
+  //           authorsInfo: {
+  //             0: { name: "---" },
+  //             1: { name: populateAuthors[0] },
+  //             2: { name: populateAuthors[1] },
+  //             3: { name: populateAuthors[2] },
+  //           },
+  //           gameQuotes: data["quotes"],
+  //         });
+  //         setUserScoreData({
+  //           userLastPlayed: data["user"]["scores"]["user_last_played"]
+  //             ? data["user"]["scores"]["user_last_played"]
+  //             : formatDate,
+  //           userPlayedGames: Number(data["user"]["scores"]["user_played_games"])
+  //             ? Number(data["user"]["scores"]["user_played_games"])
+  //             : 0,
+  //           userWonGames: Number(data["user"]["scores"]["user_won_games"])
+  //             ? Number(data["user"]["scores"]["user_won_games"])
+  //             : 0,
+  //         });
+  //       })
+  //       .catch((error) => {
+  //         console.log(`Error at Fetch end  ${error}`);
+  //       });
+  //   }
 
-    makeRequest();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  //: Disabled for development END
-  const x = "5";
-  // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
+  //   makeRequest();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  // if (!localStorage["user"]) {
+  // useEffect(() => {
   //   localStorage.setItem(
   //     "user",
   //     setLocalStorage(
@@ -165,14 +163,22 @@ export default function App() {
   //       0,
   //       3,
   //       false,
-  //       0,
-  //       0,
+  //       userScoreData["userWonGames"],
+  //       userScoreData["userPlayedGames"],
   //       userScoreData["userLastPlayed"],
   //     ),
   //   );
-  // }
+  //   setGameStatus(JSON.parse(localStorage["user"]));
+  //   // console.table(localStorage["user"]);
+  //   console.table(userScoreData);
+  //   console.table(gameStatus);
+  // }, [userId, userScoreData]);
 
-  useEffect(() => {
+  //: Disabled for development END
+
+  //: Disabled for Production START
+  // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
+  if (!localStorage["user"]) {
     localStorage.setItem(
       "user",
       setLocalStorage(
@@ -182,21 +188,20 @@ export default function App() {
         0,
         3,
         false,
-        userScoreData["userWonGames"],
-        userScoreData["userPlayedGames"],
+        0,
+        0,
         userScoreData["userLastPlayed"],
       ),
     );
+  }
+  useEffect(() => {
     setGameStatus(JSON.parse(localStorage["user"]));
-    // console.table(localStorage["user"]);
-    console.table(userScoreData);
-    console.table(gameStatus);
   }, [userId, userScoreData]);
 
+  //: Disabled for Production END
   // console.log(` hello ${userScoreData["userLastPlayed"]}`);
 
   const wrongAnswers = useState(0);
-  // const gameStatus = useState(JSON.parse(localStorage["user"]));
 
   //: Navigation links????
 

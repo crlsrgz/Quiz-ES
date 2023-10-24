@@ -6,7 +6,9 @@ import Name from "../components/name.component";
 import ButtonNext from "./button.next.component";
 import HeartCounter from "./element.heartCounter.component";
 
-import connectionUser from "../connections/connectionUser";
+//: Disabled for development START
+// import connectionUser from "../connections/connectionUser";
+//: Disabled for development END
 
 import setLocalStorage from "./localstorage.function";
 
@@ -57,6 +59,7 @@ export default function SectionText(props) {
   // Confetti  functionality END
 
   //: get Gamestatus info
+  /* 💡 GAmestatus not working because is not defined, the app musst be loaded from the first page */
 
   const [statusGameOver, setStatusGameOver] = useState(
     gameStatus["gameOver"],
