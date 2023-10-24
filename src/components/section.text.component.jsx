@@ -56,8 +56,10 @@ export default function SectionText(props) {
 
   // Confetti  functionality END
 
+  console.log("------------------>");
+  console.log(gameStatus);
+  console.log("------------------>");
   //: get Gamestatus info
-
   const [statusGameOver, setStatusGameOver] = useState(
     gameStatus["gameOver"],
     // Testing fetching data...
@@ -134,7 +136,6 @@ export default function SectionText(props) {
     setGameQuotes(quoteData.gameQuotes[statusGamesPlayed]["quote"]);
     setQuoteAnswer(quoteData.gameQuotes[statusGamesPlayed]["answer"]);
     setNewNames(quoteData.gameQuotes[statusGamesPlayed]["authors"]);
-
     //: Set quote text size
     const quoteLength = gameQuotes.length;
 

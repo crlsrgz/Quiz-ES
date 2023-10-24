@@ -89,7 +89,15 @@ export default function App() {
     userWonGames: "-",
   });
 
-  const [gameStatus, setGameStatus] = useState({});
+  const [gameStatus, setGameStatus] = useState({
+    userId: "",
+    answered: [false, false, false, false],
+    score: 0,
+    gamesPlayed: 0,
+    tries: 3,
+    gameOver: false,
+    playedHistory: { won: 0, played: 0, lastPlayed: "-" },
+  });
 
   //: Disabled for development START
 
@@ -188,9 +196,23 @@ export default function App() {
       ),
     );
     setGameStatus(JSON.parse(localStorage["user"]));
+    // setGameStatus(
+    //   setLocalStorage(
+    //     userId,
+    //     [false, false, false, false],
+    //     0,
+    //     0,
+    //     3,
+    //     false,
+    //     userScoreData["userWonGames"],
+    //     userScoreData["userPlayedGames"],
+    //     userScoreData["userLastPlayed"],
+    //   ),
+    // );
     // console.table(localStorage["user"]);
     console.table(userScoreData);
-    console.table(gameStatus);
+
+    // console.table(gameStatus);
   }, [userId, userScoreData]);
 
   // console.log(` hello ${userScoreData["userLastPlayed"]}`);
@@ -205,7 +227,6 @@ export default function App() {
   //     quoteData["gameQuotes"]["0"]["answer"]
   //   ],
   // );
-
   console.log("/////END/////");
   // console.table(localStorage.getItem["user"]);
 
