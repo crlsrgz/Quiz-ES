@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, Suspense, lazy } from "react";
 import { v4 as uuidv4 } from "uuid";
 // import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 /* ═══ Components ═══ */
 import Navigation from "./components/navigation.component";
@@ -18,6 +18,8 @@ import GameStatusContext from "./components/context.GameStatus";
 import QuoteDataContext from "./components/context.QuoteData";
 import WrongAnswersContext from "./components/context.wrongAnswer";
 import setLocalStorage from "./components/localstorage.function";
+
+import { AnimatePresence } from "framer-motion";
 
 export default function App() {
   const userId = localStorage["user"]
@@ -212,26 +214,53 @@ export default function App() {
   // );
 
   console.log("/////END/////");
-  // console.table(localStorage.getItem["user"]);
 
+  function RoutesAnimated() {
+    const location = useLocation();
+
+    const [displayRouteLocation, setDisplayRouteLocation] = useState(location);
+    const [transitionClasses, setTransistionClasses] = useState("fadeIn");
+
+    useEffect(() => {
+      if (location !== displayRouteLocation) setTransistionClasses("fadeOut");
+    }, [location, displayRouteLocation]);
+
+    return (
+      <div
+        className={`${transitionClasses}`}
+        onAnimationEnd={() => {
+          if (transitionClasses === "fadeOut") {
+            setTransistionClasses("fadeIn");
+            setDisplayRouteLocation(location);
+          }
+        }}
+      >
+        <Routes location={displayRouteLocation} key={location.key}>
+          <Route key="0" exact path="/" element={<Intro key="a0" />} />
+          <Route key="2" path="/marcador/" element={<BioScore key="c0" />} />
+          <Route key="3" path="/info/" element={<Info key="d0" />} />
+          <Route key="1" path="/más/" element={<About key="e0" />} />
+        </Routes>
+      </div>
+    );
+  }
+
+  // console.table(localStorage.getItem["user"]);
   return (
     <>
       <GameStatusContext.Provider value={[gameStatus, setGameStatus]}>
         <QuoteDataContext.Provider value={[quoteData, setQuoteData]}>
           <WrongAnswersContext.Provider value={wrongAnswers}>
             <BrowserRouter>
-              <Navigation />
-              {/* <Connection /> */}
-
-              <div className="main-container m-0 h-5/6 p-0 md:mt-20">
-                <Routes>
-                  <Route path="/" element={<Intro />} />
-                  <Route path="/frase/" element={<SectionText />} />
-                  <Route path="/marcador/" element={<BioScore />} />
-                  <Route path="/info/" element={<Info />} />
-                  <Route path="/más/" element={<About />} />
-                </Routes>
-              </div>
+              <AnimatePresence>
+                <div className="main-container m-0 h-5/6 p-0 md:mt-20">
+                  <Navigation />
+                  <RoutesAnimated />
+                </div>
+              </AnimatePresence>
+              <Routes>
+                <Route key="1" path="/frase/" element={<SectionText />} />
+              </Routes>
             </BrowserRouter>
           </WrongAnswersContext.Provider>
         </QuoteDataContext.Provider>
