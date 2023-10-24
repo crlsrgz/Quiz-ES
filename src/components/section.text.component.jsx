@@ -235,7 +235,7 @@ export default function SectionText(props) {
     });
   }
 
-  console.log("/////END/////");
+  console.log("/////END - TEXT/////");
   console.table(gameStatus);
   // console.table(gameStatus["gameOver"]);
   // console.table(statusGameOver ? "hidden" : " ");

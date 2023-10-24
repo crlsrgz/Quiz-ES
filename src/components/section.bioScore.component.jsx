@@ -9,6 +9,7 @@ import QuoteDataContext from "./context.QuoteData";
 import WrongAnswersContext from "./context.wrongAnswer";
 
 import ButtonNext from "./button.next.component";
+import DateNextGame from "./element.dateNextGame.component";
 
 export default function BioScore(props) {
   const [gameStatus, setGameStatus] = useContext(GameStatusContext);
@@ -29,6 +30,9 @@ export default function BioScore(props) {
   );
   const [statusPlayedHistoryPlayed, setPlayedHistoryPlayed] = useState(
     JSON.parse(localStorage.getItem(["user"]))["playedHistory"]["played"],
+  );
+  const [statusPlayedHistoryLastPlayed, setPlayedHistoryLastPlayed] = useState(
+    JSON.parse(localStorage.getItem(["user"]))["playedHistory"]["lastPlayed"],
   );
 
   const [statusAnswered, setStatusAnswered] = useState(
@@ -64,8 +68,8 @@ export default function BioScore(props) {
         statusTries,
         false,
         statusPlayedHistoryWon,
-        0,
-        "date",
+        statusPlayedHistoryPlayed,
+        statusPlayedHistoryLastPlayed,
       ),
     );
 
@@ -89,10 +93,12 @@ export default function BioScore(props) {
 
   // console.log(` Compare arrays ${compareArrays}`);
 
-  console.log(`statusGamesPlayed - ${statusGamesPlayed}`);
-  console.log(`authorsInfoIndex ${authorsInfoIndex}`);
-  console.log(dataAuthorsInfo);
-  console.log(quoteData.authorsInfo);
+  // console.log(`statusGamesPlayed - ${statusGamesPlayed}`);
+  // console.log(`authorsInfoIndex ${authorsInfoIndex}`);
+  // console.log(dataAuthorsInfo);
+  // console.log(quoteData.authorsInfo);
+  console.log("/////END - BIO/////");
+  console.table(gameStatus);
   return (
     <div
       className={`section-container m-4 mx-auto flex ${props.classes} w-4/5 flex-col justify-center `}
@@ -114,16 +120,16 @@ export default function BioScore(props) {
         <div className="text-center  text-blue-50">
           <div className="flex flex-col">
             <div className="flex flex-row">
-              <h2 className="text-2xl md:text-3xl">
+              <h3 className="text-2xl md:text-3xl">
                 Respuestas
                 <br />
                 Correctas
-              </h2>
+              </h3>
             </div>
             <div className="flex items-baseline justify-center">
-              <h3 className="md:text-10xl mt-0 font-serif text-8xl">
+              <h2 className="md:text-10xl mt-0 font-serif text-8xl">
                 {statusPlayedHistoryWon ?? "-"}
-              </h3>
+              </h2>
               <h3 className="mt-0 font-serif text-4xl md:text-5xl">
                 /{statusPlayedHistoryPlayed ?? "-"}
               </h3>
@@ -144,10 +150,11 @@ export default function BioScore(props) {
               }
             />
           ) : (
-            " "
+            ""
           )}
         </Link>
       </div>
+      {statusGameOver ? <DateNextGame /> : <DateNextGame />}
     </div>
   );
 }
