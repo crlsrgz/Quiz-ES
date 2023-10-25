@@ -76,7 +76,7 @@ export default function SectionText(props) {
     // JSON.parse(localStorage.getItem(["user"]))["answered"],
   );
 
-  const [statusScore, setStatusScore] = useState(gameStatus["score"]);
+  const [statusScore, setStatusScore] = useState(Number(gameStatus["score"]));
   const [statusGamesPlayed, setStatusGamesPlayed] = useState(
     gameStatus["gamesPlayed"],
     // JSON.parse(localStorage.getItem(["user"]))["gamesPlayed"],
@@ -153,6 +153,7 @@ export default function SectionText(props) {
     console.log(`quoteLength useEffect ${quoteLength}`);
     console.log(`quoteLength ${quoteLength}`);
   }, [quoteData]);
+
   /*::::::::::::::::::::::::::
       CHECK ANSWER 
     ::::::::::::::::::::::::::*/
@@ -162,7 +163,7 @@ export default function SectionText(props) {
     const clickedButton = parseInt(e.target.id);
     let tempStatusAnswered = [...statusAnswered];
     let tempStatusTries;
-    let tempStatusScore;
+    let tempStatusScore = Number(statusScore);
     let tempStatusPlayedHistoryWon;
     let tempStatusPlayedHistoryPlayed = statusPlayedHistory["played"];
 
@@ -172,7 +173,7 @@ export default function SectionText(props) {
         return true;
       });
       tempStatusTries = 0;
-      tempStatusScore = statusScore + 1;
+      tempStatusScore = Number(statusScore + 1);
       tempStatusPlayedHistoryWon = statusPlayedHistory["won"] + 1;
 
       console.log(`tempStatusPlayedHistoryWon ${tempStatusPlayedHistoryWon}`);
@@ -294,6 +295,7 @@ export default function SectionText(props) {
     };
 
     //Submit data
+    /* 💡 Check the values retreive by fetch */
     async function updateUser() {
       await fetch(connectionUser, {
         method: "POST",
