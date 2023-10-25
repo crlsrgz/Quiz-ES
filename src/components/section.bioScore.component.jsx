@@ -91,14 +91,8 @@ export default function BioScore(props) {
       return element === statusAnswered[index];
     });
 
-  // console.log(` Compare arrays ${compareArrays}`);
-
-  // console.log(`statusGamesPlayed - ${statusGamesPlayed}`);
-  // console.log(`authorsInfoIndex ${authorsInfoIndex}`);
-  // console.log(dataAuthorsInfo);
-  // console.log(quoteData.authorsInfo);
   console.log("/////END - BIO/////");
-  console.table(gameStatus);
+
   return (
     <div
       className={`section-container m-4 mx-auto flex ${props.classes} w-4/5 flex-col justify-center `}

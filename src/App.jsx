@@ -119,9 +119,6 @@ export default function App() {
           console.log(`data error ${error}`);
         })
         .then(function (data) {
-          console.log(data);
-          // console.log(data["quotes"]);
-
           const populateAuthors = [];
 
           for (let i = 0; i < 3; i++) {
@@ -131,7 +128,6 @@ export default function App() {
           }
 
           setQuoteData({
-            // date: data["date"],
             authorsInfo: {
               0: { name: "---" },
               1: { name: populateAuthors[0] },
@@ -160,30 +156,13 @@ export default function App() {
     makeRequest();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  //: Disabled for development END
-  const x = "5";
-  // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
 
-  // if (!localStorage["user"]) {
-  //   localStorage.setItem(
-  //     "user",
-  //     setLocalStorage(
-  //       userId,
-  //       [false, false, false, false],
-  //       0,
-  //       0,
-  //       3,
-  //       false,
-  //       0,
-  //       0,
-  //       userScoreData["userLastPlayed"],
-  //     ),
-  //   );
-  // }
+  //: Disabled for development END
 
   useEffect(() => {
     localStorage.setItem(
       "user",
+      // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
       setLocalStorage(
         userId,
         [false, false, false, false],
@@ -197,39 +176,12 @@ export default function App() {
       ),
     );
     setGameStatus(JSON.parse(localStorage["user"]));
-    // setGameStatus(
-    //   setLocalStorage(
-    //     userId,
-    //     [false, false, false, false],
-    //     0,
-    //     0,
-    //     3,
-    //     false,
-    //     userScoreData["userWonGames"],
-    //     userScoreData["userPlayedGames"],
-    //     userScoreData["userLastPlayed"],
-    //   ),
-    // );
-    // console.table(localStorage["user"]);
     console.table(userScoreData);
-
-    // console.table(gameStatus);
   }, [userId, userScoreData]);
 
-  // console.log(` hello ${userScoreData["userLastPlayed"]}`);
-
   const wrongAnswers = useState(0);
-  // const gameStatus = useState(JSON.parse(localStorage["user"]));
 
-  //: Navigation links????
-
-  // console.log(
-  //   quoteData["gameQuotes"]["0"]["authors"][
-  //     quoteData["gameQuotes"]["0"]["answer"]
-  //   ],
-  // );
-  console.log("/////END/////");
-  // console.table(localStorage.getItem["user"]);
+  console.log("/////END - APP/////");
 
   return (
     <>

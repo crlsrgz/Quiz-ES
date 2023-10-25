@@ -56,9 +56,6 @@ export default function SectionText(props) {
 
   // Confetti  functionality END
 
-  console.log("------------------>");
-  console.log(gameStatus);
-  console.log("------------------>");
   //: get Gamestatus info
   const [statusGameOver, setStatusGameOver] = useState(
     gameStatus["gameOver"],
@@ -102,12 +99,9 @@ export default function SectionText(props) {
     }
   }
 
-  // const [quoteLength, setQuoteLength] = useState("");
   const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
 
-  console.log("/////Load/////");
-  // console.table(`statusPlayedHistory ${statusPlayedHistory["won"]}`);
-  // console.table(gameStatus);
+  console.log("///// START - TEXT /////");
   console.table(`quoteAnswer - ${quoteAnswer} -`);
   console.log(`COmpleted exercise ${wrongAnswers}`);
 
@@ -150,8 +144,6 @@ export default function SectionText(props) {
     } else {
       setQuoteTextSize("text-xl");
     }
-    console.log(`quoteLength useEffect ${quoteLength}`);
-    console.log(`quoteLength ${quoteLength}`);
   }, [quoteData]);
 
   /*::::::::::::::::::::::::::
@@ -175,8 +167,6 @@ export default function SectionText(props) {
       tempStatusTries = 0;
       tempStatusScore = Number(statusScore + 1);
       tempStatusPlayedHistoryWon = statusPlayedHistory["won"] + 1;
-
-      console.log(`tempStatusPlayedHistoryWon ${tempStatusPlayedHistoryWon}`);
 
       // Cofetti fron example
       setTimeout(shoot, 100);
@@ -202,11 +192,6 @@ export default function SectionText(props) {
       played: tempStatusPlayedHistoryPlayed,
       lastPlayed: statusPlayedHistory["lastPlayed"],
     });
-
-    // console.log(
-    //   `tempStatusPlayedHistoryPlayed ${tempStatusPlayedHistoryPlayed}`,
-    // );
-    // console.log(`tempstatus tries ${tempStatusTries}`);
 
     localStorage.setItem(
       "user",
@@ -238,10 +223,9 @@ export default function SectionText(props) {
     });
   }
 
-  console.log("/////END - TEXT/////");
   console.table(gameStatus);
-  // console.table(gameStatus["gameOver"]);
-  // console.table(statusGameOver ? "hidden" : " ");
+  console.log("/////END - TEXT/////");
+
   /*::::::::::::::::::::::::::
     LOAD BIO PAGE 
   ::::::::::::::::::::::::::*/
@@ -330,7 +314,6 @@ export default function SectionText(props) {
 
       <div className="w-12/12 mx-auto mt-8 flex flex-col items-center justify-center gap-4">
         {newNames.map((name, index) => {
-          // console.log(iconAnswerArray[index]);
           return (
             <Name
               name={name}
