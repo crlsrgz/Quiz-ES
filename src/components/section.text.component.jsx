@@ -6,7 +6,7 @@ import Name from "../components/name.component";
 import ButtonNext from "./button.next.component";
 import HeartCounter from "./element.heartCounter.component";
 
-import connectionUser from "../connections/connectionUser";
+// import connectionUser from "../connections/connectionUser";
 
 import setLocalStorage from "./localstorage.function";
 
@@ -141,16 +141,18 @@ export default function SectionText(props) {
 
     if (quoteLength < 55) {
       setQuoteTextSize("text-3xl md:text-4xl lg:text-5xl");
-    } else if (quoteLength > 55 && quoteLength < 120) {
+    } else if (quoteLength > 55 && quoteLength < 100) {
       setQuoteTextSize("text-2xl md:text-3xl lg:text-4xl");
-    } else if (quoteLength > 100) {
-      setQuoteTextSize("text-xl md:text-2xl lg:text-3xl");
+    } else if (quoteLength > 100 && quoteLength < 200) {
+      setQuoteTextSize("text-xl md:text-xl lg:text-2xl");
+    } else if (quoteLength > 200) {
+      setQuoteTextSize("text-base md:text-xl lg:text-xl");
     } else {
       setQuoteTextSize("text-xl");
     }
     console.log(`quoteLength useEffect ${quoteLength}`);
+    console.log(`quoteLength ${quoteLength}`);
   }, [quoteData]);
-
   /*::::::::::::::::::::::::::
       CHECK ANSWER 
     ::::::::::::::::::::::::::*/

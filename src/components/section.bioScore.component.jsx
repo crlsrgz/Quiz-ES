@@ -154,7 +154,7 @@ export default function BioScore(props) {
           )}
         </Link>
       </div>
-      {statusGameOver ? <DateNextGame /> : <DateNextGame />}
+      {statusGameOver ? <DateNextGame /> : ""}
     </div>
   );
 }

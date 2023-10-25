@@ -10,7 +10,7 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-import connectionUrl from "./connections/connection";
+// import connectionUrl from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
 import GameStatusContext from "./components/context.GameStatus";
@@ -72,7 +72,7 @@ export default function App() {
       },
       2: {
         quote:
-          "Ninguna ciencia hay en... .......... .......... .......... .......... .......... .......... .......... .......... .......... .......... .......... .......... ",
+          "Ninguna ciencia hay en Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint inventore ducimus nam esse nisi quibusdam ratione deserunt asperiores, atque sequi debitis iusto deleniti voluptate maiores! Tenetur, quidem sapiente. Ea, non? ",
         answer: 1,
         authors: [
           "Howard Phillips Lovecraft",
@@ -83,6 +83,7 @@ export default function App() {
       },
     },
   });
+
   const [userScoreData, setUserScoreData] = useState({
     userLastPlayed: "-",
     userPlayedGames: "-",
