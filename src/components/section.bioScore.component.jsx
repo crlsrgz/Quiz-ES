@@ -51,6 +51,17 @@ export default function BioScore(props) {
       authorsInfoIndex === 3 ? authorsInfoIndex : statusGamesPlayed
     ]["name"],
   );
+  const [dataAuthorsBio, setDataAuthorsBio] = useState({});
+
+  useEffect(() => {
+    setDataAuthorsBio(
+      quoteData.authorsInfo[
+        authorsInfoIndex === 3 ? authorsInfoIndex : statusGamesPlayed
+      ]["authorBio"],
+    );
+  }, []);
+
+  // console.table(dataAuthorsBio["authorBorn"]);
 
   function loadNextQuote() {
     setStatusAnswered([false, false, false, false]);
@@ -98,15 +109,34 @@ export default function BioScore(props) {
       className={`section-container m-4 mx-auto flex ${props.classes} w-4/5 flex-col justify-center `}
     >
       <div className="mx-auto mt-12 flex flex-col justify-start text-left font-besley text-xl text-zinc-100 md:mt-2 md:gap-2">
-        <h1 className="text-3xl md:text-4xl lg:text-6xl">{dataAuthorsInfo}</h1>
-        <h2 className="mt-1 text-2xl font-semibold text-blue-50 md:text-3xl lg:text-5xl">
-          42069
+        <h1 className="text-3xl md:text-4xl lg:text-6xl">
+          <a
+            className="underline underline-offset-8 transition duration-1000 hover:underline-offset-1"
+            target="new"
+            href={`https://lasmascelebres.com/autor/${dataAuthorsBio["authorId"]}/${dataAuthorsBio["authorName"]}`}
+          >
+            {dataAuthorsInfo}
+          </a>
+        </h1>
+        <h2 className="mt-1 text-2xl font-semibold text-blue-50 transition-all md:text-3xl lg:text-5xl">
+          {dataAuthorsBio["authorBorn"]} - {dataAuthorsBio["authorDeath"]}
         </h2>
         <h2 className="text-lg font-semibold text-blue-50 md:text-3xl lg:text-4xl">
-          Lorem ipsum
+          {dataAuthorsBio["authorCountryName"]}
         </h2>
         <h3 className="text-lg font-semibold text-blue-50 md:text-3xl lg:text-4xl">
-          Lorem, ipsum, dolor.
+          {dataAuthorsBio["professionOne"]
+            ? dataAuthorsBio["professionOne"]
+            : ""}
+          {dataAuthorsBio["professionTwo"]
+            ? `, ${dataAuthorsBio["professionTwo"]}`
+            : ""}
+          {dataAuthorsBio["professionThree"]
+            ? `, ${dataAuthorsBio["professionThree"]}`
+            : ""}
+          {dataAuthorsBio["professionFour"]
+            ? `, ${dataAuthorsBio["professionFour"]}`
+            : ""}
         </h3>
       </div>
 

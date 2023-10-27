@@ -10,13 +10,17 @@ import BioScore from "./components/section.bioScore.component";
 import Intro from "./components/section.intro.component";
 import Info from "./components/section.info.component";
 import About from "./components/section.about.component";
-// import connectionUrl from "./connections/connection";
+import connectionUrl from "./connections/connection";
 /* ═══ Required ═══ */
 import "./data/names";
 import GameStatusContext from "./components/context.GameStatus";
 import QuoteDataContext from "./components/context.QuoteData";
 import WrongAnswersContext from "./components/context.wrongAnswer";
 import setLocalStorage from "./components/localstorage.function";
+
+import hello from "../public/hello";
+
+console.log(hello);
 
 export default function App() {
   const userId = localStorage["user"]
@@ -119,20 +123,23 @@ export default function App() {
           console.log(`data error ${error}`);
         })
         .then(function (data) {
+          console.log(data["quotes"]);
           const populateAuthors = [];
+          const populateAuthorBio = [];
 
           for (let i = 0; i < 3; i++) {
             populateAuthors.push(
               data["quotes"][i]["authors"][data["quotes"][i]["answer"]],
             );
+            populateAuthorBio.push(data["quotes"][i]["authorBio"]);
           }
 
           setQuoteData({
             authorsInfo: {
-              0: { name: "---" },
-              1: { name: populateAuthors[0] },
-              2: { name: populateAuthors[1] },
-              3: { name: populateAuthors[2] },
+              0: { name: "---", authorBio: ".." },
+              1: { name: populateAuthors[0], authorBio: populateAuthorBio[0] },
+              2: { name: populateAuthors[1], authorBio: populateAuthorBio[1] },
+              3: { name: populateAuthors[2], authorBio: populateAuthorBio[2] },
             },
             gameQuotes: data["quotes"],
           });
@@ -152,7 +159,6 @@ export default function App() {
           console.log(`Error at Fetch end  ${error}`);
         });
     }
-
     makeRequest();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

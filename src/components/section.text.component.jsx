@@ -6,7 +6,7 @@ import Name from "../components/name.component";
 import ButtonNext from "./button.next.component";
 import HeartCounter from "./element.heartCounter.component";
 
-// import connectionUser from "../connections/connectionUser";
+import connectionUser from "../connections/connectionUser";
 
 import setLocalStorage from "./localstorage.function";
 
