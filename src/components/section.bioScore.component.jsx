@@ -119,7 +119,10 @@ export default function BioScore(props) {
           </a>
         </h1>
         <h2 className="mt-1 text-2xl font-semibold text-blue-50 transition-all md:text-3xl lg:text-5xl">
-          {dataAuthorsBio["authorBorn"]} - {dataAuthorsBio["authorDeath"]}
+          {dataAuthorsBio["authorBorn"]
+            ? dataAuthorsBio["authorBorn"] + " - "
+            : ""}
+          {dataAuthorsBio["authorDeath"] ? dataAuthorsBio["authorDeath"] : ""}
         </h2>
         <h2 className="text-lg font-semibold text-blue-50 md:text-3xl lg:text-4xl">
           {dataAuthorsBio["authorCountryName"]}
