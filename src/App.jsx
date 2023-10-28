@@ -40,16 +40,60 @@ export default function App() {
   const [quoteData, setQuoteData] = useState({
     authorsInfo: {
       0: {
-        name: "---",
+        name: null,
+        authorBio: {
+          authorId: null,
+          authorName: null,
+          authorBorn: null,
+          authorDeath: null,
+          authorCountryName: null,
+          professionOne: null,
+          professionTwo: null,
+          professionThree: null,
+          professionFour: null,
+        },
       },
       1: {
-        name: "Henry Ford",
+        name: null,
+        authorBio: {
+          authorId: null,
+          authorName: null,
+          authorBorn: null,
+          authorDeath: null,
+          authorCountryName: null,
+          professionOne: null,
+          professionTwo: null,
+          professionThree: null,
+          professionFour: null,
+        },
       },
       2: {
-        name: "Justo Sierra Méndez",
+        name: null,
+        authorBio: {
+          authorId: null,
+          authorName: null,
+          authorBorn: null,
+          authorDeath: null,
+          authorCountryName: null,
+          professionOne: null,
+          professionTwo: null,
+          professionThree: null,
+          professionFour: null,
+        },
       },
       3: {
-        name: "H. L. Mencken",
+        name: null,
+        authorBio: {
+          authorId: null,
+          authorName: null,
+          authorBorn: null,
+          authorDeath: null,
+          authorCountryName: null,
+          professionOne: null,
+          professionTwo: null,
+          professionThree: null,
+          professionFour: null,
+        },
       },
     },
     gameQuotes: {
@@ -123,7 +167,7 @@ export default function App() {
           console.log(`data error ${error}`);
         })
         .then(function (data) {
-          console.log(data["quotes"]);
+          // console.log(data["quotes"]);
           const populateAuthors = [];
           const populateAuthorBio = [];
 
@@ -186,7 +230,7 @@ export default function App() {
   }, [userId, userScoreData]);
 
   const wrongAnswers = useState(0);
-
+  console.log(quoteData);
   console.log("/////END - APP/////");
 
   return (
