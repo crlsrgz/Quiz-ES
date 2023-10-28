@@ -18,10 +18,6 @@ import QuoteDataContext from "./components/context.QuoteData";
 import WrongAnswersContext from "./components/context.wrongAnswer";
 import setLocalStorage from "./components/localstorage.function";
 
-import hello from "../public/hello";
-
-console.log(hello);
-
 export default function App() {
   const userId = localStorage["user"]
     ? JSON.parse(localStorage["user"])["userId"]
