@@ -15,7 +15,6 @@ import QuoteDataContext from "./context.QuoteData";
 import WrongAnswersContext from "./context.wrongAnswer";
 
 import confetti from "canvas-confetti";
-import { func } from "prop-types";
 
 /* ::::::::: Buttons states ::::::::: */
 const classesInitialState = `null cursor-pointer text-zinc-100 hover:border-zinc-300 hover:bg-zinc-300 hover:text-zinc-700 `;
@@ -102,8 +101,6 @@ export default function SectionText(props) {
   const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
 
   console.log("///// START - TEXT /////");
-  console.table(`quoteAnswer - ${quoteAnswer} -`);
-  console.log(`COmpleted exercise ${wrongAnswers}`);
 
   //: Set initial state for the buttons
   let classesInitialStateArray = ["", "", "", ""];
@@ -119,6 +116,9 @@ export default function SectionText(props) {
     }
 
     if (wrongAnswers === 3) {
+      classesInitialStateArray[i] = classesWrongAnswer;
+    }
+    if (statusGameOver) {
       classesInitialStateArray[i] = classesWrongAnswer;
     }
   }
@@ -223,7 +223,6 @@ export default function SectionText(props) {
     });
   }
 
-  console.table(gameStatus);
   console.log("/////END - TEXT/////");
 
   /*::::::::::::::::::::::::::
@@ -293,7 +292,7 @@ export default function SectionText(props) {
           // return response.json();
         })
         .then(function (data) {
-          console.log(data);
+          // console.log(data);
         });
     }
 

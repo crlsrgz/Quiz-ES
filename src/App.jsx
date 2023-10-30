@@ -23,6 +23,8 @@ export default function App() {
     ? JSON.parse(localStorage["user"])["userId"]
     : uuidv4();
 
+  // console.log(`userId ${userId} - APP - 5116`);
+
   const date = new Date();
   const formatDate = date.toISOString().slice(0, 10);
 
@@ -140,7 +142,7 @@ export default function App() {
     score: 0,
     gamesPlayed: 0,
     tries: 3,
-    gameOver: false,
+    gameOver: true,
     playedHistory: { won: 0, played: 0, lastPlayed: "-" },
   });
 
@@ -163,7 +165,6 @@ export default function App() {
           console.log(`data error ${error}`);
         })
         .then(function (data) {
-          // console.log(data["quotes"]);
           const populateAuthors = [];
           const populateAuthorBio = [];
 
@@ -206,6 +207,21 @@ export default function App() {
   //: Disabled for development END
 
   useEffect(() => {
+    let getLastPlayedDate = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))["playedHistory"]["lastPlayed"]
+      : "";
+    let checkIfGameisOver = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))["gameOver"]
+      : "";
+    if (checkIfGameisOver && formatDate === getLastPlayedDate) {
+      console.log(checkIfGameisOver);
+      console.log(formatDate, getLastPlayedDate);
+    }
+    if (!checkIfGameisOver && formatDate !== getLastPlayedDate) {
+      checkIfGameisOver = false;
+      console.log(checkIfGameisOver);
+    }
+
     localStorage.setItem(
       "user",
       // userId, arrayAnswered, score, gamesPlayed, tries, won, played, lastPlayed
@@ -215,18 +231,18 @@ export default function App() {
         0,
         0,
         3,
-        false,
+        checkIfGameisOver,
         userScoreData["userWonGames"],
         userScoreData["userPlayedGames"],
         userScoreData["userLastPlayed"],
       ),
     );
+
     setGameStatus(JSON.parse(localStorage["user"]));
-    console.table(userScoreData);
   }, [userId, userScoreData]);
 
   const wrongAnswers = useState(0);
-  console.log(quoteData);
+
   console.log("/////END - APP/////");
 
   return (

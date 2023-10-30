@@ -57,8 +57,6 @@ export default function BioScore(props) {
     ]["authorBio"],
   );
 
-  console.log(quoteData);
-
   // useEffect(() => {
   //   setDataAuthorsBio(
   //     quoteData.authorsInfo[
@@ -66,8 +64,6 @@ export default function BioScore(props) {
   //     ]["authorBio"],
   //   );
   // }, []);
-
-  // console.table(dataAuthorsBio["authorBorn"]);
 
   function loadNextQuote() {
     setStatusAnswered([false, false, false, false]);
@@ -107,6 +103,8 @@ export default function BioScore(props) {
     arrayCompare.every(function (element, index) {
       return element === statusAnswered[index];
     });
+
+  console.log("stattus game over = " + statusGameOver);
 
   console.log("/////END - BIO/////");
 
