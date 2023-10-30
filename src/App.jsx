@@ -96,36 +96,19 @@ export default function App() {
     },
     gameQuotes: {
       0: {
-        quote:
-          "El secreto de...... .......... .......... .......... .......... ",
+        quote: "...... .......... .......... .......... .......... ",
         answer: 2,
-        authors: [
-          "Antonio de Solís y Rivadeneyra",
-          "Conde de Rosse",
-          "Henry Ford",
-          "Sándor Márai",
-        ],
+        authors: ["---", "---.", "---.", "---"],
       },
       1: {
-        quote: "No creo ya ....",
+        quote: ".......",
         answer: 0,
-        authors: [
-          "Justo Sierra Méndez",
-          "Plutarco Elías Calles",
-          "Madame de Genlis",
-          "Multatuli",
-        ],
+        authors: ["---", "---", "---", "---"],
       },
       2: {
-        quote:
-          "Ninguna ciencia hay en Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint inventore ducimus nam esse nisi quibusdam ratione deserunt asperiores, atque sequi debitis iusto deleniti voluptate maiores! Tenetur, quidem sapiente. Ea, non? ",
+        quote: "... ... ... ",
         answer: 1,
-        authors: [
-          "Howard Phillips Lovecraft",
-          "H. L. Mencken",
-          "José de San Martín",
-          "Karlheinz Stockhausen",
-        ],
+        authors: ["---", "---", "---", "---"],
       },
     },
   });
