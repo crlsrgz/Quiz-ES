@@ -104,10 +104,6 @@ export default function BioScore(props) {
       return element === statusAnswered[index];
     });
 
-  console.log("stattus game over = " + statusGameOver);
-
-  console.log("/////END - BIO/////");
-
   return (
     <div
       className={`section-container m-4 mx-auto flex ${props.classes} w-4/5 flex-col justify-center `}

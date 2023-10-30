@@ -23,8 +23,6 @@ export default function App() {
     ? JSON.parse(localStorage["user"])["userId"]
     : uuidv4();
 
-  // console.log(`userId ${userId} - APP - 5116`);
-
   const date = new Date();
   const formatDate = date.toISOString().slice(0, 10);
 
@@ -197,12 +195,10 @@ export default function App() {
       ? JSON.parse(localStorage.getItem("user"))["gameOver"]
       : "";
     if (checkIfGameisOver && formatDate === getLastPlayedDate) {
-      console.log(checkIfGameisOver);
       console.log(formatDate, getLastPlayedDate);
     }
     if (!checkIfGameisOver && formatDate !== getLastPlayedDate) {
       checkIfGameisOver = false;
-      console.log(checkIfGameisOver);
     }
 
     localStorage.setItem(
@@ -225,8 +221,6 @@ export default function App() {
   }, [userId, userScoreData]);
 
   const wrongAnswers = useState(0);
-
-  console.log("/////END - APP/////");
 
   return (
     <>

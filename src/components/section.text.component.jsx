@@ -100,8 +100,6 @@ export default function SectionText(props) {
 
   const [quoteTextSize, setQuoteTextSize] = useState("text-3xl");
 
-  console.log("///// START - TEXT /////");
-
   //: Set initial state for the buttons
   let classesInitialStateArray = ["", "", "", ""];
   for (let i = 0; i < statusAnswered.length; i++) {
@@ -222,8 +220,6 @@ export default function SectionText(props) {
       },
     });
   }
-
-  console.log("/////END - TEXT/////");
 
   /*::::::::::::::::::::::::::
     LOAD BIO PAGE 
