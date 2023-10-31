@@ -57,14 +57,6 @@ export default function BioScore(props) {
     ]["authorBio"],
   );
 
-  // useEffect(() => {
-  //   setDataAuthorsBio(
-  //     quoteData.authorsInfo[
-  //       authorsInfoIndex === 3 ? authorsInfoIndex : statusGamesPlayed
-  //     ]["authorBio"],
-  //   );
-  // }, []);
-
   function loadNextQuote() {
     setStatusAnswered([false, false, false, false]);
     setStatusGamesPlayed(statusGamesPlayed + 1);
@@ -110,17 +102,26 @@ export default function BioScore(props) {
     >
       <div className="mx-auto mt-12 flex flex-col justify-start text-left font-besley text-xl text-zinc-100 md:mt-2 md:gap-2">
         <h1 className="text-3xl md:text-4xl lg:text-6xl">
-          <a
-            className="underline underline-offset-8 transition duration-1000 hover:underline-offset-1"
-            target="new"
-            href={`https://lasmascelebres.com/autor/${
-              dataAuthorsBio["authorId"] ? dataAuthorsBio["authorId"] : ""
-            }/${
-              dataAuthorsBio["authorName"] ? dataAuthorsBio["authorName"] : ""
-            }`}
-          >
-            {dataAuthorsInfo}
-          </a>
+          {dataAuthorsBio["authorId"] ? (
+            <a
+              className="underline underline-offset-8 transition duration-1000 hover:underline-offset-1"
+              target="new"
+              href={`https://lasmascelebres.com/autor/${
+                dataAuthorsBio["authorId"] ? dataAuthorsBio["authorId"] : ""
+              }/${
+                dataAuthorsBio["authorName"] ? dataAuthorsBio["authorName"] : ""
+              }`}
+            >
+              {dataAuthorsInfo}
+            </a>
+          ) : (
+            <div>
+              <br />
+              <br />
+              <br />
+              <br />
+            </div>
+          )}
         </h1>
         <h2 className="mt-1 text-2xl font-semibold text-blue-50 transition-all md:text-3xl lg:text-5xl">
           {dataAuthorsBio["authorBorn"]
