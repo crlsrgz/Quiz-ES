@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import PageTitle from "./element.pageTitle.component";
 import ButtonNext from "./button.next.component";
 import { Link } from "react-router-dom";
 
+import GameStatusContext from "./context.GameStatus";
+
 export default function Intro(props) {
+  const [gameStatus] = useContext(GameStatusContext);
+
+  console.log(gameStatus["gameOver"]);
   return (
     <div
       className={`section-container m-12 mx-auto flex ${props.classes} w-4/5 flex-col justify-center text-xl md:w-2/5 lg:w-2/6`}
@@ -20,7 +25,7 @@ export default function Intro(props) {
         </div>
       </div>
       <div className="m-auto mt-10">
-        <Link to="/frase">
+        <Link to={gameStatus["gameOver"] ? "/marcador" : "/frase"}>
           <ButtonNext
             textContent={"Quiz"}
             visible={" "}
