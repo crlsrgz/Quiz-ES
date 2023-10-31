@@ -8,7 +8,6 @@ import GameStatusContext from "./context.GameStatus";
 export default function Intro(props) {
   const [gameStatus] = useContext(GameStatusContext);
 
-  console.log(gameStatus["gameOver"]);
   return (
     <div
       className={`section-container m-12 mx-auto flex ${props.classes} w-4/5 flex-col justify-center text-xl md:w-2/5 lg:w-2/6`}
