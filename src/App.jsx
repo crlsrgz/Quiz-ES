@@ -195,7 +195,8 @@ export default function App() {
       ? JSON.parse(localStorage.getItem("user"))["gameOver"]
       : "";
     if (checkIfGameisOver && formatDate === getLastPlayedDate) {
-      console.log(formatDate, getLastPlayedDate);
+      // console.log(formatDate, getLastPlayedDate);
+      // check this feature in the future
     }
     if (!checkIfGameisOver && formatDate !== getLastPlayedDate) {
       checkIfGameisOver = false;
@@ -229,7 +230,6 @@ export default function App() {
           <WrongAnswersContext.Provider value={wrongAnswers}>
             <BrowserRouter>
               <Navigation />
-              {/* <Connection /> */}
 
               <div className="main-container m-0 h-5/6 p-0 md:mt-20">
                 <Routes>
