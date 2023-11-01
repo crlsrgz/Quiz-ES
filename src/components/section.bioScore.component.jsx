@@ -46,14 +46,20 @@ export default function BioScore(props) {
   const [authorsInfoIndex, setAuthorsInfoIndex] = useState(
     statusGamesPlayed + 1,
   );
+
   const [dataAuthorsInfo, setDataAuthorsInfo] = useState(
     quoteData.authorsInfo[
-      authorsInfoIndex === 3 ? authorsInfoIndex : statusGamesPlayed
+      statusGamesPlayed === 2 && statusGameOver
+        ? statusGamesPlayed + 1
+        : statusGamesPlayed
     ]["name"],
   );
+
   const [dataAuthorsBio, setDataAuthorsBio] = useState(
     quoteData.authorsInfo[
-      authorsInfoIndex === 3 ? authorsInfoIndex : statusGamesPlayed
+      statusGamesPlayed === 2 && statusGameOver
+        ? statusGamesPlayed + 1
+        : statusGamesPlayed
     ]["authorBio"],
   );
 
