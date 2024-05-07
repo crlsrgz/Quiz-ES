@@ -1,0 +1,1 @@
+type UserIdentifierId = string;
