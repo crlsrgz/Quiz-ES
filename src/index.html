@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="menu-desktop">
+
+                <h1>Title</h1>
+
+                <a href="/quiz/">quiz</a>
+                <a href="/score/">score</a>
+                <a href="/styling/">styling</a>
+            </div>
+        </header>
+        <main class="content">
+            <div id="score-board" class="score-board">
+                <div id="total-points"></div>
+                <div class="separator-diagonal">/</div>
+                <div id="games-played"></div>
+            </div>
+            <div class="quote h2">
+                <span>"</span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus temporibus consequuntur
+                    architecto sit aspernatur? Sapiente!<span>"</span>
+            </div>
+            <div class="answer-field">
+
+                <button class="answer answer-neutral">Name</button>
+                <button class="answer answer-neutral">Name</button>
+                <button class="answer answer-neutral">Name</button>
+                <button class="answer answer-neutral">Name</button>
+            </div>
+
+        </main>
+    </div>
+    <script type="module" src="./main.ts"></script>
+</body>
+
+</html>

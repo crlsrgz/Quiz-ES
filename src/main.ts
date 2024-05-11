@@ -1,5 +1,5 @@
 import "./style.css";
-import { connectionUrl, connectionUserData } from "./connections/connection.js";
+import { connectionUserData } from "./connections/connection.js";
 import { v4 as uuidv4 } from "uuid";
 import { insertTextContent } from "./utils/dom-functions.js";
 
@@ -15,29 +15,29 @@ const user = {
     dateShort: formatDate,
 };
 
-async function makeRequest() {
-    await fetch(connectionUrl, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json; charset=utf",
-        },
-        body: JSON.stringify(user),
-    })
-        .then(function (response) {
-            return response.json();
-        })
-        .catch((error) => {
-            console.log(`data error ${error}`);
-        })
-        .then((data) => {
-            console.log(Object.keys(data["user"]));
-            console.log(data["user"]["userId"]);
-            console.log(data["user"]["dateShort"]);
-            console.log(data["user"]["dateHuman"]);
-            console.log(data["user"]["scores"]);
-            localStorage.setItem("user", "userrrr");
-        });
-}
+// async function makeRequest() {
+//     await fetch(connectionUrl, {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json; charset=utf",
+//         },
+//         body: JSON.stringify(user),
+//     })
+//         .then(function (response) {
+//             return response.json();
+//         })
+//         .catch((error) => {
+//             console.log(`data error ${error}`);
+//         })
+//         .then((data) => {
+//             console.log(Object.keys(data["user"]));
+//             console.log(data["user"]["userId"]);
+//             console.log(data["user"]["dateShort"]);
+//             console.log(data["user"]["dateHuman"]);
+//             console.log(data["user"]["scores"]);
+//             localStorage.setItem("user", "userrrr");
+//         });
+// }
 
 // makeRequest();
 
