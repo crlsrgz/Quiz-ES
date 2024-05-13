@@ -170,7 +170,7 @@ section, .section {
 
 
 
-  border: solid;
+  border: none;
 }
 
 .score-board{
@@ -189,11 +189,11 @@ section, .section {
 }
 
 .content {
-  border: solid;
+  border: none;
 }
 
 .answer-field {
-  width: 400px;
+  width: 500px;
   margin: auto;
   display: flex;
   flex-direction: column;
