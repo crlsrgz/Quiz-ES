@@ -1,7 +1,7 @@
 import "./style.css";
-import { connectionUserData } from "./connections/connection.js";
+// import { connectionUserData } from "./connections/connection.js";
 import { v4 as uuidv4 } from "uuid";
-import { insertTextContent } from "./utils/dom-functions.js";
+// import { insertTextContent } from "./utils/dom-functions.js";
 
 console.log(localStorage["user"]);
 const userId = localStorage["user"] ? localStorage["user"] : uuidv4();
