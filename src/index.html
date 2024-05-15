@@ -11,44 +11,48 @@
 <body>
     <div id="app">
         <header>
-            <div class="menu-desktop">
 
-                <h1>Title</h1>
-
+            <h1 class="page-title">Title</h1>
+            <nav class="nav-desk">
                 <a href="/quiz/">quiz</a>
                 <a href="/score/">score</a>
                 <a href="/styling/">styling</a>
-            </div>
+            </nav>
+
         </header>
         <main class="content">
-            <div id="score-board" class="score-board">
-                <div id="total-points"></div>
-                <div class="separator-diagonal">/</div>
-                <div id="games-played"></div>
-            </div>
             <div class="quote">
-                <h2>
-
+                <h3>
                     <span>"</span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus temporibus
                     consequuntur
                     architecto sit aspernatur? Sapiente!<span>"</span>
-                </h2>
+                </h3>
             </div>
+            <section>
+                <div class="tries-left">
+                    <iconify-icon icon="ph:star-duotone" height=" 2rem" class="star-icon-full"></iconify-icon>
+                    <iconify-icon icon="ph:star-thin" height="2rem" class="star-icon-empty"></iconify-icon>
+                    <iconify-icon icon="ph:star-thin" height="2rem" class="star-icon-empty"></iconify-icon>
+                </div>
+            </section>
             <div class="answer-field">
                 <div class="button-container">
 
-                    <button class="answer answer-neutral">Name</button>
-                    <button class="answer answer-neutral">Name</button>
-                    <button class="answer answer-neutral">Name</button>
-                    <button class="answer answer-neutral">Name</button>
-                    <button class="answer answer-right">Name</button>
-                    <button class="answer answer-wrong">Name</button>
-                    <button class="answer answer-disabled">Name</button>
+                    <button id="1" class="answer answer-neutral">Vetle Ealhstan </button>
+                    <button id="2" class="answer answer-neutral">Ilean Marje </button>
+                    <button id="3" class="answer answer-neutral">Emma Dearbhla </button>
+                    <button id="4" class="answer answer-neutral">Audovera Anatolios </button>
+
                 </div>
 
             </div>
 
         </main>
+        <div id="score-board" class="score-board">
+            <div id="total-points"></div>
+            <div class="separator-diagonal">/</div>
+            <div id="games-played"></div>
+        </div>
     </div>
     <script type="module" src="./main.ts"></script>
 </body>

@@ -16,6 +16,7 @@
     "vite": "^5.2.0"
   },
   "dependencies": {
+    "iconify-icon": "^2.1.0",
     "uuidv4": "^6.2.13"
   }
 }

@@ -1,6 +1,10 @@
 import "./style.css";
-// import { connectionUserData } from "./connections/connection.js";
+import "iconify-icon";
+
+import { buttonRightAnswer } from "./button";
+
 import { v4 as uuidv4 } from "uuid";
+// import { connectionUserData } from "./connections/connection.js";
 // import { insertTextContent } from "./utils/dom-functions.js";
 
 console.log(localStorage["user"]);
@@ -61,3 +65,55 @@ async function userDataRequest() {
         });
 }
 userDataRequest();
+
+// BUTTONS
+const answer = 2;
+let isGameOver = false;
+let answerTries = 0;
+
+const buttons = document.querySelectorAll(
+    ".answer",
+) as NodeListOf<HTMLInputElement>;
+
+buttons.forEach((button) => {
+    let test = button;
+
+    button.addEventListener("click", () => {
+        if (button.id.toString() === answer.toString()) {
+            button?.classList.remove("answer-neutral");
+            button?.classList.add("answer-right");
+            button.disabled = true;
+            isGameOver = true;
+        }
+        if (button.id.toString() !== answer.toString()) {
+            button?.classList.remove("answer-neutral");
+            button?.classList.add("answer-wrong");
+            answerTries += 1;
+            button.disabled = true;
+        }
+
+        if (answerTries === 3) {
+            buttons.forEach((button) => {
+                if (button.id.toString() !== answer.toString()) {
+                    button?.classList.remove("answer-neutral");
+                    button?.classList.add("answer-disabled");
+                    button.disabled = true;
+                } else {
+                    button?.classList.remove("answer-neutral");
+                    button?.classList.add("answer-reveal");
+                    button.disabled = true;
+                }
+            });
+        }
+
+        if (isGameOver) {
+            buttons.forEach((button) => {
+                if (button.id.toString() !== answer.toString()) {
+                    button?.classList.remove("answer-neutral");
+                    button?.classList.add("answer-disabled");
+                    button.disabled = true;
+                }
+            });
+        }
+    });
+});
