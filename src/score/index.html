@@ -2,47 +2,59 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Score</title>
 </head>
 
 <body>
-    <main>
-        <section class="section">
+    <div id="app">
+        <header>
+            <app-header></app-header>
+        </header>
+        <main class="content">
+            <div class="score-board-page">
+                <h1 class="h2">
+                    Score
+                </h1>
+                <h2 class="h1">
+                    <span>2</span>
+                    <span>/</span>
+                    <span>5</span>
+                </h2>
+            </div>
+            <section>
+                <div class="tries-left">
+                    <iconify-icon icon="ph:star-duotone" height=" 2rem" class="star-icon-full"></iconify-icon>
+                    <iconify-icon icon="ph:star-thin" height="2rem" class="star-icon-empty"></iconify-icon>
+                    <iconify-icon icon="ph:star-thin" height="2rem" class="star-icon-empty"></iconify-icon>
+                </div>
+            </section>
+            <div class="answer-field">
+                <div class="button-container">
 
-            <h1 class="font-serif font-xl">Score</h1>
-            <h1 class="font-serif">Lorem, ipsum dolor.</h1>
-            <h2 class="font-serif">Lorem, ipsum dolor.</h2>
-            <h2 class="font-serif-italic">Lorem, ipsum dolor.</h2>
-            <h3 class="font-serif">Lorem, ipsum dolor.</h3>
-            <h4 class="font-serif">Lorem, ipsum dolor.</h4>
-            <h5 class="font-serif">Lorem, ipsum dolor.</h5>
-            <h6 class="font-serif">Lorem, ipsum dolor.</h6>
-            <h6 class="font-serif color-accent">Lorem, ipsum dolor.</h6>
-            <h6 class="font-serif color-accent-light">Lorem, ipsum dolor.</h6>
-            <h6 class="font-serif color-accent-strong">Lorem, ipsum dolor.</h6>
-            <h6 class="font-serif color-ok">Lorem, ipsum dolor.</h6>
-            <h6 class="font-serif color-ok-light">Lorem, ipsum dolor.</h6>
-            <h6 class="font-serif color-ok-strong">Lorem, ipsum dolor.</h6>
-            <h6 class="font-serif color-alert">Lorem, ipsum dolor.</h6>
+                    <button id="next-quote" class="answer answer-neutral"> <a href="/">Siguiente</a> </button>
 
-            <p class="font-serif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet quasi incidunt accusantium qui placeat vitae maiores sunt, fugiat asperiores similique ullam expedita sapiente tenetur cum illo minus repellat corporis aspernatur.</p>
 
-            <h1 class="font-sans">Score</h1>
-            <h2 class="font-sans">Lorem, ipsum dolor.</h2>
-            <h3 class="font-sans">Lorem, ipsum dolor.</h3>
-            <h4 class="font-sans">Lorem, ipsum dolor.</h4>
-            <h5 class="font-sans">Lorem, ipsum dolor.</h5>
-            <h6 class="font-sans">Lorem, ipsum dolor.</h6>
-        </section>
-        <section class="section">
-            <button class="answer answer-neutral"> Lorem ipsum dolor</button>
-            <button class="answer answer-wrong"> Lorem ipsum dolor</button>
-            <button class="answer answer-right"> Lorem ipsum dolor</button>
-        </section>
+                </div>
+            </div>
+            <div class="answer-field">
+                <div class="message-container">
 
-    </main>
+                    <h5>
+                        Hola, el siguiente juego comienza el
+                    </h5>
+                    <h5>
+                        10/05/2024
+                    </h5>
+
+                </div>
+            </div>
+
+        </main>
+
+    </div>
     <script type="module" src="./score.ts"></script>
 </body>
 

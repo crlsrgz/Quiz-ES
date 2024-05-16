@@ -215,9 +215,12 @@ body {
 
     background-color: var(--color-light);
     color: var(--color-dark);
+    font-family: "Jost";
 }
 
-header {
+header,
+app-header {
+    width: 100%;
     display: flex;
     align-items: baseline;
     outline: var(--border-test);
@@ -229,7 +232,7 @@ header {
 
 main {
     width: 800px;
-    margin: auto;
+    margin: 0 auto 0 auto;
 }
 
 /* section,
@@ -250,8 +253,9 @@ iconify-icon {
     display: flex;
     flex-direction: column;
     text-align: center;
-
     border: none;
+
+    height: 90vh;
 }
 
 .score-board {
@@ -265,6 +269,16 @@ iconify-icon {
     flex-direction: column;
     justify-content: end;
     font-family: "DMSerifDisplay-Italic";
+    line-height: 3.5rem;
+    padding: 0;
+    outline: var(--border-test);
+}
+.score-board-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    font-family: "Jost";
     line-height: 3.5rem;
     padding: 0;
     outline: var(--border-test);
@@ -295,12 +309,27 @@ iconify-icon {
     padding: var(--h4);
     outline: var(--border-test);
 }
+
 .button-container {
     width: 500px;
     margin: auto;
     display: flex;
     flex-direction: column;
     gap: var(--h6);
+}
+
+.message-container {
+    width: 500px;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--h6);
+}
+
+button > a {
+    text-decoration: none;
+    color: var(--color-dark);
 }
 
 button.answer {
@@ -356,6 +385,20 @@ button.answer-disabled {
   background-color: var(--color-blue-light);
   border: calc(var(--factor) * var(--h6)) solid var(--color-blue) ;
 } */
+#mypopover {
+    position: relative;
+    top: 20px;
+}
+:popover-open {
+    width: 300px;
+    height: 200px;
+    padding: 0 10px;
+    border-radius: 10px;
+}
+
+::backdrop {
+    backdrop-filter: blur(3px);
+}
 
 @media screen and (max-width: 380px) {
     #app {

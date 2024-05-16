@@ -69,6 +69,7 @@ userDataRequest();
 // BUTTONS
 const answer = 2;
 let isGameOver = false;
+let isGameOfDayOver = false;
 let answerTries = 0;
 
 const buttons = document.querySelectorAll(
