@@ -2,14 +2,17 @@
     font-family: "DMSerifDisplay";
     src: url(./assets/fonts/DMSerifDisplay-Regular.ttf);
 }
+
 @font-face {
     font-family: "DMSerifDisplay-Italic";
     src: url(./assets/fonts/DMSerifDisplay-Italic.ttf);
 }
+
 @font-face {
     font-family: "Jost";
     src: url(./assets/fonts/Jost-VariableFont_wght.ttf);
 }
+
 /* Resset CSS */
 html,
 body,
@@ -26,6 +29,7 @@ pre {
     margin: 0;
     padding: 0;
 }
+
 button,
 fieldset,
 form,
@@ -36,23 +40,28 @@ select {
     margin: 0;
     padding: 0;
 }
+
 fieldset {
     border: 0;
 }
+
 a,
 a * {
     cursor: pointer;
 }
+
 div {
     margin: 0;
     padding: 0;
     background-color: transparent;
     text-align: left;
 }
+
 hr,
 img {
     border: 0;
 }
+
 applet,
 iframe,
 object {
@@ -60,6 +69,7 @@ object {
     margin: 0;
     padding: 0;
 }
+
 button,
 input[type="button"],
 input[type="image"],
@@ -68,15 +78,18 @@ input[type="submit"],
 label {
     cursor: pointer;
 }
+
 ul,
 li {
     list-style: none;
     margin: 0;
     padding: 0;
 }
+
 strong {
     font-weight: bold;
 }
+
 em {
     font-style: italic;
 }
@@ -114,7 +127,7 @@ em {
     --color-red-strong: #bd1532;
 
     /* Testing */
-    --border-test: 1px solid black;
+    --border-test: 1px none black;
 }
 
 html {
@@ -133,30 +146,35 @@ h1,
     padding: 0 0 calc(var(--h1) * var(--factor));
     line-height: var(--h1);
 }
+
 h2,
 .h2 {
     font-size: var(--h2);
     padding: 0 0 calc(var(--h2) * var(--factor));
     line-height: var(--h2);
 }
+
 h3,
 .h3 {
     font-size: var(--h3);
     padding: 0 0 calc(var(--h3) * var(--factor));
     line-height: var(--h3);
 }
+
 h4,
 .h4 {
     font-size: var(--h4);
     padding: 0 0 calc(var(--h4) * var(--factor));
     line-height: var(--h4);
 }
+
 h5,
 .h5 {
     font-size: var(--h5);
     padding: 0 0 calc(var(--h5) * var(--factor));
     line-height: var(--h5);
 }
+
 h6,
 .h6 {
     font-size: var(--h6);
@@ -175,21 +193,27 @@ p {
 .color-accent {
     color: var(--color-blue);
 }
+
 .color-accent-light {
     color: var(--color-blue-light);
 }
+
 .color-accent-strong {
     color: var(--color-blue-strong);
 }
+
 .color-ok {
     color: var(--color-green);
 }
+
 .color-ok-light {
     color: var(--color-green-light);
 }
+
 .color-ok-strong {
     color: var(--color-green-strong);
 }
+
 .color-alert {
     color: var(--color-red-strong);
 }
@@ -201,6 +225,7 @@ p {
 .font-serif-italic {
     font-family: "DMSerifDisplay-Italic";
 }
+
 .font-sans {
     font-family: "Jost";
 }
@@ -225,9 +250,28 @@ app-header {
     align-items: baseline;
     outline: var(--border-test);
 }
+
 .page-title {
     text-align: left;
     width: 80%;
+}
+
+.page-title a,
+.page-title a:link,
+.page-title a:visited {
+    text-decoration: none;
+    color: var(--color-gray-700);
+
+}
+
+.page-title a:hover {
+    color: var(--color-gray-800);
+
+}
+
+.page-title a:active {
+    color: var(--color-dark);
+
 }
 
 main {
@@ -273,6 +317,7 @@ iconify-icon {
     padding: 0;
     outline: var(--border-test);
 }
+
 .score-board-page {
     display: flex;
     flex-direction: column;
@@ -301,6 +346,7 @@ iconify-icon {
 .star-icon-empty {
     color: var(--color-blue-strong);
 }
+
 .star-icon-full {
     color: var(--color-blue-strong);
 }
@@ -327,12 +373,8 @@ iconify-icon {
     gap: var(--h6);
 }
 
-button > a {
-    text-decoration: none;
-    color: var(--color-dark);
-}
 
-button.answer {
+button.answer  {
     width: 100%;
     border-radius: calc(var(--radius) * 1.5);
     padding: var(--text-small);
@@ -340,6 +382,16 @@ button.answer {
     font-size: var(--h6);
     font-family: "Jost";
 }
+button.answer a:link, button.answer a:visited  {
+    
+    color: var(--color-dark);
+    text-decoration: none;
+}
+
+button.answer:active a{
+    color: var(--color-light);
+}
+
 
 button.answer-neutral {
     background-color: var(--color-light);
@@ -352,11 +404,13 @@ button.answer-wrong {
     background-color: var(--color-light);
     border: 2px solid var(--color-red-strong);
 }
+
 button.answer-right {
     color: var(--color-light);
     background-color: var(--color-green-strong);
     border: 2px solid var(--color-green-strong);
 }
+
 button.answer-reveal {
     color: var(--color-green);
     border: 2px solid var(--color-green);
@@ -389,6 +443,7 @@ button.answer-disabled {
     position: relative;
     top: 20px;
 }
+
 :popover-open {
     width: 300px;
     height: 200px;
@@ -406,10 +461,12 @@ button.answer-disabled {
         padding: 0;
         margin: 0;
     }
+
     main {
         width: 100%;
         padding: 0;
     }
+
     .button-container {
         width: 90vw;
     }
