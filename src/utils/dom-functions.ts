@@ -9,3 +9,29 @@ export const insertTextContent = (
         return;
     }
 };
+
+export function paintQuizInterface(
+    data: dayQuote | any,
+    todayGamesPlayed: number,
+) {
+    console.log(data);
+
+    // Buttons
+    const todaysGame = todayGamesPlayed;
+    const buttons = document.querySelectorAll(
+        ".answer",
+    ) as NodeListOf<HTMLInputElement>;
+    buttons.forEach((button, index) => {
+        button.textContent = data[todaysGame]["authors"][index];
+        console.log(button);
+    });
+
+    // Quote
+    setTimeout(() => {
+        const quoteField = document.querySelector("#quote-field");
+        if (quoteField) {
+            quoteField.textContent = data[todaysGame]["quote"];
+            console.log(data[todaysGame]["quote"]);
+        }
+    }, 500);
+}

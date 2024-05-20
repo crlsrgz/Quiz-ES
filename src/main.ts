@@ -1,13 +1,11 @@
 import "./style.css";
 import "iconify-icon";
 
-import { buttonRightAnswer } from "./button";
-
 import { v4 as uuidv4 } from "uuid";
-// import { connectionUserData } from "./connections/connection.js";
-// import { insertTextContent } from "./utils/dom-functions.js";
+import { connectionUserData } from "./connections/connection.js";
 
-console.log(localStorage["user"]);
+import { setInitialLocalStorage, userDataRequest } from "./utils/quizData.js";
+
 const userId = localStorage["user"] ? localStorage["user"] : uuidv4();
 
 const date = new Date();
@@ -19,72 +17,42 @@ const user = {
     dateShort: formatDate,
 };
 
-// async function makeRequest() {
-//     await fetch(connectionUrl, {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json; charset=utf",
-//         },
-//         body: JSON.stringify(user),
-//     })
-//         .then(function (response) {
-//             return response.json();
-//         })
-//         .catch((error) => {
-//             console.log(`data error ${error}`);
-//         })
-//         .then((data) => {
-//             console.log(Object.keys(data["user"]));
-//             console.log(data["user"]["userId"]);
-//             console.log(data["user"]["dateShort"]);
-//             console.log(data["user"]["dateHuman"]);
-//             console.log(data["user"]["scores"]);
-//             localStorage.setItem("user", "userrrr");
-//         });
-// }
+/* ::::::::: Request data ::::::::: */
+let gameState = setInitialLocalStorage();
 
-// makeRequest();
-
-async function userDataRequest() {
-    await fetch(connectionUserData, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json; charset=utf",
-        },
-        body: JSON.stringify(user),
-    })
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-            localStorage.setItem("user", data["userId"]);
-
-            insertTextContent("#total-points", data["totalPoints"]);
-            insertTextContent("#games-played", data["gamesPlayed"]);
-        });
-}
-userDataRequest();
+let isGameOver = gameState.isGameOver;
+let isGameOfDayOver = gameState.isGameOfDayOver;
+let answerTries = gameState.answerTries;
+let todayScore = gameState.todayScore;
+let todaysGamesPlayed = gameState.totalGamesPlayed;
+let totalGamesPlayed = gameState.totalGamesPlayed;
+let totalScore = gameState.totalScore;
+userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
 // BUTTONS
-const answer = 2;
-let isGameOver = false;
-let isGameOfDayOver = false;
-let answerTries = 0;
+const checkLocal: any = localStorage.getItem("quiz");
+const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+
+console.log("today", checkLocalJson);
+const answer =
+    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+
+// paintQuizInterface(checkLocalJson, todaysGamesPlayed);
 
 const buttons = document.querySelectorAll(
     ".answer",
 ) as NodeListOf<HTMLInputElement>;
 
 buttons.forEach((button) => {
-    let test = button;
-
     button.addEventListener("click", () => {
+        console.log(todaysGamesPlayed);
         if (button.id.toString() === answer.toString()) {
             button?.classList.remove("answer-neutral");
             button?.classList.add("answer-right");
             button.disabled = true;
             isGameOver = true;
+            todaysGamesPlayed += 1;
+            console.log(todaysGamesPlayed);
         }
         if (button.id.toString() !== answer.toString()) {
             button?.classList.remove("answer-neutral");
