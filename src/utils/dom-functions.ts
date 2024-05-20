@@ -14,8 +14,6 @@ export function paintQuizInterface(
     data: dayQuote | any,
     todayGamesPlayed: number,
 ) {
-    console.log(data);
-
     // Buttons
     const todaysGame = todayGamesPlayed;
     const buttons = document.querySelectorAll(
@@ -27,11 +25,8 @@ export function paintQuizInterface(
     });
 
     // Quote
-    setTimeout(() => {
-        const quoteField = document.querySelector("#quote-field");
-        if (quoteField) {
-            quoteField.textContent = data[todaysGame]["quote"];
-            console.log(data[todaysGame]["quote"]);
-        }
-    }, 500);
+    const quoteField = document.querySelector("#quote-field");
+    if (quoteField) {
+        quoteField.textContent = data[todaysGame]["quote"];
+    }
 }

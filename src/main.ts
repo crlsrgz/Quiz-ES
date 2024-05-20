@@ -18,15 +18,29 @@ const user = {
 };
 
 /* ::::::::: Request data ::::::::: */
-let gameState = setInitialLocalStorage();
+let gameState: any | string | null;
+let isGameOver: boolean;
+let isGameOfDayOver: boolean;
+let answerTries: number;
+let todayScore: number;
+let todaysGamesPlayed: number;
+let totalGamesPlayed: number;
+let totalScore: number;
 
-let isGameOver = gameState.isGameOver;
-let isGameOfDayOver = gameState.isGameOfDayOver;
-let answerTries = gameState.answerTries;
-let todayScore = gameState.todayScore;
-let todaysGamesPlayed = gameState.totalGamesPlayed;
-let totalGamesPlayed = gameState.totalGamesPlayed;
-let totalScore = gameState.totalScore;
+if (localStorage.getItem("state")) {
+    gameState = JSON.parse(localStorage.getItem("state") || "{}");
+} else {
+    gameState = setInitialLocalStorage();
+}
+
+isGameOver = gameState.isGameOver;
+isGameOfDayOver = gameState.isGameOfDayOver;
+answerTries = gameState.answerTries;
+todayScore = gameState.todayScore;
+todaysGamesPlayed = gameState.todaysGamesPlayed;
+totalGamesPlayed = gameState.totalGamesPlayed;
+totalScore = gameState.totalScore;
+
 userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
 // BUTTONS
@@ -45,15 +59,26 @@ const buttons = document.querySelectorAll(
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        console.log(todaysGamesPlayed);
+        console.log("todaysGamesPlayed", todaysGamesPlayed);
+        // Right answer
         if (button.id.toString() === answer.toString()) {
             button?.classList.remove("answer-neutral");
             button?.classList.add("answer-right");
             button.disabled = true;
-            isGameOver = true;
+
             todaysGamesPlayed += 1;
+            setInitialLocalStorage(
+                isGameOver,
+                isGameOfDayOver,
+                answerTries,
+                todayScore,
+                todaysGamesPlayed,
+                totalGamesPlayed,
+                totalScore,
+            );
             console.log(todaysGamesPlayed);
         }
+        // Wrong Answer
         if (button.id.toString() !== answer.toString()) {
             button?.classList.remove("answer-neutral");
             button?.classList.add("answer-wrong");
@@ -86,3 +111,6 @@ buttons.forEach((button) => {
         }
     });
 });
+
+/* :::::::::  Report Game State ::::::::: */
+console.table(gameState);
