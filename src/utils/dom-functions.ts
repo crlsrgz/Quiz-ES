@@ -30,3 +30,9 @@ export function paintQuizInterface(
         quoteField.textContent = data[todaysGame]["quote"];
     }
 }
+
+/* ::::::::: Temporaray functions for depeloment ::::::::: */
+export function deleteLocalStorage() {
+    const button = document.querySelector("#delete-localStorage");
+    button?.addEventListener("click", () => localStorage.clear());
+}

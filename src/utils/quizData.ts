@@ -4,6 +4,7 @@ export async function userDataRequest(
     user: { userId: any; dateShort: string },
     todaysGamesPlayed: number,
 ) {
+    let theData;
     await fetch(connectionUserData, {
         method: "POST",
         headers: {
@@ -18,11 +19,12 @@ export async function userDataRequest(
             // console.log(data);
             localStorage.setItem("user", data["userId"]);
             localStorage.setItem("quiz", JSON.stringify(data["quiz"]));
-
-            paintQuizInterface(data["quiz"], todaysGamesPlayed);
+            theData = data["quiz"];
+            // paintQuizInterface(data["quiz"], todaysGamesPlayed);
         });
+    paintQuizInterface(theData, todaysGamesPlayed);
 }
-
+// Local Storage
 export function setInitialLocalStorage(
     isGameOver = false,
     isGameOfDayOver = false,

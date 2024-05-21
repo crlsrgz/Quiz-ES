@@ -2,15 +2,15 @@ import "./style.css";
 import "iconify-icon";
 
 import { v4 as uuidv4 } from "uuid";
-// import { connectionUserData } from "./connections/connection.js";
+import { connectionUserData } from "./connections/connection.js";
 
 import { setInitialLocalStorage, userDataRequest } from "./utils/quizData.js";
+import { deleteLocalStorage } from "./utils/dom-functions.js";
 
 const userId = localStorage["user"] ? localStorage["user"] : uuidv4();
 
 const date = new Date();
 const formatDate = date.toISOString().slice(0, 10);
-// const userIdentifierId: UserIdentifierId = `${formatDate}-${userId}`;
 
 const user = {
     userId: userId,
@@ -41,17 +41,15 @@ todaysGamesPlayed = gameState.todaysGamesPlayed;
 totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
-// userDataRequest(connectionUserData, user, todaysGamesPlayed);
+await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// // BUTTONS
-// const checkLocal: any = localStorage.getItem("quiz");
-// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// BUTTONS
+const checkLocal: any = localStorage.getItem("quiz");
+const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-// console.log("today", checkLocalJson);
-// const answer =
-//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
-
-// paintQuizInterface(checkLocalJson, todaysGamesPlayed);
+console.log("today", checkLocalJson);
+const answer =
+    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
 const buttons = document.querySelectorAll(
     ".answer",
@@ -65,7 +63,7 @@ buttons.forEach((button) => {
             button?.classList.remove("answer-neutral");
             button?.classList.add("answer-right");
             button.disabled = true;
-
+            isGameOver = true;
             todaysGamesPlayed += 1;
             setInitialLocalStorage(
                 isGameOver,
@@ -76,7 +74,6 @@ buttons.forEach((button) => {
                 totalGamesPlayed,
                 totalScore,
             );
-            console.log(todaysGamesPlayed);
         }
         // Wrong Answer
         if (button.id.toString() !== answer.toString()) {
@@ -108,9 +105,25 @@ buttons.forEach((button) => {
                     button.disabled = true;
                 }
             });
+
+            /* ::::::::: Reset Local Storage ::::::::: */
+            isGameOver = false;
+            answerTries = 0;
+            setInitialLocalStorage(
+                isGameOver,
+                isGameOfDayOver,
+                answerTries,
+                todayScore,
+                todaysGamesPlayed,
+                totalGamesPlayed,
+                totalScore,
+            );
         }
     });
 });
 
 /* :::::::::  Report Game State ::::::::: */
 console.table(gameState);
+
+/* ::::::::: Temporaray functions for depeloment ::::::::: */
+deleteLocalStorage();
