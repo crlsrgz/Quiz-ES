@@ -427,12 +427,15 @@ button.answer-wrong {
     color: var(--color-red-strong);
     background-color: var(--color-light);
     border: 2px solid var(--color-red-strong);
+    transition: color 200ms, border 500ms;
+    /* animation: neutral-wrong 1s ease 9s 2 forwards forwards; */
 }
 
 button.answer-right {
     color: var(--color-light);
     background-color: var(--color-green-strong);
     border: 2px solid var(--color-green-strong);
+    transition: color 200ms, border 500ms, background-color 1000ms;
 }
 
 button.answer-reveal {
@@ -446,6 +449,7 @@ button.answer-disabled {
     background-color: var(--color-light);
     border: 2px solid var(--color-gray-500);
     cursor: default;
+    transition: color 500ms, border 1000ms;
 }
 
 .answer-neutral:hover {
@@ -456,6 +460,18 @@ button.answer-disabled {
     background-color: var(--color-dark);
     color: var(--color-light);
     border-color: var(--color-light);
+}
+
+@keyframes neutral-wrong {
+    0% {
+        color: var(--color-dark);
+        border: 2px solid var(--color-dark);
+    }
+    100% {
+        color: var(--color-red-strong);
+        border: 2px solid var(--color-red-strong);
+    }
+    
 }
 
 @media screen and (max-width: 380px) {
