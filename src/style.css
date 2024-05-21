@@ -242,7 +242,7 @@ body {
     color: var(--color-dark);
     font-family: "Jost";
 }
-
+/* :::: Header Desktop ::::*/
 header,
 app-header {
     width: 100%;
@@ -261,19 +261,34 @@ app-header {
 .page-title a:visited {
     text-decoration: none;
     color: var(--color-gray-700);
-
 }
 
 .page-title a:hover {
     color: var(--color-gray-800);
-
 }
 
 .page-title a:active {
     color: var(--color-dark);
-
 }
 
+.nav-desk {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    font-size: var(--h5);
+}
+
+.nav-desk a {
+    color: var(--color-gray-700);
+    text-decoration: none;
+}
+
+.nav-desk a:hover {
+    color: var(--color-gray-800);
+    text-decoration: underline;
+}
+
+/* :::: Main ::::*/
 main {
     width: 800px;
     margin: 0 auto 0 auto;
@@ -293,13 +308,13 @@ iconify-icon {
 #app {
     width: 800px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     text-align: center;
     border: none;
 
-    height: 90vh;
+    height: 100vh;
 }
 
 .score-board {
@@ -314,8 +329,13 @@ iconify-icon {
     justify-content: end;
     font-family: "DMSerifDisplay-Italic";
     line-height: 3.5rem;
-    padding: 0;
+    padding: var(--h4) 0 0 0;
     outline: var(--border-test);
+}
+
+.quote h3 {
+    text-align: center;
+    padding: 0 4rem 0 4rem;
 }
 
 .score-board-page {
@@ -325,13 +345,15 @@ iconify-icon {
     justify-content: end;
     font-family: "Jost";
     line-height: 3.5rem;
-    padding: 0;
+    padding: var(--h4) 0 0 0;
     outline: var(--border-test);
 }
 
 .content {
     border: none;
 }
+
+/* :::: Tries Stars Count ::::*/
 
 .tries-left {
     padding: 1rem 0 2rem 0;
@@ -350,6 +372,8 @@ iconify-icon {
 .star-icon-full {
     color: var(--color-blue-strong);
 }
+
+/* :::: Answer Buttons  ::::*/
 
 .answer-field {
     padding: var(--h4);
@@ -373,8 +397,9 @@ iconify-icon {
     gap: var(--h6);
 }
 
+/* :::: Buttons  ::::*/
 
-button.answer  {
+button.answer {
     width: 100%;
     border-radius: calc(var(--radius) * 1.5);
     padding: var(--text-small);
@@ -382,16 +407,15 @@ button.answer  {
     font-size: var(--h6);
     font-family: "Jost";
 }
-button.answer a:link, button.answer a:visited  {
-    
+button.answer a:link,
+button.answer a:visited {
     color: var(--color-dark);
     text-decoration: none;
 }
 
-button.answer:active a{
+button.answer:active a {
     color: var(--color-light);
 }
-
 
 button.answer-neutral {
     background-color: var(--color-light);
@@ -432,27 +456,6 @@ button.answer-disabled {
     background-color: var(--color-dark);
     color: var(--color-light);
     border-color: var(--color-light);
-}
-
-/* .answer:hover, .answer:active {
-  color: var(--color-light);
-  background-color: var(--color-blue-light);
-  border: calc(var(--factor) * var(--h6)) solid var(--color-blue) ;
-} */
-#mypopover {
-    position: relative;
-    top: 20px;
-}
-
-:popover-open {
-    width: 300px;
-    height: 200px;
-    padding: 0 10px;
-    border-radius: 10px;
-}
-
-::backdrop {
-    backdrop-filter: blur(3px);
 }
 
 @media screen and (max-width: 380px) {

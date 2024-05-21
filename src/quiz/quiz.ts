@@ -1,5 +1,5 @@
 import("../style.css");
-import { connectionQuizData } from "../connections/connection";
+
 import { ComponentNavigation } from "../components/navigation";
 
 customElements.define("app-header", ComponentNavigation);

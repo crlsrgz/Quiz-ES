@@ -2,7 +2,7 @@ import "./style.css";
 import "iconify-icon";
 
 import { v4 as uuidv4 } from "uuid";
-import { connectionUserData } from "./connections/connection.js";
+// import { connectionUserData } from "./connections/connection.js";
 
 import { setInitialLocalStorage, userDataRequest } from "./utils/quizData.js";
 
@@ -41,15 +41,15 @@ todaysGamesPlayed = gameState.todaysGamesPlayed;
 totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
-userDataRequest(connectionUserData, user, todaysGamesPlayed);
+// userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// BUTTONS
-const checkLocal: any = localStorage.getItem("quiz");
-const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// // BUTTONS
+// const checkLocal: any = localStorage.getItem("quiz");
+// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-console.log("today", checkLocalJson);
-const answer =
-    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+// console.log("today", checkLocalJson);
+// const answer =
+//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
 // paintQuizInterface(checkLocalJson, todaysGamesPlayed);
 

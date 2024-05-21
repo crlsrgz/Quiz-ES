@@ -5,20 +5,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Title</title>
 </head>
 
 <body>
     <div id="app">
         <header>
-
-            <h1 class="page-title">Title</h1>
-            <nav class="nav-desk">
-                <a href="/quiz/">quiz</a>
-                <a href="/score/">score</a>
-                <a href="/styling/">styling</a>
-            </nav>
-
+            <app-header></app-header>
         </header>
         <main class="content">
             <div class="quote">
@@ -59,6 +52,7 @@
             <div id="games-played"></div>
         </div>
     </div>
+    <script type="module" src="./components/navigation.ts"></script>
     <script type="module" src="./main.ts"></script>
 </body>
 

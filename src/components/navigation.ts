@@ -1,3 +1,4 @@
+import("../style.css");
 export class ComponentNavigation extends HTMLElement {
     connectedCallback(word: string = "Quiz") {
         this.innerHTML = `
@@ -11,3 +12,5 @@ export class ComponentNavigation extends HTMLElement {
         </nav-bar>`;
     }
 }
+
+customElements.define("app-header", ComponentNavigation);
