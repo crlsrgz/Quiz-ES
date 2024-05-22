@@ -13,5 +13,4 @@ export class ComponentNavigation extends HTMLElement {
         </nav-bar>`;
     }
 }
-console.log(ComponentNavigation);
 customElements.define("app-header", ComponentNavigation);

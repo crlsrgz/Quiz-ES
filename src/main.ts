@@ -2,7 +2,7 @@ import "./style.css";
 import "iconify-icon";
 
 import { v4 as uuidv4 } from "uuid";
-// import { connectionUserData } from "./connections/connection.js";
+import { connectionUserData } from "./connections/connection.js";
 
 import { setInitialLocalStorage, userDataRequest } from "./utils/quizData.js";
 import { deleteLocalStorage } from "./utils/dom-functions.js";
@@ -41,89 +41,17 @@ todaysGamesPlayed = gameState.todaysGamesPlayed;
 totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
-// // 💡 :::: Remote DEV START
-// await userDataRequest(connectionUserData, user, todaysGamesPlayed);
+// 💡 :::: Remote DEV START
+await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// // BUTTONS
-// const checkLocal: any = localStorage.getItem("quiz");
-// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// BUTTONS
+const checkLocal: any = localStorage.getItem("quiz");
+const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-// console.log("today", checkLocalJson);
-// const answer =
-//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+const answer =
+    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
-// //💡 :::: Remote DEV END
-
-const buttons = document.querySelectorAll(
-    ".answer",
-) as NodeListOf<HTMLInputElement>;
-
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        console.log("todaysGamesPlayed", todaysGamesPlayed);
-        // Right answer
-        if (button.id.toString() === answer.toString()) {
-            button?.classList.remove("answer-neutral");
-            button?.classList.add("answer-right");
-            button.disabled = true;
-            isGameOver = true;
-            todaysGamesPlayed += 1;
-            setInitialLocalStorage(
-                isGameOver,
-                isGameOfDayOver,
-                answerTries,
-                todayScore,
-                todaysGamesPlayed,
-                totalGamesPlayed,
-                totalScore,
-            );
-        }
-        // Wrong Answer
-        if (button.id.toString() !== answer.toString()) {
-            button?.classList.remove("answer-neutral");
-            button?.classList.add("answer-wrong");
-            answerTries += 1;
-            button.disabled = true;
-        }
-
-        if (answerTries === 3) {
-            buttons.forEach((button) => {
-                if (button.id.toString() !== answer.toString()) {
-                    button?.classList.remove("answer-neutral");
-                    button?.classList.add("answer-disabled");
-                    button.disabled = true;
-                } else {
-                    button?.classList.remove("answer-neutral");
-                    button?.classList.add("answer-reveal");
-                    button.disabled = true;
-                }
-            });
-        }
-
-        if (isGameOver) {
-            buttons.forEach((button) => {
-                if (button.id.toString() !== answer.toString()) {
-                    button?.classList.remove("answer-neutral");
-                    button?.classList.add("answer-disabled");
-                    button.disabled = true;
-                }
-            });
-
-            /* ::::::::: Reset Local Storage ::::::::: */
-            isGameOver = false;
-            answerTries = 0;
-            setInitialLocalStorage(
-                isGameOver,
-                isGameOfDayOver,
-                answerTries,
-                todayScore,
-                todaysGamesPlayed,
-                totalGamesPlayed,
-                totalScore,
-            );
-        }
-    });
-});
+//💡 :::: Remote DEV END
 
 /* :::::::::  Report Game State ::::::::: */
 console.table(gameState);

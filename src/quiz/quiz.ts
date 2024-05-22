@@ -2,6 +2,7 @@ import "iconify-icon";
 import("../style.css");
 
 import { v4 as uuidv4 } from "uuid";
+import { connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
 import { deleteLocalStorage } from "../utils/dom-functions.js";
 
@@ -35,37 +36,52 @@ isGameOver = gameState.isGameOver;
 isGameOfDayOver = gameState.isGameOfDayOver;
 answerTries = gameState.answerTries;
 todayScore = gameState.todayScore;
-todaysGamesPlayed = gameState.todaysGamesPlayed;
+todaysGamesPlayed =
+    gameState.todaysGamesPlayed < 3 ? gameState.todaysGamesPlayed : 2;
 totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
-// // 💡 :::: Remote DEV START
-// await userDataRequest(connectionUserData, user, todaysGamesPlayed);
+/* :::::::::  Report Game State ::::::::: */
+console.table(gameState);
+// 💡 :::: Remote DEV START
+await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// // BUTTONS
-// const checkLocal: any = localStorage.getItem("quiz");
-// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// BUTTONS
+const checkLocal: any = localStorage.getItem("quiz");
+const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-// console.log("today", checkLocalJson);
-// const answer =
-//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+console.log("today", checkLocalJson);
+const answer =
+    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
-// //💡 :::: Remote DEV END
+//💡 :::: Remote DEV END
 
 const buttons = document.querySelectorAll(
     ".answer",
 ) as NodeListOf<HTMLInputElement>;
 
 buttons.forEach((button) => {
+    if (isGameOfDayOver) {
+        button?.classList.remove("answer-neutral");
+        button?.classList.add("answer-disabled");
+    }
+
     button.addEventListener("click", () => {
         console.log("todaysGamesPlayed", todaysGamesPlayed);
+
         // Right answer
+
         if (button.id.toString() === answer.toString()) {
             button?.classList.remove("answer-neutral");
             button?.classList.add("answer-right");
             button.disabled = true;
             isGameOver = true;
-            todaysGamesPlayed += 1;
+            if (todaysGamesPlayed < 3) {
+                todaysGamesPlayed += 1;
+            }
+            if (todaysGamesPlayed > 2) {
+                isGameOfDayOver = true;
+            }
             setInitialLocalStorage(
                 isGameOver,
                 isGameOfDayOver,
@@ -122,9 +138,6 @@ buttons.forEach((button) => {
         }
     });
 });
-
-/* :::::::::  Report Game State ::::::::: */
-console.table(gameState);
 
 /* ::::::::: Temporaray functions for depeloment ::::::::: */
 deleteLocalStorage();

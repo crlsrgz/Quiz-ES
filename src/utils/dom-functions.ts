@@ -15,7 +15,7 @@ export function paintQuizInterface(
     todayGamesPlayed: number,
 ) {
     // Buttons
-    const todaysGame = todayGamesPlayed;
+    const todaysGame = todayGamesPlayed > 2 ? 2 : todayGamesPlayed;
     const buttons = document.querySelectorAll(
         ".answer",
     ) as NodeListOf<HTMLInputElement>;

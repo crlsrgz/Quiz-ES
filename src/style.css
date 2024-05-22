@@ -482,8 +482,7 @@ button.answer-disabled {
 }
 
 app-footer {
-    position: fixed;
-    bottom: 0;
+    padding: 0 0 4rem 0;
     display: flex;
     justify-content: end;
     gap: var(--h4);

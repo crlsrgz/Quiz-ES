@@ -11,5 +11,4 @@ export class ComponentFooter extends HTMLElement {
     }
 }
 
-console.log(ComponentFooter);
 customElements.define("app-footer", ComponentFooter);
