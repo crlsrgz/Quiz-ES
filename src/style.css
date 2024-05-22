@@ -242,6 +242,7 @@ body {
     color: var(--color-dark);
     font-family: "Jost";
 }
+
 /* :::: Header Desktop ::::*/
 header,
 app-header {
@@ -290,7 +291,7 @@ app-header {
 
 /* :::: Main ::::*/
 main {
-    width: 800px;
+    width: 80%;
     margin: 0 auto 0 auto;
 }
 
@@ -306,14 +307,12 @@ iconify-icon {
 }
 
 #app {
-    width: 800px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 1rem 2rem 3rem 2rem;
     display: flex;
     flex-direction: column;
     text-align: center;
     border: none;
-
     height: 100vh;
 }
 
@@ -329,6 +328,19 @@ iconify-icon {
     justify-content: end;
     font-family: "DMSerifDisplay-Italic";
     line-height: 3.5rem;
+    padding: var(--h4) 0 0 0;
+    outline: var(--border-test);
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    justify-content: end;
+    line-height: 3.5rem;
+
+    width: 80%;
     padding: var(--h4) 0 0 0;
     outline: var(--border-test);
 }
@@ -381,7 +393,7 @@ iconify-icon {
 }
 
 .button-container {
-    width: 500px;
+    width: 50%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -427,7 +439,9 @@ button.answer-wrong {
     color: var(--color-red-strong);
     background-color: var(--color-light);
     border: 2px solid var(--color-red-strong);
-    transition: color 200ms, border 500ms;
+    transition:
+        color 200ms,
+        border 500ms;
     /* animation: neutral-wrong 1s ease 9s 2 forwards forwards; */
 }
 
@@ -435,7 +449,10 @@ button.answer-right {
     color: var(--color-light);
     background-color: var(--color-green-strong);
     border: 2px solid var(--color-green-strong);
-    transition: color 200ms, border 500ms, background-color 1000ms;
+    transition:
+        color 200ms,
+        border 500ms,
+        background-color 1000ms;
 }
 
 button.answer-reveal {
@@ -449,7 +466,9 @@ button.answer-disabled {
     background-color: var(--color-light);
     border: 2px solid var(--color-gray-500);
     cursor: default;
-    transition: color 500ms, border 1000ms;
+    transition:
+        color 500ms,
+        border 1000ms;
 }
 
 .answer-neutral:hover {
@@ -462,6 +481,14 @@ button.answer-disabled {
     border-color: var(--color-light);
 }
 
+app-footer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: end;
+    gap: var(--h4);
+}
+
 @keyframes neutral-wrong {
     0% {
         color: var(--color-dark);
@@ -471,23 +498,21 @@ button.answer-disabled {
         color: var(--color-red-strong);
         border: 2px solid var(--color-red-strong);
     }
-    
 }
 
 @media screen and (max-width: 380px) {
     #app {
-        width: 100vw;
         padding: 0;
         margin: 0;
     }
 
     main {
-        width: 100%;
+        width: 90%;
         padding: 0;
     }
 
     .button-container {
-        width: 90vw;
+        width: 90%;
     }
 
     section,

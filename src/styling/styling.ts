@@ -1,2 +1,6 @@
+import "iconify-icon";
 import("../style.css");
-console.log("scores page");
+
+import { ComponentNavigation } from "../components/navigation";
+
+customElements.define("app-header", ComponentNavigation);

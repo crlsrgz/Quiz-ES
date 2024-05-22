@@ -11,48 +11,31 @@
 <body>
     <div id="app">
         <header>
+
             <app-header></app-header>
         </header>
         <main class="content">
-            <div class="quote">
-                <h3>
-                    <span>"</span><span id="quote-field">
+            <div class="message">
+                <h1>
+                    Welcome
+                </h1>
 
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus temporibus
-                        consequuntur
-                        architecto sit aspernatur? Sapiente!
-
-                    </span>
-                    <span>"</span>
-                </h3>
+                <h2 class="h5 font-serif">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci excepturi minus incidunt dolor
+                    earum deleniti cupiditate nihil minima suscipit tempore. In impedit qui, dicta est voluptas eaque
+                    saepe inventore nisi!
+                </h2>
             </div>
-            <section>
-                <div class="tries-left">
-                    <iconify-icon icon="ph:star-duotone" height=" 2rem" class="star-icon-full"></iconify-icon>
-                    <iconify-icon icon="ph:star-thin" height="2rem" class="star-icon-empty"></iconify-icon>
-                    <iconify-icon icon="ph:star-thin" height="2rem" class="star-icon-empty"></iconify-icon>
-                </div>
-            </section>
-            <div class="answer-field">
-                <div class="button-container">
 
-                    <button id="0" class="answer answer-neutral">Vetle Ealhstan </button>
-                    <button id="1" class="answer answer-neutral">Ilean Marje </button>
-                    <button id="2" class="answer answer-neutral">Emma Dearbhla </button>
-                    <button id="3" class="answer answer-neutral">Audovera Anatolios </button>
-
-                </div>
-
-            </div>
 
         </main>
-        <div id="score-board" class="score-board">
-            <div id="total-points"></div>
-            <div class="separator-diagonal">/</div>
-            <div id="games-played"></div>
-        </div>
+
+        <footer>
+            <app-footer></app-footer>
+        </footer>
     </div>
     <script type="module" src="./components/navigation.ts"></script>
+    <script type="module" src="./components/footer.ts"></script>
     <script type="module" src="./main.ts"></script>
 </body>
 

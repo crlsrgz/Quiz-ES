@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz</title>
+    <title>Title</title>
 </head>
 
 <body>
@@ -16,10 +16,16 @@
         <main class="content">
             <div class="quote">
                 <h3>
-                    <span>"</span><span id="quote-field">...</span><span>"</span>
+                    <span>"</span><span id="quote-field">
+
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus temporibus
+                        consequuntur
+                        architecto sit aspernatur? Sapiente!
+
+                    </span>
+                    <span>"</span>
                 </h3>
             </div>
-          
             <section>
                 <div class="tries-left">
                     <iconify-icon icon="ph:star-duotone" height=" 2rem" class="star-icon-full"></iconify-icon>
@@ -30,10 +36,10 @@
             <div class="answer-field">
                 <div class="button-container">
 
-                    <button id="0" class="answer answer-neutral">...</button>
-                    <button id="1" class="answer answer-neutral">...</button>
-                    <button id="2" class="answer answer-neutral">...</button>
-                    <button id="3" class="answer answer-neutral">...</button>
+                    <button id="0" class="answer answer-neutral">Vetle Ealhstan </button>
+                    <button id="1" class="answer answer-neutral">Ilean Marje </button>
+                    <button id="2" class="answer answer-neutral">Emma Dearbhla </button>
+                    <button id="3" class="answer answer-neutral">Audovera Anatolios </button>
 
                 </div>
 
@@ -45,7 +51,12 @@
             <div class="separator-diagonal">/</div>
             <div id="games-played"></div>
         </div>
+
+        <footer>
+            <app-footer></app-footer>
+        </footer>
     </div>
+    <script type="module" src="../components/footer.ts"></script>
     <script type="module" src="../components/navigation.ts"></script>
     <script type="module" src="./quiz.ts"></script>
 </body>
