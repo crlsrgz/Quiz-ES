@@ -292,6 +292,7 @@ app-header {
 /* :::: Main ::::*/
 main {
     width: 80%;
+    min-height: 70vh;
     margin: 0 auto 0 auto;
 }
 
@@ -307,13 +308,13 @@ iconify-icon {
 }
 
 #app {
+    width: 100%;
     margin: 0 auto;
     padding: 1rem 2rem 3rem 2rem;
     display: flex;
     flex-direction: column;
     text-align: center;
     border: none;
-    height: 100vh;
 }
 
 .score-board {
@@ -337,10 +338,10 @@ iconify-icon {
     flex-direction: column;
     align-items: center;
     margin: auto;
-    justify-content: end;
     line-height: 3.5rem;
 
-    width: 80%;
+    width: 100%;
+    min-height: 500px;
     padding: var(--h4) 0 0 0;
     outline: var(--border-test);
 }
@@ -362,13 +363,14 @@ iconify-icon {
 }
 
 .content {
-    border: none;
+    width: 100%;
+    outline: var(--border-test);
 }
 
 /* :::: Tries Stars Count ::::*/
 
 .tries-left {
-    padding: 1rem 0 2rem 0;
+    padding: 2rem 0 3rem 0;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -415,7 +417,16 @@ button.answer {
     width: 100%;
     border-radius: calc(var(--radius) * 1.5);
     padding: var(--text-small);
+    font-size: var(--h6);
+    font-family: "Jost";
+}
 
+button.next {
+    align-self: center;
+    width: 200px;
+    border-radius: calc(var(--radius) * 1.5);
+    padding: var(--text-small);
+    margin-top: var(--h6);
     font-size: var(--h6);
     font-family: "Jost";
 }
@@ -481,11 +492,17 @@ button.answer-disabled {
     border-color: var(--color-light);
 }
 
+footer {
+    position: relative;
+    bottom: 0px;
+}
+
 app-footer {
-    padding: 0 0 4rem 0;
+    padding: 2rem 0 2rem 0;
     display: flex;
     justify-content: end;
     gap: var(--h4);
+    font-size: var(--base);
 }
 
 @keyframes neutral-wrong {

@@ -7,9 +7,9 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: resolve(__dirname, "src/index.html"),
-                quiz: resolve(__dirname, "src/quiz/index.html"),
-                score: resolve(__dirname, "src/score/index.html"),
-                styling: resolve(__dirname, "src/styling/index.html"),
+                frase: resolve(__dirname, "src/frase/index.html"),
+                marcador: resolve(__dirname, "src/marcador/index.html"),
+                estilos: resolve(__dirname, "src/estilos/index.html"),
             },
         },
     },

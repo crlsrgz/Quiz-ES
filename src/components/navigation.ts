@@ -7,9 +7,9 @@ export class ComponentNavigation extends HTMLElement {
         </h1>
         <nav-bar class="nav-desk">
             <a id="delete-localStorage"><iconify-icon icon="ph:x-circle" height=" 2rem"></iconify-icon></a>
-            <a href="/quiz/">quiz</a>
-            <a href="/score/">score</a>
-            <a href="/styling/">styling</a>
+            <a href="/frase/">quiz</a>
+            <a href="/marcador/">score</a>
+            <a href="/estilos/">styling</a>
         </nav-bar>`;
     }
 }

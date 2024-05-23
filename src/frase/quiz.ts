@@ -2,7 +2,7 @@ import "iconify-icon";
 import("../style.css");
 
 import { v4 as uuidv4 } from "uuid";
-import { connectionUserData } from "../connections/connection.js";
+// import { connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
 import { deleteLocalStorage } from "../utils/dom-functions.js";
 
@@ -43,22 +43,29 @@ totalScore = gameState.totalScore;
 
 /* :::::::::  Report Game State ::::::::: */
 console.table(gameState);
-// 💡 :::: Remote DEV START
-await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// BUTTONS
-const checkLocal: any = localStorage.getItem("quiz");
-const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// // 💡 :::: Remote DEV START
+// await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-console.log("today", checkLocalJson);
-const answer =
-    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+// // BUTTONS
+// const checkLocal: any = localStorage.getItem("quiz");
+// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-//💡 :::: Remote DEV END
+// console.log("today", checkLocalJson);
+// const answer =
+//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+
+// //💡 :::: Remote DEV END
 
 const buttons = document.querySelectorAll(
     ".answer",
 ) as NodeListOf<HTMLInputElement>;
+
+const nextQuizButton = document.querySelector("#next") as HTMLElement;
+//testing purposes
+window.addEventListener("dblclick", () => {
+    nextQuizButton.scrollIntoView({ behavior: "smooth" });
+});
 
 buttons.forEach((button) => {
     if (isGameOfDayOver) {
@@ -66,7 +73,7 @@ buttons.forEach((button) => {
         button?.classList.add("answer-disabled");
     }
 
-    button.addEventListener("click", () => {
+    button.addEventListener("onmousedown", () => {
         console.log("todaysGamesPlayed", todaysGamesPlayed);
 
         // Right answer
@@ -92,6 +99,7 @@ buttons.forEach((button) => {
                 totalScore,
             );
         }
+
         // Wrong Answer
         if (button.id.toString() !== answer.toString()) {
             button?.classList.remove("answer-neutral");
