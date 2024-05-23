@@ -413,7 +413,7 @@ iconify-icon {
 
 /* :::: Buttons  ::::*/
 
-button.answer {
+.answer {
     width: 100%;
     border-radius: calc(var(--radius) * 1.5);
     padding: var(--text-small);
@@ -421,32 +421,50 @@ button.answer {
     font-family: "Jost";
 }
 
-button.next {
+.next {
     align-self: center;
     width: 200px;
+    height: 42px;
     border-radius: calc(var(--radius) * 1.5);
-    padding: var(--text-small);
     margin-top: var(--h6);
+    display: flex;
+
+
     font-size: var(--h6);
     font-family: "Jost";
+    text-align: center;
+    text-decoration: none;
+
 }
-button.answer a:link,
-button.answer a:visited {
+
+.next a {
+    display:block;
+    margin:auto;
+    width: 95%;
+    /* height: 95%; */
+
+    /* background-color: red; */
+    text-decoration: none;
+}
+
+
+.answer a:link,
+.answer a:visited {
     color: var(--color-dark);
     text-decoration: none;
 }
 
-button.answer:active a {
+.answer:active a {
     color: var(--color-light);
 }
 
-button.answer-neutral {
+.answer-neutral {
     background-color: var(--color-light);
     color: var(--color-dark);
     border: 2px solid var(--color-dark);
 }
 
-button.answer-wrong {
+.answer-wrong {
     color: var(--color-red-strong);
     background-color: var(--color-light);
     border: 2px solid var(--color-red-strong);
@@ -456,7 +474,7 @@ button.answer-wrong {
     /* animation: neutral-wrong 1s ease 9s 2 forwards forwards; */
 }
 
-button.answer-right {
+.answer-right {
     color: var(--color-light);
     background-color: var(--color-green-strong);
     border: 2px solid var(--color-green-strong);
@@ -466,13 +484,13 @@ button.answer-right {
         background-color 1000ms;
 }
 
-button.answer-reveal {
+.answer-reveal {
     color: var(--color-green);
     border: 2px solid var(--color-green);
     cursor: default;
 }
 
-button.answer-disabled {
+.answer-disabled {
     color: var(--color-gray-500);
     background-color: var(--color-light);
     border: 2px solid var(--color-gray-500);
@@ -505,11 +523,16 @@ app-footer {
     font-size: var(--base);
 }
 
+
+
+
+
 @keyframes neutral-wrong {
     0% {
         color: var(--color-dark);
         border: 2px solid var(--color-dark);
     }
+
     100% {
         color: var(--color-red-strong);
         border: 2px solid var(--color-red-strong);

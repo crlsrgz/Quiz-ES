@@ -2,7 +2,7 @@ import "iconify-icon";
 import("../style.css");
 
 import { v4 as uuidv4 } from "uuid";
-// import { connectionUserData } from "../connections/connection.js";
+import { connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
 import { deleteLocalStorage } from "../utils/dom-functions.js";
 
@@ -44,24 +44,25 @@ totalScore = gameState.totalScore;
 /* :::::::::  Report Game State ::::::::: */
 console.table(gameState);
 
-// // 💡 :::: Remote DEV START
-// await userDataRequest(connectionUserData, user, todaysGamesPlayed);
+// 💡 :::: Remote DEV START
+await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// // BUTTONS
-// const checkLocal: any = localStorage.getItem("quiz");
-// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// BUTTONS
+const checkLocal: any = localStorage.getItem("quiz");
+const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-// console.log("today", checkLocalJson);
-// const answer =
-//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+console.log("today", checkLocalJson);
+const answer =
+    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
-// //💡 :::: Remote DEV END
+//💡 :::: Remote DEV END
 
 const buttons = document.querySelectorAll(
     ".answer",
 ) as NodeListOf<HTMLInputElement>;
 
 const nextQuizButton = document.querySelector("#next") as HTMLElement;
+
 //testing purposes
 window.addEventListener("dblclick", () => {
     nextQuizButton.scrollIntoView({ behavior: "smooth" });
@@ -73,7 +74,7 @@ buttons.forEach((button) => {
         button?.classList.add("answer-disabled");
     }
 
-    button.addEventListener("onmousedown", () => {
+    button.addEventListener("click", () => {
         console.log("todaysGamesPlayed", todaysGamesPlayed);
 
         // Right answer
@@ -89,6 +90,13 @@ buttons.forEach((button) => {
             if (todaysGamesPlayed > 2) {
                 isGameOfDayOver = true;
             }
+
+            setTimeout(() => {
+                nextQuizButton.scrollIntoView({ behavior: "smooth" });
+            }, 1000);
+
+            nextQuizButton.classList.remove("hidden");
+
             setInitialLocalStorage(
                 isGameOver,
                 isGameOfDayOver,
@@ -120,6 +128,10 @@ buttons.forEach((button) => {
                     button.disabled = true;
                 }
             });
+
+            setTimeout(() => {
+                nextQuizButton.scrollIntoView({ behavior: "smooth" });
+            }, 1000);
         }
 
         if (isGameOver) {
@@ -130,6 +142,8 @@ buttons.forEach((button) => {
                     button.disabled = true;
                 }
             });
+
+            console.log("am I doing something");
 
             /* ::::::::: Reset Local Storage ::::::::: */
             isGameOver = false;
