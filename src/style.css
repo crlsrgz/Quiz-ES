@@ -12,6 +12,10 @@
     font-family: "Jost";
     src: url(./assets/fonts/Jost-VariableFont_wght.ttf);
 }
+@font-face {
+    font-family: "Jost-Light";
+    src: url(./assets/fonts/Jost-ExtraLight.ttf);
+}
 
 /* Resset CSS */
 html,
@@ -127,7 +131,7 @@ em {
     --color-red-strong: #bd1532;
 
     /* Testing */
-    --border-test: 1px none black;
+    --border-test: 1px solid black;
 }
 
 html {
@@ -229,6 +233,9 @@ p {
 .font-sans {
     font-family: "Jost";
 }
+.font-sans-light {
+    font-family: "Jost-Light";
+}
 
 body {
     margin: 0;
@@ -244,6 +251,7 @@ body {
 }
 
 /* :::: Header Desktop ::::*/
+
 header,
 app-header {
     width: 100%;
@@ -253,6 +261,7 @@ app-header {
 }
 
 .page-title {
+    font-family: "DMSerifDisplay";
     text-align: left;
     width: 80%;
 }
@@ -364,6 +373,7 @@ iconify-icon {
 
 .content {
     width: 100%;
+    padding: var(--h1) 0 0 0;
     outline: var(--border-test);
 }
 
@@ -395,7 +405,7 @@ iconify-icon {
 }
 
 .button-container {
-    width: 50%;
+    width: 40%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -407,7 +417,7 @@ iconify-icon {
 
 
 .message-container {
-    width: 500px;
+    width: 50%;
     text-align: center;
     margin: auto;
     display: flex;
@@ -544,22 +554,65 @@ app-footer {
 }
 
 @media screen and (max-width: 380px) {
+    :root {
+        --base-size: 1.2rem;
+        --scale: 1.1;
+        --factor: 0.3;
+    }
+
     #app {
+        width: 95%;
+
         padding: 0;
-        margin: 0;
+        margin: 0 auto;
+    }
+
+    header {
+        padding: var(--h6) 0 var(--h6) 0;
+    }
+
+    app-header {
+        flex-direction: column;
+    }
+
+    .page-title {
+        font-size: var(--h1);
+        width: auto;
     }
 
     main {
         width: 90%;
-        padding: 0;
+        padding: var(--h1) 0;
+    }
+
+    .message-container .h1 {
+        font-size: 4rem;
+    }
+
+    .message-container {
+        width: 90%;
+    }
+
+    .quote h3 {
+        padding: 0 16px 0 16px;
     }
 
     .button-container {
         width: 90%;
     }
 
+    .answer-field {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     section,
     .section {
-        padding: 0;
+        padding: var(--h6) 0 var(--h6) 0;
+    }
+
+    app-footer {
+        padding: 2rem 1rem 2rem 1rem;
+        gap: var(--h6);
     }
 }

@@ -56,5 +56,5 @@ const answer =
 /* :::::::::  Report Game State ::::::::: */
 console.table(gameState);
 
-/* ::::::::: Temporaray functions for depeloment ::::::::: */
+/* ::::::::: Temporaray functions for development ::::::::: */
 deleteLocalStorage();
