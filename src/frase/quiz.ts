@@ -135,11 +135,23 @@ buttons.forEach((button) => {
         }
 
         if (isGameOver) {
+            const buttonContainer = document.querySelector(".button-container");
             buttons.forEach((button) => {
                 if (button.id.toString() !== answer.toString()) {
                     button?.classList.remove("answer-neutral");
                     button?.classList.add("answer-disabled");
                     button.disabled = true;
+                    // Test
+                    setTimeout(() => {
+                        // button.style["display"] = "none";
+                        button.style["transition"] = "all 3s";
+                        button.style["opacity"] = "0.8";
+                    }, 1000);
+                } else {
+                    console.log(button.textContent);
+                    const divAuthor = document.createElement("div");
+                    divAuthor.innerText = button.textContent;
+                    buttonContainer?.appendChild(divAuthor);
                 }
             });
 

@@ -400,7 +400,11 @@ iconify-icon {
     display: flex;
     flex-direction: column;
     gap: var(--h6);
+    /* For animation, not working though */
+    transition: order 3.5s ease-in-out;
 }
+
+
 
 .message-container {
     width: 500px;
