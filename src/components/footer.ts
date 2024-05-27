@@ -1,6 +1,6 @@
 import("../style.css");
 export class ComponentFooter extends HTMLElement {
-    connectedCallback(word: string = "Quiz") {
+    connectedCallback() {
         this.innerHTML = `
         <div><a href="">About</a></div>
         <div><a href="">Aviso Legal</a></div>

@@ -1,6 +1,6 @@
 import("../style.css");
 export class ComponentNavigation extends HTMLElement {
-    connectedCallback(word: string = "Quiz") {
+    connectedCallback(word: string = "¿Quién dijo?") {
         this.innerHTML = `
         <h1 class="page-title">
             <a href="/"> ${word} </a>
