@@ -41,9 +41,6 @@ todaysGamesPlayed =
 totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
-/* :::::::::  Report Game State ::::::::: */
-console.table(gameState);
-
 // 💡 :::: Remote DEV START
 await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
@@ -114,6 +111,16 @@ buttons.forEach((button) => {
             button?.classList.add("answer-wrong");
             answerTries += 1;
             button.disabled = true;
+
+            setInitialLocalStorage(
+                isGameOver,
+                isGameOfDayOver,
+                answerTries,
+                todayScore,
+                todaysGamesPlayed,
+                totalGamesPlayed,
+                totalScore,
+            );
         }
 
         if (answerTries === 3) {
@@ -132,6 +139,25 @@ buttons.forEach((button) => {
             setTimeout(() => {
                 nextQuizButton.scrollIntoView({ behavior: "smooth" });
             }, 1000);
+
+            /*:: Increase Games of the day ::*/
+
+            if (todaysGamesPlayed < 3) {
+                todaysGamesPlayed += 1;
+            }
+            if (todaysGamesPlayed > 2) {
+                isGameOfDayOver = true;
+            }
+            isGameOver = true;
+            setInitialLocalStorage(
+                isGameOver,
+                isGameOfDayOver,
+                answerTries,
+                todayScore,
+                todaysGamesPlayed,
+                totalGamesPlayed,
+                totalScore,
+            );
         }
 
         if (isGameOver) {
@@ -149,8 +175,12 @@ buttons.forEach((button) => {
                     }, 1000);
                 } else {
                     console.log(button.textContent);
-                    const divAuthor = document.createElement("div");
-                    divAuthor.innerText = button.textContent;
+                    const divAuthor: HTMLElement =
+                        document.createElement("div");
+
+                    if (button.textContent) {
+                        divAuthor.innerText = button.textContent;
+                    }
                     buttonContainer?.appendChild(divAuthor);
                 }
             });
@@ -173,5 +203,7 @@ buttons.forEach((button) => {
     });
 });
 
+/* :::::::::  Report Game State ::::::::: */
+console.table(gameState);
 /* ::::::::: Temporaray functions for depeloment ::::::::: */
 deleteLocalStorage();
