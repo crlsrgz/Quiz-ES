@@ -1,3 +1,5 @@
+import { ComponentAuthorInfo } from "../components/authorInfo";
+
 export const insertTextContent = (
     elementIdentifier: string,
     textInsert: string,
@@ -29,6 +31,26 @@ export function paintQuizInterface(
     if (quoteField) {
         quoteField.textContent = data[todaysGame]["quote"];
     }
+}
+
+export function animateAuthor() {
+    // Selecttion for develpment
+    const button = document.getElementById("3");
+    // const content = new ComponentAuthorInfo("aa");
+
+    const authorContainer = document.createElement("author-info");
+    authorContainer.attributes["name"] = "BBBB";
+    customElements.define("author-info", ComponentAuthorInfo);
+
+    authorContainer.style.order = "-1";
+    if (button?.textContent) {
+        authorContainer.textContent = button?.textContent;
+    }
+    const container = document.querySelector(".button-container");
+    window.addEventListener("dblclick", () => {
+        container?.appendChild(authorContainer);
+        console.log("gggg");
+    });
 }
 
 /* ::::::::: Temporaray functions for depeloment ::::::::: */

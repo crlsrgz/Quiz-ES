@@ -131,7 +131,7 @@ em {
     --color-red-strong: #bd1532;
 
     /* Testing */
-    --border-test: 1px solid black;
+    --border-test: 1px none black;
 }
 
 html {
@@ -189,7 +189,6 @@ h6,
 p {
     font-size: var(--base-size);
 }
-
 /*::::::::::::::::::::::::::
   Color Classes    
   ::::::::::::::::::::::::::*/
@@ -414,15 +413,22 @@ iconify-icon {
     transition: order 3.5s ease-in-out;
 }
 
-
-
 .message-container {
     width: 50%;
     text-align: center;
+    padding: var(--h3) 0 0 0;
     margin: auto;
     display: flex;
     flex-direction: column;
     gap: var(--h6);
+}
+
+.message-container h2,
+h6 {
+    text-align: justify;
+    text-justify: distribute;
+    text-justify: inter-character;
+    line-height: var(--h4);
 }
 
 /* :::: Buttons  ::::*/
@@ -443,24 +449,21 @@ iconify-icon {
     margin-top: var(--h6);
     display: flex;
 
-
     font-size: var(--h6);
     font-family: "Jost";
     text-align: center;
     text-decoration: none;
-
 }
 
 .next a {
-    display:block;
-    margin:auto;
+    display: block;
+    margin: auto;
     width: 95%;
     /* height: 95%; */
 
     /* background-color: red; */
     text-decoration: none;
 }
-
 
 .answer a:link,
 .answer a:visited {
@@ -536,10 +539,6 @@ app-footer {
     gap: var(--h4);
     font-size: var(--base);
 }
-
-
-
-
 
 @keyframes neutral-wrong {
     0% {

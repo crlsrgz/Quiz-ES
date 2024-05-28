@@ -2,8 +2,10 @@ import "iconify-icon";
 import("../style.css");
 
 import { v4 as uuidv4 } from "uuid";
-import { connectionUserData } from "../connections/connection.js";
+// import { connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
+
+import { animateAuthor } from "../utils/dom-functions.js";
 import { deleteLocalStorage } from "../utils/dom-functions.js";
 
 const userId = localStorage["user"] ? localStorage["user"] : uuidv4();
@@ -41,18 +43,20 @@ todaysGamesPlayed =
 totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
-// 💡 :::: Remote DEV START
-await userDataRequest(connectionUserData, user, todaysGamesPlayed);
+// // 💡 :::: Remote DEV START
+// await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// BUTTONS
-const checkLocal: any = localStorage.getItem("quiz");
-const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// // BUTTONS
+// const checkLocal: any = localStorage.getItem("quiz");
+// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-console.log("today", checkLocalJson);
-const answer =
-    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+// console.log("today", checkLocalJson);
+// const answer =
+//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
-//💡 :::: Remote DEV END
+const answer = "1";
+
+// //💡 :::: Remote DEV END
 
 const buttons = document.querySelectorAll(
     ".answer",
@@ -206,4 +210,5 @@ buttons.forEach((button) => {
 /* :::::::::  Report Game State ::::::::: */
 console.table(gameState);
 /* ::::::::: Temporaray functions for depeloment ::::::::: */
-deleteLocalStorage();
+// deleteLocalStorage();
+animateAuthor();
