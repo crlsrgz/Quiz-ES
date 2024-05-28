@@ -33,24 +33,41 @@ export function paintQuizInterface(
     }
 }
 
-export function animateAuthor() {
+export function animateAuthor(
+    authorName = "Name",
+    professionOne = "one",
+    professionTwo = "two",
+    professionThree = "three",
+    country = "country",
+    born = "st",
+    died = "ed",
+) {
     // Selecttion for develpment
     const button = document.getElementById("3");
     // const content = new ComponentAuthorInfo("aa");
 
     const authorContainer = document.createElement("author-info");
-    authorContainer.attributes["name"] = "BBBB";
     customElements.define("author-info", ComponentAuthorInfo);
+    authorContainer.setAttribute("name", authorName);
+    authorContainer.setAttribute("professionOne", professionOne);
+    authorContainer.setAttribute("professionTwo", professionTwo);
+    authorContainer.setAttribute("professionThree", professionThree);
+    authorContainer.setAttribute("country", country);
+    authorContainer.setAttribute("born", born);
+    authorContainer.setAttribute("died", died);
 
     authorContainer.style.order = "-1";
+
     if (button?.textContent) {
         authorContainer.textContent = button?.textContent;
     }
+
     const container = document.querySelector(".button-container");
-    window.addEventListener("dblclick", () => {
-        container?.appendChild(authorContainer);
-        console.log("gggg");
-    });
+    container?.appendChild(authorContainer);
+    // window.addEventListener("dblclick", () => {
+    //     container?.appendChild(authorContainer);
+    //     console.log("gggg");
+    // });
 }
 
 /* ::::::::: Temporaray functions for depeloment ::::::::: */

@@ -2,7 +2,7 @@ import "iconify-icon";
 import("../style.css");
 
 import { v4 as uuidv4 } from "uuid";
-// import { connectionUserData } from "../connections/connection.js";
+import { connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
 
 import { animateAuthor } from "../utils/dom-functions.js";
@@ -43,20 +43,20 @@ todaysGamesPlayed =
 totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
-// // 💡 :::: Remote DEV START
-// await userDataRequest(connectionUserData, user, todaysGamesPlayed);
+// 💡 :::: Remote DEV START
+await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// // BUTTONS
-// const checkLocal: any = localStorage.getItem("quiz");
-// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// BUTTONS
+const checkLocal: any = localStorage.getItem("quiz");
+const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-// console.log("today", checkLocalJson);
-// const answer =
-//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+console.log("today", checkLocalJson);
+const answer =
+    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
-const answer = "1";
+//💡 :::: Remote DEV END
 
-// //💡 :::: Remote DEV END
+// const answer = "1";
 
 const buttons = document.querySelectorAll(
     ".answer",
@@ -65,9 +65,8 @@ const buttons = document.querySelectorAll(
 const nextQuizButton = document.querySelector("#next") as HTMLElement;
 
 //testing purposes
-window.addEventListener("dblclick", () => {
-    nextQuizButton.scrollIntoView({ behavior: "smooth" });
-});
+// window.addEventListener("dblclick", () => { nextQuizButton.scrollIntoView({ behavior: "smooth" });
+// });
 
 buttons.forEach((button) => {
     if (isGameOfDayOver) {
@@ -93,7 +92,8 @@ buttons.forEach((button) => {
             }
 
             setTimeout(() => {
-                nextQuizButton.scrollIntoView({ behavior: "smooth" });
+                // nextQuizButton.scrollIntoView({ behavior: "smooth" });
+                animateAuthor();
             }, 1000);
 
             nextQuizButton.classList.remove("hidden");
@@ -210,5 +210,6 @@ buttons.forEach((button) => {
 /* :::::::::  Report Game State ::::::::: */
 console.table(gameState);
 /* ::::::::: Temporaray functions for depeloment ::::::::: */
-// deleteLocalStorage();
-animateAuthor();
+deleteLocalStorage();
+
+// animateAuthor();

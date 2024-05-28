@@ -540,6 +540,17 @@ app-footer {
     font-size: var(--base);
 }
 
+author-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: author-name 3s ease 0s 1  normal forwards; 
+    overflow: hidden;
+}
+
+
+
+
 @keyframes neutral-wrong {
     0% {
         color: var(--color-dark);
@@ -550,6 +561,21 @@ app-footer {
         color: var(--color-red-strong);
         border: 2px solid var(--color-red-strong);
     }
+}
+
+@keyframes author-name {
+    0%{
+        opacity: 0;
+        height: 20px;
+    }
+    20%{
+        height: 200px;
+    }
+    100% {
+        opacity: 1;
+        height: 200px;
+    }
+    
 }
 
 @media screen and (max-width: 380px) {
