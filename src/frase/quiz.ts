@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
 
-import { animateAuthor } from "../utils/dom-functions.js";
+import { animateAuthor, removeStar } from "../utils/dom-functions.js";
 import { deleteLocalStorage } from "../utils/dom-functions.js";
 
 const userId = localStorage["user"] ? localStorage["user"] : uuidv4();
@@ -43,20 +43,20 @@ todaysGamesPlayed =
 totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
-// // 💡 :::: Remote DEV START
-// await userDataRequest(connectionUserData, user, todaysGamesPlayed);
+// 💡 :::: Remote DEV START
+await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// // BUTTONS
-// const checkLocal: any = localStorage.getItem("quiz");
-// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// BUTTONS
+const checkLocal: any = localStorage.getItem("quiz");
+const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-// console.log("today", checkLocalJson);
-// const answer =
-//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+console.log("today", checkLocalJson);
+const answer =
+    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
-// //💡 :::: Remote DEV END
+//💡 :::: Remote DEV END
 
-const answer = "1";
+// const answer = "1";
 
 const buttons = document.querySelectorAll(
     ".answer",
@@ -72,6 +72,7 @@ buttons.forEach((button) => {
     if (isGameOfDayOver) {
         button?.classList.remove("answer-neutral");
         button?.classList.add("answer-disabled");
+        button.disabled = true;
     }
 
     button.addEventListener("click", () => {
@@ -84,17 +85,31 @@ buttons.forEach((button) => {
             button?.classList.add("answer-right");
             button.disabled = true;
             isGameOver = true;
+            console.log("todaysGamesPlayed", todaysGamesPlayed);
+            const authorInfo =
+                checkLocalJson[
+                    todaysGamesPlayed as keyof typeof checkLocalJson
+                ]["author_bio"];
+            setTimeout(() => {
+                // nextQuizButton.scrollIntoView({ behavior: "smooth" });
+                console.log("todaysGamesPlayed", todaysGamesPlayed);
+                animateAuthor(
+                    authorInfo["authorName"],
+                    authorInfo["professionOne"] ?? "",
+                    authorInfo["professionTwo"] ?? "",
+                    authorInfo["professionThree"] ?? "",
+                    authorInfo["authorCountryName"] ?? "",
+                    authorInfo["authorBorn"] ?? "",
+                    authorInfo["authorDeath"] ?? "",
+                );
+            }, 1000);
+
             if (todaysGamesPlayed < 3) {
                 todaysGamesPlayed += 1;
             }
             if (todaysGamesPlayed > 2) {
                 isGameOfDayOver = true;
             }
-
-            setTimeout(() => {
-                // nextQuizButton.scrollIntoView({ behavior: "smooth" });
-                button.textContent ? animateAuthor(button.textContent) : "";
-            }, 1000);
 
             nextQuizButton.classList.remove("hidden");
 
@@ -114,6 +129,7 @@ buttons.forEach((button) => {
             button?.classList.remove("answer-neutral");
             button?.classList.add("answer-wrong");
             answerTries += 1;
+            removeStar(answerTries - 1);
             button.disabled = true;
 
             setInitialLocalStorage(

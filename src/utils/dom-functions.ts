@@ -43,7 +43,7 @@ export function animateAuthor(
     born = "-",
     died = "-",
 ) {
-    // Selecttion for develpment
+    // Selection for develpment
     const button = document.getElementById("3");
     // const content = new ComponentAuthorInfo("aa");
 
@@ -91,6 +91,18 @@ export async function animateStars(duration: number = 330) {
         await delay(duration);
         stars[i].setAttribute("icon", "ph:star-fill");
     }
+}
+
+export function removeStar(answerTries: number) {
+    const stars = document.querySelectorAll(".star-score");
+    const index = stars.length - 1 - answerTries;
+    stars[index].setAttribute("icon", "ph:star-thin");
+    anime({
+        targets: stars[index],
+        rotate: "-216",
+        keyframes: [{ scale: ["1.1", "0.25"] }, { scale: ["0.25", "1"] }],
+        duration: 1000,
+    });
 }
 
 /* ::::::::: Temporaray functions for depeloment ::::::::: */

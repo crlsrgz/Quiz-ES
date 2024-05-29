@@ -12,9 +12,15 @@
     font-family: "Jost";
     src: url(./assets/fonts/Jost-VariableFont_wght.ttf);
 }
+
 @font-face {
     font-family: "Jost-Light";
     src: url(./assets/fonts/Jost-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: "Jost-Light";
+    src: url(./assets/fonts/Jost-Light.ttf);
 }
 
 /* Resset CSS */
@@ -189,6 +195,7 @@ h6,
 p {
     font-size: var(--base-size);
 }
+
 /*::::::::::::::::::::::::::
   Color Classes    
   ::::::::::::::::::::::::::*/
@@ -232,6 +239,7 @@ p {
 .font-sans {
     font-family: "Jost";
 }
+
 .font-sans-light {
     font-family: "Jost-Light";
 }
@@ -552,9 +560,22 @@ author-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: author-name 2s cubic-bezier(0.71, -0.01, 0, 0.99) 0s 1 normal
-        forwards;
     overflow: hidden;
+
+    font-family: 'Jost-Light';
+
+    animation: author-name 2s cubic-bezier(0.71, -0.01, 0, 0.99) 0s 1 normal forwards;
+}
+
+.separator {
+    width: 100%;
+    height: 20px;
+    margin-top: 40px;
+    box-shadow: 0 20px 14px -25px #8c8b8b inset;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    border-top: 1px solid rgb(219, 215, 215);
+    border-left: 0;
+    border-right: 0;
 }
 
 @keyframes neutral-wrong {
@@ -574,12 +595,14 @@ author-info {
         opacity: 0;
         height: 0px;
     }
+
     20% {
-        height: 200px;
+        height: 240px;
     }
+
     100% {
         opacity: 1;
-        height: 200px;
+        height: 240px;
     }
 }
 
