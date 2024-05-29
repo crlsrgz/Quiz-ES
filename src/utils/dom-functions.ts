@@ -57,13 +57,13 @@ export function animateAuthor(
     authorContainer.setAttribute("born", born);
     authorContainer.setAttribute("died", died);
 
-    authorContainer.style.order = "-1";
+    // authorContainer.style.order = "-1";
 
     if (button?.textContent) {
         authorContainer.textContent = button?.textContent;
     }
 
-    const container = document.querySelector(".button-container");
+    const container = document.querySelector(".quote");
     container?.appendChild(authorContainer);
 
     animateStars();

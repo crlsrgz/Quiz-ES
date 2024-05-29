@@ -156,9 +156,9 @@ buttons.forEach((button) => {
                 }
             });
 
-            setTimeout(() => {
-                nextQuizButton.scrollIntoView({ behavior: "smooth" });
-            }, 1000);
+            // setTimeout(() => {
+            //     nextQuizButton.scrollIntoView({ behavior: "smooth" });
+            // }, 1000);
 
             /*:: Increase Games of the day ::*/
 

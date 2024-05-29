@@ -343,6 +343,7 @@ iconify-icon {
     display: flex;
     flex-direction: column;
     justify-content: end;
+    gap: var(--h55);
     font-family: "DMSerifDisplay-Italic";
     line-height: 3.5rem;
     padding: var(--h4) 0 0 0;
@@ -387,7 +388,7 @@ iconify-icon {
 /* :::: Tries Stars Count ::::*/
 
 .tries-left {
-    padding: 2rem 0 3rem 0;
+    padding: 2rem 0 2rem 0;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -557,18 +558,20 @@ app-footer {
 }
 
 author-info {
+
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: var(--h3);
     overflow: hidden;
-
+    color: var(--color-gray-700);
     font-family: 'Jost-Light';
 
     animation: author-name 2s cubic-bezier(0.71, -0.01, 0, 0.99) 0s 1 normal forwards;
 }
 
 .separator {
-    width: 100%;
+    width: 50%;
     height: 20px;
     margin-top: 40px;
     box-shadow: 0 20px 14px -25px #8c8b8b inset;
@@ -597,12 +600,12 @@ author-info {
     }
 
     20% {
-        height: 240px;
+        height: 210px;
     }
 
     100% {
         opacity: 1;
-        height: 240px;
+        height: 210px;
     }
 }
 
