@@ -43,20 +43,20 @@ todaysGamesPlayed =
 totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
-// 💡 :::: Remote DEV START
-await userDataRequest(connectionUserData, user, todaysGamesPlayed);
+// // 💡 :::: Remote DEV START
+// await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// BUTTONS
-const checkLocal: any = localStorage.getItem("quiz");
-const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// // BUTTONS
+// const checkLocal: any = localStorage.getItem("quiz");
+// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-console.log("today", checkLocalJson);
-const answer =
-    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+// console.log("today", checkLocalJson);
+// const answer =
+//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
-//💡 :::: Remote DEV END
+// //💡 :::: Remote DEV END
 
-// const answer = "1";
+const answer = "1";
 
 const buttons = document.querySelectorAll(
     ".answer",
@@ -93,7 +93,7 @@ buttons.forEach((button) => {
 
             setTimeout(() => {
                 // nextQuizButton.scrollIntoView({ behavior: "smooth" });
-                animateAuthor();
+                button.textContent ? animateAuthor(button.textContent) : "";
             }, 1000);
 
             nextQuizButton.classList.remove("hidden");

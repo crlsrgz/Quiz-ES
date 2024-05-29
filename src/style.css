@@ -388,13 +388,21 @@ iconify-icon {
     outline: var(--border-test);
 }
 
-.star-icon-empty {
+.star-score {
+    offset-anchor: bottom;
+    width: 2em;
+    height: 2em;
+    color: var(--color-green-strong);
+}
+
+/* .star-icon-empty {
+
     color: var(--color-blue-strong);
 }
 
 .star-icon-full {
     color: var(--color-blue-strong);
-}
+} */
 
 /* :::: Answer Buttons  ::::*/
 
@@ -540,16 +548,14 @@ app-footer {
     font-size: var(--base);
 }
 
-author-info{
+author-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: author-name 3s ease 0s 1  normal forwards; 
+    animation: author-name 2s cubic-bezier(0.71, -0.01, 0, 0.99) 0s 1 normal
+        forwards;
     overflow: hidden;
 }
-
-
-
 
 @keyframes neutral-wrong {
     0% {
@@ -564,18 +570,17 @@ author-info{
 }
 
 @keyframes author-name {
-    0%{
+    0% {
         opacity: 0;
-        height: 20px;
+        height: 0px;
     }
-    20%{
+    20% {
         height: 200px;
     }
     100% {
         opacity: 1;
         height: 200px;
     }
-    
 }
 
 @media screen and (max-width: 380px) {

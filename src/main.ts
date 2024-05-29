@@ -41,17 +41,17 @@ todaysGamesPlayed = gameState.todaysGamesPlayed;
 totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
-// 💡 :::: Remote DEV START
-await userDataRequest(connectionUserData, user, todaysGamesPlayed);
+// // 💡 :::: Remote DEV START
+// await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// BUTTONS
-const checkLocal: any = localStorage.getItem("quiz");
-const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// // BUTTONS
+// const checkLocal: any = localStorage.getItem("quiz");
+// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-const answer =
-    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+// const answer =
+//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
-//💡 :::: Remote DEV END
+// //💡 :::: Remote DEV END
 
 /* :::::::::  Report Game State ::::::::: */
 console.table(gameState);

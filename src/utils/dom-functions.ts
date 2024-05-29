@@ -1,4 +1,5 @@
 import { ComponentAuthorInfo } from "../components/authorInfo";
+import anime from "animejs/lib/anime.es.js";
 
 export const insertTextContent = (
     elementIdentifier: string,
@@ -34,13 +35,13 @@ export function paintQuizInterface(
 }
 
 export function animateAuthor(
-    authorName = "Name",
-    professionOne = "one",
-    professionTwo = "two",
-    professionThree = "three",
-    country = "country",
-    born = "st",
-    died = "ed",
+    authorName = "-",
+    professionOne = "-",
+    professionTwo = "-",
+    professionThree = "-",
+    country = "-",
+    born = "-",
+    died = "-",
 ) {
     // Selecttion for develpment
     const button = document.getElementById("3");
@@ -64,10 +65,32 @@ export function animateAuthor(
 
     const container = document.querySelector(".button-container");
     container?.appendChild(authorContainer);
+
+    animateStars();
     // window.addEventListener("dblclick", () => {
     //     container?.appendChild(authorContainer);
     //     console.log("gggg");
     // });
+}
+function delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+// TODO: OPtimize function, remove extra libraries
+export async function animateStars(duration: number = 330) {
+    const stars = document.querySelectorAll(".star-score");
+    anime({
+        targets: ".star-score",
+        rotate: "216",
+        color: "#126b5b",
+        keyframes: [{ scale: ["1.1", "0.25"] }, { scale: ["0.25", "1"] }],
+        delay: anime.stagger(duration),
+        easing: "spring(1, 80, 10, 0)",
+    });
+
+    for (let i = 0; i < stars.length; i++) {
+        await delay(duration);
+        stars[i].setAttribute("icon", "ph:star-fill");
+    }
 }
 
 /* ::::::::: Temporaray functions for depeloment ::::::::: */
