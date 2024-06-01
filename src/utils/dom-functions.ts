@@ -79,7 +79,7 @@ function delay(ms: number) {
 export async function animateStars(duration: number = 330) {
     const stars = document.querySelectorAll(".star-score");
     anime({
-        targets: ".star-score",
+        targets: ".star-empty",
         rotate: "216",
         color: "#126b5b",
         keyframes: [{ scale: ["1.1", "0.25"] }, { scale: ["0.25", "1"] }],
@@ -88,8 +88,11 @@ export async function animateStars(duration: number = 330) {
     });
 
     for (let i = 0; i < stars.length; i++) {
-        await delay(duration);
-        stars[i].setAttribute("icon", "ph:star-fill");
+        // await delay(duration);
+        if (stars[i] && stars[i].classList.contains("star-empty")) {
+            stars[i].setAttribute("icon", "ph:star-fill");
+            stars[i].classList.remove("star-empty");
+        }
     }
 }
 
@@ -97,12 +100,14 @@ export function removeStar(answerTries: number) {
     const stars = document.querySelectorAll(".star-score");
     const index = stars.length - 1 - answerTries;
     stars[index].setAttribute("icon", "ph:star-thin");
+    stars[index].classList.add("star-empty");
     anime({
         targets: stars[index],
         rotate: "-216",
         keyframes: [{ scale: ["1.1", "0.25"] }, { scale: ["0.25", "1"] }],
         duration: 1000,
     });
+    console.log(stars[index]);
 }
 
 /* ::::::::: Temporaray functions for depeloment ::::::::: */

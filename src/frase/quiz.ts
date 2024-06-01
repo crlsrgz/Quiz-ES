@@ -110,8 +110,16 @@ buttons.forEach((button) => {
             if (todaysGamesPlayed > 2) {
                 isGameOfDayOver = true;
             }
+            if (todaysGamesPlayed > 2) {
+                nextQuizButton.firstChild["href"] =
+                    "http://localhost:5173/marcador/";
+            } else {
+                nextQuizButton.firstChild["href"] =
+                    "http://localhost:5173/frase/";
+            }
 
             nextQuizButton.classList.remove("hidden");
+            nextQuizButton.classList.add("next-reveal");
 
             setInitialLocalStorage(
                 isGameOver,
@@ -194,17 +202,12 @@ buttons.forEach((button) => {
                         button.style["opacity"] = "0.8";
                     }, 1000);
                 } else {
+                    // TODO remove log
                     console.log(button.textContent);
-                    const divAuthor: HTMLElement =
-                        document.createElement("div");
-
-                    if (button.textContent) {
-                        divAuthor.innerText = button.textContent;
-                    }
-                    buttonContainer?.appendChild(divAuthor);
                 }
             });
 
+            // TODO remove log
             console.log("am I doing something");
 
             /* ::::::::: Reset Local Storage ::::::::: */
@@ -227,5 +230,3 @@ buttons.forEach((button) => {
 console.table(gameState);
 /* ::::::::: Temporaray functions for depeloment ::::::::: */
 deleteLocalStorage();
-
-// animateAuthor();

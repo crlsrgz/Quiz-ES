@@ -306,10 +306,21 @@ app-header {
 }
 
 /* :::: Main ::::*/
+#app {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 2rem 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: none;
+}
+
 main {
     width: 80%;
     min-height: 70vh;
     margin: 0 auto 0 auto;
+    padding: var(--h3) 0 0 0;
 }
 
 /* section,
@@ -323,15 +334,6 @@ iconify-icon {
     height: 1em;
 }
 
-#app {
-    width: 100%;
-    margin: 0 auto;
-    padding: 1rem 2rem 3rem 2rem;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    border: none;
-}
 
 .score-board {
     display: flex;
@@ -379,16 +381,11 @@ iconify-icon {
     outline: var(--border-test);
 }
 
-.content {
-    width: 100%;
-    padding: var(--h1) 0 0 0;
-    outline: var(--border-test);
-}
 
 /* :::: Tries Stars Count ::::*/
 
 .tries-left {
-    padding: 2rem 0 2rem 0;
+    padding: 2rem 0 0rem 0;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -459,17 +456,28 @@ h6 {
 }
 
 .next {
+    order: -1;
     align-self: center;
     width: 200px;
-    height: 42px;
+    height: 0px;
     border-radius: calc(var(--radius) * 1.5);
-    margin-top: var(--h6);
+    /* margin-top: var(--h6); */
+    margin-bottom: var(--h4);
+
     display: flex;
 
     font-size: var(--h6);
     font-family: "Jost";
     text-align: center;
     text-decoration: none;
+
+}
+
+.next-reveal {
+    opacity: 0;
+    height: 0px;
+    overflow: hidden;
+    animation: reveal-hidden 2s ease 1s 1 normal forwards;
 }
 
 .next a {
@@ -482,12 +490,13 @@ h6 {
     text-decoration: none;
 }
 
-.answer a:link,
+button a:link,
+button a:visited,
 .answer a:visited {
     color: var(--color-dark);
     text-decoration: none;
 }
-
+.button a:active,
 .answer:active a {
     color: var(--color-light);
 }
@@ -534,14 +543,21 @@ h6 {
         border 1000ms;
 }
 
+
+button:hover,
 .answer-neutral:hover {
     background-color: var(--color-gray-100);
 }
 
+button:active,
 .answer-neutral:active {
     background-color: var(--color-dark);
     color: var(--color-light);
     border-color: var(--color-light);
+}
+
+button:active a  {
+        color: var(--color-light);
 }
 
 footer {
@@ -562,7 +578,7 @@ author-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: var(--h3);
+    margin-top: var(--h1);
     overflow: hidden;
     color: var(--color-gray-700);
     font-family: 'Jost-Light';
@@ -609,6 +625,29 @@ author-info {
     }
 }
 
+.hidden {
+    display: none;
+}
+
+
+@keyframes reveal-hidden {
+    0% {
+        opacity: 0;
+        height: 0px;
+    }
+
+    20% {
+        height: 42px;
+    }
+
+
+    100% {
+        opacity: 1;
+        height: 42px;
+    }
+
+}
+
 @media screen and (max-width: 380px) {
     :root {
         --base-size: 1.2rem;
@@ -638,7 +677,7 @@ author-info {
 
     main {
         width: 90%;
-        padding: var(--h1) 0;
+        padding: var(--h1) 0 0 0;
     }
 
     .message-container .h1 {
