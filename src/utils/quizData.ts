@@ -24,6 +24,24 @@ export async function userDataRequest(
         });
     paintQuizInterface(theData, todaysGamesPlayed);
 }
+
+export async function updateUserTotalScore(
+    connectionUserScore: string,
+    user: { userId: string | null; totalScore: number; totalGames: number },
+) {
+    await fetch(connectionUserScore, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=uft",
+        },
+        body: JSON.stringify(user),
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => console.log(data));
+}
+
 // Local Storage
 export function setInitialLocalStorage(
     isGameOver = false,

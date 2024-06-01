@@ -110,7 +110,10 @@ export function removeStar(answerTries: number) {
     console.log(stars[index]);
 }
 
-export function displayScore(totalPoints: string, totalGamesPlayed: string) {
+export function displayScore(
+    totalPoints: string,
+    totalGamesPlayed: string,
+): void {
     const getLocal = JSON.parse(localStorage.getItem("state"));
 
     const totalPointsElement = document.getElementById("total-points");

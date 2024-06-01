@@ -2,8 +2,15 @@ import "iconify-icon";
 import("../style.css");
 
 import { v4 as uuidv4 } from "uuid";
-import { connectionUserData } from "../connections/connection.js";
-import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
+import {
+    connectionUserData,
+    connectionUserScore,
+} from "../connections/connection.js";
+import {
+    setInitialLocalStorage,
+    updateUserTotalScore,
+    userDataRequest,
+} from "../utils/quizData.js";
 
 import { animateAuthor, removeStar } from "../utils/dom-functions.js";
 import { deleteLocalStorage } from "../utils/dom-functions.js";
@@ -218,6 +225,12 @@ buttons.forEach((button) => {
 
             /* ::::::::: Set Local Storage ::::::::: */
             totalGamesPlayed++;
+            const user = {
+                userId: localStorage.getItem("user"),
+                totalScore: totalScore,
+                totalGames: totalGamesPlayed,
+            };
+            updateUserTotalScore(connectionUserScore, user);
 
             isGameOver = false;
             answerTries = 0;
