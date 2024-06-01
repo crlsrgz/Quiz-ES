@@ -110,6 +110,19 @@ export function removeStar(answerTries: number) {
     console.log(stars[index]);
 }
 
+export function displayScore(totalPoints: string, totalGamesPlayed: string) {
+    const getLocal = JSON.parse(localStorage.getItem("state"));
+
+    const totalPointsElement = document.getElementById("total-points");
+    const totalGamesPlayedElement = document.getElementById("games-played");
+    totalPointsElement
+        ? (totalPointsElement.textContent = getLocal["totalScore"])
+        : "";
+    totalGamesPlayedElement
+        ? (totalGamesPlayedElement.textContent = getLocal["totalGamesPlayed"])
+        : "";
+}
+
 /* ::::::::: Temporaray functions for depeloment ::::::::: */
 export function deleteLocalStorage() {
     const button = document.querySelector("#delete-localStorage");

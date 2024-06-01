@@ -473,6 +473,10 @@ h6 {
 
 }
 
+.next-visible {
+    height: 42px;
+}
+
 .next-reveal {
     opacity: 0;
     height: 0px;

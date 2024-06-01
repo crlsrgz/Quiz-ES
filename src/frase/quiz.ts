@@ -118,6 +118,9 @@ buttons.forEach((button) => {
                     "http://localhost:5173/frase/";
             }
 
+            // TODO Global Score Update
+            totalScore++;
+
             nextQuizButton.classList.remove("hidden");
             nextQuizButton.classList.add("next-reveal");
 
@@ -176,6 +179,9 @@ buttons.forEach((button) => {
             if (todaysGamesPlayed > 2) {
                 isGameOfDayOver = true;
             }
+
+            // totalGamesPlayed++;
+
             isGameOver = true;
             setInitialLocalStorage(
                 isGameOver,
@@ -210,7 +216,9 @@ buttons.forEach((button) => {
             // TODO remove log
             console.log("am I doing something");
 
-            /* ::::::::: Reset Local Storage ::::::::: */
+            /* ::::::::: Set Local Storage ::::::::: */
+            totalGamesPlayed++;
+
             isGameOver = false;
             answerTries = 0;
             setInitialLocalStorage(

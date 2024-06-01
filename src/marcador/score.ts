@@ -4,7 +4,7 @@ import("../style.css");
 import { v4 as uuidv4 } from "uuid";
 import { connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
-import { deleteLocalStorage } from "../utils/dom-functions.js";
+import { deleteLocalStorage, displayScore } from "../utils/dom-functions.js";
 
 const userId = localStorage["user"] ? localStorage["user"] : uuidv4();
 
@@ -47,10 +47,12 @@ await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 const checkLocal: any = localStorage.getItem("quiz");
 const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-const answer =
-    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
+// const answer =
+//     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
 //💡 :::: Remote DEV END
+
+displayScore("1", "69");
 
 /* :::::::::  Report Game State ::::::::: */
 console.table(gameState);
