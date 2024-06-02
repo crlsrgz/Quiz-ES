@@ -233,8 +233,8 @@ buttons.forEach((button) => {
                 dateLastExercise.toLocaleString(),
             );
             console.log(dateLastExercise.toISOString());
-            const formatDate = dateLastExercise.toISOString();
-            // const formatDate = dateLastExercise.toISOString().slice(0, 10);
+            // const formatDate = dateLastExercise.toISOString();
+            const formatDate = dateLastExercise.toISOString().slice(0, 10);
 
             const user = {
                 userId: localStorage.getItem("user"),
