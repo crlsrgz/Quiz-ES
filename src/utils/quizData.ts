@@ -42,6 +42,11 @@ export async function updateUserTotalScore(
         .then((data) => console.log(data));
 }
 
+export function getDate(): string {
+    const dateLastExercise = new Date();
+    const formatDate = dateLastExercise.toISOString().slice(0, 10);
+    return formatDate;
+}
 // Local Storage
 export function setInitialLocalStorage(
     isGameOver = false,

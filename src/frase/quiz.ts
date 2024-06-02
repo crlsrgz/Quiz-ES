@@ -225,10 +225,22 @@ buttons.forEach((button) => {
 
             /* ::::::::: Set Local Storage ::::::::: */
             totalGamesPlayed++;
+
+            const dateLastExercise = new Date();
+            console.log(
+                dateLastExercise.toDateString,
+                dateLastExercise.toLocaleDateString(),
+                dateLastExercise.toLocaleString(),
+            );
+            console.log(dateLastExercise.toISOString());
+            const formatDate = dateLastExercise.toISOString();
+            // const formatDate = dateLastExercise.toISOString().slice(0, 10);
+
             const user = {
                 userId: localStorage.getItem("user"),
                 totalScore: totalScore,
                 totalGames: totalGamesPlayed,
+                date: formatDate,
             };
             updateUserTotalScore(connectionUserScore, user);
 
