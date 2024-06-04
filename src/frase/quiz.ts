@@ -240,6 +240,8 @@ buttons.forEach((button) => {
                 userId: localStorage.getItem("user"),
                 totalScore: totalScore,
                 totalGames: totalGamesPlayed,
+                todaysGamesPlayed: todaysGamesPlayed,
+                isGameOfDayOver: isGameOfDayOver,
                 date: formatDate,
             };
             updateUserTotalScore(connectionUserScore, user);

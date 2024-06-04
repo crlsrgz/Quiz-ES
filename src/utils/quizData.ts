@@ -16,8 +16,11 @@ export async function userDataRequest(
             return response.json();
         })
         .then((data) => {
-            // console.log(data);
+            console.log(data);
             localStorage.setItem("user", data["userId"]);
+            // const gameState = JSON.parse(localStorage.getItem("state"));
+            // gameState["todaysGamesPlayed"] = data["todaysGamesPlayed"];
+            // localStorage.setItem("user", JSON.stringify(gameState));
             localStorage.setItem("quiz", JSON.stringify(data["quiz"]));
             theData = data["quiz"];
             // paintQuizInterface(data["quiz"], todaysGamesPlayed);
@@ -27,8 +30,15 @@ export async function userDataRequest(
 
 export async function updateUserTotalScore(
     connectionUserScore: string,
-    user: { userId: string | null; totalScore: number; totalGames: number },
+    user: {
+        userId: string | null;
+        totalScore: number;
+        totalGames: number;
+        todaysGamesPlayed: number;
+        date: string;
+    },
 ) {
+    console.log("update score", user);
     await fetch(connectionUserScore, {
         method: "POST",
         headers: {
