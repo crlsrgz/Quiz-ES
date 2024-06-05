@@ -18,11 +18,15 @@ export async function userDataRequest(
         .then((data) => {
             console.log(data);
             localStorage.setItem("user", data["userId"]);
-            // const gameState = JSON.parse(localStorage.getItem("state"));
-            // gameState["todaysGamesPlayed"] = data["todaysGamesPlayed"];
-            // localStorage.setItem("user", JSON.stringify(gameState));
+            const gameState = JSON.parse(localStorage.getItem("state"));
+            gameState["isGameOfDayOver"] =
+                data["isGameOfDayOver"] === 1 ? false : true;
+            console.log("gameState", gameState["isGameOfDayOver"]);
+            console.log("gameState from data", data["isGameOfDayOver"]);
+            localStorage.setItem("state", JSON.stringify(gameState));
             localStorage.setItem("quiz", JSON.stringify(data["quiz"]));
             theData = data["quiz"];
+
             // paintQuizInterface(data["quiz"], todaysGamesPlayed);
         });
     paintQuizInterface(theData, todaysGamesPlayed);
