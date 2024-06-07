@@ -57,6 +57,12 @@ await userDataRequest(connectionUserData, user, todaysGamesPlayed);
 const checkLocal: any = localStorage.getItem("quiz");
 const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
+console.log(
+    "today",
+    checkLocalJson[0]["answer"],
+    checkLocalJson[1]["answer"],
+    checkLocalJson[2]["answer"],
+);
 console.log("today", checkLocalJson);
 const answer =
     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];

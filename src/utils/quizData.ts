@@ -23,7 +23,7 @@ export async function userDataRequest(
             gameState["isGameOfDayOver"] = data["isGameOfDayOver"];
 
             if (gameState["isGameOfDayOver"] === true) {
-                gameState["todayGamesPlayed"] = 0;
+                gameState["todaysGamesPlayed"] = 0;
             }
             // console.log("gameState", gameState["isGameOfDayOver"]);
             // console.log("gameState from data", data["isGameOfDayOver"]);

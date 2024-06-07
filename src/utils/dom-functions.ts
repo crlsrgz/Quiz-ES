@@ -1,4 +1,5 @@
 import { ComponentAuthorInfo } from "../components/authorInfo";
+//@ts-ignore
 import anime from "animejs/lib/anime.es.js";
 
 export const insertTextContent = (
@@ -15,10 +16,10 @@ export const insertTextContent = (
 
 export function paintQuizInterface(
     data: dayQuote | any,
-    todayGamesPlayed: number,
+    todaysGamesPlayed: number,
 ) {
     // Buttons
-    const todaysGame = todayGamesPlayed > 2 ? 2 : todayGamesPlayed;
+    const todaysGame = todaysGamesPlayed > 2 ? 2 : todaysGamesPlayed;
     const buttons = document.querySelectorAll(
         ".answer",
     ) as NodeListOf<HTMLInputElement>;
