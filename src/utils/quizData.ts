@@ -1,4 +1,5 @@
 import { paintQuizInterface } from "./dom-functions";
+
 export async function userDataRequest(
     connectionUserData: string,
     user: { userId: any; dateShort: string },
@@ -16,19 +17,26 @@ export async function userDataRequest(
             return response.json();
         })
         .then((data) => {
-            console.log(data);
+            console.log("returned data", data);
             localStorage.setItem("user", data["userId"]);
             const gameState = JSON.parse(localStorage.getItem("state"));
-            gameState["isGameOfDayOver"] =
-                data["isGameOfDayOver"] === 1 ? false : true;
-            console.log("gameState", gameState["isGameOfDayOver"]);
-            console.log("gameState from data", data["isGameOfDayOver"]);
+            gameState["isGameOfDayOver"] = data["isGameOfDayOver"];
+
+            if (gameState["isGameOfDayOver"] === true) {
+                gameState["todayGamesPlayed"] = 0;
+            }
+            // console.log("gameState", gameState["isGameOfDayOver"]);
+            // console.log("gameState from data", data["isGameOfDayOver"]);
+
             localStorage.setItem("state", JSON.stringify(gameState));
             localStorage.setItem("quiz", JSON.stringify(data["quiz"]));
             theData = data["quiz"];
 
             // paintQuizInterface(data["quiz"], todaysGamesPlayed);
         });
+    /**
+     * Display the quote, checking today's games played
+     */
     paintQuizInterface(theData, todaysGamesPlayed);
 }
 
