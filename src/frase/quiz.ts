@@ -30,7 +30,8 @@ const user = {
  * Init the gameState and content variables
  *
  */
-let gameState: any | string | null;
+// let gameState: any | string | null;
+let gameState: GameState;
 let isGameOver: boolean;
 let isGameOfDayOver: boolean;
 let answerTries: number;
@@ -57,17 +58,22 @@ totalScore = gameState.totalScore;
 // 💡 :::: Remote DEV START
 userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
-// BUTTONS
-const checkLocal: any = localStorage.getItem("quiz");
+/**
+ * TODO AWAIT for userDAtaRequest to get the data,
+ * Then run checkLocal
+ * Get quiz data from local storage
+ */
+
+const checkLocal = localStorage.getItem("quiz") || "{}";
 const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
+//TODO Remove Todays Answers
 console.log(
-    "today",
+    "todays Answers",
     checkLocalJson[0]["answer"],
     checkLocalJson[1]["answer"],
     checkLocalJson[2]["answer"],
 );
-console.log("today", checkLocalJson);
 const answer =
     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
 
@@ -81,11 +87,6 @@ const buttons = document.querySelectorAll(
 
 const nextQuizButton = document.querySelector("#next") as HTMLElement;
 const nextQuizButtonLink = document.querySelector("#next a") as HTMLLinkElement;
-
-console.log("next button", nextQuizButton);
-//testing purposes
-// window.addEventListener("dblclick", () => { nextQuizButton.scrollIntoView({ behavior: "smooth" });
-// });
 
 buttons.forEach((button) => {
     if (isGameOfDayOver) {

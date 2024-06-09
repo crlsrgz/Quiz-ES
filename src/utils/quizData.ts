@@ -30,14 +30,10 @@ export async function userDataRequest(
             if (gameState["isGameOfDayOver"] === true) {
                 gameState["todaysGamesPlayed"] = 0;
             }
-            // console.log("gameState", gameState["isGameOfDayOver"]);
-            // console.log("gameState from data", data["isGameOfDayOver"]);
 
             localStorage.setItem("state", JSON.stringify(gameState));
             localStorage.setItem("quiz", JSON.stringify(data["quiz"]));
             theData = data["quiz"];
-
-            // paintQuizInterface(data["quiz"], todaysGamesPlayed);
         });
     /**
      * Display the quote, checking today's games played

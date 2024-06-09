@@ -88,3 +88,13 @@ const test = {
 };
 
 type quizData = typeof test;
+
+type GameState = {
+    isGameOver: boolean;
+    isGameOfDayOver: boolean;
+    answerTries: number;
+    todayScore: number;
+    todaysGamesPlayed: number;
+    totalGamesPlayed: number;
+    totalScore: number;
+};

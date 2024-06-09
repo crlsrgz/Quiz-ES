@@ -25,7 +25,6 @@ export function paintQuizInterface(
     ) as NodeListOf<HTMLInputElement>;
     buttons.forEach((button, index) => {
         button.textContent = data[todaysGame]["authors"][index];
-        console.log(button);
     });
 
     // Quote
