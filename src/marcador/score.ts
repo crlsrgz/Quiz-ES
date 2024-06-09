@@ -18,13 +18,13 @@ const user = {
 
 /* ::::::::: Request data ::::::::: */
 let gameState: any | string | null;
-let isGameOver: boolean;
-let isGameOfDayOver: boolean;
-let answerTries: number;
-let todayScore: number;
+// let isGameOver: boolean;
+// let isGameOfDayOver: boolean;
+// let answerTries: number;
+// let todayScore: number;
 let todaysGamesPlayed: number;
-let totalGamesPlayed: number;
-let totalScore: number;
+// let totalGamesPlayed: number;
+// let totalScore: number;
 
 if (localStorage.getItem("state")) {
     gameState = JSON.parse(localStorage.getItem("state") || "{}");
@@ -32,20 +32,20 @@ if (localStorage.getItem("state")) {
     gameState = setInitialLocalStorage();
 }
 
-isGameOver = gameState.isGameOver;
-isGameOfDayOver = gameState.isGameOfDayOver;
-answerTries = gameState.answerTries;
-todayScore = gameState.todayScore;
+// isGameOver = gameState.isGameOver;
+// isGameOfDayOver = gameState.isGameOfDayOver;
+// answerTries = gameState.answerTries;
+// todayScore = gameState.todayScore;
 todaysGamesPlayed = gameState.todaysGamesPlayed;
-totalGamesPlayed = gameState.totalGamesPlayed;
-totalScore = gameState.totalScore;
+// totalGamesPlayed = gameState.totalGamesPlayed;
+// totalScore = gameState.totalScore;
 
 // 💡 :::: Remote DEV START
-await userDataRequest(connectionUserData, user, todaysGamesPlayed);
+userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
 // BUTTONS
-const checkLocal: any = localStorage.getItem("quiz");
-const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+// const checkLocal: any = localStorage.getItem("quiz");
+// const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
 // const answer =
 //     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];

@@ -73,9 +73,10 @@ export function animateAuthor(
     //     console.log("gggg");
     // });
 }
-function delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
+// TODO Check delay functionality in case not needed
+// function delay(ms: number) {
+//     return new Promise((resolve) => setTimeout(resolve, ms));
+// }
 // TODO: OPtimize function, remove extra libraries
 export async function animateStars(duration: number = 330) {
     const stars = document.querySelectorAll(".star-score");
@@ -89,6 +90,7 @@ export async function animateStars(duration: number = 330) {
     });
 
     for (let i = 0; i < stars.length; i++) {
+        // TODO Check delay functionality in case not needed
         // await delay(duration);
         if (stars[i] && stars[i].classList.contains("star-empty")) {
             stars[i].setAttribute("icon", "ph:star-fill");
@@ -112,19 +114,28 @@ export function removeStar(answerTries: number) {
 }
 
 export function displayScore(
-    totalPoints: string,
     totalGamesPlayed: string,
+    totalPoints: string,
 ): void {
-    const getLocal = JSON.parse(localStorage.getItem("state"));
+    const getLocal = JSON.parse(localStorage.getItem("state") || "{}");
 
-    const totalPointsElement = document.getElementById("total-points");
-    const totalGamesPlayedElement = document.getElementById("games-played");
-    totalPointsElement
+    const totalPointsElement = document.getElementById(
+        "total-points",
+    ) as HTMLElement;
+    const totalGamesPlayedElement = document.getElementById(
+        "games-played",
+    ) as HTMLElement;
+
+    totalPointsElement.textContent = "";
+
+    console.log((totalPointsElement.textContent = "hello"));
+
+    getLocal["totalScore"]
         ? (totalPointsElement.textContent = getLocal["totalScore"])
-        : "";
-    totalGamesPlayedElement
+        : (totalPointsElement.textContent = totalPoints);
+    getLocal["totalScore"]
         ? (totalGamesPlayedElement.textContent = getLocal["totalGamesPlayed"])
-        : "";
+        : (totalGamesPlayedElement.textContent = totalGamesPlayed);
 }
 
 /* ::::::::: Temporaray functions for depeloment ::::::::: */

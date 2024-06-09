@@ -19,7 +19,12 @@ export async function userDataRequest(
         .then((data) => {
             console.log("returned data", data);
             localStorage.setItem("user", data["userId"]);
-            const gameState = JSON.parse(localStorage.getItem("state"));
+            /**
+             * JSON.parse accepts :string, localStorage returns :string or null
+             * using an empty :string "{}" to resolve the problem
+             * Extra solution get localStorage into a variable and check if it's not null
+             */
+            const gameState = JSON.parse(localStorage.getItem("state") || "{}");
             gameState["isGameOfDayOver"] = data["isGameOfDayOver"];
 
             if (gameState["isGameOfDayOver"] === true) {

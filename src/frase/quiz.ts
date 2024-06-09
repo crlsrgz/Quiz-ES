@@ -26,6 +26,10 @@ const user = {
 };
 
 /* ::::::::: Request data ::::::::: */
+/**
+ * Init the gameState and content variables
+ *
+ */
 let gameState: any | string | null;
 let isGameOver: boolean;
 let isGameOfDayOver: boolean;
@@ -51,7 +55,7 @@ totalGamesPlayed = gameState.totalGamesPlayed;
 totalScore = gameState.totalScore;
 
 // 💡 :::: Remote DEV START
-await userDataRequest(connectionUserData, user, todaysGamesPlayed);
+userDataRequest(connectionUserData, user, todaysGamesPlayed);
 
 // BUTTONS
 const checkLocal: any = localStorage.getItem("quiz");
@@ -76,7 +80,9 @@ const buttons = document.querySelectorAll(
 ) as NodeListOf<HTMLInputElement>;
 
 const nextQuizButton = document.querySelector("#next") as HTMLElement;
+const nextQuizButtonLink = document.querySelector("#next a") as HTMLLinkElement;
 
+console.log("next button", nextQuizButton);
 //testing purposes
 // window.addEventListener("dblclick", () => { nextQuizButton.scrollIntoView({ behavior: "smooth" });
 // });
@@ -124,11 +130,9 @@ buttons.forEach((button) => {
                 isGameOfDayOver = true;
             }
             if (todaysGamesPlayed > 2) {
-                nextQuizButton.firstChild["href"] =
-                    "http://localhost:5173/marcador/";
+                nextQuizButtonLink["href"] = "http://localhost:5173/marcador/";
             } else {
-                nextQuizButton.firstChild["href"] =
-                    "http://localhost:5173/frase/";
+                nextQuizButtonLink["href"] = "http://localhost:5173/frase/";
             }
 
             // TODO Global Score Update
@@ -208,7 +212,7 @@ buttons.forEach((button) => {
         }
 
         if (isGameOver) {
-            const buttonContainer = document.querySelector(".button-container");
+            // const buttonContainer = document.querySelector(".button-container");
             buttons.forEach((button) => {
                 if (button.id.toString() !== answer.toString()) {
                     button?.classList.remove("answer-neutral");
