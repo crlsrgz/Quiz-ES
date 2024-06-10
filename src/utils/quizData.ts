@@ -1,11 +1,12 @@
-import { paintQuizInterface } from "./dom-functions";
+import { displayNextGameDate, paintQuizInterface } from "./dom-functions";
 
 export async function userDataRequest(
     connectionUserData: string,
     user: { userId: any; dateShort: string },
-    todaysGamesPlayed: number,
+    // todaysGamesPlayed: number,
 ) {
     let theData;
+    let todaysGamesPlayedData: number = -1;
     await fetch(connectionUserData, {
         method: "POST",
         headers: {
@@ -16,8 +17,13 @@ export async function userDataRequest(
         .then((response) => {
             return response.json();
         })
+        .catch((error) => {
+            console.log(`Data request failed at response
+          -> ${error}`);
+        })
         .then((data) => {
             console.log("returned data", data);
+            displayNextGameDate(data["dateShort"]);
             localStorage.setItem("user", data["userId"]);
             /**
              * JSON.parse accepts :string, localStorage returns :string or null
@@ -26,6 +32,9 @@ export async function userDataRequest(
              */
             const gameState = JSON.parse(localStorage.getItem("state") || "{}");
             gameState["isGameOfDayOver"] = data["isGameOfDayOver"];
+
+            todaysGamesPlayedData = +data["todaysGamesPlayed"];
+            console.log("todaysGamesPlayedData", todaysGamesPlayedData);
 
             if (gameState["isGameOfDayOver"] === true) {
                 gameState["todaysGamesPlayed"] = 0;
@@ -38,7 +47,7 @@ export async function userDataRequest(
     /**
      * Display the quote, checking today's games played
      */
-    paintQuizInterface(theData, todaysGamesPlayed);
+    paintQuizInterface(theData, todaysGamesPlayedData);
 }
 
 export async function updateUserTotalScore(

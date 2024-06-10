@@ -15,264 +15,273 @@ import {
 import { animateAuthor, removeStar } from "../utils/dom-functions.js";
 import { deleteLocalStorage } from "../utils/dom-functions.js";
 
-const userId = localStorage["user"] ? localStorage["user"] : uuidv4();
+window.addEventListener("DOMContentLoaded", appLoad);
 
-const date = new Date();
-const formatDate = date.toISOString().slice(0, 10);
+async function appLoad() {
+    const userId = localStorage["user"] ? localStorage["user"] : uuidv4();
 
-const user = {
-    userId: userId,
-    dateShort: formatDate,
-};
+    const date = new Date();
+    const formatDate = date.toISOString().slice(0, 10);
 
-/* ::::::::: Request data ::::::::: */
-/**
- * Init the gameState and content variables
- *
- */
-// let gameState: any | string | null;
-let gameState: GameState;
-let isGameOver: boolean;
-let isGameOfDayOver: boolean;
-let answerTries: number;
-let todayScore: number;
-let todaysGamesPlayed: number;
-let totalGamesPlayed: number;
-let totalScore: number;
+    const user = {
+        userId: userId,
+        dateShort: formatDate,
+    };
 
-if (localStorage.getItem("state")) {
-    gameState = JSON.parse(localStorage.getItem("state") || "{}");
-} else {
-    gameState = setInitialLocalStorage();
-}
+    /* ::::::::: Request data ::::::::: */
+    /**
+     * Init the gameState and content variables
+     *
+     */
+    // let gameState: any | string | null;
+    let gameState: GameState;
+    let isGameOver: boolean;
+    let isGameOfDayOver: boolean;
+    let answerTries: number;
+    let todayScore: number;
+    let todaysGamesPlayed: number;
+    let totalGamesPlayed: number;
+    let totalScore: number;
 
-isGameOver = gameState.isGameOver;
-isGameOfDayOver = gameState.isGameOfDayOver;
-answerTries = gameState.answerTries;
-todayScore = gameState.todayScore;
-todaysGamesPlayed =
-    gameState.todaysGamesPlayed < 3 ? gameState.todaysGamesPlayed : 2;
-totalGamesPlayed = gameState.totalGamesPlayed;
-totalScore = gameState.totalScore;
-
-// 💡 :::: Remote DEV START
-userDataRequest(connectionUserData, user, todaysGamesPlayed);
-
-/**
- * TODO AWAIT for userDAtaRequest to get the data,
- * Then run checkLocal
- * Get quiz data from local storage
- */
-
-const checkLocal = localStorage.getItem("quiz") || "{}";
-const checkLocalJson: dayQuote = JSON.parse(checkLocal);
-
-//TODO Remove Todays Answers
-console.log(
-    "todays Answers",
-    checkLocalJson[0]["answer"],
-    checkLocalJson[1]["answer"],
-    checkLocalJson[2]["answer"],
-);
-const answer =
-    checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson]["answer"];
-
-//💡 :::: Remote DEV END
-
-// const answer = "1";
-
-const buttons = document.querySelectorAll(
-    ".answer",
-) as NodeListOf<HTMLInputElement>;
-
-const nextQuizButton = document.querySelector("#next") as HTMLElement;
-const nextQuizButtonLink = document.querySelector("#next a") as HTMLLinkElement;
-
-buttons.forEach((button) => {
-    if (isGameOfDayOver) {
-        button?.classList.remove("answer-neutral");
-        button?.classList.add("answer-disabled");
-        button.disabled = true;
+    if (localStorage.getItem("state")) {
+        gameState = JSON.parse(localStorage.getItem("state") || "{}");
+    } else {
+        gameState = setInitialLocalStorage();
     }
 
-    button.addEventListener("click", () => {
-        console.log("todaysGamesPlayed", todaysGamesPlayed);
+    isGameOver = gameState.isGameOver;
+    isGameOfDayOver = gameState.isGameOfDayOver;
+    answerTries = gameState.answerTries;
+    todayScore = gameState.todayScore;
+    todaysGamesPlayed =
+        gameState.todaysGamesPlayed < 3 ? gameState.todaysGamesPlayed : 2;
+    totalGamesPlayed = gameState.totalGamesPlayed;
+    totalScore = gameState.totalScore;
 
-        // Right answer
+    // 💡 :::: Remote DEV START
+    await userDataRequest(connectionUserData, user);
 
-        if (button.id.toString() === answer.toString()) {
+    /**
+     * TODO AWAIT for userDAtaRequest to get the data,
+     * Then run checkLocal
+     * Get quiz data from local storage
+     */
+
+    const checkLocal = localStorage.getItem("quiz") || "{}";
+    const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+
+    //TODO Remove Todays Answers
+    console.log(
+        "todays Answers",
+        checkLocalJson[0]["answer"],
+        checkLocalJson[1]["answer"],
+        checkLocalJson[2]["answer"],
+    );
+    const answer =
+        checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson][
+            "answer"
+        ];
+
+    //💡 :::: Remote DEV END
+
+    // const answer = "1";
+
+    const buttons = document.querySelectorAll(
+        ".answer",
+    ) as NodeListOf<HTMLInputElement>;
+
+    const nextQuizButton = document.querySelector("#next") as HTMLElement;
+    const nextQuizButtonLink = document.querySelector(
+        "#next a",
+    ) as HTMLLinkElement;
+
+    buttons.forEach((button) => {
+        if (isGameOfDayOver) {
             button?.classList.remove("answer-neutral");
-            button?.classList.add("answer-right");
+            button?.classList.add("answer-disabled");
             button.disabled = true;
-            isGameOver = true;
+        }
+
+        button.addEventListener("click", () => {
             console.log("todaysGamesPlayed", todaysGamesPlayed);
-            const authorInfo =
-                checkLocalJson[
-                    todaysGamesPlayed as keyof typeof checkLocalJson
-                ]["author_bio"];
-            setTimeout(() => {
-                // nextQuizButton.scrollIntoView({ behavior: "smooth" });
+
+            // Right answer
+
+            if (button.id.toString() === answer.toString()) {
+                button?.classList.remove("answer-neutral");
+                button?.classList.add("answer-right");
+                button.disabled = true;
+                isGameOver = true;
                 console.log("todaysGamesPlayed", todaysGamesPlayed);
-                animateAuthor(
-                    authorInfo["authorName"],
-                    authorInfo["professionOne"] ?? "",
-                    authorInfo["professionTwo"] ?? "",
-                    authorInfo["professionThree"] ?? "",
-                    authorInfo["authorCountryName"] ?? "",
-                    authorInfo["authorBorn"] ?? "",
-                    authorInfo["authorDeath"] ?? "",
+                const authorInfo =
+                    checkLocalJson[
+                        todaysGamesPlayed as keyof typeof checkLocalJson
+                    ]["author_bio"];
+                setTimeout(() => {
+                    // nextQuizButton.scrollIntoView({ behavior: "smooth" });
+                    console.log("todaysGamesPlayed", todaysGamesPlayed);
+                    animateAuthor(
+                        authorInfo["authorName"],
+                        authorInfo["professionOne"] ?? "",
+                        authorInfo["professionTwo"] ?? "",
+                        authorInfo["professionThree"] ?? "",
+                        authorInfo["authorCountryName"] ?? "",
+                        authorInfo["authorBorn"] ?? "",
+                        authorInfo["authorDeath"] ?? "",
+                    );
+                }, 1000);
+
+                if (todaysGamesPlayed < 3) {
+                    todaysGamesPlayed += 1;
+                }
+                if (todaysGamesPlayed > 2) {
+                    isGameOfDayOver = true;
+                }
+                if (todaysGamesPlayed > 2) {
+                    nextQuizButtonLink["href"] =
+                        "http://localhost:5173/marcador/";
+                } else {
+                    nextQuizButtonLink["href"] = "http://localhost:5173/frase/";
+                }
+
+                // TODO Global Score Update
+                totalScore++;
+
+                nextQuizButton.classList.remove("hidden");
+                nextQuizButton.classList.add("next-reveal");
+
+                setInitialLocalStorage(
+                    isGameOver,
+                    isGameOfDayOver,
+                    answerTries,
+                    todayScore,
+                    todaysGamesPlayed,
+                    totalGamesPlayed,
+                    totalScore,
                 );
-            }, 1000);
-
-            if (todaysGamesPlayed < 3) {
-                todaysGamesPlayed += 1;
-            }
-            if (todaysGamesPlayed > 2) {
-                isGameOfDayOver = true;
-            }
-            if (todaysGamesPlayed > 2) {
-                nextQuizButtonLink["href"] = "http://localhost:5173/marcador/";
-            } else {
-                nextQuizButtonLink["href"] = "http://localhost:5173/frase/";
             }
 
-            // TODO Global Score Update
-            totalScore++;
+            // Wrong Answer
+            if (button.id.toString() !== answer.toString()) {
+                button?.classList.remove("answer-neutral");
+                button?.classList.add("answer-wrong");
+                answerTries += 1;
+                removeStar(answerTries - 1);
+                button.disabled = true;
 
-            nextQuizButton.classList.remove("hidden");
-            nextQuizButton.classList.add("next-reveal");
+                setInitialLocalStorage(
+                    isGameOver,
+                    isGameOfDayOver,
+                    answerTries,
+                    todayScore,
+                    todaysGamesPlayed,
+                    totalGamesPlayed,
+                    totalScore,
+                );
+            }
 
-            setInitialLocalStorage(
-                isGameOver,
-                isGameOfDayOver,
-                answerTries,
-                todayScore,
-                todaysGamesPlayed,
-                totalGamesPlayed,
-                totalScore,
-            );
-        }
+            if (answerTries === 3) {
+                buttons.forEach((button) => {
+                    if (button.id.toString() !== answer.toString()) {
+                        button?.classList.remove("answer-neutral");
+                        button?.classList.add("answer-disabled");
+                        button.disabled = true;
+                    } else {
+                        button?.classList.remove("answer-neutral");
+                        button?.classList.add("answer-reveal");
+                        button.disabled = true;
+                    }
+                });
 
-        // Wrong Answer
-        if (button.id.toString() !== answer.toString()) {
-            button?.classList.remove("answer-neutral");
-            button?.classList.add("answer-wrong");
-            answerTries += 1;
-            removeStar(answerTries - 1);
-            button.disabled = true;
+                // setTimeout(() => {
+                //     nextQuizButton.scrollIntoView({ behavior: "smooth" });
+                // }, 1000);
 
-            setInitialLocalStorage(
-                isGameOver,
-                isGameOfDayOver,
-                answerTries,
-                todayScore,
-                todaysGamesPlayed,
-                totalGamesPlayed,
-                totalScore,
-            );
-        }
+                /*:: Increase Games of the day ::*/
 
-        if (answerTries === 3) {
-            buttons.forEach((button) => {
-                if (button.id.toString() !== answer.toString()) {
-                    button?.classList.remove("answer-neutral");
-                    button?.classList.add("answer-disabled");
-                    button.disabled = true;
-                } else {
-                    button?.classList.remove("answer-neutral");
-                    button?.classList.add("answer-reveal");
-                    button.disabled = true;
+                if (todaysGamesPlayed < 3) {
+                    todaysGamesPlayed += 1;
                 }
-            });
-
-            // setTimeout(() => {
-            //     nextQuizButton.scrollIntoView({ behavior: "smooth" });
-            // }, 1000);
-
-            /*:: Increase Games of the day ::*/
-
-            if (todaysGamesPlayed < 3) {
-                todaysGamesPlayed += 1;
-            }
-            if (todaysGamesPlayed > 2) {
-                isGameOfDayOver = true;
-            }
-
-            // totalGamesPlayed++;
-
-            isGameOver = true;
-            setInitialLocalStorage(
-                isGameOver,
-                isGameOfDayOver,
-                answerTries,
-                todayScore,
-                todaysGamesPlayed,
-                totalGamesPlayed,
-                totalScore,
-            );
-        }
-
-        if (isGameOver) {
-            // const buttonContainer = document.querySelector(".button-container");
-            buttons.forEach((button) => {
-                if (button.id.toString() !== answer.toString()) {
-                    button?.classList.remove("answer-neutral");
-                    button?.classList.add("answer-disabled");
-                    button.disabled = true;
-                    // Test
-                    setTimeout(() => {
-                        // button.style["display"] = "none";
-                        button.style["transition"] = "all 3s";
-                        button.style["opacity"] = "0.8";
-                    }, 1000);
-                } else {
-                    // TODO remove log
-                    console.log(button.textContent);
+                if (todaysGamesPlayed > 2) {
+                    isGameOfDayOver = true;
                 }
-            });
 
-            // TODO remove log
-            console.log("am I doing something");
+                // totalGamesPlayed++;
 
-            /* ::::::::: Set Local Storage ::::::::: */
-            totalGamesPlayed++;
+                isGameOver = true;
+                setInitialLocalStorage(
+                    isGameOver,
+                    isGameOfDayOver,
+                    answerTries,
+                    todayScore,
+                    todaysGamesPlayed,
+                    totalGamesPlayed,
+                    totalScore,
+                );
+            }
 
-            const dateLastExercise = new Date();
-            console.log(
-                dateLastExercise.toDateString,
-                dateLastExercise.toLocaleDateString(),
-                dateLastExercise.toLocaleString(),
-            );
-            console.log(dateLastExercise.toISOString());
-            // const formatDate = dateLastExercise.toISOString();
-            const formatDate = dateLastExercise.toISOString().slice(0, 10);
+            if (isGameOver) {
+                // const buttonContainer = document.querySelector(".button-container");
+                buttons.forEach((button) => {
+                    if (button.id.toString() !== answer.toString()) {
+                        button?.classList.remove("answer-neutral");
+                        button?.classList.add("answer-disabled");
+                        button.disabled = true;
+                        // Test
+                        setTimeout(() => {
+                            // button.style["display"] = "none";
+                            button.style["transition"] = "all 3s";
+                            button.style["opacity"] = "0.8";
+                        }, 1000);
+                    } else {
+                        // TODO remove log
+                        console.log(button.textContent);
+                    }
+                });
 
-            const user = {
-                userId: localStorage.getItem("user"),
-                totalScore: totalScore,
-                totalGames: totalGamesPlayed,
-                todaysGamesPlayed: todaysGamesPlayed,
-                isGameOfDayOver: isGameOfDayOver,
-                date: formatDate,
-            };
-            updateUserTotalScore(connectionUserScore, user);
+                // TODO remove log
+                console.log("am I doing something");
 
-            isGameOver = false;
-            answerTries = 0;
-            setInitialLocalStorage(
-                isGameOver,
-                isGameOfDayOver,
-                answerTries,
-                todayScore,
-                todaysGamesPlayed,
-                totalGamesPlayed,
-                totalScore,
-            );
-        }
+                /* ::::::::: Set Local Storage ::::::::: */
+                totalGamesPlayed++;
+
+                const dateLastExercise = new Date();
+                console.log(
+                    dateLastExercise.toDateString,
+                    dateLastExercise.toLocaleDateString(),
+                    dateLastExercise.toLocaleString(),
+                );
+                console.log(dateLastExercise.toISOString());
+                // const formatDate = dateLastExercise.toISOString();
+                const formatDate = dateLastExercise.toISOString().slice(0, 10);
+
+                const user = {
+                    userId: localStorage.getItem("user"),
+                    totalScore: totalScore,
+                    totalGames: totalGamesPlayed,
+                    todaysGamesPlayed: todaysGamesPlayed,
+                    isGameOfDayOver: isGameOfDayOver,
+                    date: formatDate,
+                };
+                updateUserTotalScore(connectionUserScore, user);
+
+                isGameOver = false;
+                answerTries = 0;
+                setInitialLocalStorage(
+                    isGameOver,
+                    isGameOfDayOver,
+                    answerTries,
+                    todayScore,
+                    todaysGamesPlayed,
+                    totalGamesPlayed,
+                    totalScore,
+                );
+            }
+        });
     });
-});
 
-/* :::::::::  Report Game State ::::::::: */
-console.table(gameState);
-/* ::::::::: Temporaray functions for depeloment ::::::::: */
-deleteLocalStorage();
+    /* :::::::::  Report Game State ::::::::: */
+    console.table(gameState);
+    /* ::::::::: Temporaray functions for depeloment ::::::::: */
+    deleteLocalStorage();
+}

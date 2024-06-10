@@ -22,7 +22,7 @@ let gameState: any | string | null;
 // let isGameOfDayOver: boolean;
 // let answerTries: number;
 // let todayScore: number;
-let todaysGamesPlayed: number;
+// let todaysGamesPlayed: number;
 // let totalGamesPlayed: number;
 // let totalScore: number;
 
@@ -36,12 +36,12 @@ if (localStorage.getItem("state")) {
 // isGameOfDayOver = gameState.isGameOfDayOver;
 // answerTries = gameState.answerTries;
 // todayScore = gameState.todayScore;
-todaysGamesPlayed = gameState.todaysGamesPlayed;
+// todaysGamesPlayed = gameState.todaysGamesPlayed;
 // totalGamesPlayed = gameState.totalGamesPlayed;
 // totalScore = gameState.totalScore;
 
 // 💡 :::: Remote DEV START
-userDataRequest(connectionUserData, user, todaysGamesPlayed);
+userDataRequest(connectionUserData, user);
 
 // BUTTONS
 // const checkLocal: any = localStorage.getItem("quiz");

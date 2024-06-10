@@ -135,8 +135,26 @@ export function displayScore(
     getLocal["totalScore"]
         ? (totalGamesPlayedElement.textContent = getLocal["totalGamesPlayed"])
         : (totalGamesPlayedElement.textContent = totalGamesPlayed);
+
+    console.log("the state", getLocal);
 }
 
+export function displayNextGameDate(date: string) {
+    let newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + 1);
+    // const formatDate = newDate.toLocaleString("en-US", {
+    //     timeZone: "America/Chicago",
+    // });
+    // newDate = new Date(formatDate);
+    // console.log("nextGameDate", newDate);
+    const nextGameDate = document.querySelectorAll(".next-game-date span");
+    //simple is good
+    if (nextGameDate.length > 0) {
+        nextGameDate[2].textContent = newDate.getFullYear().toString();
+        nextGameDate[1].textContent = (newDate.getMonth() + 1).toString();
+        nextGameDate[0].textContent = newDate.getDate().toString();
+    }
+}
 /* ::::::::: Temporaray functions for depeloment ::::::::: */
 export function deleteLocalStorage() {
     const button = document.querySelector("#delete-localStorage");
