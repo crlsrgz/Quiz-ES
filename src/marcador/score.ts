@@ -45,7 +45,7 @@ async function appLoad() {
     // totalScore = gameState.totalScore;
 
     // 💡 :::: Remote DEV START
-    // userDataRequest(connectionUserData, user);
+    userDataRequest(connectionUserData, user);
 
     // BUTTONS
     // const checkLocal: any = localStorage.getItem("quiz");

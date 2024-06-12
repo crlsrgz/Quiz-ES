@@ -144,7 +144,6 @@ async function appLoad() {
                 }
                 if (todaysGamesPlayed > 2) {
                     nextQuizButtonLink["href"] = `${rootUrl}/marcador/`;
-                    todaysGamesPlayed = 0;
                     isGameOfDayOver = true;
                 } else {
                     nextQuizButtonLink["href"] = `${rootUrl}/frase/`;
@@ -273,6 +272,7 @@ async function appLoad() {
 
                 isGameOver = false;
                 answerTries = 0;
+                // todaysGamesPlayed = 0;
                 setInitialLocalStorage(
                     isGameOver,
                     isGameOfDayOver,
