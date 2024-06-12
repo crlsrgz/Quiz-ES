@@ -31,10 +31,13 @@ export async function userDataRequest(
              * Extra solution get localStorage into a variable and check if it's not null
              */
             const gameState = JSON.parse(localStorage.getItem("state") || "{}");
+
             gameState["isGameOfDayOver"] = data["isGameOfDayOver"];
+            // gameState["isGameOfDayOver"] = "hello";
 
             todaysGamesPlayedData = +data["todaysGamesPlayed"];
-            console.log("todaysGamesPlayedData", todaysGamesPlayedData);
+            console.log("Test: gamestateFrom request", gameState);
+            console.log(gameState["isGameOfDayOver"], data["isGameOfDayOver"]);
 
             if (gameState["isGameOfDayOver"] === true) {
                 gameState["todaysGamesPlayed"] = 0;

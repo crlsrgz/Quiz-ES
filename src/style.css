@@ -1,26 +1,31 @@
 @font-face {
     font-family: "DMSerifDisplay";
     src: url(./assets/fonts/DMSerifDisplay-Regular.ttf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: "DMSerifDisplay-Italic";
     src: url(./assets/fonts/DMSerifDisplay-Italic.ttf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Jost";
     src: url(./assets/fonts/Jost-VariableFont_wght.ttf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Jost-Light";
     src: url(./assets/fonts/Jost-ExtraLight.ttf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Jost-Light";
     src: url(./assets/fonts/Jost-Light.ttf);
+    font-display: swap;
 }
 
 /* Resset CSS */

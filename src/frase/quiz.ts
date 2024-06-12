@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import {
     connectionUserData,
     connectionUserScore,
+    rootUrl,
 } from "../connections/connection.js";
 import {
     setInitialLocalStorage,
@@ -33,7 +34,9 @@ async function appLoad() {
      * Init the gameState and content variables
      *
      */
+
     // let gameState: any | string | null;
+
     let gameState: GameState;
     let isGameOver: boolean;
     let isGameOfDayOver: boolean;
@@ -45,6 +48,7 @@ async function appLoad() {
 
     if (localStorage.getItem("state")) {
         gameState = JSON.parse(localStorage.getItem("state") || "{}");
+        console.log("isGameOfDayOver", gameState["isGameOfDayOver"]);
     } else {
         gameState = setInitialLocalStorage();
     }
@@ -109,6 +113,7 @@ async function appLoad() {
 
             if (button.id.toString() === answer.toString()) {
                 button?.classList.remove("answer-neutral");
+                button?.classList.remove("answer-reveal");
                 button?.classList.add("answer-right");
                 button.disabled = true;
                 isGameOver = true;
@@ -138,10 +143,11 @@ async function appLoad() {
                     isGameOfDayOver = true;
                 }
                 if (todaysGamesPlayed > 2) {
-                    nextQuizButtonLink["href"] =
-                        "http://localhost:5173/marcador/";
+                    nextQuizButtonLink["href"] = `${rootUrl}/marcador/`;
+                    todaysGamesPlayed = 0;
+                    isGameOfDayOver = true;
                 } else {
-                    nextQuizButtonLink["href"] = "http://localhost:5173/frase/";
+                    nextQuizButtonLink["href"] = `${rootUrl}/frase/`;
                 }
 
                 // TODO Global Score Update

@@ -7,32 +7,36 @@ import { connectionUserData } from "./connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "./utils/quizData.js";
 import { deleteLocalStorage } from "./utils/dom-functions.js";
 
-const userId = localStorage["user"] ? localStorage["user"] : uuidv4();
+window.addEventListener("DOMContentLoaded", appLoad);
 
-const date = new Date();
-const formatDate = date.toISOString().slice(0, 10);
+async function appLoad() {
+    const userId = localStorage["user"] ? localStorage["user"] : uuidv4();
 
-const user = {
-    userId: userId,
-    dateShort: formatDate,
-};
+    const date = new Date();
+    const formatDate = date.toISOString().slice(0, 10);
 
-/* ::::::::: Request data ::::::::: */
-let gameState: any | string | null;
-// let todaysGamesPlayed: number;
+    const user = {
+        userId: userId,
+        dateShort: formatDate,
+    };
 
-if (localStorage.getItem("state")) {
-    gameState = JSON.parse(localStorage.getItem("state") || "{}");
-} else {
-    gameState = setInitialLocalStorage();
+    /* ::::::::: Request data ::::::::: */
+    let gameState: GameState;
+    // let todaysGamesPlayed: number;
+
+    if (localStorage.getItem("state")) {
+        gameState = JSON.parse(localStorage.getItem("state") || "{}");
+    } else {
+        gameState = setInitialLocalStorage();
+    }
+
+    // todaysGamesPlayed = gameState.todaysGamesPlayed;
+
+    userDataRequest(connectionUserData, user);
+
+    /* :::::::::  Report Game State ::::::::: */
+    console.table(gameState);
+
+    /* ::::::::: Temporaray functions for development ::::::::: */
+    deleteLocalStorage();
 }
-
-// todaysGamesPlayed = gameState.todaysGamesPlayed;
-
-userDataRequest(connectionUserData, user);
-
-/* :::::::::  Report Game State ::::::::: */
-console.table(gameState);
-
-/* ::::::::: Temporaray functions for development ::::::::: */
-deleteLocalStorage();
