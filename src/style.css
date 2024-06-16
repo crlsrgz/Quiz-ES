@@ -535,6 +535,15 @@ button a:visited,
         border 500ms,
         background-color 1000ms;
 }
+.answer-right:active {
+    color: var(--color-light);
+    background-color: var(--color-green-strong);
+    border: 2px solid var(--color-green-strong);
+    transition:
+        color 200ms,
+        border 500ms,
+        background-color 1000ms;
+}
 
 .answer-reveal {
     color: var(--color-green);

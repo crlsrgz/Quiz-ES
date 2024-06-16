@@ -22,6 +22,7 @@ export async function userDataRequest(
           -> ${error}`);
         })
         .then((data) => {
+            // TODO remove check data from request
             console.log("returned data", data);
             displayNextGameDate(data["dateShort"]);
             localStorage.setItem("user", data["userId"]);
@@ -36,12 +37,24 @@ export async function userDataRequest(
             // gameState["isGameOfDayOver"] = "hello";
 
             todaysGamesPlayedData = +data["todaysGamesPlayed"];
-            console.log("Test: gamestateFrom request", gameState);
-            console.log(gameState["isGameOfDayOver"], data["isGameOfDayOver"]);
+            //TODO remove check isGameOfDayOver
+            // console.log("Test: gamestateFrom request", gameState);
+            // console.log(gameState["isGameOfDayOver"], data["isGameOfDayOver"]);
 
-            if (gameState["isGameOfDayOver"] === true) {
+            // if (gameState["isGameOfDayOver"] === true) {
+            //     gameState["todaysGamesPlayed"] = 0;
+            //     console.log("todaysGamesPlayed shoul be Zero");
+            // }
+            if (parseInt(data["todaysGamesPlayed"]) > 2) {
                 gameState["todaysGamesPlayed"] = 0;
+                console.log("todaysGamesPlayed shoul be Zero");
             }
+
+            /**
+             * TODO
+             * Try to reset the game status again, after data request
+             */
+            gameState["isGameOfDayOver"] = data["isGameOfDayOver"];
 
             localStorage.setItem("state", JSON.stringify(gameState));
             localStorage.setItem("quiz", JSON.stringify(data["quiz"]));

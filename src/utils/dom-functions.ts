@@ -127,16 +127,14 @@ export function displayScore(
 
     totalPointsElement.textContent = "";
 
-    console.log((totalPointsElement.textContent = "hello"));
-
     getLocal["totalScore"]
         ? (totalPointsElement.textContent = getLocal["totalScore"])
         : (totalPointsElement.textContent = totalPoints);
     getLocal["totalScore"]
         ? (totalGamesPlayedElement.textContent = getLocal["totalGamesPlayed"])
         : (totalGamesPlayedElement.textContent = totalGamesPlayed);
-
-    console.log("the state", getLocal);
+    // TODO REmove state verification
+    // console.log("the state", getLocal);
 }
 
 export function displayNextGameDate(date: string) {

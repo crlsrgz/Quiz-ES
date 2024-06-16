@@ -31,7 +31,7 @@ async function appLoad() {
 
     if (localStorage.getItem("state")) {
         gameState = JSON.parse(localStorage.getItem("state") || "{}");
-        console.log("test: score", gameState);
+        // console.log("test: score", gameState);
     } else {
         gameState = setInitialLocalStorage();
     }

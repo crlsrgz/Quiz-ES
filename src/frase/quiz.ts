@@ -70,7 +70,10 @@ async function appLoad() {
      * Then run checkLocal
      * Get quiz data from local storage
      */
-
+    isGameOfDayOver = JSON.parse(localStorage.getItem("state") || "{}")[
+        "isGameOfDayOver"
+    ];
+    console.log("test: for boolean", isGameOfDayOver);
     const checkLocal = localStorage.getItem("quiz") || "{}";
     const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
@@ -100,10 +103,19 @@ async function appLoad() {
     ) as HTMLLinkElement;
 
     buttons.forEach((button) => {
+        /**
+         * If game of the day is over disable buttons
+         */
         if (isGameOfDayOver) {
             button?.classList.remove("answer-neutral");
             button?.classList.add("answer-disabled");
             button.disabled = true;
+            isGameOver = true;
+
+            console.log((nextQuizButton.children[0].textContent = "Marcador"));
+            nextQuizButtonLink["href"] = `${rootUrl}/marcador/`;
+            nextQuizButton.classList.remove("hidden");
+            nextQuizButton.classList.add("next-reveal");
         }
 
         button.addEventListener("click", () => {
@@ -138,10 +150,12 @@ async function appLoad() {
 
                 if (todaysGamesPlayed < 3) {
                     todaysGamesPlayed += 1;
+                    totalScore++;
                 }
-                if (todaysGamesPlayed > 2) {
-                    isGameOfDayOver = true;
-                }
+                // if (todaysGamesPlayed > 2) {
+                //     isGameOfDayOver = true;
+                // }
+
                 if (todaysGamesPlayed > 2) {
                     nextQuizButtonLink["href"] = `${rootUrl}/marcador/`;
                     isGameOfDayOver = true;
@@ -149,13 +163,10 @@ async function appLoad() {
                     nextQuizButtonLink["href"] = `${rootUrl}/frase/`;
                 }
 
-                // TODO Global Score Update
-                totalScore++;
-
                 nextQuizButton.classList.remove("hidden");
                 nextQuizButton.classList.add("next-reveal");
 
-                setInitialLocalStorage(
+                gameState = setInitialLocalStorage(
                     isGameOver,
                     isGameOfDayOver,
                     answerTries,
@@ -174,7 +185,7 @@ async function appLoad() {
                 removeStar(answerTries - 1);
                 button.disabled = true;
 
-                setInitialLocalStorage(
+                gameState = setInitialLocalStorage(
                     isGameOver,
                     isGameOfDayOver,
                     answerTries,
@@ -185,6 +196,7 @@ async function appLoad() {
                 );
             }
 
+            // Tries over
             if (answerTries === 3) {
                 buttons.forEach((button) => {
                     if (button.id.toString() !== answer.toString()) {
@@ -198,23 +210,22 @@ async function appLoad() {
                     }
                 });
 
-                // setTimeout(() => {
-                //     nextQuizButton.scrollIntoView({ behavior: "smooth" });
-                // }, 1000);
-
+                isGameOver = true;
                 /*:: Increase Games of the day ::*/
 
                 if (todaysGamesPlayed < 3) {
+                    nextQuizButtonLink["href"] = `${rootUrl}/frase/`;
                     todaysGamesPlayed += 1;
                 }
                 if (todaysGamesPlayed > 2) {
+                    nextQuizButtonLink["href"] = `${rootUrl}/marcador/`;
                     isGameOfDayOver = true;
                 }
 
-                // totalGamesPlayed++;
+                nextQuizButton.classList.remove("hidden");
+                nextQuizButton.classList.add("next-reveal");
 
-                isGameOver = true;
-                setInitialLocalStorage(
+                gameState = setInitialLocalStorage(
                     isGameOver,
                     isGameOfDayOver,
                     answerTries,
@@ -226,6 +237,10 @@ async function appLoad() {
             }
 
             if (isGameOver) {
+                if (todaysGamesPlayed > 2) {
+                    isGameOfDayOver = true;
+                }
+
                 // const buttonContainer = document.querySelector(".button-container");
                 buttons.forEach((button) => {
                     if (button.id.toString() !== answer.toString()) {
@@ -244,9 +259,6 @@ async function appLoad() {
                     }
                 });
 
-                // TODO remove log
-                console.log("am I doing something");
-
                 /* ::::::::: Set Local Storage ::::::::: */
                 totalGamesPlayed++;
 
@@ -258,22 +270,27 @@ async function appLoad() {
                 );
                 console.log(dateLastExercise.toISOString());
                 // const formatDate = dateLastExercise.toISOString();
-                const formatDate = dateLastExercise.toISOString().slice(0, 10);
 
+                const formatDate = dateLastExercise.toISOString().slice(0, 10);
+                // TODO check if IDs are the same
+                console.log("userID", localStorage.getItem("user"), userId);
                 const user = {
-                    userId: localStorage.getItem("user"),
+                    // userId: localStorage.getItem("user"),
+                    userId: userId,
                     totalScore: totalScore,
                     totalGames: totalGamesPlayed,
                     todaysGamesPlayed: todaysGamesPlayed,
                     isGameOfDayOver: isGameOfDayOver,
                     date: formatDate,
                 };
+
                 updateUserTotalScore(connectionUserScore, user);
 
                 isGameOver = false;
                 answerTries = 0;
                 // todaysGamesPlayed = 0;
-                setInitialLocalStorage(
+                console.log("test: isGameOfDayOver", isGameOfDayOver);
+                gameState = setInitialLocalStorage(
                     isGameOver,
                     isGameOfDayOver,
                     answerTries,
@@ -283,11 +300,11 @@ async function appLoad() {
                     totalScore,
                 );
             }
+            /* :::::::::  Report Game State ::::::::: */
+            console.table(gameState);
         });
     });
 
-    /* :::::::::  Report Game State ::::::::: */
-    console.table(gameState);
     /* ::::::::: Temporaray functions for depeloment ::::::::: */
     deleteLocalStorage();
 }
