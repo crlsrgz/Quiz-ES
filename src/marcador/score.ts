@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
 import { deleteLocalStorage, displayScore } from "../utils/dom-functions.js";
+import { closeInfoBox } from "../utils/dom-functions";
 
 window.addEventListener("DOMContentLoaded", appLoad);
 
@@ -58,6 +59,7 @@ async function appLoad() {
 
     displayScore("1", "69");
 
+    closeInfoBox();
     /* :::::::::  Report Game State ::::::::: */
     console.table(gameState);
 

@@ -153,8 +153,46 @@ export function displayNextGameDate(date: string) {
         nextGameDate[0].textContent = newDate.getDate().toString();
     }
 }
+
+export function closeInfoBox() {
+    const infoBox = document.querySelector(".info-box");
+    const closeButton = document.querySelector(".close-info-box");
+
+    const boxClosedCookie = document.cookie
+        ?.split("; ")
+        .find((row) => row.startsWith("infoBox"))
+        ?.split("=")[1];
+    console.log("boxClosedCookie", boxClosedCookie);
+
+    if (!boxClosedCookie) {
+        document.cookie = "infoBox=false; SameSite=Lax; secure";
+    }
+
+    const isBoxClosed = boxClosedCookie === "true";
+    if (isBoxClosed) {
+        infoBox?.remove();
+        document.cookie = "infoBox=true; SameSite=Lax; secure";
+    } else {
+        infoBox?.classList.remove("hidden");
+    }
+
+    closeButton?.addEventListener("click", () => {
+        console.log(infoBox);
+        console.log(document.cookie);
+        infoBox?.remove();
+        document.cookie = "infoBox=true; SameSite=Lax; secure";
+        console.log(document.cookie);
+    });
+}
+
 /* ::::::::: Temporaray functions for depeloment ::::::::: */
 export function deleteLocalStorage() {
     const button = document.querySelector("#delete-localStorage");
     button?.addEventListener("click", () => localStorage.clear());
+}
+
+export function showGameState(todaysGamesPlayed: any) {
+    document.addEventListener("dblclick", () => {
+        console.log("todaysGamesPlayed", todaysGamesPlayed);
+    });
 }
