@@ -45,11 +45,19 @@ export async function userDataRequest(
             //     gameState["todaysGamesPlayed"] = 0;
             //     console.log("todaysGamesPlayed shoul be Zero");
             // }
-            if (parseInt(data["todaysGamesPlayed"]) > 2) {
-                gameState["todaysGamesPlayed"] = 0;
-                console.log("todaysGamesPlayed shoul be Zero");
-            }
 
+            // if (parseInt(data["todaysGamesPlayed"]) > 2) {
+            // TODO Be aware of the reset game,
+            // check if everything looks dine and then delete the if
+            // todaysGamesPlayedData = 0;
+            // console.log("todaysGamesPlayed shoul be Zero");
+            // }
+
+            // console.log(
+            //     "test: todaysGamesPlayed",
+            //     gameState["todaysGamesPlayed"],
+            //     todaysGamesPlayedData,
+            // );
             /**
              * TODO
              * Try to reset the game status again, after data request
