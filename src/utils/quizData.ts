@@ -63,6 +63,9 @@ export async function userDataRequest(
              * Try to reset the game status again, after data request
              */
             gameState["isGameOfDayOver"] = data["isGameOfDayOver"];
+            gameState["todaysGamesPlayed"] = parseInt(
+                data["todaysGamesPlayed"],
+            );
 
             localStorage.setItem("state", JSON.stringify(gameState));
             localStorage.setItem("quiz", JSON.stringify(data["quiz"]));

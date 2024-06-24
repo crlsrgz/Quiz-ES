@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --emptyOutDir",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,ts,jsx,tsx}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
