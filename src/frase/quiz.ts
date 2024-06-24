@@ -75,40 +75,26 @@ async function appLoad() {
      * Then run checkLocal
      * Get quiz data from local storage
      */
-    async function setDayGameData(): Promise<any[]> {
-        const reviewState = JSON.parse(localStorage.getItem("state") || "{}");
-        isGameOfDayOver = reviewState["isGameOfDayOver"];
-        todaysGamesPlayed = reviewState["todaysGamesPlayed"];
-        return [isGameOfDayOver, todaysGamesPlayed];
-    }
-
-    [isGameOfDayOver, todaysGamesPlayed] = await setDayGameData();
+    const reviewState = JSON.parse(localStorage.getItem("state") || "{}");
+    isGameOfDayOver = reviewState["isGameOfDayOver"];
+    todaysGamesPlayed = reviewState["todaysGamesPlayed"];
+    console.log("should be int", todaysGamesPlayed);
 
     console.log("test: for boolean", isGameOfDayOver);
+    const checkLocal = localStorage.getItem("quiz") || "{}";
+    const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-    async function setQuoteData() {
-        const checkLocal = localStorage.getItem("quiz") || "{}";
-        const checkLocalJson: dayQuote = JSON.parse(checkLocal);
-
-        //TODO Remove Todays Answers
-        console.log(
-            "todays Answers",
-            checkLocalJson[0]["answer"],
-            checkLocalJson[1]["answer"],
-            checkLocalJson[2]["answer"],
-        );
-
-        const answer =
-            checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson][
-                "answer"
-            ];
-
-        // checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson][
-        //     "answer"
-        // ];
-        return [answer, checkLocalJson];
-    }
-    const [answer, checkLocalJson] = await setQuoteData();
+    //TODO Remove Todays Answers
+    console.log(
+        "todays Answers",
+        checkLocalJson[0]["answer"],
+        checkLocalJson[1]["answer"],
+        checkLocalJson[2]["answer"],
+    );
+    const answer =
+        checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson][
+            "answer"
+        ];
 
     //💡 :::: Remote DEV END
 
