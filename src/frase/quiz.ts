@@ -1,5 +1,5 @@
 import "iconify-icon";
-import("../style.css");
+import "../style.css";
 
 import { v4 as uuidv4 } from "uuid";
 import {
@@ -77,7 +77,10 @@ async function appLoad() {
      */
     const reviewState = JSON.parse(localStorage.getItem("state") || "{}");
     isGameOfDayOver = reviewState["isGameOfDayOver"];
-    todaysGamesPlayed = reviewState["todaysGamesPlayed"];
+    todaysGamesPlayed =
+        reviewState["todaysGamesPlayed"] < 3
+            ? reviewState["todaysGamesPlayed"]
+            : 2;
     console.log("should be int", todaysGamesPlayed);
 
     console.log("test: for boolean", isGameOfDayOver);
@@ -91,6 +94,8 @@ async function appLoad() {
         checkLocalJson[1]["answer"],
         checkLocalJson[2]["answer"],
     );
+    console.log("--");
+
     const answer =
         checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson][
             "answer"

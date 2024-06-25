@@ -1,4 +1,4 @@
-import("../style.css");
+import "../style.css";
 export class ComponentNavigation extends HTMLElement {
     connectedCallback(word: string = "¿Quién dijo?") {
         this.innerHTML = `

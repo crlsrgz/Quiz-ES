@@ -1,4 +1,4 @@
-import("../style.css");
+import "../style.css";
 export class ComponentInfoBox extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
