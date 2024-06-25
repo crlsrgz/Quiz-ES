@@ -705,6 +705,22 @@ author-info {
 
 }
 
+@media screen and (max-width: 1280px) {
+
+}
+
+@media screen and (max-width: 700px) {
+    
+    main {
+        width: 90%;
+        padding: var(--h1) 0 0 0;
+    }
+
+    .button-container{
+        width: 80%;
+    }
+    
+}
 @media screen and (max-width: 380px) {
     :root {
         --base-size: 1.2rem;
@@ -732,10 +748,6 @@ author-info {
         width: auto;
     }
 
-    main {
-        width: 90%;
-        padding: var(--h1) 0 0 0;
-    }
 
     .message-container .h1 {
         font-size: 4rem;
