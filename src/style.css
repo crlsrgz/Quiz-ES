@@ -472,7 +472,7 @@ iconify-icon {
 }
 
 .message-container {
-    width: 50%;
+    width: 75%;
     text-align: center;
     padding: var(--h3) 0 0 0;
     margin: auto;
@@ -707,10 +707,6 @@ author-info {
 
 @media screen and (max-width: 1280px) {
 
-}
-
-@media screen and (max-width: 700px) {
-    
     main {
         width: 90%;
         padding: var(--h1) 0 0 0;
@@ -719,6 +715,10 @@ author-info {
     .button-container{
         width: 80%;
     }
+}
+
+@media screen and (max-width: 700px) {
+    
     
 }
 @media screen and (max-width: 380px) {
