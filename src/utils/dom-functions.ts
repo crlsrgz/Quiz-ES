@@ -185,7 +185,14 @@ export function closeInfoBox() {
     });
 }
 
-/* ::::::::: Temporaray functions for depeloment ::::::::: */
+export function gameOfTheDayOver(isGameOfDayOver: boolean | null) {
+    const message = document.querySelector(".next-game-date-container");
+    if (isGameOfDayOver) {
+        message?.classList.remove("hidden");
+    }
+}
+
+/* ::::::::: Temporaray functions for development ::::::::: */
 export function deleteLocalStorage() {
     const button = document.querySelector("#delete-localStorage");
     button?.addEventListener("click", () => localStorage.clear());

@@ -1,0 +1,36 @@
+
+@font-face {
+    font-family: "Jost-Light";
+    src: url(./assets/fonts/Jost-Light.ttf);
+    font-display: swap;
+}
+/* ::::::::: Script Message ::::::::: */
+ .message-script-container {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ece7e7;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Jost-Light';
+    font-size: 1.5rem;
+}
+.message-script {
+    top: 0;
+    left: 0;
+    background-color: #ece7e7;
+    margin: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

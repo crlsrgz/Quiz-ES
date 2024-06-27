@@ -483,8 +483,7 @@ iconify-icon {
 
 .message-container h2,
 h6 {
-    text-align: justify;
-    text-justify: distribute;
+    text-align: center;
     text-justify: inter-character;
     line-height: var(--h4);
 }
@@ -511,7 +510,7 @@ h6 {
     height: 42px;
     border-radius: calc(var(--radius) * 1.5);
     opacity: 0;
-    /* margin-top: var(--h6); */
+    margin-top: var(--h6);
     /* margin-bottom: var(--h4); */
 
     display: flex;
@@ -655,6 +654,7 @@ author-info {
     border-left: 0;
     border-right: 0;
 }
+
 
 @keyframes neutral-wrong {
     0% {

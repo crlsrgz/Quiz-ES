@@ -40,11 +40,11 @@
                 </div>
             </section>
             <section>
-                <div class="answer-field">
+                <div class="answer-field next-game-date-container hidden ">
                     <div class="message-container">
 
                         <h5>
-                            Hola, el siguiente juego comienza el
+                            El siguiente juego comienza el
                         </h5>
                         <h5 class="next-game-date">
                             <span class="day">10</span> /
@@ -61,6 +61,19 @@
             <app-footer></app-footer>
         </footer>
 
+        <noscript>
+            <link rel="stylesheet" href="style-script.css" />
+            <section class="message-script-container">
+                <div class="message-script">
+                    <h1 class="h2">
+                        Parece ser que JavaScript está deshabilitado,
+                    </h1>
+                    <h2 class="h3">
+                        por favor habilita su ejecución para continuar.
+                    </h2>
+                </div>
+            </section>
+        </noscript>
     </div>
     <script type="module" src="../components/navigation.ts"></script>
     <script type="module" src="../components/footer.ts"></script>
