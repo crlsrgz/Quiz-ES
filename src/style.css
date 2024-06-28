@@ -383,6 +383,7 @@ iconify-icon {
     display: flex;
     flex-direction: row;
     margin: 1rem;
+    align-items: baseline;
 }
 
 .quote {

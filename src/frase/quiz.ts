@@ -15,6 +15,7 @@ import {
 
 import {
     animateAuthor,
+    displayScore,
     removeStar,
     showGameState,
 } from "../utils/dom-functions.js";
@@ -314,9 +315,12 @@ async function appLoad() {
             }
             /* :::::::::  Report Game State ::::::::: */
             console.table(gameState);
+
+            displayScore(totalScore.toString(), totalScore.toString());
         });
     });
 
+    displayScore(totalScore.toString(), totalScore.toString());
     closeInfoBox();
     /* ::::::::: Temporaray functions for depeloment ::::::::: */
     showGameState(gameState);
