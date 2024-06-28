@@ -61,7 +61,7 @@ async function appLoad() {
 
     //💡 :::: Remote DEV END
 
-    displayScore("1", "69");
+    await displayScore("0", "0");
 
     closeInfoBox();
     gameOfTheDayOver(gameState.isGameOfDayOver);

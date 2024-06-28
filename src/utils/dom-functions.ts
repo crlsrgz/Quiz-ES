@@ -112,10 +112,10 @@ export function removeStar(answerTries: number) {
     console.log(stars[index]);
 }
 
-export function displayScore(
-    totalGamesPlayed: string,
+export async function displayScore(
     totalPoints: string,
-): void {
+    totalGamesPlayed: string,
+) {
     const getLocal = JSON.parse(localStorage.getItem("state") || "{}");
 
     const totalPointsElement = document.getElementById(
@@ -125,16 +125,15 @@ export function displayScore(
         "games-played",
     ) as HTMLElement;
 
-    totalPointsElement.textContent = "";
-
     getLocal["totalScore"]
         ? (totalPointsElement.textContent = getLocal["totalScore"])
         : (totalPointsElement.textContent = totalPoints);
-    getLocal["totalScore"]
+    getLocal["totalGamesPlayed"]
         ? (totalGamesPlayedElement.textContent = getLocal["totalGamesPlayed"])
         : (totalGamesPlayedElement.textContent = totalGamesPlayed);
     // TODO REmove state verification
-    // console.log("the state", getLocal);
+    console.log("the state", getLocal);
+    console.log(getLocal["totalScore"], getLocal["totalGamesPlayed"]);
 }
 
 export function displayNextGameDate(date: string) {
