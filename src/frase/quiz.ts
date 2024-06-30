@@ -3,11 +3,13 @@ import "../style.css";
 
 import { v4 as uuidv4 } from "uuid";
 import {
+    connectionAnswerData,
     connectionUserData,
     connectionUserScore,
     rootUrl,
 } from "../connections/connection.js";
 import {
+    checkAnswer,
     setInitialLocalStorage,
     updateUserTotalScore,
     userDataRequest,
@@ -70,7 +72,15 @@ async function appLoad() {
 
     // 💡 :::: Remote DEV START
     await userDataRequest(connectionUserData, user);
-
+    // let dateSome: string;
+    let dateSome = await checkAnswer(
+        connectionAnswerData,
+        {
+            todaysGamesPlayed: todaysGamesPlayed,
+        },
+        "-1",
+    );
+    console.log("dateSome is the answer", dateSome);
     /**
      * TODO AWAIT for userDAtaRequest to get the data,
      * Then run checkLocal
@@ -78,6 +88,7 @@ async function appLoad() {
      */
     const reviewState = JSON.parse(localStorage.getItem("state") || "{}");
     isGameOfDayOver = reviewState["isGameOfDayOver"];
+
     todaysGamesPlayed =
         reviewState["todaysGamesPlayed"] < 3
             ? reviewState["todaysGamesPlayed"]
@@ -97,10 +108,11 @@ async function appLoad() {
     );
     console.log("--");
 
-    const answer =
-        checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson][
-            "answer"
-        ];
+    // const answer =
+    //     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson][
+    //         "answer"
+    //     ];
+    const answer = dateSome;
 
     //💡 :::: Remote DEV END
 

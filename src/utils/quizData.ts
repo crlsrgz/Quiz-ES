@@ -130,3 +130,26 @@ export function setInitialLocalStorage(
 
     return gameState;
 }
+
+export async function checkAnswer(
+    connectionAnswerData: string,
+    objectAnswer: {},
+    answer: string,
+) {
+    await fetch(connectionAnswerData, {
+        method: "POST",
+        headers: {
+            "Content-Type": "aplication/json; charset=utf",
+        },
+        body: JSON.stringify(objectAnswer),
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log("returned answer", data);
+            // console.log(theData);
+            answer = data["dateSome"].toString();
+        });
+    return answer;
+}
