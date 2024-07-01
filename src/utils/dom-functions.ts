@@ -1,6 +1,7 @@
 import { ComponentAuthorInfo } from "../components/authorInfo";
 //@ts-ignore
 import anime from "animejs/lib/anime.es.js";
+import { isInDevelopment, rootUrl } from "../connections/connection";
 
 export const insertTextContent = (
     elementIdentifier: string,
@@ -164,13 +165,13 @@ export function closeInfoBox() {
     console.log("boxClosedCookie", boxClosedCookie);
 
     if (!boxClosedCookie) {
-        document.cookie = "infoBox=false; SameSite=Lax; secure";
+        console.log("the cookie is not there");
+        document.cookie = `infoBox=false; SameSite=${isInDevelopment ? "lax" : "None"}; domain=${isInDevelopment ? rootUrl : "localhost"} ; secure`;
     }
 
-    const isBoxClosed = boxClosedCookie === "true";
+    const isBoxClosed = boxClosedCookie == "true";
     if (isBoxClosed) {
         infoBox?.remove();
-        document.cookie = "infoBox=true; SameSite=Lax; secure";
     } else {
         infoBox?.classList.remove("hidden");
     }
@@ -179,8 +180,11 @@ export function closeInfoBox() {
         console.log(infoBox);
         console.log(document.cookie);
         infoBox?.remove();
-        document.cookie = "infoBox=true; SameSite=Lax; secure";
+        // document.cookie = "infoBox=true; SameSite=Lax; secure";
+        document.cookie = `infoBox=true; SameSite=${isInDevelopment ? "lax" : "None"}; domain=${isInDevelopment ? rootUrl : "localhost"} ; secure`;
+
         console.log(document.cookie);
+        console.log(isInDevelopment, rootUrl);
     });
 }
 
