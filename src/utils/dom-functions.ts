@@ -197,8 +197,16 @@ export function gameOfTheDayOver(isGameOfDayOver: boolean | null) {
 
 /* ::::::::: Temporaray functions for development ::::::::: */
 export function deleteLocalStorage() {
-    const button = document.querySelector("#delete-localStorage");
-    button?.addEventListener("click", () => localStorage.clear());
+    // const button = document.querySelector("#delete-localStorage");
+
+    // button?.addEventListener("click", () => {
+    //     localStorage.clear();
+
+    //     console.clear();
+    //     console.log("localStorage deleted");
+    // });
+
+    console.log("Storage delete disabled");
 }
 
 export function showGameState(todaysGamesPlayed: any) {

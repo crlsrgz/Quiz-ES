@@ -6,7 +6,6 @@ export class ComponentNavigation extends HTMLElement {
             <a href="/"> ${word} </a>
         </h1>
         <nav-bar class="nav-desk">
-            <a id="delete-localStorage"><iconify-icon icon="ph:x-circle" height=" 2rem"></iconify-icon></a>
             <a href="/frase/">quiz</a>
             <a href="/marcador/">score</a>
             <a href="/estilos/">styling</a>

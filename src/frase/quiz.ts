@@ -13,6 +13,8 @@ import {
 import {
     connectionUserData,
     connectionAnswerData,
+    connectionUserScore,
+    rootUrl,
 } from "../connections/connection.js";
 
 import {
