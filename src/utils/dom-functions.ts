@@ -1,7 +1,7 @@
 import { ComponentAuthorInfo } from "../components/authorInfo";
 //@ts-ignore
 import anime from "animejs/lib/anime.es.js";
-// import { isInDevelopment, rootUrl } from "../connections/connection";
+import { isInDevelopment, rootUrl } from "../connections/connection";
 
 export const insertTextContent = (
     elementIdentifier: string,
