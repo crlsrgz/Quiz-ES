@@ -1,74 +1,74 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="./assets/img/icon.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>¿Quién dijo? - LMC</title>
-    </head>
 
-    <body>
-        <div id="app">
-            <app-info-box></app-info-box>
-            <header>
-                <app-header></app-header>
-            </header>
-            <main class="content">
-                <section>
-                    <h1 class="h3">Hola, Bienvenido</h1>
-                </section>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./assets/img/icon.svg" />
+    <meta name="viewport" content="width=100, initial-scale=1" />
+    <title>¿Quién dijo? - LMC</title>
+</head>
 
-                <section class="message-container">
-                    <h2 class="h5 font-sans-light">
-                        Este es un juego basado en frases célebres de
-                        personalidades notables de la historia, las cuales
-                        vienen del sitio
-                        <a href="https://lasmascelebres.com/" class="font-serif"
-                            >Las Más Celebres</a
-                        >.
-                        <br />
-                        <br />
-                        El punto del juego es de adivinar quienes dijeron las
-                        tres frases del día. <br /><br />
-                        Al contestar las tres frases del día termina el juego y
-                        tendrás que espera hasta el siguiente día para jugar
-                        nuevamente. <br />
-
-                        El juego se reinicia todos los diás a las 0:00 hrs, hora
-                        estándar del centro, con tres frases nuevas.
-                    </h2>
-                    <hr />
-                    <h3 class="h5 font-serif">
-                        „La única posibilidad de descubrir los límites de lo
-                        posible es aventurarse un poco más allá de ellos, hacia
-                        lo imposible. “
-                    </h3>
-                    <h4 class="h5 font-sans-light">Arthur C. Clarke</h4>
-                </section>
-            </main>
-
-            <footer>
-                <app-footer></app-footer>
-            </footer>
-            <!-- TODO -->
-        </div>
-        <script type="module" src="./components/navigation.ts"></script>
-        <script type="module" src="./components/footer.ts"></script>
-        <script type="module" src="./components/infoBox.ts"></script>
-        <script type="module" src="./main.ts"></script>
-
-        <noscript>
-            <link rel="stylesheet" href="style-script.css" />
-            <section class="message-script-container">
-                <div class="message-script">
-                    <h1 class="h2">
-                        Parece ser que JavaScript está deshabilitado,
-                    </h1>
-                    <h2 class="h3">
-                        por favor habilita su ejecución para continuar.
-                    </h2>
-                </div>
+<body>
+    <div id="app">
+        <app-info-box></app-info-box>
+        <header>
+            <app-header></app-header>
+        </header>
+        <main class="content">
+            <section>
+                <h1 class="h3">Hola, Bienvenido</h1>
             </section>
-        </noscript>
-    </body>
+
+            <section class="message-container">
+                <h2 class="h5 font-sans-light">
+                    Este es un juego basado en frases célebres de
+                    personalidades notables de la historia, las cuales
+                    vienen del sitio
+                    <a href="https://lasmascelebres.com/" class="font-serif">Las Más Celebres</a>.
+                    <br />
+                    <br />
+                    El punto del juego es de adivinar quienes dijeron las
+                    tres frases del día. <br /><br />
+                    Al contestar las tres frases del día termina el juego y
+                    tendrás que espera hasta el siguiente día para jugar
+                    nuevamente. <br /><br />
+
+                    El juego se reinicia todos los diás a las 0:00 hrs, hora
+                    estándar del centro, con tres frases nuevas.
+                </h2>
+                <hr />
+                <h3 class="h5 font-serif">
+                    „La única posibilidad de descubrir los límites de lo
+                    posible es aventurarse un poco más allá de ellos, hacia
+                    lo imposible. “
+                </h3>
+                <h4 class="h5 font-sans-light">Arthur C. Clarke</h4>
+            </section>
+        </main>
+
+        <footer>
+            <app-footer></app-footer>
+        </footer>
+        <!-- TODO -->
+    </div>
+    <script type="module" src="./components/navigation.ts"></script>
+    <script type="module" src="./components/footer.ts"></script>
+    <script type="module" src="./components/infoBox.ts"></script>
+    <script type="module" src="./main.ts"></script>
+
+    <noscript>
+        <link rel="stylesheet" href="style-script.css" />
+        <section class="message-script-container">
+            <div class="message-script">
+                <h1 class="h2">
+                    Parece ser que JavaScript está deshabilitado,
+                </h1>
+                <h2 class="h3">
+                    por favor habilita su ejecución para continuar.
+                </h2>
+            </div>
+        </section>
+    </noscript>
+</body>
+
 </html>

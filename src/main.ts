@@ -2,7 +2,7 @@ import "./style.css";
 import "iconify-icon";
 
 import { v4 as uuidv4 } from "uuid";
-import { connectionUserData } from "./connections/connection.js";
+// import { connectionUserData } from "./connections/connection.js";
 
 import { setInitialLocalStorage, userDataRequest } from "./utils/quizData.js";
 import { deleteLocalStorage } from "./utils/dom-functions.js";
@@ -34,7 +34,7 @@ async function appLoad() {
 
     // todaysGamesPlayed = gameState.todaysGamesPlayed;
 
-    userDataRequest(connectionUserData, user);
+    // userDataRequest(connectionUserData, user);
     /* :::::::::  Report Game State ::::::::: */
     console.table(gameState);
 

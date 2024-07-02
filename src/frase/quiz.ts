@@ -2,12 +2,12 @@ import "iconify-icon";
 import "../style.css";
 
 import { v4 as uuidv4 } from "uuid";
-import {
-    connectionAnswerData,
-    connectionUserData,
-    connectionUserScore,
-    rootUrl,
-} from "../connections/connection.js";
+// import {
+//     connectionAnswerData,
+//     connectionUserData,
+//     connectionUserScore,
+//     rootUrl,
+// } from "../connections/connection.js";
 import {
     checkAnswer,
     setInitialLocalStorage,
@@ -71,48 +71,48 @@ async function appLoad() {
     totalScore = gameState.totalScore;
 
     // 💡 :::: Remote DEV START
-    await userDataRequest(connectionUserData, user);
-    // let dateSome: string;
-    let dateSome = await checkAnswer(
-        connectionAnswerData,
-        {
-            todaysGamesPlayed: todaysGamesPlayed,
-        },
-        "-1",
-    );
-    console.log("dateSome is the answer", dateSome);
-    /**
-     * TODO AWAIT for userDAtaRequest to get the data,
-     * Then run checkLocal
-     * Get quiz data from local storage
-     */
-    const reviewState = JSON.parse(localStorage.getItem("state") || "{}");
-    isGameOfDayOver = reviewState["isGameOfDayOver"];
+    // await userDataRequest(connectionUserData, user);
+    // // let dateSome: string;
+    // let dateSome = await checkAnswer(
+    //     connectionAnswerData,
+    //     {
+    //         todaysGamesPlayed: todaysGamesPlayed,
+    //     },
+    //     "-1",
+    // );
+    // console.log("dateSome is the answer", dateSome);
+    // /**
+    //  * TODO AWAIT for userDAtaRequest to get the data,
+    //  * Then run checkLocal
+    //  * Get quiz data from local storage
+    //  */
+    // const reviewState = JSON.parse(localStorage.getItem("state") || "{}");
+    // isGameOfDayOver = reviewState["isGameOfDayOver"];
 
-    todaysGamesPlayed =
-        reviewState["todaysGamesPlayed"] < 3
-            ? reviewState["todaysGamesPlayed"]
-            : 2;
-    console.log("should be int", todaysGamesPlayed);
+    // todaysGamesPlayed =
+    //     reviewState["todaysGamesPlayed"] < 3
+    //         ? reviewState["todaysGamesPlayed"]
+    //         : 2;
+    // console.log("should be int", todaysGamesPlayed);
 
-    console.log("test: for boolean", isGameOfDayOver);
-    const checkLocal = localStorage.getItem("quiz") || "{}";
-    const checkLocalJson: dayQuote = JSON.parse(checkLocal);
+    // console.log("test: for boolean", isGameOfDayOver);
+    // const checkLocal = localStorage.getItem("quiz") || "{}";
+    // const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-    //TODO Remove Todays Answers
-    console.log(
-        "todays Answers",
-        checkLocalJson[0]["answer"],
-        checkLocalJson[1]["answer"],
-        checkLocalJson[2]["answer"],
-    );
-    console.log("--");
+    // //TODO Remove Todays Answers
+    // console.log(
+    //     "todays Answers",
+    //     checkLocalJson[0]["answer"],
+    //     checkLocalJson[1]["answer"],
+    //     checkLocalJson[2]["answer"],
+    // );
+    // console.log("--");
 
-    // const answer =
-    //     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson][
-    //         "answer"
-    //     ];
-    const answer = dateSome;
+    // // const answer =
+    // //     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson][
+    // //         "answer"
+    // //     ];
+    // const answer = dateSome;
 
     //💡 :::: Remote DEV END
 

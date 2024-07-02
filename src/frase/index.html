@@ -1,103 +1,92 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="../assets/img/icon.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>¿Quién dijo? - LMC - Frase Célebre</title>
-    </head>
 
-    <body>
-        <div id="app">
-            <app-info-box></app-info-box>
-            <header>
-                <app-header></app-header>
-            </header>
-            <main class="content">
-                <div class="quote">
-                    <h3>
-                        <span>"</span
-                        ><span id="quote-field">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Delectus temporibus consequuntur architecto
-                            sit aspernatur? Sapiente!
-                        </span>
-                        <span>"</span>
-                    </h3>
-                    <div class="next-button-container">
-                        <button id="next" class="next answer-disabled hidden">
-                            <a href="/frase/">Siguiente</a>
-                        </button>
-                    </div>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="../assets/img/icon.svg" />
+    <meta name="viewport" content="width=100, initial-scale=1" />
+    <title>¿Quién dijo? - LMC - Frase Célebre</title>
+</head>
+
+<body>
+    <div id="app">
+        <app-info-box></app-info-box>
+        <header>
+            <app-header></app-header>
+        </header>
+        <main class="content">
+            <div class="quote">
+                <h3>
+                    <span>"</span><span id="quote-field">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Delectus temporibus consequuntur architecto
+                        sit aspernatur? Sapiente!
+                    </span>
+                    <span>"</span>
+                </h3>
+                <div class="next-button-container">
+                    <button id="next" class="next answer-disabled hidden">
+                        <a href="/frase/">Siguiente</a>
+                    </button>
                 </div>
-                <section>
-                    <div class="tries-left">
-                        <iconify-icon
-                            icon="ph:star-fill"
-                            width="2rem"
-                            height=" 2rem"
-                            class="star-score star-icon-full"
-                        ></iconify-icon>
-                        <iconify-icon
-                            icon="ph:star-fill"
-                            width="2rem"
-                            height="2rem"
-                            class="star-score star-icon-empty"
-                        ></iconify-icon>
-                        <iconify-icon
-                            icon="ph:star-fill"
-                            width="2rem"
-                            height="2rem"
-                            class="star-score star-icon-empty"
-                        ></iconify-icon>
-                    </div>
-                </section>
-                <div class="answer-field">
-                    <div class="button-container">
-                        <button id="0" class="answer answer-neutral">
-                            Vetle Ealhstan
-                        </button>
-                        <button id="1" class="answer answer-neutral">
-                            Ilean Marje
-                        </button>
-                        <button id="2" class="answer answer-neutral">
-                            Emma Dearbhla
-                        </button>
-                        <button id="3" class="answer answer-neutral">
-                            Audovera Anatolios
-                        </button>
-                    </div>
-                </div>
-            </main>
-
-            <div id="score-board" class="score-board">
-                <div>Marcador</div>
-                <span>&nbsp;&nbsp;</span>
-                <div id="total-points" class="h4"></div>
-
-                <div class="separator-diagonal h5">/</div>
-                <div id="games-played" class="h5"></div>
             </div>
-            <footer>
-                <app-footer></app-footer>
-            </footer>
-            <noscript>
-                <link rel="stylesheet" href="style-script.css" />
-                <section class="message-script-container">
-                    <div class="message-script">
-                        <h1 class="h2">
-                            Parece ser que JavaScript está deshabilitado,
-                        </h1>
-                        <h2 class="h3">
-                            por favor habilita su ejecución para continuar.
-                        </h2>
-                    </div>
-                </section>
-            </noscript>
+            <section>
+                <div class="tries-left">
+                    <iconify-icon icon="ph:star-fill" width="2rem" height=" 2rem"
+                        class="star-score star-icon-full"></iconify-icon>
+                    <iconify-icon icon="ph:star-fill" width="2rem" height="2rem"
+                        class="star-score star-icon-empty"></iconify-icon>
+                    <iconify-icon icon="ph:star-fill" width="2rem" height="2rem"
+                        class="star-score star-icon-empty"></iconify-icon>
+                </div>
+            </section>
+            <div class="answer-field">
+                <div class="button-container">
+                    <button id="0" class="answer answer-neutral">
+                        Vetle Ealhstan
+                    </button>
+                    <button id="1" class="answer answer-neutral">
+                        Ilean Marje
+                    </button>
+                    <button id="2" class="answer answer-neutral">
+                        Emma Dearbhla
+                    </button>
+                    <button id="3" class="answer answer-neutral">
+                        Audovera Anatolios
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <div id="score-board" class="score-board">
+            <div>Marcador</div>
+            <span>&nbsp;&nbsp;</span>
+            <div id="total-points" class="h4"></div>
+
+            <div class="separator-diagonal h5">/</div>
+            <div id="games-played" class="h5"></div>
         </div>
-        <script type="module" src="../components/footer.ts"></script>
-        <script type="module" src="../components/navigation.ts"></script>
-        <script type="module" src="../components/infoBox.ts"></script>
-        <script type="module" src="./quiz.ts"></script>
-    </body>
+        <footer>
+            <app-footer></app-footer>
+        </footer>
+        <noscript>
+            <link rel="stylesheet" href="style-script.css" />
+            <section class="message-script-container">
+                <div class="message-script">
+                    <h1 class="h2">
+                        Parece ser que JavaScript está deshabilitado,
+                    </h1>
+                    <h2 class="h3">
+                        por favor habilita su ejecución para continuar.
+                    </h2>
+                </div>
+            </section>
+        </noscript>
+    </div>
+    <script type="module" src="../components/footer.ts"></script>
+    <script type="module" src="../components/navigation.ts"></script>
+    <script type="module" src="../components/infoBox.ts"></script>
+    <script type="module" src="./quiz.ts"></script>
+</body>
+
 </html>

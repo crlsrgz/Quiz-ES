@@ -2,7 +2,7 @@ import "iconify-icon";
 import "../style.css";
 
 import { v4 as uuidv4 } from "uuid";
-import { connectionUserData } from "../connections/connection.js";
+// import { connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
 import {
     deleteLocalStorage,

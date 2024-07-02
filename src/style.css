@@ -201,6 +201,11 @@ p {
     font-size: var(--base-size);
 }
 
+a {
+    color: var(--color-green);
+    text-decoration: underline;
+}
+
 /*::::::::::::::::::::::::::
   Color Classes    
   ::::::::::::::::::::::::::*/
@@ -301,7 +306,7 @@ app-header {
 }
 
 .nav-desk a {
-    color: var(--color-gray-700);
+    color: var(--color-green-strong);
     text-decoration: none;
 }
 
@@ -311,10 +316,9 @@ app-header {
 }
 /* ::::::::: Info Box ::::::::: */
 .info-box {
-    
     width: auto;
     padding: var(--h4);
-    display:flex;
+    display: flex;
     justify-content: start;
     align-items: start;
     /* border: 0.5rem solid var(--color-red); */
@@ -334,19 +338,18 @@ app-header {
 .button-close {
     width: 3rem;
     height: 3rem;
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }
-.icon-close{
-/* background-color: red; */
-width: 3rem;
-height: 3rem;
+.icon-close {
+    /* background-color: red; */
+    width: 3rem;
+    height: 3rem;
 }
 
 /* :::: Main ::::*/
@@ -378,7 +381,6 @@ iconify-icon {
     height: 1em;
 }
 
-
 .score-board {
     display: flex;
     flex-direction: row;
@@ -390,7 +392,7 @@ iconify-icon {
     display: flex;
     flex-direction: column;
     justify-content: end;
-    gap: var(--h55);
+    gap: var(--h5);
     font-family: "DMSerifDisplay-Italic";
     line-height: 3.5rem;
     padding: 0 0 0 0;
@@ -425,7 +427,6 @@ iconify-icon {
     padding: var(--h4) 0 0 0;
     outline: var(--border-test);
 }
-
 
 /* :::: Tries Stars Count ::::*/
 
@@ -499,7 +500,6 @@ h6 {
     font-family: "Jost";
 }
 .next-button-container {
-
     order: 1;
     height: 42px;
     align-self: center;
@@ -520,9 +520,7 @@ h6 {
     font-family: "Jost";
     text-align: center;
     text-decoration: none;
-
 }
-
 
 .next-reveal {
     /* opacity: 0; */
@@ -602,7 +600,6 @@ button a:visited,
         border 1000ms;
 }
 
-
 button:hover,
 .answer-neutral:hover {
     background-color: var(--color-gray-100);
@@ -615,8 +612,8 @@ button:active,
     border-color: var(--color-light);
 }
 
-button:active a  {
-        color: var(--color-light);
+button:active a {
+    color: var(--color-light);
 }
 
 footer {
@@ -629,20 +626,20 @@ app-footer {
     display: flex;
     justify-content: end;
     gap: var(--h4);
-    font-size: var(--base);
+    font-size: var(--h6);
 }
 
 author-info {
-
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: var(--h1);
     overflow: hidden;
     color: var(--color-gray-700);
-    font-family: 'Jost-Light';
+    font-family: "Jost-Light";
 
-    animation: author-name 2s cubic-bezier(0.71, -0.01, 0, 0.99) 0s 1 normal forwards;
+    animation: author-name 2s cubic-bezier(0.71, -0.01, 0, 0.99) 0s 1 normal
+        forwards;
 }
 
 .separator {
@@ -655,7 +652,6 @@ author-info {
     border-left: 0;
     border-right: 0;
 }
-
 
 @keyframes neutral-wrong {
     0% {
@@ -689,7 +685,6 @@ author-info {
     display: none;
 }
 
-
 @keyframes reveal-hidden {
     0% {
         opacity: 0;
@@ -700,31 +695,27 @@ author-info {
         /* height: 42px; */
     }
 
-
     100% {
         opacity: 1;
         /* height: 42px; */
     }
-
 }
 
 @media screen and (max-width: 1280px) {
-
     main {
         width: 90%;
         padding: var(--h1) 0 0 0;
     }
 
-    .button-container{
+    .button-container {
         width: 80%;
     }
 }
 
-@media screen and (max-width: 700px) {
-    
-    
-}
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 480px) {
+    body {
+        width: 100vw;
+    }
     :root {
         --base-size: 1.2rem;
         --scale: 1.1;
@@ -744,6 +735,7 @@ author-info {
 
     app-header {
         flex-direction: column;
+        /* background-color: #058a71; */
     }
 
     .page-title {
@@ -751,13 +743,12 @@ author-info {
         width: auto;
     }
 
-
     .message-container .h1 {
         font-size: 4rem;
     }
 
     .message-container {
-        width: 90%;
+        width: 100%;
     }
 
     .quote h3 {
@@ -779,7 +770,8 @@ author-info {
     }
 
     app-footer {
-        padding: 2rem 1rem 2rem 1rem;
-        gap: var(--h6);
+        padding: 4rem 0rem 2rem 0rem;
+        /* font-size: var(--base-size); */
+        gap: 8px;
     }
 }
