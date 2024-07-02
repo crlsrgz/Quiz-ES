@@ -277,6 +277,13 @@ app-header {
     outline: var(--border-test);
 }
 
+.header-separator {
+    width: 100%;
+    height: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 20px 14px -25px #8c8b8b inset;
+}
+
 .page-title {
     font-family: "DMSerifDisplay";
     text-align: left;
@@ -730,12 +737,11 @@ author-info {
     }
 
     header {
-        padding: var(--h6) 0 var(--h6) 0;
+        padding: var(--h6) 0 0 0;
     }
 
     app-header {
         flex-direction: column;
-        /* background-color: #058a71; */
     }
 
     .page-title {
