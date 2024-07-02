@@ -607,7 +607,7 @@ button a:visited,
         border 1000ms;
 }
 
-button:hover,
+button,
 .answer-neutral:hover {
     background-color: var(--color-gray-100);
 }
