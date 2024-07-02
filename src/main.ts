@@ -34,7 +34,7 @@ async function appLoad() {
 
     // todaysGamesPlayed = gameState.todaysGamesPlayed;
 
-    // userDataRequest(connectionUserData, user);
+    userDataRequest(connectionUserData, user);
     /* :::::::::  Report Game State ::::::::: */
     console.table(gameState);
 
