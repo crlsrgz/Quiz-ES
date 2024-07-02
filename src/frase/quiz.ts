@@ -154,14 +154,19 @@ async function appLoad() {
                 button?.classList.add("answer-right");
                 button.disabled = true;
                 isGameOver = true;
+
+                // TODO Remove log
                 console.log("todaysGamesPlayed", todaysGamesPlayed);
+                // TODO Request author bio from outside the quiz data
                 const authorInfo =
                     checkLocalJson[
                         todaysGamesPlayed as keyof typeof checkLocalJson
                     ]["author_bio"];
+
                 setTimeout(() => {
+                    // TODO Remove log
                     // nextQuizButton.scrollIntoView({ behavior: "smooth" });
-                    console.log("todaysGamesPlayed", todaysGamesPlayed);
+                    // console.log("todaysGamesPlayed", todaysGamesPlayed);
                     animateAuthor(
                         authorInfo["authorName"],
                         authorInfo["professionOne"] ?? "",
@@ -177,9 +182,6 @@ async function appLoad() {
                     todaysGamesPlayed += 1;
                     totalScore++;
                 }
-                // if (todaysGamesPlayed > 2) {
-                //     isGameOfDayOver = true;
-                // }
 
                 if (todaysGamesPlayed > 2) {
                     nextQuizButtonLink["href"] = `${rootUrl}/marcador/`;
@@ -266,7 +268,6 @@ async function appLoad() {
                     isGameOfDayOver = true;
                 }
 
-                // const buttonContainer = document.querySelector(".button-container");
                 buttons.forEach((button) => {
                     if (button.id.toString() !== answer.toString()) {
                         button?.classList.remove("answer-neutral");
@@ -293,14 +294,9 @@ async function appLoad() {
                     dateLastExercise.toLocaleDateString(),
                     dateLastExercise.toLocaleString(),
                 );
-                console.log(dateLastExercise.toISOString());
-                // const formatDate = dateLastExercise.toISOString();
 
                 const formatDate = dateLastExercise.toISOString().slice(0, 10);
-                // TODO check if IDs are the same
-                console.log("userID", localStorage.getItem("user"), userId);
                 const user = {
-                    // userId: localStorage.getItem("user"),
                     userId: userId,
                     totalScore: totalScore,
                     totalGames: totalGamesPlayed,
