@@ -6,9 +6,8 @@ export class ComponentNavigation extends HTMLElement {
             <a href="/"> ${word} </a>
         </h1>
         <nav-bar class="nav-desk">
-            <a href="/frase/">quiz</a>
-            <a href="/marcador/">score</a>
-            <a href="/estilos/">styling</a>
+            <a href="/frase/">Frase</a>
+            <a href="/marcador/">Marcador</a>
         </nav-bar>`;
     }
 }

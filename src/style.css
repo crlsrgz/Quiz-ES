@@ -114,7 +114,7 @@ em {
     --scale: 1.25;
     --factor: 0.3;
     --radius: 1rem;
-    --text-xl: calc(var(--h1) * var(--scale));
+    --text-xl: calc(var(--h1) * var(--scale))2;
     --h1: calc(var(--h2) * var(--scale));
     --h2: calc(var(--h3) * var(--scale));
     --h3: calc(var(--h4) * var(--scale));
@@ -308,7 +308,7 @@ app-header {
 .nav-desk {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: var(--h4);
     font-size: var(--h5);
 }
 
