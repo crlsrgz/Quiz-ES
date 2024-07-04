@@ -39,5 +39,4 @@ async function appLoad() {
     console.table(gameState);
 
     /* ::::::::: Temporaray functions for development ::::::::: */
-    deleteLocalStorage();
 }

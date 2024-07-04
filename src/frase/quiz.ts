@@ -333,6 +333,4 @@ async function appLoad() {
     displayScore(totalScore.toString(), totalScore.toString());
     closeInfoBox();
     /* ::::::::: Temporaray functions for depeloment ::::::::: */
-    showGameState(gameState);
-    deleteLocalStorage();
 }

@@ -496,7 +496,7 @@ iconify-icon {
 }
 
 .message-container {
-    width: 75%;
+    width: 45%;
     text-align: center;
     padding: var(--h3) 0 0 0;
     margin: auto;

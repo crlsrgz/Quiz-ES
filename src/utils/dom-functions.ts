@@ -73,6 +73,7 @@ export function animateAuthor(
     //     console.log("gggg");
     // });
 }
+
 // TODO Check delay functionality in case not needed
 // function delay(ms: number) {
 //     return new Promise((resolve) => setTimeout(resolve, ms));
