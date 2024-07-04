@@ -2,6 +2,7 @@ import { ComponentAuthorInfo } from "../components/authorInfo";
 //@ts-ignore
 import anime from "animejs/lib/anime.es.js";
 import { isInDevelopment, rootUrl } from "../connections/connection";
+import { jsonSchema } from "uuidv4";
 
 export const insertTextContent = (
     elementIdentifier: string,
@@ -73,7 +74,32 @@ export function animateAuthor(
     //     console.log("gggg");
     // });
 }
+type quotesOfTheDay = { [key: string]: { quote: string; author: string } };
 
+export function displayAlreadyAnsweredQuote(gameState: GameState) {
+    let quiz: quotesOfTheDay;
+    const gameOfTheDayNumber = parseInt(gameState["todaysGamesPlayed"]) - 1;
+    if (localStorage.getItem("quiz")) {
+        // quiz["quote"] = JSON.parse(localStorage.getItem("quiz"));
+        const quote = JSON.parse(localStorage.getItem("quiz"))[
+            gameOfTheDayNumber
+        ]["quote"];
+
+        const author = JSON.parse(localStorage.getItem("quiz"))[
+            gameOfTheDayNumber
+        ]["quote"];
+        /* 💡 Object property names ES6 */
+        quiz = { [gameOfTheDayNumber]: { quote, author } };
+    }
+
+    if (!localStorage.getItem("todayPlayesQuotes")) {
+        localStorage.setItem("todayPlayesQuotes", "");
+    }
+    console.log("displayAlreadyAnsweredQuote");
+    console.log();
+    // console.log(quiz[gameState["todaysGamesPlayed"]]);
+    console.log(quiz);
+}
 // TODO Check delay functionality in case not needed
 // function delay(ms: number) {
 //     return new Promise((resolve) => setTimeout(resolve, ms));

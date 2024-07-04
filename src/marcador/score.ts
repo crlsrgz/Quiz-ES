@@ -6,6 +6,7 @@ import { connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
 import {
     deleteLocalStorage,
+    displayAlreadyAnsweredQuote,
     displayScore,
     gameOfTheDayOver,
 } from "../utils/dom-functions.js";
@@ -63,6 +64,7 @@ async function appLoad() {
 
     await displayScore("0", "0");
 
+    displayAlreadyAnsweredQuote(gameState);
     closeInfoBox();
     gameOfTheDayOver(gameState.isGameOfDayOver);
     /* :::::::::  Report Game State ::::::::: */
