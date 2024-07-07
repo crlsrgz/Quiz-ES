@@ -74,11 +74,18 @@ export function animateAuthor(
     //     console.log("gggg");
     // });
 }
-type quotesOfTheDay = { [key: string]: { quote: string; author: string } };
+type quotesOfTheDay = {
+    [key: string]: { quote: string; author: string; authorId: string };
+};
 
 export function displayAlreadyAnsweredQuote(gameState: GameState) {
     let quiz: quotesOfTheDay;
+    let quotesList = {};
     const gameOfTheDayNumber = parseInt(gameState["todaysGamesPlayed"]) - 1;
+
+    if (gameOfTheDayNumber >= 0) {
+        console.log("gamesplayed already");
+    }
     if (localStorage.getItem("quiz")) {
         // quiz["quote"] = JSON.parse(localStorage.getItem("quiz"));
         const quote = JSON.parse(localStorage.getItem("quiz"))[
@@ -87,19 +94,52 @@ export function displayAlreadyAnsweredQuote(gameState: GameState) {
 
         const author = JSON.parse(localStorage.getItem("quiz"))[
             gameOfTheDayNumber
-        ]["quote"];
+        ]["author_bio"]["authorName"];
+        const authorId = JSON.parse(localStorage.getItem("quiz"))[
+            gameOfTheDayNumber
+        ]["author_bio"]["authorId"];
         /* 💡 Object property names ES6 */
-        quiz = { [gameOfTheDayNumber]: { quote, author } };
+        quiz = { [gameOfTheDayNumber]: { quote, author, authorId } };
     }
+    /* ::::::::: Set entry with played quotes ::::::::: */
+    if (!localStorage.getItem("todayPlayedQuotes")) {
+        localStorage.setItem("todayPlayedQuotes", "");
+    }
+    if (localStorage.getItem("todayPlayedQuotes")) {
+        quotesList = JSON.parse(localStorage.getItem("todayPlayedQuotes"));
+        console.log("quotesListBefore", quotesList);
+    }
+    quotesList[gameOfTheDayNumber] = quiz;
+    localStorage.setItem("todayPlayedQuotes", JSON.stringify(quotesList));
+    console.log("quotesListAfeter", quotesList);
 
-    if (!localStorage.getItem("todayPlayesQuotes")) {
-        localStorage.setItem("todayPlayesQuotes", "");
-    }
     console.log("displayAlreadyAnsweredQuote");
     console.log();
     // console.log(quiz[gameState["todaysGamesPlayed"]]);
-    console.log(quiz);
+
+    // console.log(quiz);
+    // createPlayedQuote(quotesList);
 }
+
+function createPlayedQuote(object: quotesOfTheDay) {
+    const container = document.getElementById("already-answered-quotes");
+    let quoteIndex = 0;
+    let objectLength = Object.keys(object).length;
+    for (let i = 0; i < objectLength; i++) {
+        console.log(i);
+        const div = document.createElement("div");
+        const spanAuthor = document.createElement("div");
+        const spanQuote = document.createElement("div");
+
+        spanAuthor.textContent = object[i]["author"];
+        spanQuote.textContent = object[i]["quote"];
+        div.append(spanQuote, spanAuthor);
+        container?.append(div);
+    }
+
+    // console.log("createPlayedQuote", div, spanAuthor, objectLength);
+}
+
 // TODO Check delay functionality in case not needed
 // function delay(ms: number) {
 //     return new Promise((resolve) => setTimeout(resolve, ms));

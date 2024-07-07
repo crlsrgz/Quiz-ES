@@ -19,6 +19,7 @@ import {
 
 import {
     animateAuthor,
+    displayAlreadyAnsweredQuote,
     displayScore,
     removeStar,
     showGameState,
@@ -322,6 +323,8 @@ async function appLoad() {
                     totalGamesPlayed,
                     totalScore,
                 );
+
+                displayAlreadyAnsweredQuote(gameState);
             }
             /* :::::::::  Report Game State ::::::::: */
             console.table(gameState);
