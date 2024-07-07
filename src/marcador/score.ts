@@ -67,9 +67,6 @@ async function appLoad() {
     displayAlreadyAnsweredQuote(gameState);
     closeInfoBox();
     gameOfTheDayOver(gameState.isGameOfDayOver);
-    displayAlreadyAnsweredQuote(
-        JSON.parse(localStorage.getItem("todayPlayedQuotes")),
-    );
     /* :::::::::  Report Game State ::::::::: */
     console.table(gameState);
 

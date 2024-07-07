@@ -23,7 +23,7 @@ export async function userDataRequest(
         })
         .then((data) => {
             // TODO remove check data from request
-            // console.log("returned data", data);
+            console.log("returned data", data);
             displayNextGameDate(data["dateShort"]);
             localStorage.setItem("user", data["userId"]);
             /**

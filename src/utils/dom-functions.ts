@@ -79,61 +79,48 @@ type quotesOfTheDay = {
 };
 
 export function displayAlreadyAnsweredQuote(gameState: GameState) {
-    let quiz: quotesOfTheDay;
-    let quotesList = {};
+    // let quiz: string;
+    // let quotesList: quotesOfTheDay;
     const gameOfTheDayNumber = parseInt(gameState["todaysGamesPlayed"]) - 1;
 
-    if (gameOfTheDayNumber >= 0) {
-        console.log("actual: gamesplayed already");
-    }
-    if (localStorage.getItem("quiz")) {
-        // quiz["quote"] = JSON.parse(localStorage.getItem("quiz"));
-        const quote = JSON.parse(localStorage.getItem("quiz"))[
-            gameOfTheDayNumber
-        ]["quote"];
+    let quiz = JSON.parse(localStorage.getItem("quiz"))[gameOfTheDayNumber];
 
-        const author = JSON.parse(localStorage.getItem("quiz"))[
-            gameOfTheDayNumber
-        ]["author_bio"]["authorName"];
-        const authorId = JSON.parse(localStorage.getItem("quiz"))[
-            gameOfTheDayNumber
-        ]["author_bio"]["authorId"];
-        /* 💡 Object property names ES6 */
-        quiz = { [gameOfTheDayNumber]: { quote, author, authorId } };
+    let quotesList: quotesOfTheDay = {};
+    let getStorage = {};
+    if (!localStorage.getItem("playedGamesOfTheDay")) {
+        localStorage.setItem("playedGamesOfTheDay", "");
+    } else {
+        getStorage = JSON.parse(localStorage.getItem("playedGamesOfTheDay"));
     }
-    /* ::::::::: Set entry with played quotes ::::::::: */
-    if (!localStorage.getItem("todayPlayedQuotes")) {
-        localStorage.setItem("todayPlayedQuotes", "");
-    }
-    if (localStorage.getItem("todayPlayedQuotes")) {
-        quotesList = JSON.parse(localStorage.getItem("todayPlayedQuotes"));
-        console.log("quotesListBefore", quotesList);
-    }
-    quotesList[gameOfTheDayNumber] = quiz;
-    localStorage.setItem("todayPlayedQuotes", JSON.stringify(quotesList));
-    console.log("quotesListAfeter", quotesList);
+    console.log("getStorage", getStorage);
 
-    console.log("displayAlreadyAnsweredQuote");
-    console.log();
-    // console.log(quiz[gameState["todaysGamesPlayed"]]);
+    getStorage[gameOfTheDayNumber] = {
+        quote: quiz["quote"],
+        author: quiz["author_bio"]["authorName"],
+        authorId: quiz["author_bio"]["authorId"],
+    };
 
-    // console.log(quiz);
-    // createPlayedQuote(quotesList);
+    localStorage.setItem("playedGamesOfTheDay", JSON.stringify(getStorage));
+    console.log("length", Object.keys(getStorage).length);
+
+    createPlayedQuote(getStorage);
+    /*:::::::: Set entry with played quotes ::::::::: */
 }
 
-function createPlayedQuote(object: quotesOfTheDay) {
+function createPlayedQuote(getStorage: {}) {
     const container = document.getElementById("already-answered-quotes");
-    let quoteIndex = 0;
-    let objectLength = Object.keys(object).length;
-    for (let i = 0; i < objectLength; i++) {
-        console.log(i);
+    let quoteIndex = Object.keys(getStorage).length;
+
+    for (let i = 0; i < quoteIndex; i++) {
+        // console.log(i);
         const div = document.createElement("div");
         const spanAuthor = document.createElement("div");
         const spanQuote = document.createElement("div");
 
-        spanAuthor.textContent = object[i]["author"];
-        spanQuote.textContent = object[i]["quote"];
+        spanAuthor.textContent = getStorage[i]["author"];
+        spanQuote.textContent = getStorage[i]["quote"];
         div.append(spanQuote, spanAuthor);
+        div.id = getStorage[i]["authorId"];
         container?.append(div);
     }
 
