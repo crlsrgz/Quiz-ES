@@ -23,7 +23,7 @@ export async function userDataRequest(
         })
         .then((data) => {
             // TODO remove check data from request
-            console.log("returned data", data);
+            // console.log("returned data", data);
             displayNextGameDate(data["dateShort"]);
             localStorage.setItem("user", data["userId"]);
             /**
@@ -37,31 +37,7 @@ export async function userDataRequest(
             // gameState["isGameOfDayOver"] = "hello";
 
             todaysGamesPlayedData = +data["todaysGamesPlayed"];
-            //TODO remove check isGameOfDayOver
-            // console.log("Test: gamestateFrom request", gameState);
-            // console.log(gameState["isGameOfDayOver"], data["isGameOfDayOver"]);
 
-            // if (gameState["isGameOfDayOver"] === true) {
-            //     gameState["todaysGamesPlayed"] = 0;
-            //     console.log("todaysGamesPlayed shoul be Zero");
-            // }
-
-            // if (parseInt(data["todaysGamesPlayed"]) > 2) {
-            // TODO Be aware of the reset game,
-            // check if everything looks dine and then delete the if
-            // todaysGamesPlayedData = 0;
-            // console.log("todaysGamesPlayed shoul be Zero");
-            // }
-
-            // console.log(
-            //     "test: todaysGamesPlayed",
-            //     gameState["todaysGamesPlayed"],
-            //     todaysGamesPlayedData,
-            // );
-            /**
-             * TODO
-             * Try to reset the game status again, after data request
-             */
             gameState["isGameOfDayOver"] = data["isGameOfDayOver"];
             gameState["todaysGamesPlayed"] = parseInt(
                 data["todaysGamesPlayed"],
@@ -87,18 +63,19 @@ export async function updateUserTotalScore(
         date: string;
     },
 ) {
-    console.log("update score", user);
+    /*:: Update User score ::*/
+
     await fetch(connectionUserScore, {
         method: "POST",
         headers: {
             "Content-Type": "application/json; charset=uft",
         },
         body: JSON.stringify(user),
-    })
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => console.log(data));
+    });
+    // .then((response) => {
+    //     return response.json();
+    // })
+    // .then((data) => console.log(data));
 }
 
 export function getDate(): string {
@@ -147,8 +124,7 @@ export async function checkAnswer(
             return response.json();
         })
         .then((data) => {
-            console.log("returned answer", data);
-            // console.log(theData);
+            // console.log("returned answer", data);
             answer = data["dateSome"].toString();
         });
     return answer;

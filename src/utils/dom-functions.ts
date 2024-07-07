@@ -84,7 +84,7 @@ export function displayAlreadyAnsweredQuote(gameState: GameState) {
     const gameOfTheDayNumber = parseInt(gameState["todaysGamesPlayed"]) - 1;
 
     if (gameOfTheDayNumber >= 0) {
-        console.log("gamesplayed already");
+        console.log("actual: gamesplayed already");
     }
     if (localStorage.getItem("quiz")) {
         // quiz["quote"] = JSON.parse(localStorage.getItem("quiz"));

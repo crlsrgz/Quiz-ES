@@ -59,7 +59,6 @@ async function appLoad() {
 
     if (localStorage.getItem("state")) {
         gameState = JSON.parse(localStorage.getItem("state") || "{}");
-        console.log("isGameOfDayOver", gameState["isGameOfDayOver"]);
     } else {
         gameState = setInitialLocalStorage();
     }
@@ -83,7 +82,6 @@ async function appLoad() {
         },
         "-1",
     );
-    console.log("dateSome is the answer", dateSome);
     /**
      * TODO AWAIT for userDAtaRequest to get the data,
      * Then run checkLocal
@@ -96,9 +94,7 @@ async function appLoad() {
         reviewState["todaysGamesPlayed"] < 3
             ? reviewState["todaysGamesPlayed"]
             : 2;
-    console.log("should be int", todaysGamesPlayed);
 
-    console.log("test: for boolean", isGameOfDayOver);
     const checkLocal = localStorage.getItem("quiz") || "{}";
     const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
@@ -109,12 +105,7 @@ async function appLoad() {
         checkLocalJson[1]["answer"],
         checkLocalJson[2]["answer"],
     );
-    console.log("--");
 
-    // const answer =
-    //     checkLocalJson[todaysGamesPlayed as keyof typeof checkLocalJson][
-    //         "answer"
-    //     ];
     const answer = dateSome;
 
     // 💡 :::: Remote DEV END
@@ -140,15 +131,12 @@ async function appLoad() {
             button.disabled = true;
             isGameOver = true;
 
-            console.log((nextQuizButton.children[0].textContent = "Marcador"));
             nextQuizButtonLink["href"] = `${rootUrl}/marcador/`;
             nextQuizButton.classList.remove("hidden");
             nextQuizButton.classList.add("next-reveal");
         }
 
         button.addEventListener("click", () => {
-            console.log("todaysGamesPlayed", todaysGamesPlayed);
-
             // Right answer
 
             if (button.id.toString() === answer.toString()) {
@@ -158,8 +146,6 @@ async function appLoad() {
                 button.disabled = true;
                 isGameOver = true;
 
-                // TODO Remove log
-                console.log("todaysGamesPlayed", todaysGamesPlayed);
                 // TODO Request author bio from outside the quiz data
                 const authorInfo =
                     checkLocalJson[
@@ -167,9 +153,8 @@ async function appLoad() {
                     ]["author_bio"];
 
                 setTimeout(() => {
-                    // TODO Remove log
+                    //TODO proof scrollIntoview for final prod
                     // nextQuizButton.scrollIntoView({ behavior: "smooth" });
-                    // console.log("todaysGamesPlayed", todaysGamesPlayed);
                     animateAuthor(
                         authorInfo["authorName"],
                         authorInfo["professionOne"] ?? "",
@@ -282,9 +267,6 @@ async function appLoad() {
                             button.style["transition"] = "all 3s";
                             button.style["opacity"] = "0.8";
                         }, 1000);
-                    } else {
-                        // TODO remove log
-                        console.log(button.textContent);
                     }
                 });
 
@@ -292,11 +274,12 @@ async function appLoad() {
                 totalGamesPlayed++;
 
                 const dateLastExercise = new Date();
-                console.log(
-                    dateLastExercise.toDateString,
-                    dateLastExercise.toLocaleDateString(),
-                    dateLastExercise.toLocaleString(),
-                );
+                //TODO Proof dates, if needed
+                // console.log(
+                //     dateLastExercise.toDateString,
+                //     dateLastExercise.toLocaleDateString(),
+                //     dateLastExercise.toLocaleString(),
+                // );
 
                 const formatDate = dateLastExercise.toISOString().slice(0, 10);
                 const user = {
@@ -312,8 +295,6 @@ async function appLoad() {
 
                 isGameOver = false;
                 answerTries = 0;
-                // todaysGamesPlayed = 0;
-                console.log("test: isGameOfDayOver", isGameOfDayOver);
                 gameState = setInitialLocalStorage(
                     isGameOver,
                     isGameOfDayOver,
