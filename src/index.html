@@ -9,7 +9,6 @@
 
     <body>
         <div id="app">
-            <app-info-box></app-info-box>
             <header>
                 <app-header></app-header>
             </header>
@@ -19,7 +18,7 @@
                     <h1 class="h3">Hola, Bienvenido</h1>
                 </section>
 
-                <section class="message-container">
+                <section class="message-container message-greeting">
                     <h2 class="h5 font-sans-light">
                         Este es un juego basado en frases célebres de
                         personalidades notables de la historia.
@@ -32,6 +31,21 @@
                         <br />
                     </h2>
                     <h2 class="h5 font-sans-light">
+                        <br />
+                        Adivina el alutor de las tres Frases Célebres, en menos
+                        de tres intentos cada una.<br /><br />
+                        Al contestar las tres frases celebres del día termina el
+                        juego y tendrás que espera hasta el siguiente día para
+                        jugar nuevamente. <br /><br />
+                    </h2>
+                    <h2 class="h5 font-sans-light">
+                        El juego se reinicia todos los diás a las 0:00 hrs, hora
+                        estándar del centro, con tres frases nuevas.
+                        <br />
+                        <br />
+                    </h2>
+
+                    <h2 class="h5 font-sans-light">
                         Las frases célebres vienen del sitio
                         <a
                             href="https://lasmascelebres.com/?=q1"
@@ -39,18 +53,7 @@
                             tabindex="2"
                             >Las Más Celebres</a
                         >.
-                    </h2>
-                    <h2 class="h5 font-sans-light">
                         <br />
-                        El punto del juego es de adivinar quienes dijeron las
-                        tres frases del día. <br />
-                        Al contestar las tres frases del día termina el juego y
-                        tendrás que espera hasta el siguiente día para jugar
-                        nuevamente. <br /><br />
-                    </h2>
-                    <h2 class="h5 font-sans-light">
-                        El juego se reinicia todos los diás a las 0:00 hrs, hora
-                        estándar del centro, con tres frases nuevas.
                     </h2>
                     <hr />
                     <h3 class="h5 font-serif">
@@ -66,6 +69,7 @@
                 <app-footer></app-footer>
             </footer>
             <!-- TODO -->
+            <app-info-box></app-info-box>
         </div>
         <script type="module" src="./components/navigation.ts"></script>
         <script type="module" src="./components/footer.ts"></script>
