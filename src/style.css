@@ -399,8 +399,16 @@ iconify-icon {
     justify-content: center;
     align-items: baseline;
 }
+#already-answered-quotes{
+    display: flex;
+    flex-direction: column;
+    gap: var(--h6);
+}
 
-
+.already-played-quote{
+    width: 60%;
+    border: var(--border-test);
+}
 
 
 .normal-text{
@@ -735,6 +743,9 @@ author-info {
     .button-container {
         width: 80%;
     }
+    .already-played-quote{
+        width: 90%;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -786,6 +797,10 @@ author-info {
     .answer-field {
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .already-played-quote{
+        width: 90%;
     }
 
     section,

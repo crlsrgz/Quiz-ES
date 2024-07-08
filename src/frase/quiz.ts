@@ -22,9 +22,7 @@ import {
     displayAlreadyAnsweredQuote,
     displayScore,
     removeStar,
-    showGameState,
 } from "../utils/dom-functions.js";
-import { deleteLocalStorage } from "../utils/dom-functions.js";
 import { closeInfoBox } from "../utils/dom-functions";
 
 window.addEventListener("DOMContentLoaded", appLoad);

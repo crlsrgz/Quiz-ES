@@ -11,7 +11,6 @@ export default defineConfig({
                 main: resolve(__dirname, "src/index.html"),
                 frase: resolve(__dirname, "src/frase/index.html"),
                 marcador: resolve(__dirname, "src/marcador/index.html"),
-                estilos: resolve(__dirname, "src/estilos/index.html"),
             },
         },
     },

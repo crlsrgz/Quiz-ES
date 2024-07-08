@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 import { connectionUserData } from "./connections/connection.js";
 
 import { setInitialLocalStorage, userDataRequest } from "./utils/quizData.js";
-import { deleteLocalStorage } from "./utils/dom-functions.js";
 import { closeInfoBox } from "./utils/dom-functions.js";
 
 window.addEventListener("DOMContentLoaded", appLoad);

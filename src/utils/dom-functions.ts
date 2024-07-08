@@ -2,7 +2,6 @@ import { ComponentAuthorInfo } from "../components/authorInfo";
 //@ts-ignore
 import anime from "animejs/lib/anime.es.js";
 import { isInDevelopment, rootUrl } from "../connections/connection";
-import { jsonSchema } from "uuidv4";
 
 export const insertTextContent = (
     elementIdentifier: string,
@@ -81,11 +80,13 @@ type quotesOfTheDay = {
 export function displayAlreadyAnsweredQuote(gameState: GameState) {
     // let quiz: string;
     // let quotesList: quotesOfTheDay;
-    const gameOfTheDayNumber = parseInt(gameState["todaysGamesPlayed"]) - 1;
+    const gameOfTheDayNumber = gameState["todaysGamesPlayed"] - 1;
     //TODO quiz is not set
     // check before setting the variable
     if (localStorage.getItem("quiz")) {
-        let quiz = JSON.parse(localStorage.getItem("quiz"))[gameOfTheDayNumber];
+        let quiz = JSON.parse(localStorage.getItem("quiz") || "{}")[
+            gameOfTheDayNumber
+        ];
 
         let getStorage: quotesOfTheDay = {};
 
@@ -93,7 +94,7 @@ export function displayAlreadyAnsweredQuote(gameState: GameState) {
             localStorage.setItem("playedGamesOfTheDay", "");
         } else {
             getStorage = JSON.parse(
-                localStorage.getItem("playedGamesOfTheDay"),
+                localStorage.getItem("playedGamesOfTheDay") || "{}",
             );
         }
         console.log("getStorage", getStorage);
@@ -112,20 +113,33 @@ export function displayAlreadyAnsweredQuote(gameState: GameState) {
     /*:::::::: Set entry with played quotes ::::::::: */
 }
 
-function createPlayedQuote(getStorage: {}) {
+function createPlayedQuote(getStorage: quotesOfTheDay) {
     const container = document.getElementById("already-answered-quotes");
     let quoteIndex = Object.keys(getStorage).length;
 
     for (let i = 0; i < quoteIndex; i++) {
         // console.log(i);
         const div = document.createElement("div");
-        const spanAuthor = document.createElement("div");
-        const spanQuote = document.createElement("div");
 
-        spanAuthor.textContent = getStorage[i]["author"];
+        const spanAuthor = document.createElement("div");
+        const linkAuthor = document.createElement("a");
+        spanAuthor.classList.add("h6");
+
+        const spanQuote = document.createElement("div");
+        spanQuote.classList.add("h5");
+
+        linkAuthor.textContent = getStorage[i]["author"];
+        linkAuthor["href"] =
+            `https://lasmascelebres.com/autor/${getStorage[i]["authorId"]}/?ref=qlmc`;
+        linkAuthor["target"] = "_blank";
+
+        spanAuthor.appendChild(linkAuthor);
         spanQuote.textContent = getStorage[i]["quote"];
+
         div.append(spanQuote, spanAuthor);
+        div.classList.add("already-played-quote");
         div.id = getStorage[i]["authorId"];
+
         container?.append(div);
     }
 
