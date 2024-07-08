@@ -496,13 +496,16 @@ iconify-icon {
 }
 
 .message-container {
-    /* width: 45%; */
     text-align: center;
     padding: var(--h3) 0 0 0;
     margin: auto;
     display: flex;
     flex-direction: column;
     /* gap: var(--text-small); */
+}
+.message-greeting {
+
+    width: 45%;
 }
 
 .message-container h2,
