@@ -2,12 +2,13 @@ import "iconify-icon";
 import "../style.css";
 
 import { v4 as uuidv4 } from "uuid";
-import { connectionUserData } from "../connections/connection.js";
+import { KEYSTOPRESS, connectionUserData } from "../connections/connection.js";
 import { setInitialLocalStorage, userDataRequest } from "../utils/quizData.js";
 import {
     displayAlreadyAnsweredQuote,
     displayScore,
     gameOfTheDayOver,
+    inputCode,
 } from "../utils/dom-functions.js";
 import { closeInfoBox } from "../utils/dom-functions";
 
@@ -66,6 +67,9 @@ async function appLoad() {
     displayAlreadyAnsweredQuote(gameState);
     closeInfoBox();
     gameOfTheDayOver(gameState.isGameOfDayOver);
+
+    inputCode(KEYSTOPRESS);
+
     /* :::::::::  Report Game State ::::::::: */
     console.table(gameState);
 

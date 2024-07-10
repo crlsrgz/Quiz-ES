@@ -287,3 +287,17 @@ export function showGameState(todaysGamesPlayed: any) {
         console.log("todaysGamesPlayed", todaysGamesPlayed);
     });
 }
+
+export function inputCode(word: string) {
+    const inputCode: string[] = [];
+    window.addEventListener("keyup", (e) => {
+        console.log(e.key);
+        inputCode.push(e.key);
+        inputCode.splice(-word.length - 1, inputCode.length - word.length);
+        if (inputCode.join("").includes(word)) {
+            console.log("secret code");
+            localStorage.clear();
+            window.location.reload();
+        }
+    });
+}

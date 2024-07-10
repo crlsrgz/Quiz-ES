@@ -15,12 +15,14 @@ import {
     connectionAnswerData,
     connectionUserScore,
     rootUrl,
+    KEYSTOPRESS,
 } from "../connections/connection.js";
 
 import {
     animateAuthor,
     displayAlreadyAnsweredQuote,
     displayScore,
+    inputCode,
     removeStar,
 } from "../utils/dom-functions.js";
 import { closeInfoBox } from "../utils/dom-functions";
@@ -311,6 +313,8 @@ async function appLoad() {
             displayScore(totalScore.toString(), totalScore.toString());
         });
     });
+
+    inputCode(KEYSTOPRESS);
 
     displayScore(totalScore.toString(), totalScore.toString());
     closeInfoBox();
