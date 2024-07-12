@@ -125,7 +125,12 @@ export async function checkAnswer(
         })
         .then((data) => {
             // console.log("returned answer", data);
+            console.log("CHECK ERROR");
+            // {return await fetch(e,{method:"POST",headers:{"Content-Type":"aplication/json; charset=utf"},body:JSON.stringify(t)}).then(o=>o.json()).then(o=>{n=o.dateSome.toString()}),n}
             answer = data["dateSome"].toString();
+            console.log(answer);
+
+            console.log("CHECK ERROR");
         });
     return answer;
 }

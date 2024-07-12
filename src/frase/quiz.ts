@@ -75,6 +75,8 @@ async function appLoad() {
     // 💡 :::: Remote DEV START
     await userDataRequest(connectionUserData, user);
     // let dateSome: string;
+
+    //TODO CHECK ERROR in CONNECTION
     let dateSome = await checkAnswer(
         connectionAnswerData,
         {
@@ -121,6 +123,10 @@ async function appLoad() {
         "#next a",
     ) as HTMLLinkElement;
 
+    /*:: Store pressed buttons ::*/
+    const pressedAnswerButtons: string[] = [];
+
+    /*:: Button Functionality ::*/
     buttons.forEach((button) => {
         /**
          * If game of the day is over disable buttons
@@ -135,10 +141,32 @@ async function appLoad() {
             nextQuizButton.classList.remove("hidden");
             nextQuizButton.classList.add("next-reveal");
         }
+        if (
+            localStorage
+                .getItem("buttons")
+                ?.split(",")
+                .includes(button.id.toString())
+        ) {
+            button?.classList.remove("answer-neutral");
+            button?.classList.add("answer-wrong");
+        }
 
         button.addEventListener("click", () => {
-            // Right answer
+            //TODO: restarting the page will reset the array with the pressed buttons
+            pressedAnswerButtons.push(button.id);
+            localStorage.setItem("buttons", pressedAnswerButtons.toString());
 
+            if (!isGameOver) {
+                console.log("answerPressed", pressedAnswerButtons);
+            }
+            if (localStorage.getItem("buttons")) {
+                console.log(
+                    "schecking buttons",
+                    localStorage.getItem("buttons")?.split(",").includes("3"),
+                );
+            }
+
+            // Right answer
             if (button.id.toString() === answer.toString()) {
                 button?.classList.remove("answer-neutral");
                 button?.classList.remove("answer-reveal");

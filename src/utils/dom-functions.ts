@@ -291,7 +291,6 @@ export function showGameState(todaysGamesPlayed: any) {
 export function inputCode(word: string) {
     const inputCode: string[] = [];
     window.addEventListener("keyup", (e) => {
-        console.log(e.key);
         inputCode.push(e.key);
         inputCode.splice(-word.length - 1, inputCode.length - word.length);
         if (inputCode.join("").includes(word)) {
