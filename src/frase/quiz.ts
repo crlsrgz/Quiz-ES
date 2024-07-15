@@ -123,8 +123,29 @@ async function appLoad() {
         "#next a",
     ) as HTMLLinkElement;
 
-    /*:: Store pressed buttons ::*/
-    const pressedAnswerButtons: string[] = [];
+    /*:: Store pressed buttons, and remove full stars ::*/
+    let pressedAnswerButtons: string[] = [];
+
+    if (localStorage.getItem("buttons")) {
+        const tmp = localStorage.getItem("buttons") || "{}";
+        pressedAnswerButtons = tmp?.split(",");
+        console.log(gameState);
+    }
+
+    const stars = document.querySelectorAll(".star-score");
+
+    const starsLength = stars.length;
+
+    if (gameState.answerTries === 0) {
+        pressedAnswerButtons = [];
+        localStorage.setItem("buttons", "");
+    } else {
+        for (let i = 0; i < gameState.answerTries; i++) {
+            stars[starsLength - i - 1].classList.add("star-empty");
+            stars[starsLength - i - 1].setAttribute("icon", "ph:star-thin");
+        }
+    }
+    console.log("asnweTries", gameState.answerTries);
 
     /*:: Button Functionality ::*/
     buttons.forEach((button) => {
