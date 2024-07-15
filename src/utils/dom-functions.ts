@@ -97,6 +97,7 @@ export function displayAlreadyAnsweredQuote(gameState: GameState) {
                 localStorage.getItem("playedGamesOfTheDay") || "{}",
             );
         }
+        //TODO: MISSING getSTORAGE on first load of the page without played games
         console.log("getStorage", getStorage);
 
         getStorage[gameOfTheDayNumber] = {
@@ -183,7 +184,6 @@ export function removeStar(answerTries: number) {
         keyframes: [{ scale: ["1.1", "0.25"] }, { scale: ["0.25", "1"] }],
         duration: 1000,
     });
-    console.log(stars[index]);
 }
 
 export async function displayScore(
@@ -206,8 +206,8 @@ export async function displayScore(
         ? (totalGamesPlayedElement.textContent = getLocal["totalGamesPlayed"])
         : (totalGamesPlayedElement.textContent = totalGamesPlayed);
     // TODO REmove state verification
-    console.log("the state", getLocal);
-    console.log(getLocal["totalScore"], getLocal["totalGamesPlayed"]);
+    // console.log("the state", getLocal);
+    // console.log(getLocal["totalScore"], getLocal["totalGamesPlayed"]);
 }
 
 export function displayNextGameDate(date: string) {
@@ -235,7 +235,6 @@ export function closeInfoBox() {
         ?.split("; ")
         .find((row) => row.startsWith("infoBox"))
         ?.split("=")[1];
-    console.log("boxClosedCookie", boxClosedCookie);
 
     if (!boxClosedCookie) {
         console.log("the cookie is not there");
