@@ -145,7 +145,6 @@ async function appLoad() {
             stars[starsLength - i - 1].setAttribute("icon", "ph:star-thin");
         }
     }
-    console.log("asnweTries", gameState.answerTries);
 
     /*:: Button Functionality ::*/
     buttons.forEach((button) => {

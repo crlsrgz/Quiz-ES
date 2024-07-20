@@ -400,6 +400,7 @@ iconify-icon {
     align-items: baseline;
 }
 #already-answered-quotes{
+    padding-top: var(--h2);
     display: flex;
     flex-direction: column;
     gap: var(--h6);
