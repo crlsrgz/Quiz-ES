@@ -72,6 +72,5 @@ async function appLoad() {
 
     /* :::::::::  Report Game State ::::::::: */
     // console.table(gameState);
-
     /* ::::::::: Temporary functions for development ::::::::: */
 }
