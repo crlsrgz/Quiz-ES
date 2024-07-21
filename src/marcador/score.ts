@@ -71,7 +71,7 @@ async function appLoad() {
     inputCode(KEYSTOPRESS);
 
     /* :::::::::  Report Game State ::::::::: */
-    console.table(gameState);
+    // console.table(gameState);
 
-    /* ::::::::: Temporaray functions for development ::::::::: */
+    /* ::::::::: Temporary functions for development ::::::::: */
 }

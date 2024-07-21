@@ -23,9 +23,19 @@ async function appLoad() {
 
     /* ::::::::: Request data ::::::::: */
     let gameState: GameState;
+    gameState = {
+        isGameOver: false,
+        isGameOfDayOver: false,
+        answerTries: 0,
+        todayScore: 0,
+        todaysGamesPlayed: 0,
+        totalGamesPlayed: 0,
+        totalScore: 0,
+    };
+
     // let todaysGamesPlayed: number;
 
-    if (localStorage.getItem("state")) {
+    if (localStorage.getItem("state") && gameState) {
         gameState = JSON.parse(localStorage.getItem("state") || "{}");
     } else {
         gameState = setInitialLocalStorage();
@@ -35,7 +45,6 @@ async function appLoad() {
 
     userDataRequest(connectionUserData, user);
     /* :::::::::  Report Game State ::::::::: */
-    console.table(gameState);
     inputCode(KEYSTOPRESS);
 
     /* ::::::::: Temporaray functions for development ::::::::: */

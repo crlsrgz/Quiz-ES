@@ -100,11 +100,14 @@ export function displayAlreadyAnsweredQuote(gameState: GameState) {
         //TODO: MISSING getSTORAGE on first load of the page without played games
         console.log("getStorage", getStorage);
 
-        getStorage[gameOfTheDayNumber] = {
-            quote: quiz["quote"],
-            author: quiz["author_bio"]["authorName"],
-            authorId: quiz["author_bio"]["authorId"],
-        };
+        if (getStorage[gameOfTheDayNumber]) {
+            getStorage[gameOfTheDayNumber] = {
+                //TODO: FIX
+                quote: quiz["quote"],
+                author: quiz["author_bio"]["authorName"],
+                authorId: quiz["author_bio"]["authorId"],
+            };
+        }
 
         localStorage.setItem("playedGamesOfTheDay", JSON.stringify(getStorage));
         console.log("length", Object.keys(getStorage).length);

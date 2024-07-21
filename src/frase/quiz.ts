@@ -100,14 +100,6 @@ async function appLoad() {
     const checkLocal = localStorage.getItem("quiz") || "{}";
     const checkLocalJson: dayQuote = JSON.parse(checkLocal);
 
-    //TODO Remove Todays Answers
-    console.log(
-        "todays Answers",
-        checkLocalJson[0]["answer"],
-        checkLocalJson[1]["answer"],
-        checkLocalJson[2]["answer"],
-    );
-
     const answer = dateSome;
 
     // 💡 :::: Remote DEV END
@@ -129,7 +121,6 @@ async function appLoad() {
     if (localStorage.getItem("buttons")) {
         const tmp = localStorage.getItem("buttons") || "{}";
         pressedAnswerButtons = tmp?.split(",");
-        console.log(gameState);
     }
 
     const stars = document.querySelectorAll(".star-score");
@@ -175,16 +166,6 @@ async function appLoad() {
             //TODO: restarting the page will reset the array with the pressed buttons
             pressedAnswerButtons.push(button.id);
             localStorage.setItem("buttons", pressedAnswerButtons.toString());
-
-            if (!isGameOver) {
-                console.log("answerPressed", pressedAnswerButtons);
-            }
-            if (localStorage.getItem("buttons")) {
-                console.log(
-                    "schecking buttons",
-                    localStorage.getItem("buttons")?.split(",").includes("3"),
-                );
-            }
 
             // Right answer
             if (button.id.toString() === answer.toString()) {
