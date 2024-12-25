@@ -23,7 +23,7 @@ export async function userDataRequest(
         })
         .then((data) => {
             // TODO remove check data from request
-            // console.log("returned data", data);
+            console.log("returned data", data);
             displayNextGameDate(data["dateShort"]);
             localStorage.setItem("user", data["userId"]);
             /**
@@ -71,11 +71,12 @@ export async function updateUserTotalScore(
             "Content-Type": "application/json; charset=uft",
         },
         body: JSON.stringify(user),
-    });
-    // .then((response) => {
-    //     return response.json();
-    // })
-    // .then((data) => console.log(data));
+    })
+        //TODO REMOVE console log
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => console.log("Submit data", data));
 }
 
 export function getDate(): string {
