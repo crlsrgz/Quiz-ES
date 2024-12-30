@@ -45,7 +45,8 @@ async function appLoad() {
 
     userDataRequest(connectionUserData, user);
     /* :::::::::  Report Game State ::::::::: */
-    inputCode(KEYSTOPRESS);
 
     /* ::::::::: Temporaray functions for development ::::::::: */
 }
+
+inputCode(KEYSTOPRESS);
