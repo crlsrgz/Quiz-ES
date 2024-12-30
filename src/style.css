@@ -114,7 +114,7 @@ em {
     --scale: 1.25;
     --factor: 0.3;
     --radius: 1rem;
-    --text-xl: calc(var(--h1) * var(--scale))2;
+    --text-xl: calc(var(--h1) * var(--scale)) 2;
     --h1: calc(var(--h2) * var(--scale));
     --h2: calc(var(--h3) * var(--scale));
     --h3: calc(var(--h4) * var(--scale));
@@ -197,8 +197,7 @@ h6,
     line-height: var(--h6);
 }
 
-p
- {
+p {
     font-size: var(--base-size);
 }
 
@@ -394,25 +393,24 @@ iconify-icon {
     margin: 1rem;
     align-items: baseline;
 }
-.message-container-description{
+.message-container-description {
     display: flex;
     justify-content: center;
     align-items: baseline;
 }
-#already-answered-quotes{
+#already-answered-quotes {
     padding-top: var(--h2);
     display: flex;
     flex-direction: column;
     gap: var(--h6);
 }
 
-.already-played-quote{
+.already-played-quote {
     width: 60%;
     border: var(--border-test);
 }
 
-
-.normal-text{
+.normal-text {
     font-size: var(--base-size);
 }
 .small-text {
@@ -513,7 +511,6 @@ iconify-icon {
     /* gap: var(--text-small); */
 }
 .message-greeting {
-
     width: 45%;
 }
 
@@ -525,6 +522,16 @@ h6 {
 }
 
 /* :::: Buttons  ::::*/
+.game-start {
+    width: 100%;
+    border-radius: calc(var(--radius) * 1.5);
+    padding: var(--text-small);
+    font-size: var(--h6);
+    font-family: "Jost";
+    color: var(--color-light);
+    background-color: var(--color-green-strong);
+    border: 2px solid var(--color-green-strong);
+}
 
 .answer {
     width: 100%;
@@ -744,7 +751,7 @@ author-info {
     .button-container {
         width: 80%;
     }
-    .already-played-quote{
+    .already-played-quote {
         width: 90%;
     }
 }
@@ -800,7 +807,7 @@ author-info {
         padding-right: 0;
     }
 
-    .already-played-quote{
+    .already-played-quote {
         width: 90%;
     }
 

@@ -23,7 +23,7 @@ export async function userDataRequest(
         })
         .then((data) => {
             // TODO remove check data from request
-            console.log("returned data", data);
+            // console.log("returned data", data);
             displayNextGameDate(data["dateShort"]);
             localStorage.setItem("user", data["userId"]);
             /**
@@ -126,12 +126,12 @@ export async function checkAnswer(
         })
         .then((data) => {
             // console.log("returned answer", data);
-            console.log("CHECK ERROR");
+            // console.log("CHECK ERROR");
             // {return await fetch(e,{method:"POST",headers:{"Content-Type":"aplication/json; charset=utf"},body:JSON.stringify(t)}).then(o=>o.json()).then(o=>{n=o.dateSome.toString()}),n}
             answer = data["dateSome"].toString();
-            console.log(answer);
+            // console.log(answer);
 
-            console.log("CHECK ERROR");
+            // console.log("CHECK ERROR");
         });
     return answer;
 }
