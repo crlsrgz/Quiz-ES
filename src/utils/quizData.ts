@@ -75,8 +75,8 @@ export async function updateUserTotalScore(
         //TODO REMOVE console log
         .then((response) => {
             return response.json();
-        })
-        .then((data) => console.log("Submit data", data));
+        });
+    // .then((data) => console.log("Submit data", data));
 }
 
 export function getDate(): string {

@@ -98,7 +98,7 @@ export function displayAlreadyAnsweredQuote(gameState: GameState) {
             );
         }
         //TODO: MISSING getSTORAGE on first load of the page without played games
-        console.log("getStorage", getStorage);
+        // console.log("getStorage", getStorage);
 
         if (getStorage[gameOfTheDayNumber]) {
             getStorage[gameOfTheDayNumber] = {
@@ -110,7 +110,7 @@ export function displayAlreadyAnsweredQuote(gameState: GameState) {
         }
 
         localStorage.setItem("playedGamesOfTheDay", JSON.stringify(getStorage));
-        console.log("length", Object.keys(getStorage).length);
+        // console.log("length", Object.keys(getStorage).length);
 
         createPlayedQuote(getStorage);
     }

@@ -337,7 +337,7 @@ async function appLoad() {
                 displayAlreadyAnsweredQuote(gameState);
             }
             /* :::::::::  Report Game State ::::::::: */
-            console.table(gameState);
+            // console.table(gameState);
 
             displayScore(totalScore.toString(), totalScore.toString());
         });
