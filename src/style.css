@@ -502,6 +502,12 @@ iconify-icon {
     transition: order 3.5s ease-in-out;
 }
 
+.button-action-container {
+    width: 40%;
+    margin: auto;
+    padding-top: 2rem;
+}
+
 .message-container {
     text-align: center;
     padding: var(--h3) 0 0 0;

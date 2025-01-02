@@ -265,8 +265,10 @@ export function closeInfoBox() {
 
 export function gameOfTheDayOver(isGameOfDayOver: boolean | null) {
     const message = document.querySelector(".next-game-date-container");
+    const nextButton = document.querySelector(".button-action-container");
     if (isGameOfDayOver) {
         message?.classList.remove("hidden");
+        nextButton?.classList.add("hidden");
     }
 }
 
