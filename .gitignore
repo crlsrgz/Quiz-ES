@@ -34,4 +34,5 @@ coverage/
 .vscode/
 
 connections/
+connections-server/
 data/
